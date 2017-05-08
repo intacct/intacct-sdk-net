@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{52282201-E8F1-474F-927B-0837391A901F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Intacct.Sdk</RootNamespace>
+    <AssemblyName>Intacct.SDK</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Intacct.SDK.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="INIFileParser, Version=2.3.0.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini-parser.2.3.0\lib\net20\INIFileParser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.2\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Abstractions, Version=2.0.0.143, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.0.0.143\lib\net40\System.IO.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractClient.cs" />
+    <Compile Include="Credentials\ProfileCredentialProvider.cs" />
+    <Compile Include="Credentials\LoginCredentials.cs" />
+    <Compile Include="Credentials\SenderCredentials.cs" />
+    <Compile Include="Credentials\SessionCredentials.cs" />
+    <Compile Include="Credentials\SessionProvider.cs" />
+    <Compile Include="Endpoint.cs" />
+    <Compile Include="Exceptions\IntacctException.cs" />
+    <Compile Include="Functions\AccountsPayable\AbstractApPaymentRequest.cs" />
+    <Compile Include="Functions\AccountsPayable\AbstractBillSummary.cs" />
+    <Compile Include="Functions\AccountsPayable\ApPaymentReverse.cs" />
+    <Compile Include="Functions\AccountsPayable\ApPaymentRequestVoid.cs" />
+    <Compile Include="Functions\AccountsPayable\ApPaymentRequestSend.cs" />
+    <Compile Include="Functions\AccountsPayable\ApPaymentRequestDelete.cs" />
+    <Compile Include="Functions\AccountsPayable\ApPaymentRequestCreate.cs" />
+    <Compile Include="Functions\AccountsPayable\ApPaymentRequestConfirm.cs" />
+    <Compile Include="Functions\AccountsPayable\ApPaymentRequestApprove.cs" />
+    <Compile Include="Functions\AccountsPayable\ApPaymentRequestItem.cs" />
+    <Compile Include="Functions\AccountsPayable\AbstractApPayment.cs" />
+    <Compile Include="Functions\AccountsPayable\AbstractApAdjustmentSummary.cs" />
+    <Compile Include="Functions\AccountsPayable\AbstractApAdjustmentLine.cs" />
+    <Compile Include="Functions\AccountsPayable\AbstractApAdjustment.cs" />
+    <Compile Include="Functions\AccountsPayable\AbstractApAccountLabel.cs" />
+    <Compile Include="Functions\AccountsPayable\AbstractBillLine.cs" />
+    <Compile Include="Functions\AccountsPayable\AbstractBill.cs" />
+    <Compile Include="Functions\AccountsPayable\AbstractVendor.cs" />
+    <Compile Include="Functions\AccountsPayable\ApAdjustmentSummaryCreate.cs" />
+    <Compile Include="Functions\AccountsPayable\ApAdjustmentLineCreate.cs" />
+    <Compile Include="Functions\AccountsPayable\ApAdjustmentDelete.cs" />
+    <Compile Include="Functions\AccountsPayable\ApAdjustmentCreate.cs" />
+    <Compile Include="Functions\AccountsPayable\ApAccountLabelUpdate.cs" />
+    <Compile Include="Functions\AccountsPayable\ApAccountLabelDelete.cs" />
+    <Compile Include="Functions\AccountsPayable\ApAccountLabelCreate.cs" />
+    <Compile Include="Functions\AccountsPayable\BillReverse.cs" />
+    <Compile Include="Functions\AccountsPayable\BillSummaryCreate.cs" />
+    <Compile Include="Functions\AccountsPayable\BillLineCreate.cs" />
+    <Compile Include="Functions\AccountsPayable\BillCreate.cs" />
+    <Compile Include="Functions\AccountsPayable\BillDelete.cs" />
+    <Compile Include="Functions\AccountsPayable\VendorUpdate.cs" />
+    <Compile Include="Functions\AccountsPayable\VendorDelete.cs" />
+    <Compile Include="Functions\AccountsPayable\VendorCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\AbstractArAdjustmentSummary.cs" />
+    <Compile Include="Functions\AcountsReceivable\AbstractArAdjustmentLine.cs" />
+    <Compile Include="Functions\AcountsReceivable\AbstractArAdjustment.cs" />
+    <Compile Include="Functions\AcountsReceivable\AbstractArAccountLabel.cs" />
+    <Compile Include="Functions\AcountsReceivable\AbstractArPaymentSummary.cs" />
+    <Compile Include="Functions\AcountsReceivable\AbstractArPayment.cs" />
+    <Compile Include="Functions\AcountsReceivable\AbstractInvoiceSummary.cs" />
+    <Compile Include="Functions\AcountsReceivable\AbstractInvoiceLine.cs" />
+    <Compile Include="Functions\AcountsReceivable\AbstractInvoice.cs" />
+    <Compile Include="Functions\AcountsReceivable\AbstractCustomer.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArAdjustmentCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArAdjustmentDelete.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArAdjustmentLineCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArAdjustmentSummaryCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArAccountLabelUpdate.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArAccountLabelDelete.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArPaymentApply.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArPaymentReverse.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArPaymentSummaryCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArPaymentCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArAccountLabelCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\InvoiceSummaryCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\InvoiceReverse.cs" />
+    <Compile Include="Functions\AcountsReceivable\InvoiceDelete.cs" />
+    <Compile Include="Functions\AcountsReceivable\InvoiceCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\ArPaymentItem.cs" />
+    <Compile Include="Functions\AcountsReceivable\InvoiceLineCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\CustomerUpdate.cs" />
+    <Compile Include="Functions\AcountsReceivable\CustomerCreate.cs" />
+    <Compile Include="Functions\AcountsReceivable\CustomerDelete.cs" />
+    <Compile Include="Functions\AcountsReceivable\PaymentServices\AbstractCustomerChargeCard.cs" />
+    <Compile Include="Functions\AcountsReceivable\PaymentServices\CustomerChargeCardUpdate.cs" />
+    <Compile Include="Functions\AcountsReceivable\PaymentServices\CustomerChargeCardDelete.cs" />
+    <Compile Include="Functions\AcountsReceivable\PaymentServices\CustomerChargeCardCreate.cs" />
+    <Compile Include="Functions\CashManagement\AbstractOtherReceiptLine.cs" />
+    <Compile Include="Functions\CashManagement\AbstractOtherReceipt.cs" />
+    <Compile Include="Functions\CashManagement\AbstractDeposit.cs" />
+    <Compile Include="Functions\CashManagement\AbstractChargeCardTransaction.cs" />
+    <Compile Include="Functions\CashManagement\AbstractChargeCardTransactionLine.cs" />
+    <Compile Include="Functions\CashManagement\OtherReceiptLineCreate.cs" />
+    <Compile Include="Functions\CashManagement\OtherReceiptCreate.cs" />
+    <Compile Include="Functions\CashManagement\DepositCreate.cs" />
+    <Compile Include="Functions\CashManagement\ChargeCardTransactionUpdate.cs" />
+    <Compile Include="Functions\CashManagement\ChargeCardTransactionReverse.cs" />
+    <Compile Include="Functions\CashManagement\ChargeCardTransactionLineUpdate.cs" />
+    <Compile Include="Functions\CashManagement\ChargeCardTransactionLineCreate.cs" />
+    <Compile Include="Functions\CashManagement\ChargeCardTransactionCreate.cs" />
+    <Compile Include="Functions\Common\LegacyGetList\SortField.cs" />
+    <Compile Include="Functions\Common\LegacyGetList\LogicalFilter.cs" />
+    <Compile Include="Functions\Common\LegacyGetList\FilterInterface.cs" />
+    <Compile Include="Functions\Common\LegacyGetList\ExpressionFilter.cs" />
+    <Compile Include="Functions\Common\LegacyGetList\AdditionalParameter.cs" />
+    <Compile Include="Functions\Common\LegacyGetList\GetList.cs" />
+    <Compile Include="Functions\Common\Read.cs" />
+    <Compile Include="Functions\Common\ReadByName.cs" />
+    <Compile Include="Functions\Common\ReadRelated.cs" />
+    <Compile Include="Functions\Common\Inspect.cs" />
+    <Compile Include="Functions\Common\ReadReport.cs" />
+    <Compile Include="Functions\Common\ReadView.cs" />
+    <Compile Include="Functions\Company\AllocationLine.cs" />
+    <Compile Include="Functions\Company\AllocationUpdate.cs" />
+    <Compile Include="Functions\Company\AllocationDelete.cs" />
+    <Compile Include="Functions\Company\AllocationCreate.cs" />
+    <Compile Include="Functions\Company\AbstractAttachmentsFolder.cs" />
+    <Compile Include="Functions\Company\IAttachment.cs" />
+    <Compile Include="Functions\Company\AbstractAttachments.cs" />
+    <Compile Include="Functions\Company\AbstractAllocation.cs" />
+    <Compile Include="Functions\Company\AbstractAllocationLine.cs" />
+    <Compile Include="Functions\Company\AbstractUser.cs" />
+    <Compile Include="Functions\Company\AbstractDepartment.cs" />
+    <Compile Include="Functions\Company\AbstractLocation.cs" />
+    <Compile Include="Functions\Company\AbstractContact.cs" />
+    <Compile Include="Functions\Company\AbstractClass.cs" />
+    <Compile Include="Functions\Company\AttachmentFile.cs" />
+    <Compile Include="Functions\Company\AuditTrailRead.cs" />
+    <Compile Include="Functions\Company\AttachmentsUpdate.cs" />
+    <Compile Include="Functions\Company\AttachmentsFolderUpdate.cs" />
+    <Compile Include="Functions\Company\AttachmentsFolderDelete.cs" />
+    <Compile Include="Functions\Company\AttachmentsFolderCreate.cs" />
+    <Compile Include="Functions\Company\AttachmentsDelete.cs" />
+    <Compile Include="Functions\Company\AttachmentsCreate.cs" />
+    <Compile Include="Functions\Company\UserPermissionsRead.cs" />
+    <Compile Include="Functions\Company\UserUpdate.cs" />
+    <Compile Include="Functions\Company\UserCreate.cs" />
+    <Compile Include="Functions\Company\DepartmentUpdate.cs" />
+    <Compile Include="Functions\Company\DepartmentCreate.cs" />
+    <Compile Include="Functions\Company\DepartmentDelete.cs" />
+    <Compile Include="Functions\Company\LocationDelete.cs" />
+    <Compile Include="Functions\Company\LocationUpdate.cs" />
+    <Compile Include="Functions\Company\LocationCreate.cs" />
+    <Compile Include="Functions\Company\ContactDelete.cs" />
+    <Compile Include="Functions\Company\ContactUpdate.cs" />
+    <Compile Include="Functions\Company\ContactCreate.cs" />
+    <Compile Include="Functions\Company\ClassDelete.cs" />
+    <Compile Include="Functions\Company\ClassUpdate.cs" />
+    <Compile Include="Functions\Company\ClassCreate.cs" />
+    <Compile Include="Functions\DataDeliveryService\DdsObjectRead.cs" />
+    <Compile Include="Functions\DataDeliveryService\DdsObjectDdlRead.cs" />
+    <Compile Include="Functions\DataDeliveryService\DdsJobCreate.cs" />
+    <Compile Include="Functions\EmployeeExpenses\AbstractEmployee.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ReimbursementRequestCreate.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseAdjustmentDelete.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseAdjustmentLineCreate.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseAdjustmentCreate.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseTypeUpdate.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseTypeDelete.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseTypeCreate.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseReportSummaryCreate.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseReportReverse.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ReimbursementRequestItem.cs" />
+    <Compile Include="Functions\EmployeeExpenses\AbstractReimbursementRequest.cs" />
+    <Compile Include="Functions\EmployeeExpenses\AbstractExpenseType.cs" />
+    <Compile Include="Functions\EmployeeExpenses\AbstractExpenseReportSummary.cs" />
+    <Compile Include="Functions\EmployeeExpenses\AbstractExpenseAdjustment.cs" />
+    <Compile Include="Functions\EmployeeExpenses\AbstractExpenseAdjustmentLine.cs" />
+    <Compile Include="Functions\EmployeeExpenses\AbstractExpenseReportLine.cs" />
+    <Compile Include="Functions\EmployeeExpenses\AbstractExpenseReport.cs" />
+    <Compile Include="Functions\EmployeeExpenses\EmployeeCreate.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseReportDelete.cs" />
+    <Compile Include="Functions\EmployeeExpenses\EmployeeDelete.cs" />
+    <Compile Include="Functions\EmployeeExpenses\EmployeeUpdate.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseReportLineCreate.cs" />
+    <Compile Include="Functions\EmployeeExpenses\ExpenseReportCreate.cs" />
+    <Compile Include="Functions\GeneralLedger\AbstractStatisticalJournalEntry.cs" />
+    <Compile Include="Functions\GeneralLedger\AbstractJournalEntry.cs" />
+    <Compile Include="Functions\GeneralLedger\AbstractGlBatch.cs" />
+    <Compile Include="Functions\GeneralLedger\AbstractJournalEntryLine.cs" />
+    <Compile Include="Functions\GeneralLedger\AbstractStatisticalJournalEntryLine.cs" />
+    <Compile Include="Functions\GeneralLedger\AbstractGlEntry.cs" />
+    <Compile Include="Functions\GeneralLedger\AbstractStatisticalAccount.cs" />
+    <Compile Include="Functions\GeneralLedger\AbstractGlAccount.cs" />
+    <Compile Include="Functions\GeneralLedger\AbstractAccount.cs" />
+    <Compile Include="Functions\GeneralLedger\JournalEntryDelete.cs" />
+    <Compile Include="Functions\GeneralLedger\StatisticalJournalEntryDelete.cs" />
+    <Compile Include="Functions\GeneralLedger\StatisticalJournalEntryCreate.cs" />
+    <Compile Include="Functions\GeneralLedger\JournalEntryCreate.cs" />
+    <Compile Include="Functions\GeneralLedger\CustomAllocationSplit.cs" />
+    <Compile Include="Functions\GeneralLedger\StatisticalJournalEntryLineCreate.cs" />
+    <Compile Include="Functions\GeneralLedger\JournalEntryLineCreate.cs" />
+    <Compile Include="Functions\GeneralLedger\StatisticalAccountDelete.cs" />
+    <Compile Include="Functions\GeneralLedger\StatisticalAccountUpdate.cs" />
+    <Compile Include="Functions\GeneralLedger\StatisticalAccountCreate.cs" />
+    <Compile Include="Functions\GeneralLedger\AccountUpdate.cs" />
+    <Compile Include="Functions\GeneralLedger\AccountCreate.cs" />
+    <Compile Include="Functions\GeneralLedger\AccountDelete.cs" />
+    <Compile Include="Functions\GlobalConsolidations\ConsolidationCreate.cs" />
+    <Compile Include="Functions\GlobalConsolidations\ConsolidationEntity.cs" />
+    <Compile Include="Functions\GlobalConsolidations\AbstractConsolidation.cs" />
+    <Compile Include="Functions\InventoryControl\AbstractItem.cs" />
+    <Compile Include="Functions\InventoryControl\AbstractInventoryTransactionLine.cs" />
+    <Compile Include="Functions\InventoryControl\AbstractInventoryTransaction.cs" />
+    <Compile Include="Functions\InventoryControl\AbstractTransactionSubtotal.cs" />
+    <Compile Include="Functions\InventoryControl\AbstractTransactionItemDetail.cs" />
+    <Compile Include="Functions\InventoryControl\AbstractWarehouse.cs" />
+    <Compile Include="Functions\InventoryControl\InventoryTransactionDelete.cs" />
+    <Compile Include="Functions\InventoryControl\ItemDelete.cs" />
+    <Compile Include="Functions\InventoryControl\ItemUpdate.cs" />
+    <Compile Include="Functions\InventoryControl\ItemCreate.cs" />
+    <Compile Include="Functions\InventoryControl\InventoryTransactionLineCreate.cs" />
+    <Compile Include="Functions\InventoryControl\InventoryTransactionCreate.cs" />
+    <Compile Include="Functions\InventoryControl\TransactionSubtotalUpdate.cs" />
+    <Compile Include="Functions\InventoryControl\TransactionSubtotalCreate.cs" />
+    <Compile Include="Functions\InventoryControl\TransactionItemDetail.cs" />
+    <Compile Include="Functions\InventoryControl\WarehouseDelete.cs" />
+    <Compile Include="Functions\InventoryControl\WarehouseUpdate.cs" />
+    <Compile Include="Functions\InventoryControl\WarehouseCreate.cs" />
+    <Compile Include="Functions\OrderEntry\AbstractOrderEntryTransactionLine.cs" />
+    <Compile Include="Functions\OrderEntry\AbstractOrderEntryTransaction.cs" />
+    <Compile Include="Functions\OrderEntry\OrderEntryTransactionUpdate.cs" />
+    <Compile Include="Functions\OrderEntry\OrderEntryTransactionLineUpdate.cs" />
+    <Compile Include="Functions\OrderEntry\OrderEntryTransactionLineCreate.cs" />
+    <Compile Include="Functions\OrderEntry\OrderEntryTransactionCreate.cs" />
+    <Compile Include="Functions\OrderEntry\OrderEntryTransactionDelete.cs" />
+    <Compile Include="Functions\PlatformServices\ApplicationInstall.cs" />
+    <Compile Include="Functions\Projects\AbstractTimesheetEntry.cs" />
+    <Compile Include="Functions\Projects\AbstractTimesheet.cs" />
+    <Compile Include="Functions\Projects\AbstractTask.cs" />
+    <Compile Include="Functions\Projects\AbstractProject.cs" />
+    <Compile Include="Functions\Projects\TimesheetDelete.cs" />
+    <Compile Include="Functions\Projects\TimesheetEntryCreate.cs" />
+    <Compile Include="Functions\Projects\TimesheetCreate.cs" />
+    <Compile Include="Functions\Projects\TaskDelete.cs" />
+    <Compile Include="Functions\Projects\TaskUpdate.cs" />
+    <Compile Include="Functions\Projects\TaskCreate.cs" />
+    <Compile Include="Functions\Projects\ProjectUpdate.cs" />
+    <Compile Include="Functions\Projects\ProjectCreate.cs" />
+    <Compile Include="Functions\Projects\ProjectDelete.cs" />
+    <Compile Include="Functions\Purchasing\AbstractPurchasingTransactionLine.cs" />
+    <Compile Include="Functions\Purchasing\AbstractPurchasingTransaction.cs" />
+    <Compile Include="Functions\Purchasing\PurchasingTransactionDelete.cs" />
+    <Compile Include="Functions\Purchasing\PurchasingTransactionCreate.cs" />
+    <Compile Include="Functions\Purchasing\PurchasingTransactionLineCreate.cs" />
+    <Compile Include="Logging\MessageFormatter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SdkConfig.cs" />
+    <Compile Include="IntacctClient.cs" />
+    <Compile Include="Xml\LoggingHandler.cs" />
+    <Compile Include="Xml\Request\Operation\AbstractAuthentication.cs" />
+    <Compile Include="Content.cs" />
+    <Compile Include="Xml\Request\ControlBlock.cs" />
+    <Compile Include="Functions\AbstractFunction.cs" />
+    <Compile Include="Functions\ApiSessionCreate.cs" />
+    <Compile Include="Functions\IFunction.cs" />
+    <Compile Include="Functions\Common\ReadByQuery.cs" />
+    <Compile Include="Functions\Common\ReadMore.cs" />
+    <Compile Include="Xml\Request\Operation\LoginAuthentication.cs" />
+    <Compile Include="Xml\Request\MockHandler.cs" />
+    <Compile Include="Xml\Request\OperationBlock.cs" />
+    <Compile Include="Xml\RequestBlock.cs" />
+    <Compile Include="Xml\RequestHandler.cs" />
+    <Compile Include="Xml\Request\Operation\SessionAuthentication.cs" />
+    <Compile Include="Xml\IaXmlWriter.cs" />
+    <Compile Include="Xml\AbstractResponse.cs" />
+    <Compile Include="Xml\Response\Acknowledgement.cs" />
+    <Compile Include="Xml\AsynchronousResponse.cs" />
+    <Compile Include="Xml\Response\Operation\Authentication.cs" />
+    <Compile Include="Xml\Response\ErrorMessage.cs" />
+    <Compile Include="Xml\Response\Control.cs" />
+    <Compile Include="Xml\Response\OperationBlock.cs" />
+    <Compile Include="Exceptions\OperationException.cs" />
+    <Compile Include="Exceptions\ResponseException.cs" />
+    <Compile Include="Xml\Response\Operation\Result.cs" />
+    <Compile Include="Exceptions\ResultException.cs" />
+    <Compile Include="Xml\SynchronousResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Runtime\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

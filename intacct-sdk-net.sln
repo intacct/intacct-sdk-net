@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "intacct-sdk-net", "src\intacct-sdk-net.csproj", "{52282201-E8F1-474F-927B-0837391A901F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "test\UnitTest.csproj", "{2C8DE038-663D-4B99-8B6F-FB8ED4001965}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52282201-E8F1-474F-927B-0837391A901F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52282201-E8F1-474F-927B-0837391A901F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52282201-E8F1-474F-927B-0837391A901F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52282201-E8F1-474F-927B-0837391A901F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C8DE038-663D-4B99-8B6F-FB8ED4001965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C8DE038-663D-4B99-8B6F-FB8ED4001965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C8DE038-663D-4B99-8B6F-FB8ED4001965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C8DE038-663D-4B99-8B6F-FB8ED4001965}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
