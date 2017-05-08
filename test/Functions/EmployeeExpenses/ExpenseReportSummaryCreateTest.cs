@@ -21,6 +21,8 @@ using Intacct.Sdk.Xml;
 using Intacct.Sdk.Functions.EmployeeExpenses;
 using System.Collections.Generic;
 using System;
+using Org.XmlUnit.Diff;
+using Org.XmlUnit.Builder;
 
 namespace Intacct.Sdk.Tests.Functions.EmployeeExpenses
 {
@@ -62,7 +64,10 @@ namespace Intacct.Sdk.Tests.Functions.EmployeeExpenses
             stream.Position = 0;
             StreamReader reader = new StreamReader(stream);
 
-            Assert.AreEqual(expected, reader.ReadToEnd());
+            Diff xmlDiff = DiffBuilder.Compare(expected).WithTest(reader.ReadToEnd())
+                .WithDifferenceEvaluator(DifferenceEvaluators.Default)
+                .Build();
+            Assert.IsFalse(xmlDiff.HasDifferences(), xmlDiff.ToString());
         }
 
         [TestMethod()]
@@ -144,7 +149,10 @@ namespace Intacct.Sdk.Tests.Functions.EmployeeExpenses
             stream.Position = 0;
             StreamReader reader = new StreamReader(stream);
 
-            Assert.AreEqual(expected, reader.ReadToEnd());
+            Diff xmlDiff = DiffBuilder.Compare(expected).WithTest(reader.ReadToEnd())
+                .WithDifferenceEvaluator(DifferenceEvaluators.Default)
+                .Build();
+            Assert.IsFalse(xmlDiff.HasDifferences(), xmlDiff.ToString());
         }
 
     }

@@ -19,6 +19,8 @@ using System.IO;
 using System.Xml;
 using Intacct.Sdk.Xml;
 using Intacct.Sdk.Functions.DataDeliveryServices;
+using Org.XmlUnit.Diff;
+using Org.XmlUnit.Builder;
 
 namespace Intacct.Sdk.Tests.Functions.DataDeliveryServices
 {
@@ -54,7 +56,10 @@ namespace Intacct.Sdk.Tests.Functions.DataDeliveryServices
             stream.Position = 0;
             StreamReader reader = new StreamReader(stream);
 
-            Assert.AreEqual(expected, reader.ReadToEnd());
+            Diff xmlDiff = DiffBuilder.Compare(expected).WithTest(reader.ReadToEnd())
+                .WithDifferenceEvaluator(DifferenceEvaluators.Default)
+                .Build();
+            Assert.IsFalse(xmlDiff.HasDifferences(), xmlDiff.ToString());
         }
 
     }

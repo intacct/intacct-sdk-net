@@ -20,6 +20,8 @@ using Intacct.Sdk.Tests.Helpers;
 using System.Xml;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using Org.XmlUnit.Diff;
+using Org.XmlUnit.Builder;
 
 namespace Intacct.Sdk.Tests.Xml.Response
 {

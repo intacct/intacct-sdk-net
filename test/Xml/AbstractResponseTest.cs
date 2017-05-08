@@ -19,6 +19,8 @@ using Intacct.Sdk.Xml.Response;
 using Intacct.Sdk.Tests.Helpers;
 using System.Xml;
 using Intacct.Sdk.Exceptions;
+using Org.XmlUnit.Diff;
+using Org.XmlUnit.Builder;
 
 namespace Intacct.Sdk.Tests.Xml
 {

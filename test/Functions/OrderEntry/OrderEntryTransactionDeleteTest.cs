@@ -20,6 +20,8 @@ using System.Xml;
 using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Xml;
 using Intacct.Sdk.Functions.OrderEntry;
+using Org.XmlUnit.Diff;
+using Org.XmlUnit.Builder;
 
 namespace Intacct.Sdk.Tests.Functions.OrderEntry
 {
@@ -53,7 +55,10 @@ namespace Intacct.Sdk.Tests.Functions.OrderEntry
             stream.Position = 0;
             StreamReader reader = new StreamReader(stream);
 
-            Assert.AreEqual(expected, reader.ReadToEnd());
+            Diff xmlDiff = DiffBuilder.Compare(expected).WithTest(reader.ReadToEnd())
+                .WithDifferenceEvaluator(DifferenceEvaluators.Default)
+                .Build();
+            Assert.IsFalse(xmlDiff.HasDifferences(), xmlDiff.ToString());
         }
         
 

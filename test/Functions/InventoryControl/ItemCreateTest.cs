@@ -21,6 +21,8 @@ using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Xml;
 using System.Collections.Generic;
 using Intacct.Sdk.Functions.InventoryControl;
+using Org.XmlUnit.Diff;
+using Org.XmlUnit.Builder;
 
 namespace Intacct.Sdk.Tests.Functions.InventoryControl
 {
@@ -62,7 +64,10 @@ namespace Intacct.Sdk.Tests.Functions.InventoryControl
             stream.Position = 0;
             StreamReader reader = new StreamReader(stream);
 
-            Assert.AreEqual(expected, reader.ReadToEnd());
+            Diff xmlDiff = DiffBuilder.Compare(expected).WithTest(reader.ReadToEnd())
+                .WithDifferenceEvaluator(DifferenceEvaluators.Default)
+                .Build();
+            Assert.IsFalse(xmlDiff.HasDifferences(), xmlDiff.ToString());
         }
 
     }

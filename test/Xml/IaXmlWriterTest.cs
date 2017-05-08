@@ -22,6 +22,8 @@ using System.Xml;
 using Intacct.Sdk.Xml.Request;
 using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Xml;
+using Org.XmlUnit.Diff;
+using Org.XmlUnit.Builder;
 
 namespace Intacct.Sdk.Tests.Xml
 {

@@ -21,6 +21,8 @@ using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Xml;
 using Intacct.Sdk.Functions.Company;
 using System.Collections.Generic;
+using Org.XmlUnit.Diff;
+using Org.XmlUnit.Builder;
 
 namespace Intacct.Sdk.Tests.Functions.Company
 {
@@ -58,7 +60,10 @@ namespace Intacct.Sdk.Tests.Functions.Company
             stream.Position = 0;
             StreamReader reader = new StreamReader(stream);
 
-            Assert.AreEqual(expected, reader.ReadToEnd());
+            Diff xmlDiff = DiffBuilder.Compare(expected).WithTest(reader.ReadToEnd())
+                .WithDifferenceEvaluator(DifferenceEvaluators.Default)
+                .Build();
+            Assert.IsFalse(xmlDiff.HasDifferences(), xmlDiff.ToString());
         }
 
         [TestMethod()]
@@ -110,7 +115,10 @@ namespace Intacct.Sdk.Tests.Functions.Company
             stream.Position = 0;
             StreamReader reader = new StreamReader(stream);
 
-            Assert.AreEqual(expected, reader.ReadToEnd());
+            Diff xmlDiff = DiffBuilder.Compare(expected).WithTest(reader.ReadToEnd())
+                .WithDifferenceEvaluator(DifferenceEvaluators.Default)
+                .Build();
+            Assert.IsFalse(xmlDiff.HasDifferences(), xmlDiff.ToString());
         }
     }
 

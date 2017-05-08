@@ -21,6 +21,8 @@ using System.Collections.Generic;
 using Intacct.Sdk.Xml;
 using Intacct.Sdk.Exceptions;
 using Intacct.Sdk.Xml.Response.Operation;
+using Org.XmlUnit.Diff;
+using Org.XmlUnit.Builder;
 
 namespace Intacct.Sdk.Tests.Xml.Response
 {

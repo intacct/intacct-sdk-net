@@ -28,6 +28,8 @@ using Intacct.Sdk.Tests.Helpers;
 using NLog.Config;
 using NLog;
 using NLog.Targets;
+using Org.XmlUnit.Diff;
+using Org.XmlUnit.Builder;
 
 namespace Intacct.Sdk.Tests.Xml
 {
