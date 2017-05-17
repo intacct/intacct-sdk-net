@@ -1,0 +1,5 @@
+var class_intacct_1_1_sdk_1_1_functions_1_1_accounts_receivable_1_1_payment_services_1_1_customer_charge_card_create =
+[
+    [ "CustomerChargeCardCreate", "class_intacct_1_1_sdk_1_1_functions_1_1_accounts_receivable_1_1_payment_services_1_1_customer_charge_card_create.html#a9067c8c7980d8a6591860981aaaea8ff", null ],
+    [ "WriteXml", "class_intacct_1_1_sdk_1_1_functions_1_1_accounts_receivable_1_1_payment_services_1_1_customer_charge_card_create.html#a03856005f33ab1b052ab18577d103d35", null ]
+];
