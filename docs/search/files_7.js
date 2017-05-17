@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['iattachment_2ecs',['IAttachment.cs',['../_i_attachment_8cs.html',1,'']]],
+  ['iaxmlwriter_2ecs',['IaXmlWriter.cs',['../_ia_xml_writer_8cs.html',1,'']]],
+  ['ifunction_2ecs',['IFunction.cs',['../_i_function_8cs.html',1,'']]],
+  ['inspect_2ecs',['Inspect.cs',['../_inspect_8cs.html',1,'']]],
+  ['intacctclient_2ecs',['IntacctClient.cs',['../_intacct_client_8cs.html',1,'']]],
+  ['intacctexception_2ecs',['IntacctException.cs',['../_intacct_exception_8cs.html',1,'']]],
+  ['inventorytransactioncreate_2ecs',['InventoryTransactionCreate.cs',['../_inventory_transaction_create_8cs.html',1,'']]],
+  ['inventorytransactiondelete_2ecs',['InventoryTransactionDelete.cs',['../_inventory_transaction_delete_8cs.html',1,'']]],
+  ['inventorytransactionlinecreate_2ecs',['InventoryTransactionLineCreate.cs',['../_inventory_transaction_line_create_8cs.html',1,'']]],
+  ['invoicecreate_2ecs',['InvoiceCreate.cs',['../_invoice_create_8cs.html',1,'']]],
+  ['invoicedelete_2ecs',['InvoiceDelete.cs',['../_invoice_delete_8cs.html',1,'']]],
+  ['invoicelinecreate_2ecs',['InvoiceLineCreate.cs',['../_invoice_line_create_8cs.html',1,'']]],
+  ['invoicereverse_2ecs',['InvoiceReverse.cs',['../_invoice_reverse_8cs.html',1,'']]],
+  ['invoicesummarycreate_2ecs',['InvoiceSummaryCreate.cs',['../_invoice_summary_create_8cs.html',1,'']]],
+  ['itemcreate_2ecs',['ItemCreate.cs',['../_item_create_8cs.html',1,'']]],
+  ['itemdelete_2ecs',['ItemDelete.cs',['../_item_delete_8cs.html',1,'']]],
+  ['itemupdate_2ecs',['ItemUpdate.cs',['../_item_update_8cs.html',1,'']]]
+];
