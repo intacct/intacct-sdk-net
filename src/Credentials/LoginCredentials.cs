@@ -13,15 +13,12 @@
  * permissions and limitations under the License.
  */
 
-using Intacct.Sdk.Logging;
-using Intacct.Sdk.Xml.Request;
-using NLog;
 using System;
 
 namespace Intacct.Sdk.Credentials
 {
 
-    public class LoginCredentials
+    public class LoginCredentials : ICredentials
     {
 
         const string CompanyProfileEnvName = "INTACCT_COMPANY_PROFILE";
@@ -40,88 +37,79 @@ namespace Intacct.Sdk.Credentials
 
         public string Password;
 
-        public SenderCredentials SenderCreds;
+        private SenderCredentials senderCredentials;
 
-        public MockHandler MockHandler;
-
-        public ILogger Logger;
-
-        public MessageFormatter LogMessageFormat;
-
-        public LogLevel LogLevel;
-
-        public Endpoint Endpoint
+        public SenderCredentials SenderCredentials
         {
-            get
-            {
-                return SenderCreds.Endpoint;
-            }
-            private set
-            {
-                //nothing to see here
-            }
+            get { return this.senderCredentials; }
+            set { this.senderCredentials = value; }
         }
-        
-        public LoginCredentials(SdkConfig config, SenderCredentials senderCreds)
+
+        public LoginCredentials(ClientConfig config, SenderCredentials senderCreds)
         {
-            string envProfileName = Environment.GetEnvironmentVariable(CompanyProfileEnvName);
-            if (String.IsNullOrWhiteSpace(envProfileName))
+            string envProfileName = Environment.GetEnvironmentVariable(LoginCredentials.CompanyProfileEnvName);
+            if (string.IsNullOrEmpty(envProfileName))
             {
-                envProfileName = DefaultCompanyProfile;
+                envProfileName = LoginCredentials.DefaultCompanyProfile;
             }
-            if (String.IsNullOrWhiteSpace(config.ProfileName))
+            if (string.IsNullOrEmpty(config.ProfileName))
             {
                 config.ProfileName = envProfileName;
             }
-            if (String.IsNullOrWhiteSpace(config.CompanyId))
+
+            if (string.IsNullOrEmpty(config.CompanyId))
             {
-                config.CompanyId = Environment.GetEnvironmentVariable(CompanyIdEnvName);
+                config.CompanyId = Environment.GetEnvironmentVariable(LoginCredentials.CompanyIdEnvName);
             }
-            if (String.IsNullOrWhiteSpace(config.UserId))
+            if (string.IsNullOrEmpty(config.UserId))
             {
-                config.UserId = Environment.GetEnvironmentVariable(UserIdEnvName);
+                config.UserId = Environment.GetEnvironmentVariable(LoginCredentials.UserIdEnvName);
             }
-            if (String.IsNullOrWhiteSpace(config.UserPassword))
+            if (string.IsNullOrEmpty(config.UserPassword))
             {
-                config.UserPassword = Environment.GetEnvironmentVariable(UserPasswordEnvName);
+                config.UserPassword = Environment.GetEnvironmentVariable(LoginCredentials.UserPasswordEnvName);
             }
             
             if (
-                String.IsNullOrWhiteSpace(config.CompanyId)
-                && String.IsNullOrWhiteSpace(config.UserId)
-                && String.IsNullOrWhiteSpace(config.UserPassword)
-                && !String.IsNullOrWhiteSpace(config.ProfileName)
+                string.IsNullOrEmpty(config.CompanyId)
+                && string.IsNullOrEmpty(config.UserId)
+                && string.IsNullOrEmpty(config.UserPassword)
+                && !string.IsNullOrEmpty(config.ProfileName)
             )
             {
-                ProfileCredentialProvider profileProvider = new ProfileCredentialProvider();
-                SdkConfig profileCreds = profileProvider.GetLoginCredentials(config);
-                config.CompanyId = !String.IsNullOrWhiteSpace(profileCreds.CompanyId) ? profileCreds.CompanyId : config.CompanyId;
-                config.UserId = !String.IsNullOrWhiteSpace(profileCreds.UserId) ? profileCreds.UserId : config.UserId;
-                config.UserPassword = !String.IsNullOrWhiteSpace(profileCreds.UserPassword) ? profileCreds.UserPassword : config.UserPassword;
+                ClientConfig profile = ProfileCredentialProvider.GetLoginCredentials(config);
+
+                if (!string.IsNullOrEmpty(profile.CompanyId))
+                {
+                    config.CompanyId = profile.CompanyId;
+                }
+                if (!string.IsNullOrEmpty(profile.UserId))
+                {
+                    config.UserId = profile.UserId;
+                }
+                if (!string.IsNullOrEmpty(profile.UserPassword))
+                {
+                    config.UserPassword = profile.UserPassword;
+                }
             }
             
-            if (String.IsNullOrWhiteSpace(config.CompanyId))
+            if (string.IsNullOrEmpty(config.CompanyId))
             {
-                throw new ArgumentException("Required CompanyId not supplied in params or env variable \"" + CompanyIdEnvName + "\"");
+                throw new ArgumentException("Required Company ID not supplied in config or env variable \"" + LoginCredentials.CompanyIdEnvName + "\"");
             }
-            if (String.IsNullOrWhiteSpace(config.UserId))
+            if (string.IsNullOrEmpty(config.UserId))
             {
-                throw new ArgumentException("Required UserId not supplied in params or env variable \"" + UserIdEnvName + "\"");
+                throw new ArgumentException("Required User ID not supplied in config or env variable \"" + LoginCredentials.UserIdEnvName + "\"");
             }
-            if (String.IsNullOrWhiteSpace(config.UserPassword))
+            if (string.IsNullOrEmpty(config.UserPassword))
             {
-                throw new ArgumentException("Required UserPassword not supplied in params or env variable \"" + UserPasswordEnvName + "\"");
+                throw new ArgumentException("Required User Password not supplied in config or env variable \"" + LoginCredentials.UserPasswordEnvName + "\"");
             }
 
-            CompanyId = config.CompanyId;
-            UserId = config.UserId;
-            Password = config.UserPassword;
-            SenderCreds = senderCreds;
-            MockHandler = config.MockHandler;
-
-            Logger = config.Logger;
-            LogMessageFormat = config.LogFormatter;
-            LogLevel = config.LogLevel;
+            this.CompanyId = config.CompanyId;
+            this.UserId = config.UserId;
+            this.Password = config.UserPassword;
+            this.SenderCredentials = senderCreds;
         }
 
     }

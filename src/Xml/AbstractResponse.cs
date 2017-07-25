@@ -25,9 +25,21 @@ namespace Intacct.Sdk.Xml
     abstract public class AbstractResponse
     {
 
-        protected XDocument xml;
+        private XDocument xml;
 
-        public Control Control;
+        protected XDocument Xml
+        {
+            get { return this.xml; }
+            private set { this.xml = value; }
+        }
+
+        private Control control;
+
+        public Control Control
+        {
+            get { return this.control; }
+            private set { this.control = value; }
+        }
 
         public AbstractResponse(Stream body)
         {

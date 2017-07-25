@@ -20,26 +20,28 @@ using System.IO;
 namespace Intacct.Sdk.Xml
 {
 
-    public class AsynchronousResponse : AbstractResponse
+    public class OfflineResponse : AbstractResponse
     {
 
-        private Acknowledgement acknowledgement;
-        public Acknowledgement Acknowledgement
+        private string status;
+
+        public string Status
         {
-            get { return acknowledgement; }
-            private set
-            {
-                acknowledgement = value;
-            }
+            get { return this.status; }
+            private set { this.status = value; }
         }
 
-        public AsynchronousResponse(Stream body) : base(body)
+        public OfflineResponse(Stream body) : base(body)
         {
-            if (xml.Element("response").Element("acknowledgement") == null)
+            if (Xml.Element("response").Element("acknowledgement") == null)
             {
                 throw new IntacctException("Response is missing acknowledgement block");
             }
-            Acknowledgement = new Acknowledgement(xml.Element("response").Element("acknowledgement"));
+            if (Xml.Element("response").Element("acknowledgement").Element("status") == null)
+            {
+                throw new IntacctException("Acknowledgement block is missing status element");
+            }
+            this.Status = Xml.Element("response").Element("acknowledgement").Element("status").Value;
         }
 
     }

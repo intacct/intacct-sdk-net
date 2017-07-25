@@ -13,14 +13,16 @@
  * permissions and limitations under the License.
  */
 
+using System;
+using System.Text;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using System.Xml;
 using Intacct.Sdk.Xml.Response;
 using Intacct.Sdk.Tests.Helpers;
-using System.Collections.Generic;
 using Intacct.Sdk.Xml;
 using Intacct.Sdk.Exceptions;
-using Intacct.Sdk.Xml.Response.Operation;
 using Org.XmlUnit.Diff;
 using Org.XmlUnit.Builder;
 
@@ -28,7 +30,7 @@ namespace Intacct.Sdk.Tests.Xml.Response
 {
 
     [TestClass]
-    public class OperationBlockTest
+    public class AuthenticationTest
     {
 
         [TestMethod()]
@@ -71,16 +73,16 @@ namespace Intacct.Sdk.Tests.Xml.Response
             
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
-            OperationBlock operation = response.Operation;
-
-            Assert.IsInstanceOfType(operation.Authentication, typeof(Authentication));
-            Assert.IsInstanceOfType(operation.Results, typeof(List<Result>));
+            OnlineResponse response = new OnlineResponse(stream);
+            Authentication auth = response.Authentication;
+            Assert.AreEqual("success", auth.Status);
+            Assert.AreEqual("fakeuser", auth.UserId);
+            Assert.AreEqual("fakecompany", auth.CompanyId);
         }
-
+        
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(OperationException), "Response authentication status failure")]
-        public void AuthenticationFailureTest()
+        [ExpectedExceptionWithMessage(typeof(IntacctException), "Authentication block is missing status element")]
+        public void MissingStatusElementTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <response>
@@ -93,18 +95,12 @@ namespace Intacct.Sdk.Tests.Xml.Response
       </control>
       <operation>
             <authentication>
-                  <status>failure</status>
+                  <!--<status>success</status>-->
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
-            <errormessage>
-                  <error>
-                        <errorno>XL03000006</errorno>
-                        <description></description>
-                        <description2>Sign-in information is incorrect</description2>
-                        <correction></correction>
-                  </error>
-            </errormessage>
+            <result/>
       </operation>
 </response>";
 
@@ -115,12 +111,12 @@ namespace Intacct.Sdk.Tests.Xml.Response
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
+            OnlineResponse response = new OnlineResponse(stream);
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(IntacctException), "Operation block is missing authentication element")]
-        public void MissingAuthenticationBlockTest()
+        [ExpectedExceptionWithMessage(typeof(IntacctException), "Authentication block is missing userid element")]
+        public void MissingUserIdElementTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <response>
@@ -131,7 +127,15 @@ namespace Intacct.Sdk.Tests.Xml.Response
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
       </control>
-      <operation/>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <!--<userid>fakeuser</userid>-->
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+            </authentication>
+            <result/>
+      </operation>
 </response>";
 
             Stream stream = new MemoryStream();
@@ -141,12 +145,12 @@ namespace Intacct.Sdk.Tests.Xml.Response
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
+            OnlineResponse response = new OnlineResponse(stream);
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(IntacctException), "Operation block is missing result element")]
-        public void MissingResultBlockTest()
+        [ExpectedExceptionWithMessage(typeof(IntacctException), "Authentication block is missing companyid element")]
+        public void MissingCompanyIdElementTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <response>
@@ -161,9 +165,10 @@ namespace Intacct.Sdk.Tests.Xml.Response
             <authentication>
                   <status>success</status>
                   <userid>fakeuser</userid>
-                  <companyid>fakecompany</companyid>
-                  <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
+                  <!--<companyid>fakecompany</companyid>-->
+                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
+            <result/>
       </operation>
 </response>";
 
@@ -174,7 +179,9 @@ namespace Intacct.Sdk.Tests.Xml.Response
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
+            OnlineResponse response = new OnlineResponse(stream);
         }
+
     }
+
 }

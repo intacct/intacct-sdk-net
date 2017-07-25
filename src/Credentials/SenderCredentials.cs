@@ -34,54 +34,60 @@ namespace Intacct.Sdk.Credentials
 
         public Endpoint Endpoint;
 
-        public SenderCredentials(SdkConfig config)
+        public SenderCredentials(ClientConfig config)
         {
-            string envProfileName = Environment.GetEnvironmentVariable(SenderProfileEnvName);
-            if (String.IsNullOrWhiteSpace(envProfileName))
-            {
-                envProfileName = DefaultSenderProfile;
-            }
-            if (String.IsNullOrWhiteSpace(config.ProfileName))
+            string envProfileName = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable(SenderProfileEnvName))
+                ? Environment.GetEnvironmentVariable(SenderProfileEnvName)
+                : SenderCredentials.DefaultSenderProfile;
+
+            if (string.IsNullOrEmpty(config.ProfileName))
             {
                 config.ProfileName = envProfileName;
             }
-            if (String.IsNullOrWhiteSpace(config.SenderId))
+            if (string.IsNullOrEmpty(config.SenderId))
             {
                 config.SenderId = Environment.GetEnvironmentVariable(SenderIdEnvName);
             }
-            if (String.IsNullOrWhiteSpace(config.SenderPassword))
+            if (string.IsNullOrEmpty(config.SenderPassword))
             {
                 config.SenderPassword = Environment.GetEnvironmentVariable(SenderPasswordEnvName);
             }
 
             if (
-                String.IsNullOrWhiteSpace(config.SenderId)
-                && String.IsNullOrWhiteSpace(config.SenderPassword)
-                && !String.IsNullOrWhiteSpace(config.ProfileName)
+                string.IsNullOrEmpty(config.SenderId)
+                && string.IsNullOrEmpty(config.SenderPassword)
+                && !string.IsNullOrEmpty(config.ProfileName)
             )
             {
-                ProfileCredentialProvider profileProvider = new ProfileCredentialProvider();
-                SdkConfig profileCreds = profileProvider.GetSenderCredentials(config);
-                config.SenderId = !String.IsNullOrWhiteSpace(profileCreds.SenderId) ? profileCreds.SenderId : config.SenderId;
-                config.SenderPassword = !String.IsNullOrWhiteSpace(profileCreds.SenderPassword) ? profileCreds.SenderPassword : config.SenderPassword;
+                ClientConfig profile = ProfileCredentialProvider.GetSenderCredentials(config);
 
-                // Stop overwriting the Endpoint URL if it was passed in already
-                config.EndpointUrl = !String.IsNullOrWhiteSpace(config.EndpointUrl) ? config.EndpointUrl : profileCreds.EndpointUrl;
+                if (!string.IsNullOrEmpty(profile.SenderId))
+                {
+                    config.SenderId = profile.SenderId;
+                }
+                if (!string.IsNullOrEmpty(profile.SenderPassword))
+                {
+                    config.SenderPassword = profile.SenderPassword;
+                }
+                if (string.IsNullOrEmpty(config.EndpointUrl))
+                {
+                    // Only set the endpoint URL if it was never passed in to begin with
+                    config.EndpointUrl = profile.EndpointUrl;
+                }
             }
-
-
-            if (String.IsNullOrWhiteSpace(config.SenderId))
+            
+            if (string.IsNullOrEmpty(config.SenderId))
             {
-                throw new ArgumentException("Required SenderId not supplied in params or env variable \"" + SenderIdEnvName + "\"");
+                throw new ArgumentException("Required Sender ID not supplied in config or env variable \"" + SenderIdEnvName + "\"");
             }
-            if (String.IsNullOrWhiteSpace(config.SenderPassword))
+            if (string.IsNullOrEmpty(config.SenderPassword))
             {
-                throw new ArgumentException("Required SenderPassword not supplied in params or env variable \"" + SenderPasswordEnvName + "\"");
+                throw new ArgumentException("Required Sender Password not supplied in config or env variable \"" + SenderPasswordEnvName + "\"");
             }
 
-            SenderId = config.SenderId;
-            Password = config.SenderPassword;
-            Endpoint = new Endpoint(config);
+            this.SenderId = config.SenderId;
+            this.Password = config.SenderPassword;
+            this.Endpoint = new Endpoint(config);
         }
 
     }

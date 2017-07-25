@@ -24,11 +24,10 @@ using Intacct.Sdk.Tests.Helpers;
 using System.Xml.Linq;
 using Intacct.Sdk.Xml;
 using Intacct.Sdk.Exceptions;
-using Intacct.Sdk.Xml.Response.Operation;
 using Org.XmlUnit.Diff;
 using Org.XmlUnit.Builder;
 
-namespace Intacct.Sdk.Tests.Xml.Response.Operation
+namespace Intacct.Sdk.Tests.Xml.Response
 {
 
     [TestClass]
@@ -67,16 +66,16 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
             StreamWriter streamWriter = new StreamWriter(stream);
             streamWriter.Write(xml);
             streamWriter.Flush();
-            
+
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
-            var result = response.Operation.Results[0];
+            OnlineResponse response = new OnlineResponse(stream);
+            var result = response.Results[0];
             Assert.IsInstanceOfType(result, typeof(Result));
             Assert.AreEqual("success", result.Status);
             Assert.AreEqual("readByQuery", result.Function);
             Assert.AreEqual("testControlId", result.ControlId);
-            Assert.IsInstanceOfType(result.Data, typeof(XElement));
+            Assert.IsInstanceOfType(result.Data, typeof(List<XElement>));
             result.EnsureStatusSuccess();
         }
 
@@ -122,8 +121,8 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
-            var result = response.Operation.Results[0];
+            OnlineResponse response = new OnlineResponse(stream);
+            var result = response.Results[0];
             Assert.AreEqual("failure", result.Status);
             Assert.IsInstanceOfType(result.Errors, typeof(List<string>));
         }
@@ -164,7 +163,7 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
+            OnlineResponse response = new OnlineResponse(stream);
         }
 
         [TestMethod()]
@@ -203,7 +202,7 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
+            OnlineResponse response = new OnlineResponse(stream);
         }
 
         [TestMethod()]
@@ -242,11 +241,11 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
+            OnlineResponse response = new OnlineResponse(stream);
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ResultException), "Result status: failure")]
+        [ExpectedExceptionWithMessage(typeof(ResultException), "Result status: failure for Control ID: testFunctionId")]
         public void StatusFailureTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
@@ -288,13 +287,13 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
-            Result result = response.Operation.Results[0];
+            OnlineResponse response = new OnlineResponse(stream);
+            Result result = response.Results[0];
             result.EnsureStatusNotFailure();
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ResultException), "Result status: aborted")]
+        [ExpectedExceptionWithMessage(typeof(ResultException), "Result status: aborted for Control ID: testFunctionId")]
         public void StatusAbortedTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
@@ -342,8 +341,8 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
-            Result result = response.Operation.Results[0];
+            OnlineResponse response = new OnlineResponse(stream);
+            Result result = response.Results[0];
             result.EnsureStatusSuccess();
         }
 
@@ -395,10 +394,175 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
-            Result result = response.Operation.Results[0];
+            OnlineResponse response = new OnlineResponse(stream);
+            Result result = response.Results[0];
             result.EnsureStatusNotFailure();
         }
-    }
 
+        [TestMethod()]
+        public void LegacyGetListClassTest()
+        {
+            string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+            </authentication>
+            <result>
+                <status>success</status>
+                <function>get_list</function>
+                <controlid>ccdeafa7-4f22-49ae-b6ae-b5e1a39423e7</controlid>
+                <listtype start=""0"" end=""1"" total=""2"">class</listtype>
+                <data>
+                    <class>
+                        <key>C1234</key>
+                        <name>hello world</name>
+                        <description/>
+                        <parentid/>
+                        <whenmodified>07/24/2017 15:19:46</whenmodified>
+                        <status>active</status>
+                    </class>
+                    <class>
+                        <key>C1235</key>
+                        <name>hello world</name>
+                        <description/>
+                        <parentid/>
+                        <whenmodified>07/24/2017 15:20:27</whenmodified>
+                        <status>active</status>
+                    </class>
+                </data>
+            </result>
+      </operation>
+</response>";
+
+            Stream stream = new MemoryStream();
+            StreamWriter streamWriter = new StreamWriter(stream);
+            streamWriter.Write(xml);
+            streamWriter.Flush();
+
+            stream.Position = 0;
+
+            OnlineResponse response = new OnlineResponse(stream);
+            Result result = response.Results[0];
+
+            Assert.AreEqual(0, result.Start);
+            Assert.AreEqual(1, result.End);
+            Assert.AreEqual(2, result.TotalCount);
+            Assert.AreEqual(2, result.Data.Count);
+        }
+
+        [TestMethod()]
+        public void ReadByQueryClassTest()
+        {
+            string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+            </authentication>
+            <result>
+                <status>success</status>
+                <function>readByQuery</function>
+                <controlid>818b0a96-3faf-4931-97e6-1cf05818ea44</controlid>
+                <data listtype=""class"" count=""1"" totalcount=""2"" numremaining=""1"" resultId=""myResultId"">
+                    <class>
+                        <RECORDNO>8</RECORDNO>
+                        <CLASSID>C1234</CLASSID>
+                        <NAME>hello world</NAME>
+                        <DESCRIPTION></DESCRIPTION>
+                        <STATUS>active</STATUS>
+                        <PARENTKEY></PARENTKEY>
+                        <PARENTID></PARENTID>
+                        <PARENTNAME></PARENTNAME>
+                        <WHENCREATED>07/24/2017 15:19:46</WHENCREATED>
+                        <WHENMODIFIED>07/24/2017 15:19:46</WHENMODIFIED>
+                        <CREATEDBY>9</CREATEDBY>
+                        <MODIFIEDBY>9</MODIFIEDBY>
+                        <MEGAENTITYKEY></MEGAENTITYKEY>
+                        <MEGAENTITYID></MEGAENTITYID>
+                        <MEGAENTITYNAME></MEGAENTITYNAME>
+                    </class>
+                </data>
+            </result>
+      </operation>
+</response>";
+
+            Stream stream = new MemoryStream();
+            StreamWriter streamWriter = new StreamWriter(stream);
+            streamWriter.Write(xml);
+            streamWriter.Flush();
+
+            stream.Position = 0;
+
+            OnlineResponse response = new OnlineResponse(stream);
+            Result result = response.Results[0];
+
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(2, result.TotalCount);
+            Assert.AreEqual(1, result.NumRemaining);
+            Assert.AreEqual("myResultId", result.ResultId);
+            Assert.AreEqual(1, result.Data.Count);
+        }
+
+        [TestMethod()]
+        public void LegacyCreateClassKeyTest()
+        {
+            string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>success</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-25T10:08:34-07:00</sessiontimestamp>
+            </authentication>
+            <result>
+                <status>success</status>
+                <function>create_class</function>
+                <controlid>d4814563-1e97-4708-b9c5-9a49569d2a0d</controlid>
+                <key>C1234</key>
+            </result>
+      </operation>
+</response>";
+
+            Stream stream = new MemoryStream();
+            StreamWriter streamWriter = new StreamWriter(stream);
+            streamWriter.Write(xml);
+            streamWriter.Flush();
+
+            stream.Position = 0;
+
+            OnlineResponse response = new OnlineResponse(stream);
+            Result result = response.Results[0];
+
+            Assert.AreEqual("C1234", result.Key);
+        }
+    }
 }

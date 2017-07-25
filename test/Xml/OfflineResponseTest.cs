@@ -26,15 +26,15 @@ using Intacct.Sdk.Exceptions;
 using Org.XmlUnit.Diff;
 using Org.XmlUnit.Builder;
 
-namespace Intacct.Sdk.Tests.Xml.Response
+namespace Intacct.Sdk.Tests.Xml
 {
 
     [TestClass]
-    public class AcknowledgementTest
+    public class OfflineResponseTest
     {
 
         [TestMethod()]
-        public void SuccessTest()
+        public void GetAcknowledgementTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <response>
@@ -57,10 +57,36 @@ namespace Intacct.Sdk.Tests.Xml.Response
             
             stream.Position = 0;
 
-            AsynchronousResponse response = new AsynchronousResponse(stream);
-            Assert.AreEqual("success", response.Acknowledgement.Status);
+            OfflineResponse response = new OfflineResponse(stream);
+            Assert.AreEqual("success", response.Status);
         }
         
+        [TestMethod()]
+        [ExpectedExceptionWithMessage(typeof(IntacctException), "Response is missing acknowledgement block")]
+        public void MissingAcknowledgementBlockTest()
+        {
+            string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+</response>";
+
+            Stream stream = new MemoryStream();
+            StreamWriter streamWriter = new StreamWriter(stream);
+            streamWriter.Write(xml);
+            streamWriter.Flush();
+
+            stream.Position = 0;
+
+            OfflineResponse response = new OfflineResponse(stream);
+        }
+
+
         [TestMethod()]
         [ExpectedExceptionWithMessage(typeof(IntacctException), "Acknowledgement block is missing status element")]
         public void MissingStatusElementTest()
@@ -84,9 +110,8 @@ namespace Intacct.Sdk.Tests.Xml.Response
 
             stream.Position = 0;
 
-            AsynchronousResponse response = new AsynchronousResponse(stream);
+            OfflineResponse response = new OfflineResponse(stream);
         }
-
     }
 
 }

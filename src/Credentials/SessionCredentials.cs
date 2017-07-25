@@ -13,61 +13,43 @@
  * permissions and limitations under the License.
  */
 
-using Intacct.Sdk.Logging;
-using Intacct.Sdk.Xml.Request;
-using NLog;
 using System;
 
 namespace Intacct.Sdk.Credentials
 {
-    public class SessionCredentials
+    public class SessionCredentials : ICredentials
     {
         public string SessionId;
 
-        public SenderCredentials SenderCreds;
-
         public Endpoint Endpoint;
 
-        public string CurrentCompanyId;
+        private SenderCredentials senderCredentials;
 
-        public string CurrentUserId;
-
-        public bool? CurrentUserIsExternal;
-
-        public MockHandler MockHandler;
-
-        public ILogger Logger;
-
-        public MessageFormatter LogMessageFormat;
-
-        public LogLevel LogLevel;
-
-        public SessionCredentials(SdkConfig config, SenderCredentials senderCreds)
+        public SenderCredentials SenderCredentials
         {
-            if (String.IsNullOrWhiteSpace(config.SessionId))
+            get { return this.senderCredentials; }
+            set { this.senderCredentials = value; }
+        }
+
+        public SessionCredentials(ClientConfig config, SenderCredentials senderCreds)
+        {
+            if (string.IsNullOrEmpty(config.SessionId))
             {
-                throw new ArgumentException("Required SessionId not supplied in params");
+                throw new ArgumentException("Required Session ID not supplied in config");
             }
 
-            SessionId = config.SessionId;
-            if (!String.IsNullOrWhiteSpace(config.EndpointUrl))
+            this.SessionId = config.SessionId;
+
+            if (!string.IsNullOrEmpty(config.EndpointUrl))
             {
-                Endpoint = new Endpoint(config);
+                this.Endpoint = new Endpoint(config);
             }
             else
             {
-                Endpoint = senderCreds.Endpoint;
+                this.Endpoint = senderCreds.Endpoint;
             }
 
-            SenderCreds = senderCreds;
-            CurrentCompanyId = config.CurrentCompanyId;
-            CurrentUserId = config.CurrentUserId;
-            CurrentUserIsExternal = config.CurrentUserIsExternal;
-            MockHandler = config.MockHandler;
-
-            Logger = config.Logger;
-            LogMessageFormat = config.LogFormatter;
-            LogLevel = config.LogLevel;
+            this.SenderCredentials = senderCreds;
         }
     }
 }

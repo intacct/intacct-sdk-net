@@ -96,11 +96,11 @@ namespace Intacct.Sdk.Xml.Response
                 throw new IntacctException("Control block is missing dtdversion element");
             }
 
-            Status = control.Element("status").Value;
-            SenderId = control.Element("senderid").Value;
-            ControlId = control.Element("controlid").Value;
-            UniqueId = control.Element("uniqueid").Value;
-            DtdVersion = control.Element("dtdversion").Value;
+            this.Status = control.Element("status").Value;
+            this.SenderId = control.Element("senderid").Value;
+            this.ControlId = control.Element("controlid").Value;
+            this.UniqueId = control.Element("uniqueid").Value;
+            this.DtdVersion = control.Element("dtdversion").Value;
 
         }
 

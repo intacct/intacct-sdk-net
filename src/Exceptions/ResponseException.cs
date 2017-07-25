@@ -18,7 +18,7 @@ using System.Collections.Generic;
 
 namespace Intacct.Sdk.Exceptions
 {
-    public class ResponseException : IntacctException
+    public class ResponseException : Exception
     {
         private object p;
         private string v;

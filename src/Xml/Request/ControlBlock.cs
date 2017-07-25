@@ -21,139 +21,99 @@ namespace Intacct.Sdk.Xml.Request
     {
 
         private string senderId;
-        private string SenderId
+
+        public string SenderId
         {
             get { return senderId; }
             set
             {
                 if (String.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Required SenderId not supplied in params");
+                    throw new ArgumentException("Sender ID is required and cannot be blank");
                 }
                 senderId = value;
             }
         }
 
         private string password;
-        private string Password
+
+        public string Password
         {
             get { return password; }
             set
             {
                 if (String.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Required SenderPassword not supplied in params");
+                    throw new ArgumentException("Sender Password is required and cannot be blank");
                 }
                 password = value;
             }
         }
 
         private string controlId;
-        private string ControlId
+
+        public string ControlId
         {
             get { return controlId; }
             set
             {
-                if (String.IsNullOrWhiteSpace(value))
-                {
-                    value = Guid.NewGuid().ToString();
-                }
-
                 if (value.Length < 1 || value.Length > 256)
                 {
-                    throw new ArgumentException("ControlId must be between 1 and 256 characters in length");
+                    throw new ArgumentException("Request Control ID must be between 1 and 256 characters in length");
                 }
 
                 controlId = value;
             }
         }
 
-        private bool uniqueId;
-        private bool UniqueId
-        {
-            get { return uniqueId; }
-            set
-            {
-                if (value)
-                {
-                    uniqueId = value;
-                }
-                else
-                {
-                    uniqueId = false;
-                }
-            }
-        }
+        private bool UniqueId;
 
         private string dtdVersion;
-        private string DtdVersion
+
+        public string DtdVersion
         {
             get { return dtdVersion; }
-            set
+            private set
             {
-                if (String.IsNullOrWhiteSpace(value))
-                {
-                    value = "3.0";
-                }
-
-                if (value == "2.1" || value == "3.0")
-                {
-                    dtdVersion = value;
-                }
-                else
-                {
-                    throw new ArgumentException("DtdVersion is not a valid version");
-                }
+                this.dtdVersion = value;
             }
         }
 
-        private string policyId;
-        private string PolicyId
-        {
-            get { return policyId; }
-            set
-            {
-                policyId = value;
-            }
-        }
+        public string PolicyId;
 
-        private bool includeWhitespace = false;
+        public bool IncludeWhitespace;
 
-        private bool debug;
-        private bool Debug
+        public ControlBlock(ClientConfig clientConfig, RequestConfig requestConfig)
         {
-            get { return debug; }
-            set
-            {
-                debug = value;
-            }
-        }
-
-        public ControlBlock(SdkConfig config)
-        {
-            SenderId = config.SenderId;
-            Password = config.SenderPassword;
-            ControlId = config.ControlId;
-            UniqueId = config.UniqueId;
-            DtdVersion = config.DtdVersion;
-            PolicyId = config.PolicyId;
-            Debug = config.Debug;
+            this.SenderId = clientConfig.SenderId;
+            this.Password = clientConfig.SenderPassword;
+            this.ControlId = requestConfig.ControlId;
+            this.UniqueId = requestConfig.UniqueId;
+            this.PolicyId = requestConfig.PolicyId;
+            this.IncludeWhitespace = false;
+            this.DtdVersion = "3.0";
         }
 
         public void WriteXml(ref IaXmlWriter xml)
         {
             xml.WriteStartElement("control");
-            xml.WriteElement("senderid", SenderId, true);
-            xml.WriteElement("password", Password, true);
-            xml.WriteElement("controlid", ControlId, true);
-            xml.WriteElement("uniqueid", UniqueId);
-            xml.WriteElement("dtdversion", DtdVersion, true);
-            xml.WriteElement("policyid", PolicyId);
-            xml.WriteElement("includewhitespace", includeWhitespace);
-            if (DtdVersion == "2.1")
+            xml.WriteElement("senderid", this.SenderId, true);
+            xml.WriteElement("password", this.Password, true);
+            xml.WriteElement("controlid", this.ControlId, true);
+            if (this.UniqueId == true)
             {
-                xml.WriteElement("debug", Debug);
+                xml.WriteElement("uniqueid", "true");
             }
+            else
+            {
+                xml.WriteElement("uniqueid", "false");
+            }
+            xml.WriteElement("dtdversion", this.DtdVersion, true);
+            if (!string.IsNullOrEmpty(this.PolicyId))
+            {
+                xml.WriteElement("policyid", this.PolicyId);
+            }
+            xml.WriteElement("includewhitespace", this.IncludeWhitespace);
             xml.WriteEndElement(); //control
         }
 

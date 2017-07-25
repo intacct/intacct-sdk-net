@@ -36,12 +36,12 @@ namespace Intacct.Sdk.Tests.Xml.Request
         [TestMethod()]
         public void WriteXmlSessionTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SessionId = "fakesession..",
             };
 
-            Content contentBlock = new Content();
+            List<IFunction> contentBlock = new List<IFunction>();
             ApiSessionCreate func = new ApiSessionCreate()
             {
                 ControlId = "unittest",
@@ -68,7 +68,7 @@ namespace Intacct.Sdk.Tests.Xml.Request
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
 
-            OperationBlock operationBlock = new OperationBlock(config, contentBlock);
+            OperationBlock operationBlock = new OperationBlock(clientConfig, new RequestConfig(), contentBlock);
             operationBlock.WriteXml(ref xml);
 
             xml.Flush();
@@ -84,14 +84,14 @@ namespace Intacct.Sdk.Tests.Xml.Request
         [TestMethod()]
         public void WriteXmlLoginTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 CompanyId = "testcompany",
                 UserId = "testuser",
                 UserPassword = "testpass",
             };
 
-            Content contentBlock = new Content();
+            List<IFunction> contentBlock = new List<IFunction>();
             ApiSessionCreate func = new ApiSessionCreate()
             {
                 ControlId = "unittest",
@@ -122,7 +122,7 @@ namespace Intacct.Sdk.Tests.Xml.Request
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
 
-            OperationBlock operationBlock = new OperationBlock(config, contentBlock);
+            OperationBlock operationBlock = new OperationBlock(clientConfig, new RequestConfig(), contentBlock);
             operationBlock.WriteXml(ref xml);
 
             xml.Flush();
@@ -138,13 +138,16 @@ namespace Intacct.Sdk.Tests.Xml.Request
         [TestMethod()]
         public void WriteXmlTransactionTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SessionId = "fakesession..",
+            };
+            RequestConfig requestConfig = new RequestConfig()
+            {
                 Transaction = true,
             };
 
-            Content contentBlock = new Content();
+            List<IFunction> contentBlock = new List<IFunction>();
             ApiSessionCreate func = new ApiSessionCreate()
             {
                 ControlId = "unittest",
@@ -171,7 +174,7 @@ namespace Intacct.Sdk.Tests.Xml.Request
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
 
-            OperationBlock operationBlock = new OperationBlock(config, contentBlock);
+            OperationBlock operationBlock = new OperationBlock(clientConfig, requestConfig, contentBlock);
             operationBlock.WriteXml(ref xml);
 
             xml.Flush();
@@ -185,18 +188,22 @@ namespace Intacct.Sdk.Tests.Xml.Request
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required CompanyId, UserId, and UserPassword, or SessionId, not supplied in params")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Authentication credentials [Company ID, User ID, and User Password] or [Session ID] are required and cannot be blank")]
         public void NoCredentialsTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
+                SessionId = "",
+                CompanyId = "",
+                UserId = "",
+                UserPassword = "",
             };
 
-            Content contentBlock = new Content();
+            List<IFunction> contentBlock = new List<IFunction>();
             ApiSessionCreate func = new ApiSessionCreate();
             contentBlock.Add(func);
 
-            OperationBlock operationBlock = new OperationBlock(config, contentBlock);
+            OperationBlock operationBlock = new OperationBlock(clientConfig, new RequestConfig(), contentBlock);
         }
 
     }

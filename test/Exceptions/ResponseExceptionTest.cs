@@ -61,7 +61,52 @@ namespace Intacct.Sdk.Tests.Xml.Response
 
             try
             {
-                SynchronousResponse response = new SynchronousResponse(stream);
+                OnlineResponse response = new OnlineResponse(stream);
+            }
+            catch (ResponseException ex)
+            {
+                Assert.IsInstanceOfType(ex.Errors, typeof(List<string>));
+            }
+        }
+
+        [TestMethod()]
+        public void GetAuthErrorsTest()
+        {
+            string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<response>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>ControlIdHere</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+      <operation>
+            <authentication>
+                  <status>failure</status>
+                  <userid>fakeuser</userid>
+                  <companyid>fakecompany</companyid>
+            </authentication>
+            <errormessage>
+                  <error>
+                        <errorno>XL03000006</errorno>
+                        <description></description>
+                        <description2>Sign-in information is incorrect</description2>
+                        <correction></correction>
+                  </error>
+            </errormessage>
+      </operation>
+</response>";
+
+            Stream stream = new MemoryStream();
+            StreamWriter streamWriter = new StreamWriter(stream);
+            streamWriter.Write(xml);
+            streamWriter.Flush();
+            stream.Position = 0;
+
+            try
+            {
+                OnlineResponse response = new OnlineResponse(stream);
             }
             catch (ResponseException ex)
             {

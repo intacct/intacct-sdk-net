@@ -14,19 +14,19 @@
  */
 
 using Intacct.Sdk.Exceptions;
-using Intacct.Sdk.Xml.Response.Operation;
-using System;
+using Intacct.Sdk.Xml.Response;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 
-namespace Intacct.Sdk.Xml.Response
+namespace Intacct.Sdk.Xml
 {
 
-    public class OperationBlock
+    public class OnlineResponse : AbstractResponse
     {
 
         private Authentication authentication;
+
         public Authentication Authentication
         {
             get { return authentication; }
@@ -35,30 +35,35 @@ namespace Intacct.Sdk.Xml.Response
                 authentication = value;
             }
         }
-        
+
         public List<Result> Results;
 
-        public OperationBlock(XElement operation)
+        public OnlineResponse(Stream body) : base(body)
         {
-            if (operation.Element("authentication") == null)
+            if (Xml.Element("response").Element("operation") == null)
             {
-                throw new IntacctException("Operation block is missing authentication element");
+                throw new IntacctException("Response is missing operation block");
             }
-            Authentication = new Authentication(operation.Element("authentication"));
+            
+            if (Xml.Element("response").Element("operation").Element("authentication") == null)
+            {
+                throw new IntacctException("Authentication block is missing from operation element");
+            }
+            Authentication = new Authentication(Xml.Element("response").Element("operation").Element("authentication"));
 
             if (Authentication.Status != "success")
             {
-                ErrorMessage errorMessage = new ErrorMessage(operation.Element("errormessage").Elements("error"));
-                
-                throw new OperationException("Response authentication status failure", errorMessage.Errors);
+                ErrorMessage errorMessage = new ErrorMessage(Xml.Element("response").Element("operation").Element("errormessage").Elements("error"));
+
+                throw new ResponseException("Response authentication status failure", errorMessage.Errors);
             }
 
-            if (operation.Element("result") == null)
+            if (Xml.Element("response").Element("operation").Element("result") == null)
             {
-                throw new IntacctException("Operation block is missing result element");
+                throw new IntacctException("Result block is missing from operation element");
             }
 
-            IEnumerable<XElement> results = operation.Elements("result");
+            IEnumerable<XElement> results = Xml.Element("response").Element("operation").Elements("result");
 
             Results = new List<Result>();
 
@@ -67,7 +72,7 @@ namespace Intacct.Sdk.Xml.Response
                 Results.Add(new Result(res));
             }
         }
-        
+
     }
 
 }

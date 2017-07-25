@@ -21,22 +21,73 @@ using System.IO;
 namespace Intacct.Sdk.Credentials
 {
 
-    public class ProfileCredentialProvider
+    public static class ProfileCredentialProvider
     {
 
         const string DefaultProfileFile = "/.intacct/credentials.ini";
 
         const string DefaultProfileName = "default";
-        
-        private KeyDataCollection GetIniProfileData(SdkConfig config)
+
+        public static ClientConfig GetLoginCredentials(ClientConfig config)
         {
-            if (String.IsNullOrWhiteSpace(config.ProfileName))
+            ClientConfig creds = new ClientConfig();
+            KeyDataCollection data = GetIniProfileData(config);
+            
+            if (!string.IsNullOrEmpty(data["company_id"]))
             {
-                config.ProfileName = DefaultProfileName;
+                creds.CompanyId = data["company_id"];
             }
-            if (String.IsNullOrWhiteSpace(config.ProfileFile))
+            if (!string.IsNullOrEmpty(data["user_id"]))
             {
-                config.ProfileFile = GetHomeDirProfile();
+                creds.UserId = data["user_id"];
+            }
+            if (!string.IsNullOrEmpty(data["user_password"]))
+            {
+                creds.UserPassword = data["user_password"];
+            }
+
+            return creds;
+        }
+
+        public static ClientConfig GetSenderCredentials(ClientConfig config)
+        {
+            ClientConfig creds = new ClientConfig();
+            KeyDataCollection data = GetIniProfileData(config);
+
+            if (!string.IsNullOrEmpty(data["sender_id"]))
+            {
+                creds.SenderId = data["sender_id"];
+            }
+            if (!string.IsNullOrEmpty(data["sender_password"]))
+            {
+                creds.SenderPassword = data["sender_password"];
+            }
+            if (!string.IsNullOrEmpty(data["endpoint_url"]))
+            {
+                creds.EndpointUrl = data["endpoint_url"];
+            }
+
+            return creds;
+        }
+
+        public static string GetHomeDirProfile()
+        {
+            string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+
+            string profile = Path.Combine(homeDir, DefaultProfileFile);
+
+            return profile;
+        }
+
+        private static KeyDataCollection GetIniProfileData(ClientConfig config)
+        {
+            if (string.IsNullOrEmpty(config.ProfileName))
+            {
+                config.ProfileName = ProfileCredentialProvider.DefaultProfileName;
+            }
+            if (string.IsNullOrEmpty(config.ProfileFile))
+            {
+                config.ProfileFile = ProfileCredentialProvider.GetHomeDirProfile();
             }
 
             var parser = new FileIniDataParser();
@@ -49,57 +100,6 @@ namespace Intacct.Sdk.Credentials
             }
 
             return sectionData;
-        }
-
-        public SdkConfig GetLoginCredentials(SdkConfig config)
-        {
-            KeyDataCollection data = GetIniProfileData(config);
-            SdkConfig loginCreds = new SdkConfig();
-
-            if (!String.IsNullOrWhiteSpace(data["company_id"]))
-            {
-                loginCreds.CompanyId = data["company_id"];
-            }
-            if (!String.IsNullOrWhiteSpace(data["user_id"]))
-            {
-                loginCreds.UserId = data["user_id"];
-            }
-            if (!String.IsNullOrWhiteSpace(data["user_password"]))
-            {
-                loginCreds.UserPassword = data["user_password"];
-            }
-
-            return loginCreds;
-        }
-
-        public SdkConfig GetSenderCredentials(SdkConfig config)
-        {
-            KeyDataCollection data = GetIniProfileData(config);
-            SdkConfig senderCreds = new SdkConfig();
-
-            if (!String.IsNullOrWhiteSpace(data["sender_id"]))
-            {
-                senderCreds.SenderId = data["sender_id"];
-            }
-            if (!String.IsNullOrWhiteSpace(data["sender_password"]))
-            {
-                senderCreds.SenderPassword = data["sender_password"];
-            }
-            if (!String.IsNullOrWhiteSpace(data["endpoint_url"]))
-            {
-                senderCreds.EndpointUrl = data["endpoint_url"];
-            }
-
-            return senderCreds;
-        }
-
-        private string GetHomeDirProfile()
-        {
-            string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-
-            string profile = Path.Combine(homeDir, DefaultProfileFile);
-
-            return profile;
         }
     }
 }

@@ -13,58 +13,68 @@
  * permissions and limitations under the License.
  */
 
+using Intacct.Sdk.Credentials;
 using Intacct.Sdk.Functions;
 using System;
-using Intacct.Sdk.Xml.Request.Operation;
+using System.Collections.Generic;
 
 namespace Intacct.Sdk.Xml.Request
 {
     public class OperationBlock
     {
 
-        private bool Transaction;
+        public bool Transaction;
 
-        private AbstractAuthentication Authentication;
+        public IAuthentication Authentication;
 
-        private Content Content;
+        public List<IFunction> Content;
 
-        public OperationBlock(SdkConfig config, Content content)
+        public OperationBlock(ClientConfig clientConfig, RequestConfig requestConfig, List<IFunction> content)
         {
-            Transaction = config.Transaction;
+            Transaction = requestConfig.Transaction;
 
-            if (!String.IsNullOrWhiteSpace(config.SessionId))
+            ICredentials credentials = clientConfig.Credentials;
+            if (credentials != null && credentials.GetType() == typeof(SessionCredentials))
             {
-                Authentication = new SessionAuthentication(config);
+                SessionCredentials sessionCreds = credentials as SessionCredentials;
+                this.Authentication = new SessionAuthentication(sessionCreds.SessionId);
+            }
+            else if (credentials != null && credentials.GetType() == typeof(LoginCredentials))
+            {
+                LoginCredentials loginCreds = credentials as LoginCredentials;
+                this.Authentication = new LoginAuthentication(loginCreds.UserId, loginCreds.CompanyId, loginCreds.Password);
+            }
+            else if (!string.IsNullOrEmpty(clientConfig.SessionId))
+            {
+                this.Authentication = new SessionAuthentication(clientConfig.SessionId);
             }
             else if (
-                !String.IsNullOrWhiteSpace(config.CompanyId)
-                && !String.IsNullOrWhiteSpace(config.UserId)
-                && !String.IsNullOrWhiteSpace(config.UserPassword)
+                !string.IsNullOrEmpty(clientConfig.CompanyId)
+                && !string.IsNullOrEmpty(clientConfig.UserId)
+                && !string.IsNullOrEmpty(clientConfig.UserPassword)
             )
             {
-                Authentication = new LoginAuthentication(config);
+                Authentication = new LoginAuthentication(clientConfig.UserId, clientConfig.CompanyId, clientConfig.UserPassword);
             }
             else
             {
-                throw new ArgumentException("Required CompanyId, UserId, and UserPassword, or SessionId, not supplied in params");
+                throw new ArgumentException("Authentication credentials [Company ID, User ID, and User Password] or [Session ID] are required and cannot be blank");
             }
 
-            Content = content;
+            this.Content = content;
         }
-
-        // TODO Module Preferences
 
         public void WriteXml(ref IaXmlWriter xml)
         {
             xml.WriteStartElement("operation");
-            xml.WriteAttribute("transaction", Transaction);
+            xml.WriteAttribute("transaction", (this.Transaction == true) ? "true" : "false");
 
             Authentication.WriteXml(ref xml);
 
             xml.WriteStartElement("content");
-            foreach (AbstractFunction function in Content)
+            foreach (IFunction func in Content)
             {
-                function.WriteXml(ref xml);
+                func.WriteXml(ref xml);
             }
             xml.WriteEndElement(); // content
 

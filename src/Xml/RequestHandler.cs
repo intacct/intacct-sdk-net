@@ -13,11 +13,10 @@
  * permissions and limitations under the License.
  */
 
-using Intacct.Sdk.Logging;
-using Intacct.Sdk.Xml.Request;
-using Intacct.Sdk.Xml.Response;
-using NLog;
+using Intacct.Sdk.Credentials;
+using Intacct.Sdk.Functions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -28,175 +27,83 @@ namespace Intacct.Sdk.Xml
 
     public class RequestHandler
     {
+        
+        public const string Version = "2.0";
 
-        /// <summary>
-        /// Current version of the SDK
-        /// </summary>
-        public const string Version = "1.0";
+        public ClientConfig ClientConfig;
 
-        /// <summary>
-        /// The default HTTP content type header for Intacct XML requests
-        /// </summary>
-        public const string RequestContentType = "application/xml";
+        public RequestConfig RequestConfig;
 
-        /// <summary>
-        /// The Endpoint URL to post the request to
-        /// </summary>
-        private string endpointUrl;
-
-        /// <summary>
-        /// MockHandler object used by the unit tests
-        /// <seealso cref="MockHandler"/>
-        /// </summary>
-        private MockHandler mockHandler;
-
-        private int maxRetries;
-        /// <summary>
-        /// Maximum number of retries to allow
-        /// </summary>
-        public int MaxRetries
+        public string EndpointUrl;
+        
+        public RequestHandler(ClientConfig clientConfig, RequestConfig requestConfig)
         {
-            get { return maxRetries; }
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("MaxRetries must be zero or greater");
-                }
-                maxRetries = value;
-            }
-        }
+            this.EndpointUrl = !string.IsNullOrEmpty(clientConfig.EndpointUrl) ? clientConfig.EndpointUrl : new Endpoint(clientConfig).ToString();
 
-        /// <summary>
-        /// How long to wait until a request times out
-        /// </summary>
-        private TimeSpan timeout;
+            this.ClientConfig = clientConfig;
 
-        private int[] noRetryServerErrorCodes;
-        /// <summary>
-        /// List of HTTP 5XX server errors codes to not retry
-        /// </summary>
-        public int[] NoRetryServerErrorCodes
-        {
-            get { return noRetryServerErrorCodes; }
-            set
-            {
-                foreach (int errorCode in value)
-                {
-                    if (errorCode < 500 || errorCode > 599)
-                    {
-                        throw new ArgumentException("NoRetryServerErrorCodes must be between 500-599");
-                    }
-                }
-                noRetryServerErrorCodes = value;
-            }
+            this.RequestConfig = requestConfig;
         }
         
-        public ILogger Logger;
 
-        public MessageFormatter LogMessageFormatter;
-
-        public LogLevel LogLevel;
-
-        private string userAgent
+        public async Task<OnlineResponse> ExecuteOnline(List<IFunction> content)
         {
-            get
+            if (!string.IsNullOrEmpty(this.RequestConfig.PolicyId))
             {
-                return "intacct-api-net-client/" + Version;
+                this.RequestConfig.PolicyId = "";
             }
-        }
 
-        /// <summary>
-        /// Construct the RequestHandler object based on SdkConfig
-        /// <seealso cref="SdkConfig"/>
-        /// </summary>
-        /// <param name="config"></param>
-        public RequestHandler(SdkConfig config)
-        {
-            endpointUrl = config.EndpointUrl != null ? config.EndpointUrl : new Endpoint(config).ToString();
-            mockHandler = config.MockHandler;
-            MaxRetries = config.MaxRetires;
-            timeout = config.Timeout;
-            Logger = config.Logger;
-            LogMessageFormatter = config.LogFormatter != null ? config.LogFormatter : new MessageFormatter();
-            LogLevel = config.LogLevel != null ? config.LogLevel : LogLevel.Debug;
-            NoRetryServerErrorCodes = config.NoRetryServerErrorCodes != null
-                ? NoRetryServerErrorCodes = config.NoRetryServerErrorCodes
-                // 524 = CDN cut connection, Intacct is still processing the request
-                : NoRetryServerErrorCodes = new int[] { 524 };
-        }
+            RequestBlock request = new RequestBlock(this.ClientConfig, this.RequestConfig, content);
 
-        /// <summary>
-        /// Gets the retry delay
-        /// </summary>
-        /// <param name="retries"></param>
-        /// <returns></returns>
-        private int ExponentialDelay(int retries)
-        {
-            return (int)Math.Pow(2, retries - 1);
-        }
-
-        /// <summary>
-        /// Execute a request synchronously
-        /// </summary>
-        /// <param name="config"></param>
-        /// <param name="content"></param>
-        /// <returns></returns>
-        public async Task<SynchronousResponse> ExecuteSynchronous(SdkConfig config, Content content)
-        {
-            if (!String.IsNullOrWhiteSpace(config.PolicyId))
-            {
-                config.PolicyId = null;
-            }
-            RequestBlock request = new RequestBlock(config, content);
-
-            SynchronousResponse response = new SynchronousResponse(await Execute(request.WriteXml()));
+            OnlineResponse response = new OnlineResponse(await Execute(request.WriteXml()));
 
             return response;
         }
 
-        /// <summary>
-        /// Execute a request asynchronously
-        /// </summary>
-        /// <param name="config"></param>
-        /// <param name="content"></param>
-        /// <returns></returns>
-        public async Task<AsynchronousResponse> ExecuteAsynchronous(SdkConfig config, Content content)
+        public async Task<OfflineResponse> ExecuteOffline(List<IFunction> content)
         {
-            if (String.IsNullOrWhiteSpace(config.PolicyId))
+            if (string.IsNullOrWhiteSpace(this.RequestConfig.PolicyId))
             {
-                throw new ArgumentException("Required PolicyId not supplied in params for asynchronous request");
+                throw new ArgumentException("Required Policy ID not supplied in config for offline request");
             }
 
-            RequestBlock request = new RequestBlock(config, content);
+            if (
+                this.ClientConfig.Logger != null
+                && (
+                    !string.IsNullOrEmpty(this.ClientConfig.SessionId)
+                    || this.ClientConfig.Credentials.GetType() == typeof(SessionCredentials)
+                )
+            )
+            {
+                // Log warning if using session ID for offline execution
+                this.ClientConfig.Logger.Warn("Offline execution sent to Intacct using Session-based credentials. Use Login-based credentials instead to avoid session timeouts.");
+            }
 
-            AsynchronousResponse response = new AsynchronousResponse(await Execute(request.WriteXml()));
+            RequestBlock request = new RequestBlock(this.ClientConfig, this.RequestConfig, content);
+
+            OfflineResponse response = new OfflineResponse(await Execute(request.WriteXml()));
 
             return response;
         }
-
-        /// <summary>
-        /// Gets the appropriate HttpMessageHandler
-        /// </summary>
-        /// <returns></returns>
+        
         private HttpMessageHandler GetHttpMessageHandler()
         {
-            if (mockHandler != null)
+            if (this.ClientConfig.MockHandler != null)
             {
-                if (Logger != null)
+                if (this.ClientConfig.Logger != null)
                 {
-                    return new LoggingHandler(mockHandler, Logger, LogMessageFormatter, LogLevel);
+                    return new LoggingHandler(this.ClientConfig.MockHandler, this.ClientConfig.Logger, this.ClientConfig.LogMessageFormatter, this.ClientConfig.LogLevel);
                 }
                 else
                 {
-                    return mockHandler;
+                    return this.ClientConfig.MockHandler;
                 }
             }
             else
             {
-                if (Logger != null)
+                if (this.ClientConfig.Logger != null)
                 {
-                    return new LoggingHandler(new HttpClientHandler(), Logger, LogMessageFormatter, LogLevel);
+                    return new LoggingHandler(new HttpClientHandler(), this.ClientConfig.Logger, this.ClientConfig.LogMessageFormatter, this.ClientConfig.LogLevel);
                 }
                 else
                 {
@@ -205,29 +112,29 @@ namespace Intacct.Sdk.Xml
             }
         }
 
-        /// <summary>
-        /// Execute the XML request to the API endpoint
-        /// </summary>
-        /// <param name="RequestXml"></param>
-        /// <returns></returns>
+        private int ExponentialDelay(int retries)
+        {
+            return (int)Math.Pow(2, retries - 1);
+        }
+
         private async Task<Stream> Execute(Stream RequestXml)
         {
             HttpClient client = new HttpClient(GetHttpMessageHandler());
-            client.Timeout = timeout;
-            client.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
+            client.Timeout = this.RequestConfig.MaxTimeout;
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("intacct-api-net-client/" + RequestHandler.Version);
 
             RequestXml.Position = 0;
             StreamContent content = new StreamContent(RequestXml);
-            content.Headers.ContentType = new MediaTypeHeaderValue(RequestContentType);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
             
-            for (int attempt = 0; attempt <= MaxRetries; attempt++)
+            for (int attempt = 0; attempt <= this.RequestConfig.MaxRetries; attempt++)
             {
                 if (attempt > 0)
                 {
                     // Delay this retry based on exponential delay
                     await Task.Delay(ExponentialDelay(attempt));
                 }
-                HttpResponseMessage response = client.PostAsync(endpointUrl, content).Result;
+                HttpResponseMessage response = client.PostAsync(this.EndpointUrl, content).Result;
 
                 int httpCode = (int)response.StatusCode;
                 if (response.IsSuccessStatusCode)
@@ -235,7 +142,7 @@ namespace Intacct.Sdk.Xml
                     Stream stream = await response.Content.ReadAsStreamAsync();
                     return stream;
                 }
-                else if (Array.Exists(noRetryServerErrorCodes, element => element == httpCode))
+                else if (Array.Exists(this.RequestConfig.NoRetryServerErrorCodes, element => element == httpCode))
                 {
                     // Do not retry this explicitly set 500 level server error
                     response.EnsureSuccessStatusCode();
@@ -254,7 +161,7 @@ namespace Intacct.Sdk.Xml
                 }
             }
 
-            throw new HttpRequestException("Request retry count exceeded max retry count: " + MaxRetries.ToString());
+            throw new HttpRequestException("Request retry count exceeded max retry count: " + this.RequestConfig.MaxRetries.ToString());
         }
 
     }

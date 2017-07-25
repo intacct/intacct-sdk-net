@@ -17,9 +17,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Credentials;
-using Intacct.Sdk.Xml.Request;
-using System.Net.Http;
-using System.Collections.Generic;
 using IniParser;
 using System.IO;
 
@@ -35,18 +32,18 @@ namespace Intacct.Sdk.Tests.Credentials
         [TestInitialize()]
         public void Initialize()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!"
             };
-            senderCreds = new SenderCredentials(config);
+            this.senderCreds = new SenderCredentials(config);
         }
 
         [TestMethod()]
-        public void CredsFromArrayTest()
+        public void CredsFromConfigTest()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
                 CompanyId = "testcompany",
                 UserId = "testuser",
@@ -58,8 +55,9 @@ namespace Intacct.Sdk.Tests.Credentials
             Assert.AreEqual("testcompany", loginCreds.CompanyId);
             Assert.AreEqual("testuser", loginCreds.UserId);
             Assert.AreEqual("testpass", loginCreds.Password);
-            StringAssert.Equals("https://api.intacct.com/ia/xml/xmlgw.phtml", loginCreds.Endpoint);
-            Assert.IsInstanceOfType(loginCreds.SenderCreds, typeof(SenderCredentials));
+            Endpoint endpoint = loginCreds.SenderCredentials.Endpoint;
+            StringAssert.Equals("https://api.intacct.com/ia/xml/xmlgw.phtml", endpoint);
+            Assert.IsInstanceOfType(loginCreds.SenderCredentials, typeof(SenderCredentials));
         }
         
         [TestMethod()]
@@ -79,7 +77,7 @@ user_password = iniuserpass";
                 sw.WriteLine(ini);
             }
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
                 ProfileFile = tempFile,
                 ProfileName = "unittest",
@@ -92,12 +90,12 @@ user_password = iniuserpass";
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required CompanyId not supplied in params or env variable \"INTACCT_COMPANY_ID\"")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required Company ID not supplied in config or env variable \"INTACCT_COMPANY_ID\"")]
         public void CredsFromArrayNoCompanyIdTest()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
-                CompanyId = null,
+                CompanyId = "",
                 UserId = "testuser",
                 UserPassword = "testpass"
             };
@@ -105,56 +103,29 @@ user_password = iniuserpass";
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required UserId not supplied in params or env variable \"INTACCT_USER_ID\"")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required User ID not supplied in config or env variable \"INTACCT_USER_ID\"")]
         public void CredsFromArrayNoUserIdTest()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
                 CompanyId = "testcompany",
-                UserId = null,
+                UserId = "",
                 UserPassword = "testpass"
             };
             LoginCredentials loginCreds = new LoginCredentials(config, senderCreds);
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required UserPassword not supplied in params or env variable \"INTACCT_USER_PASSWORD\"")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required User Password not supplied in config or env variable \"INTACCT_USER_PASSWORD\"")]
         public void CredsFromArrayNoUserPasswordTest()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
                 CompanyId = "testcompany",
                 UserId = "testuser",
-                UserPassword = null
+                UserPassword = ""
             };
             LoginCredentials loginCreds = new LoginCredentials(config, senderCreds);
-        }
-
-        [TestMethod()]
-        public void GetMockHandlerTest()
-        {
-            HttpResponseMessage mockResponse = new HttpResponseMessage()
-            {
-                StatusCode = System.Net.HttpStatusCode.OK,
-            };
-            List<HttpResponseMessage> mockResponses = new List<HttpResponseMessage>
-            {
-                mockResponse,
-            };
-
-            MockHandler mockHandler = new MockHandler(mockResponses);
-
-            SdkConfig config = new SdkConfig()
-            {
-                CompanyId = "testcompany",
-                UserId = "testuser",
-                UserPassword = "testpass",
-                MockHandler = mockHandler,
-            };
-
-            LoginCredentials loginCreds = new LoginCredentials(config, senderCreds);
-
-            Assert.IsInstanceOfType(loginCreds.MockHandler, typeof(MockHandler));
         }
     }
 

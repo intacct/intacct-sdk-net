@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 
-namespace Intacct.Sdk.Xml.Response.Operation
+namespace Intacct.Sdk.Xml.Response
 {
 
     public class Result
@@ -55,8 +55,8 @@ namespace Intacct.Sdk.Xml.Response.Operation
             }
         }
 
-        private XElement data;
-        public XElement Data
+        private List<XElement> data;
+        public List<XElement> Data
         {
             get { return data;  }
             private set
@@ -115,6 +115,36 @@ namespace Intacct.Sdk.Xml.Response.Operation
             }
         }
 
+        private string key;
+        public string Key
+        {
+            get { return key; }
+            private set
+            {
+                key = value;
+            }
+        }
+
+        private int start;
+        public int Start
+        {
+            get { return start; }
+            private set
+            {
+                start = value;
+            }
+        }
+
+        private int end;
+        public int End
+        {
+            get { return end; }
+            private set
+            {
+                end = value;
+            }
+        }
+
         private List<string> errors;
         public List<string> Errors
         {
@@ -140,44 +170,44 @@ namespace Intacct.Sdk.Xml.Response.Operation
                 throw new IntacctException("Result block is missing controlid element");
             }
 
-            Status = result.Element("status").Value;
-            Function = result.Element("function").Value;
-            ControlId = result.Element("controlid").Value;
+            this.Status = result.Element("status").Value;
+            this.Function = result.Element("function").Value;
+            this.ControlId = result.Element("controlid").Value;
 
             if (Status != "success")
             {
                 ErrorMessage errorMessage = new ErrorMessage(result.Element("errormessage").Elements("error"));
 
-                errors = errorMessage.Errors;
+                this.Errors = errorMessage.Errors;
             }
-
-            if (result.Element("data") != null)
+            else
             {
-                Data = result.Element("data");
-
-                if (Data.Attribute("listtype") != null)
+                if (result.Element("key") != null)
                 {
-                    ListType = Data.Attribute("listtype").Value;
+                    this.Key = result.Element("key").Value;
+                }
+                else if (result.Element("listtype") != null) {
+                    this.ListType = result.Element("listtype").Value;
+                    this.TotalCount = int.Parse(result.Element("listtype").Attribute("total").Value);
+                    this.Start = int.Parse(result.Element("listtype").Attribute("start").Value);
+                    this.End = int.Parse(result.Element("listtype").Attribute("end").Value);
+                }
+                else if (result.Element("data").Attribute("listtype") != null)
+                {
+                    this.ListType = result.Element("data").Attribute("listtype").Value;
+                    this.TotalCount = int.Parse(result.Element("data").Attribute("totalcount").Value);
+                    this.Count = int.Parse(result.Element("data").Attribute("count").Value);
+                    this.NumRemaining = int.Parse(result.Element("data").Attribute("numremaining").Value);
+                    this.ResultId = result.Element("data").Attribute("resultId").Value;
                 }
 
-                if (Data.Attribute("count") != null)
+                if (result.Element("data") != null)
                 {
-                    Count = int.Parse(Data.Attribute("count").Value);
-                }
-
-                if (Data.Attribute("totalcount") != null)
-                {
-                    TotalCount = int.Parse(Data.Attribute("totalcount").Value);
-                }
-
-                if (Data.Attribute("numremaining") != null)
-                {
-                    NumRemaining = int.Parse(Data.Attribute("numremaining").Value);
-                }
-
-                if (Data.Attribute("resultId") != null)
-                {
-                    ResultId = Data.Attribute("resultId").Value;
+                    this.Data = new List<XElement>();
+                    foreach (XElement child in result.Element("data").Elements())
+                    {
+                        this.Data.Add(child);
+                    }
                 }
             }
         }
@@ -189,7 +219,7 @@ namespace Intacct.Sdk.Xml.Response.Operation
         {
             if (Status != "success")
             {
-                throw new ResultException("Result status: " + Status, Errors);
+                throw new ResultException("Result status: " + Status + " for Control ID: " + ControlId, Errors);
             }
         }
 
@@ -200,7 +230,7 @@ namespace Intacct.Sdk.Xml.Response.Operation
         {
             if (Status == "failure")
             {
-                throw new ResultException("Result status: " + Status, Errors);
+                throw new ResultException("Result status: " + Status + " for Control ID: " + ControlId, Errors);
             }
         }
 

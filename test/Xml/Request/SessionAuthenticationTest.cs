@@ -21,11 +21,11 @@ using System.IO;
 using System.Xml;
 using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Xml;
-using Intacct.Sdk.Xml.Request.Operation;
 using Org.XmlUnit.Diff;
 using Org.XmlUnit.Builder;
+using Intacct.Sdk.Xml.Request;
 
-namespace Intacct.Sdk.Tests.Xml.Request.Operation
+namespace Intacct.Sdk.Tests.Xml.Request
 {
 
     [TestClass]
@@ -35,11 +35,6 @@ namespace Intacct.Sdk.Tests.Xml.Request.Operation
         [TestMethod()]
         public void GetXmlTest()
         {
-            SdkConfig config = new SdkConfig()
-            {
-                SessionId = "testsessionid..",
-            };
-
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <authentication>
     <sessionid>testsessionid..</sessionid>
@@ -53,7 +48,7 @@ namespace Intacct.Sdk.Tests.Xml.Request.Operation
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
 
-            SessionAuthentication sessionAuth = new SessionAuthentication(config);
+            SessionAuthentication sessionAuth = new SessionAuthentication("testsessionid..");
             sessionAuth.WriteXml(ref xml);
 
             xml.Flush();
@@ -67,15 +62,10 @@ namespace Intacct.Sdk.Tests.Xml.Request.Operation
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required SessionId not supplied in params")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Session ID is required and cannot be blank")]
         public void InvalidSessionIdTest()
         {
-            SdkConfig config = new SdkConfig()
-            {
-                SessionId = null,
-            };
-
-            SessionAuthentication sessionAuth = new SessionAuthentication(config);
+            SessionAuthentication sessionAuth = new SessionAuthentication("");
         }
 
     }

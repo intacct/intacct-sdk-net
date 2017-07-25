@@ -34,10 +34,14 @@ namespace Intacct.Sdk.Tests.Xml.Request
         [TestMethod()]
         public void GetXmlDefaultsTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
+            };
+
+            RequestConfig requestConfig = new RequestConfig()
+            {
                 ControlId = "unittest",
             };
 
@@ -59,7 +63,7 @@ namespace Intacct.Sdk.Tests.Xml.Request
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
 
-            ControlBlock controlBlock = new ControlBlock(config);
+            ControlBlock controlBlock = new ControlBlock(clientConfig, requestConfig);
             controlBlock.WriteXml(ref xml);
 
             xml.Flush();
@@ -73,41 +77,44 @@ namespace Intacct.Sdk.Tests.Xml.Request
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required SenderId not supplied in params")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Sender ID is required and cannot be blank")]
         public void InvalidSenderIdTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
-                SenderId = null,
+                //SenderId = "testsenderid",
                 SenderPassword = "pass123!",
             };
 
-            ControlBlock controlBlock = new ControlBlock(config);
+            ControlBlock controlBlock = new ControlBlock(clientConfig, new RequestConfig());
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required SenderPassword not supplied in params")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Sender Password is required and cannot be blank")]
         public void InvalidSenderPasswordTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
-                SenderId = "testsender",
-                SenderPassword = null,
+                SenderId = "testsenderid",
+                //SenderPassword = "pass123!",
             };
 
-            ControlBlock controlBlock = new ControlBlock(config);
+            ControlBlock controlBlock = new ControlBlock(clientConfig, new RequestConfig());
         }
 
         [TestMethod()]
-        public void WriteXmlDefaultsOverride30Test()
+        public void WriteXmlDefaultsOverrideTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
+            };
+
+            RequestConfig requestConfig = new RequestConfig()
+            {
                 ControlId = "testcontrol",
                 UniqueId = true,
-                DtdVersion = "3.0",
                 PolicyId = "testpolicy",
             };
 
@@ -130,7 +137,7 @@ namespace Intacct.Sdk.Tests.Xml.Request
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
 
-            ControlBlock controlBlock = new ControlBlock(config);
+            ControlBlock controlBlock = new ControlBlock(clientConfig, requestConfig);
             controlBlock.WriteXml(ref xml);
 
             xml.Flush();
@@ -144,91 +151,39 @@ namespace Intacct.Sdk.Tests.Xml.Request
         }
 
         [TestMethod()]
-        public void WriteXmlDefaultsOverride21Test()
-        {
-            SdkConfig config = new SdkConfig()
-            {
-                SenderId = "testsenderid",
-                SenderPassword = "pass123!",
-                ControlId = "testcontrol",
-                UniqueId = true,
-                DtdVersion = "2.1",
-                PolicyId = "testpolicy",
-                Debug = true,
-            };
-
-            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<control>
-    <senderid>testsenderid</senderid>
-    <password>pass123!</password>
-    <controlid>testcontrol</controlid>
-    <uniqueid>true</uniqueid>
-    <dtdversion>2.1</dtdversion>
-    <policyid>testpolicy</policyid>
-    <includewhitespace>false</includewhitespace>
-    <debug>true</debug>
-</control>";
-
-            Stream stream = new MemoryStream();
-            XmlWriterSettings xmlSettings = new XmlWriterSettings();
-            xmlSettings.Encoding = Encoding.UTF8;
-            xmlSettings.Indent = true;
-            xmlSettings.IndentChars = "    ";
-
-            IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
-
-            ControlBlock controlBlock = new ControlBlock(config);
-            controlBlock.WriteXml(ref xml);
-
-            xml.Flush();
-            stream.Position = 0;
-            StreamReader reader = new StreamReader(stream);
-
-            Diff xmlDiff = DiffBuilder.Compare(expected).WithTest(reader.ReadToEnd())
-                .WithDifferenceEvaluator(DifferenceEvaluators.Default)
-                .Build();
-            Assert.IsFalse(xmlDiff.HasDifferences(), xmlDiff.ToString());
-        }
-
-        [TestMethod()]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Request Control ID must be between 1 and 256 characters in length")]
         public void WriteXmlInvalidControlIdShortTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
-                ControlId = "unittest",
             };
 
-            ControlBlock controlBlock = new ControlBlock(config);
+            RequestConfig requestConfig = new RequestConfig()
+            {
+                ControlId = "",
+            };
+
+            ControlBlock controlBlock = new ControlBlock(clientConfig, requestConfig);
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "ControlId must be between 1 and 256 characters in length")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Request Control ID must be between 1 and 256 characters in length")]
         public void WriteXmlInvalidControlIdLongTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
+            };
+
+            RequestConfig requestConfig = new RequestConfig()
+            {
                 ControlId = new StringBuilder(10 * 30).Insert(0, "1234567890", 30).ToString(),
             };
 
-            ControlBlock controlBlock = new ControlBlock(config);
-        }
-
-        [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "DtdVersion is not a valid version")]
-        public void WriteXmlInvalidDtdVersionTest()
-        {
-            SdkConfig config = new SdkConfig()
-            {
-                SenderId = "testsenderid",
-                SenderPassword = "pass123!",
-                DtdVersion = "1.2",
-            };
-
-            ControlBlock controlBlock = new ControlBlock(config);
+            ControlBlock controlBlock = new ControlBlock(clientConfig, requestConfig);
         }
     }
 

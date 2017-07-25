@@ -53,13 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OnlineClient.cs" />
+    <Compile Include="OfflineClient.cs" />
     <Compile Include="AbstractClient.cs" />
+    <Compile Include="ClientConfig.cs" />
+    <Compile Include="Credentials\ICredentials.cs" />
     <Compile Include="Credentials\ProfileCredentialProvider.cs" />
     <Compile Include="Credentials\LoginCredentials.cs" />
     <Compile Include="Credentials\SenderCredentials.cs" />
     <Compile Include="Credentials\SessionCredentials.cs" />
-    <Compile Include="Credentials\SessionProvider.cs" />
-    <Compile Include="Endpoint.cs" />
+    <Compile Include="SessionProvider.cs" />
+    <Compile Include="Credentials\Endpoint.cs" />
     <Compile Include="Exceptions\IntacctException.cs" />
     <Compile Include="Functions\AccountsPayable\AbstractApPaymentRequest.cs" />
     <Compile Include="Functions\AccountsPayable\AbstractBillSummary.cs" />
@@ -288,43 +292,36 @@
     <Compile Include="Functions\Purchasing\PurchasingTransactionLineCreate.cs" />
     <Compile Include="Logging\MessageFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SdkConfig.cs" />
-    <Compile Include="IntacctClient.cs" />
+    <Compile Include="RequestConfig.cs" />
     <Compile Include="Xml\LoggingHandler.cs" />
-    <Compile Include="Xml\Request\Operation\AbstractAuthentication.cs" />
-    <Compile Include="Content.cs" />
     <Compile Include="Xml\Request\ControlBlock.cs" />
     <Compile Include="Functions\AbstractFunction.cs" />
     <Compile Include="Functions\ApiSessionCreate.cs" />
     <Compile Include="Functions\IFunction.cs" />
     <Compile Include="Functions\Common\ReadByQuery.cs" />
     <Compile Include="Functions\Common\ReadMore.cs" />
-    <Compile Include="Xml\Request\Operation\LoginAuthentication.cs" />
+    <Compile Include="Xml\Request\IAuthentication.cs" />
+    <Compile Include="Xml\Request\LoginAuthentication.cs" />
     <Compile Include="Xml\Request\MockHandler.cs" />
     <Compile Include="Xml\Request\OperationBlock.cs" />
     <Compile Include="Xml\RequestBlock.cs" />
     <Compile Include="Xml\RequestHandler.cs" />
-    <Compile Include="Xml\Request\Operation\SessionAuthentication.cs" />
+    <Compile Include="Xml\Request\SessionAuthentication.cs" />
     <Compile Include="Xml\IaXmlWriter.cs" />
     <Compile Include="Xml\AbstractResponse.cs" />
-    <Compile Include="Xml\Response\Acknowledgement.cs" />
-    <Compile Include="Xml\AsynchronousResponse.cs" />
-    <Compile Include="Xml\Response\Operation\Authentication.cs" />
+    <Compile Include="Xml\OfflineResponse.cs" />
+    <Compile Include="Xml\Response\Authentication.cs" />
     <Compile Include="Xml\Response\ErrorMessage.cs" />
     <Compile Include="Xml\Response\Control.cs" />
-    <Compile Include="Xml\Response\OperationBlock.cs" />
-    <Compile Include="Exceptions\OperationException.cs" />
     <Compile Include="Exceptions\ResponseException.cs" />
-    <Compile Include="Xml\Response\Operation\Result.cs" />
+    <Compile Include="Xml\Response\Result.cs" />
     <Compile Include="Exceptions\ResultException.cs" />
-    <Compile Include="Xml\SynchronousResponse.cs" />
+    <Compile Include="Xml\OnlineResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Runtime\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

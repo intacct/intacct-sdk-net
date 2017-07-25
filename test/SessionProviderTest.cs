@@ -14,38 +14,18 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Intacct.Sdk.Tests.Helpers;
-using Intacct.Sdk.Credentials;
 using Intacct.Sdk.Xml.Request;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Intacct.Sdk.Tests.Credentials
+namespace Intacct.Sdk.Tests
 {
 
     [TestClass()]
     public class SessionProviderTest
     {
-
-        protected SessionProvider provider;
-
-        protected SenderCredentials senderCreds;
-
-        [TestInitialize()]
-        public void Initialize()
-        {
-            provider = new SessionProvider();
-
-            SdkConfig config = new SdkConfig
-            {
-                SenderId = "testsenderid",
-                SenderPassword = "pass123!"
-            };
-            senderCreds = new SenderCredentials(config);
-        }
-
+        
         [TestMethod()]
         public async Task FromLoginCredentialsTest()
         {
@@ -92,21 +72,20 @@ namespace Intacct.Sdk.Tests.Credentials
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
+                SenderId = "testsenderid",
+                SenderPassword = "pass123!",
                 CompanyId = "testcompany",
                 UserId = "testuser",
                 UserPassword = "testpass",
                 MockHandler = mockHandler,
             };
 
-            LoginCredentials loginCreds = new LoginCredentials(config, senderCreds);
-
-            SessionCredentials sessionCreds = await provider.FromLoginCredentials(loginCreds);
+            ClientConfig sessionCreds = await SessionProvider.Factory(config);
 
             Assert.AreEqual("fAkESesSiOnId..", sessionCreds.SessionId);
-            StringAssert.Equals("https://unittest.intacct.com/ia/xml/xmlgw.phtml", sessionCreds.Endpoint);
-            Assert.IsInstanceOfType(sessionCreds.SenderCreds, typeof(SenderCredentials));
+            StringAssert.Equals("https://unittest.intacct.com/ia/xml/xmlgw.phtml", sessionCreds.EndpointUrl);
         }
 
         [TestMethod()]
@@ -155,20 +134,19 @@ namespace Intacct.Sdk.Tests.Credentials
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
+                SenderId = "testsenderid",
+                SenderPassword = "pass123!",
                 SessionId = "fAkESesSiOnId..",
                 EndpointUrl = "https://unittest.intacct.com/ia/xml/xmlgw.phtml",
                 MockHandler = mockHandler,
             };
 
-            SessionCredentials sessionCreds = new SessionCredentials(config, senderCreds);
-
-            SessionCredentials newSessionCreds = await provider.FromSessionCredentials(sessionCreds);
-
-            Assert.AreEqual("fAkESesSiOnId..", newSessionCreds.SessionId);
-            StringAssert.Equals("https://unittest.intacct.com/ia/xml/xmlgw.phtml", newSessionCreds.Endpoint);
-            Assert.IsInstanceOfType(newSessionCreds.SenderCreds, typeof(SenderCredentials));
+            ClientConfig sessionCreds = await SessionProvider.Factory(config);
+            
+            Assert.AreEqual("fAkESesSiOnId..", sessionCreds.SessionId);
+            StringAssert.Equals("https://unittest.intacct.com/ia/xml/xmlgw.phtml", sessionCreds.EndpointUrl);
         }
     }
 

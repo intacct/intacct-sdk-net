@@ -15,34 +15,19 @@
 
 using System;
 
-namespace Intacct.Sdk
+namespace Intacct.Sdk.Credentials
 {
     public class Endpoint
     {
-
-        /// <summary>
-        /// Default endpoint URL
-        /// </summary>
+        
         const string DefaultEndpoint = "https://api.intacct.com/ia/xml/xmlgw.phtml";
-
-        /// <summary>
-        /// Default environment variable name
-        /// </summary>
+        
         const string EndpointUrlEnvName = "INTACCT_ENDPOINT_URL";
-
-        /// <summary>
-        /// Domain name to validate
-        /// </summary>
+        
         const string DomainName = "intacct.com";
-
-        /// <summary>
-        /// Object property containing the endpoint URL
-        /// </summary>
-        private string url = DefaultEndpoint;
-
-        /// <summary>
-        /// Endpoint URL to be used
-        /// </summary>
+        
+        private string url;
+        
         public string Url
         {
             get { return url; }
@@ -50,7 +35,7 @@ namespace Intacct.Sdk
             {
                 if (String.IsNullOrWhiteSpace(value))
                 {
-                    value = DefaultEndpoint;
+                    value = Endpoint.DefaultEndpoint;
                 }
                 Uri uriResult;
                 if (!Uri.TryCreate(value, UriKind.Absolute, out uriResult))
@@ -65,15 +50,10 @@ namespace Intacct.Sdk
                 url = value;
             }
         }
-
-        /// <summary>
-        /// Constructs the Endpoint object based on the SdkConfig params
-        /// <seealso cref="SdkConfig"/>
-        /// </summary>
-        /// <param name="config"></param>
-        public Endpoint(SdkConfig config)
+        
+        public Endpoint(ClientConfig config)
         {
-            if (String.IsNullOrWhiteSpace(config.EndpointUrl))
+            if (String.IsNullOrEmpty(config.EndpointUrl))
             {
                 Url = Environment.GetEnvironmentVariable(EndpointUrlEnvName);
             }
@@ -82,11 +62,7 @@ namespace Intacct.Sdk
                 Url = config.EndpointUrl;
             }
         }
-
-        /// <summary>
-        /// Output the Endpoint to string
-        /// </summary>
-        /// <returns></returns>
+        
         public override string ToString()
         {
             return Url;

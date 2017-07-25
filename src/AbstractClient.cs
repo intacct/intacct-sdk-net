@@ -14,8 +14,10 @@
  */
 
 using Intacct.Sdk.Credentials;
+using Intacct.Sdk.Functions;
 using Intacct.Sdk.Xml;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Intacct.Sdk
@@ -23,164 +25,62 @@ namespace Intacct.Sdk
 
     abstract public class AbstractClient
     {
-
-        /// <summary>
-        /// Profile environment variable
-        /// </summary>
+        
         const string ProfileEnvName = "INTACCT_PROFILE";
 
-        /// <summary>
-        /// <seealso cref="Intacct.Sdk.Credentials.SessionCredentials"/>
-        /// </summary>
-        protected SessionCredentials sessionCreds;
+        public ClientConfig Config;
 
-        public AbstractClient(SdkConfig config)
+        public AbstractClient(ClientConfig config = null)
         {
-            InitializeAsync(config).Wait();
-        }
-
-        private async Task InitializeAsync(SdkConfig config)
-        {
-            if (String.IsNullOrWhiteSpace(config.ProfileName))
+            if (config == null)
             {
-                config.ProfileName = Environment.GetEnvironmentVariable(ProfileEnvName);
+                config = new ClientConfig();
             }
 
-            SessionProvider provider = new SessionProvider();
-
-            SenderCredentials senderCreds = new SenderCredentials(config);
-
-            if (!String.IsNullOrWhiteSpace(config.SessionId))
+            if (string.IsNullOrEmpty(config.ProfileName))
             {
-                SessionCredentials session = new SessionCredentials(config, senderCreds);
+                config.ProfileName = Environment.GetEnvironmentVariable(AbstractClient.ProfileEnvName);
+            }
 
-                sessionCreds = await provider.FromSessionCredentials(session);
+            if (config.Credentials != null)
+            {
+                // Do not try and load credentials if they are already set in config
+            }
+            else if (!string.IsNullOrEmpty(config.SessionId))
+            {
+                config.Credentials = new SessionCredentials(config, new SenderCredentials(config));
             }
             else
             {
-                LoginCredentials login = new LoginCredentials(config, senderCreds);
-
-                sessionCreds = await provider.FromLoginCredentials(login);
+                config.Credentials = new LoginCredentials(config, new SenderCredentials(config));
             }
+            Config = config;
         }
-
-        /// <summary>
-        /// Constructs an SdkConfig object based on the environment/config/runtime params
-        /// </summary>
-        /// <returns></returns>
-        private SdkConfig SessionConfig()
+        
+        protected async Task<OnlineResponse> ExecuteOnlineRequest(List<IFunction> functions, RequestConfig requestConfig = null)
         {
-            SdkConfig config = new SdkConfig()
+            if (requestConfig == null)
             {
-                SenderId = sessionCreds.SenderCreds.SenderId,
-                SenderPassword = sessionCreds.SenderCreds.Password,
-                EndpointUrl = sessionCreds.Endpoint.Url,
-                SessionId = sessionCreds.SessionId,
-                Logger = sessionCreds.Logger,
-                LogFormatter = sessionCreds.LogMessageFormat,
-                LogLevel = sessionCreds.LogLevel,
-            };
-
-            return config;
-        }
-
-        public string GenerateRandomControlId()
-        {
-            return Guid.NewGuid().ToString();
-        }
-
-        protected async Task<SynchronousResponse> Execute(
-            Content contentBlock,
-            bool transaction,
-            string requestControlId,
-            bool uniqueFunctionControlIds,
-            SdkConfig config
-        )
-        {
-            SdkConfig sessionConfig = SessionConfig();
-
-            if (!String.IsNullOrWhiteSpace(sessionConfig.SenderId))
-            {
-                config.SenderId = sessionConfig.SenderId;
+                requestConfig = new RequestConfig();
             }
 
-            if (!String.IsNullOrWhiteSpace(sessionConfig.SenderPassword))
-            {
-                config.SenderPassword = sessionConfig.SenderPassword;
-            }
+            RequestHandler requestHandler = new RequestHandler(this.Config, requestConfig);
 
-            if (!String.IsNullOrWhiteSpace(sessionConfig.EndpointUrl))
-            {
-                config.EndpointUrl = sessionConfig.EndpointUrl;
-            }
-
-            if (!String.IsNullOrWhiteSpace(sessionConfig.SessionId))
-            {
-                config.SessionId = sessionConfig.SessionId;
-            }
-
-            config.Logger = config.Logger != null ? config.Logger : sessionConfig.Logger;
-            config.LogFormatter = config.LogFormatter != null ? config.LogFormatter : sessionConfig.LogFormatter;
-            config.LogLevel = config.LogLevel != null ? config.LogLevel : sessionConfig.LogLevel;
-
-            config.Transaction = transaction;
-            config.ControlId = requestControlId;
-            config.UniqueId = uniqueFunctionControlIds;
-
-            RequestHandler requestHandler = new RequestHandler(config);
-
-            SynchronousResponse response = await requestHandler.ExecuteSynchronous(config, contentBlock);
+            OnlineResponse response = await requestHandler.ExecuteOnline(functions);
 
             return response;
         }
 
-        protected async Task<AsynchronousResponse> ExecuteAsync(
-            Content contentBlock,
-            string asyncPolicyId,
-            bool transaction,
-            string requestControlId,
-            bool uniqueFunctionControlIds,
-            SdkConfig config
-        )
+        protected async Task<OfflineResponse> ExecuteOfflineRequest(List<IFunction> functions, RequestConfig requestConfig = null)
         {
-            SdkConfig sessionConfig = SessionConfig();
-
-            if (String.IsNullOrWhiteSpace(config.PolicyId))
+            if (requestConfig == null)
             {
-                config.PolicyId = asyncPolicyId;
+                requestConfig = new RequestConfig();
             }
 
-            if (!String.IsNullOrWhiteSpace(sessionConfig.SenderId))
-            {
-                config.SenderId = sessionConfig.SenderId;
-            }
+            RequestHandler requestHandler = new RequestHandler(this.Config, requestConfig);
 
-            if (!String.IsNullOrWhiteSpace(sessionConfig.SenderPassword))
-            {
-                config.SenderPassword = sessionConfig.SenderPassword;
-            }
-
-            if (!String.IsNullOrWhiteSpace(sessionConfig.EndpointUrl))
-            {
-                config.EndpointUrl = sessionConfig.EndpointUrl;
-            }
-
-            if (!String.IsNullOrWhiteSpace(sessionConfig.SessionId))
-            {
-                config.SessionId = sessionConfig.SessionId;
-            }
-
-            config.Logger = config.Logger != null ? config.Logger : sessionConfig.Logger;
-            config.LogFormatter = config.LogFormatter != null ? config.LogFormatter : sessionConfig.LogFormatter;
-            config.LogLevel = config.LogLevel != null ? config.LogLevel : sessionConfig.LogLevel;
-
-            config.Transaction = transaction;
-            config.ControlId = requestControlId;
-            config.UniqueId = uniqueFunctionControlIds;
-
-            RequestHandler requestHandler = new RequestHandler(config);
-
-            AsynchronousResponse response = await requestHandler.ExecuteAsynchronous(config, contentBlock);
+            OfflineResponse response = await requestHandler.ExecuteOffline(functions);
 
             return response;
         }

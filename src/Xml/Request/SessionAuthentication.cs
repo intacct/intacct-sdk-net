@@ -15,28 +15,36 @@
 
 using System;
 
-namespace Intacct.Sdk.Xml.Request.Operation
+namespace Intacct.Sdk.Xml.Request
 {
 
-    public class SessionAuthentication : AbstractAuthentication
+    public class SessionAuthentication : IAuthentication
     {
 
-        private string SessionId;
+        private string sessionId;
 
-        public SessionAuthentication(SdkConfig config)
+        public string SessionId
         {
-            if (String.IsNullOrWhiteSpace(config.SessionId))
+            get { return sessionId; }
+            set
             {
-                throw new ArgumentException("Required SessionId not supplied in params");
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Session ID is required and cannot be blank");
+                }
+                this.sessionId = value;
             }
-
-            SessionId = config.SessionId;
         }
 
-        public override void WriteXml(ref IaXmlWriter xml)
+        public SessionAuthentication(string sessionId)
+        {
+            this.SessionId = sessionId;
+        }
+
+        public void WriteXml(ref IaXmlWriter xml)
         {
             xml.WriteStartElement("authentication");
-            xml.WriteElement("sessionid", SessionId, true);
+            xml.WriteElement("sessionid", this.SessionId, true);
             xml.WriteEndElement(); // authentication
         }
 

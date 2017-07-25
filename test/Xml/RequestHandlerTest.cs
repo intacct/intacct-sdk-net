@@ -36,82 +36,7 @@ namespace Intacct.Sdk.Tests.Xml
     [TestClass]
     public class RequestHandlerTest
     {
-
-        [TestMethod]
-        public void MaxRetriesTest()
-        {
-            SdkConfig config = new SdkConfig()
-            {
-                SenderId = "testsenderid",
-                SenderPassword = "pass123!",
-                SessionId = "testsession..",
-                MaxRetires = 10
-            };
-
-            RequestHandler requestHandler = new RequestHandler(config);
-
-            Assert.AreEqual(10, requestHandler.MaxRetries);
-        }
-
-        [TestMethod]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "MaxRetries must be zero or greater")]
-        public void NegativeIntRetriesTest()
-        {
-            SdkConfig config = new SdkConfig()
-            {
-                SenderId = "testsenderid",
-                SenderPassword = "pass123!",
-                SessionId = "testsession..",
-                MaxRetires = -1
-            };
-
-            RequestHandler requestHandler = new RequestHandler(config);
-        }
-
-        [TestMethod]
-        public void NoRetryServerErrorCodesTest()
-        {
-            SdkConfig config = new SdkConfig()
-            {
-                SenderId = "testsenderid",
-                SenderPassword = "pass123!",
-                SessionId = "testsession..",
-                NoRetryServerErrorCodes = new int[]
-                {
-                    502,
-                    524,
-                }
-            };
-
-            RequestHandler requestHandler = new RequestHandler(config);
-            int[] expected = new int[]
-            {
-                502,
-                524,
-            };
-
-            CollectionAssert.AreEqual(expected, requestHandler.NoRetryServerErrorCodes);
-        }
-
-        [TestMethod]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "NoRetryServerErrorCodes must be between 500-599")]
-        public void InvalidRangeNoRetryServerErrorCodesTest()
-        {
-            SdkConfig config = new SdkConfig()
-            {
-                SenderId = "testsenderid",
-                SenderPassword = "pass123!",
-                SessionId = "testsession..",
-                NoRetryServerErrorCodes = new int[]
-                {
-                    200,
-                    9999,
-                }
-            };
-
-            RequestHandler requestHandler = new RequestHandler(config);
-        }
-
+        
         [TestMethod]
         public async Task MockExecuteSynchronousTest()
         {
@@ -158,7 +83,7 @@ namespace Intacct.Sdk.Tests.Xml
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
@@ -166,13 +91,18 @@ namespace Intacct.Sdk.Tests.Xml
                 MockHandler = mockHandler,
             };
 
-            Content content = new Content();
+            RequestConfig requestConfig = new RequestConfig()
+            {
+                ControlId = "unittest",
+            };
 
-            RequestHandler requestHandler = new RequestHandler(config);
-            SynchronousResponse response = await requestHandler.ExecuteSynchronous(config, content);
+            List<IFunction> contentBlock = new List<IFunction>();
+            contentBlock.Add(new ApiSessionCreate());
+
+            RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
+            OnlineResponse response = await requestHandler.ExecuteOnline(contentBlock);
             
-            Assert.IsInstanceOfType(response, typeof(SynchronousResponse));
-            Assert.AreEqual("testsenderid", response.Control.SenderId);
+            Assert.IsInstanceOfType(response, typeof(OnlineResponse));
         }
 
         [TestMethod]
@@ -205,40 +135,50 @@ namespace Intacct.Sdk.Tests.Xml
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
                 SessionId = "testsession..",
-                PolicyId = "policyid321",
-                ControlId = "requestUnitTest",
                 MockHandler = mockHandler,
             };
 
-            Content content = new Content();
+            RequestConfig requestConfig = new RequestConfig()
+            {
+                PolicyId = "policyid321",
+                ControlId = "requestUnitTest",
+            };
 
-            RequestHandler requestHandler = new RequestHandler(config);
-            AsynchronousResponse response = await requestHandler.ExecuteAsynchronous(config, content);
+            List<IFunction> contentBlock = new List<IFunction>();
+            contentBlock.Add(new ApiSessionCreate());
 
-            Assert.IsInstanceOfType(response, typeof(AsynchronousResponse));
-            Assert.AreEqual("testsenderid", response.Control.SenderId);
+            RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
+            OfflineResponse response = await requestHandler.ExecuteOffline(contentBlock);
+            
+            Assert.IsInstanceOfType(response, typeof(OfflineResponse));
         }
 
         [TestMethod]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required PolicyId not supplied in params for asynchronous request")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required Policy ID not supplied in config for offline request")]
         public async Task ExecuteAsynchronousMissingPolicyIdTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
                 SessionId = "testsession..",
             };
 
-            Content content = new Content();
+            RequestConfig requestConfig = new RequestConfig()
+            {
+                ControlId = "requestUnitTest",
+            };
 
-            RequestHandler requestHandler = new RequestHandler(config);
-            AsynchronousResponse response = await requestHandler.ExecuteAsynchronous(config, content);
+            List<IFunction> contentBlock = new List<IFunction>();
+            contentBlock.Add(new ApiSessionCreate());
+
+            RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
+            OfflineResponse response = await requestHandler.ExecuteOffline(contentBlock);
         }
 
         [TestMethod]
@@ -292,7 +232,7 @@ namespace Intacct.Sdk.Tests.Xml
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
@@ -300,10 +240,12 @@ namespace Intacct.Sdk.Tests.Xml
                 MockHandler = mockHandler,
             };
 
-            Content content = new Content();
+            RequestConfig requestConfig = new RequestConfig();
 
-            RequestHandler requestHandler = new RequestHandler(config);
-            SynchronousResponse response = await requestHandler.ExecuteSynchronous(config, content);
+            List<IFunction> contentBlock = new List<IFunction>();
+
+            RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
+            OnlineResponse response = await requestHandler.ExecuteOnline(contentBlock);
             Assert.AreEqual("testsenderid", response.Control.SenderId);
         }
 
@@ -348,7 +290,7 @@ namespace Intacct.Sdk.Tests.Xml
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
@@ -356,10 +298,13 @@ namespace Intacct.Sdk.Tests.Xml
                 MockHandler = mockHandler,
             };
 
-            Content content = new Content();
+            RequestConfig requestConfig = new RequestConfig();
 
-            RequestHandler requestHandler = new RequestHandler(config);
-            SynchronousResponse response = await requestHandler.ExecuteSynchronous(config, content);
+            List<IFunction> contentBlock = new List<IFunction>();
+            contentBlock.Add(new ApiSessionCreate());
+
+            RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
+            OnlineResponse response = await requestHandler.ExecuteOnline(contentBlock);
         }
 
         [TestMethod]
@@ -378,7 +323,7 @@ namespace Intacct.Sdk.Tests.Xml
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
@@ -386,12 +331,13 @@ namespace Intacct.Sdk.Tests.Xml
                 MockHandler = mockHandler,
             };
 
-            Content content = new Content();
+            RequestConfig requestConfig = new RequestConfig();
 
-            RequestBlock requestBlock = new RequestBlock(config, content);
+            List<IFunction> contentBlock = new List<IFunction>();
+            contentBlock.Add(new ApiSessionCreate());
 
-            RequestHandler requestHandler = new RequestHandler(config);
-            SynchronousResponse response = await requestHandler.ExecuteSynchronous(config, content);
+            RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
+            OnlineResponse response = await requestHandler.ExecuteOnline(contentBlock);
         }
 
         [TestMethod]
@@ -444,7 +390,9 @@ namespace Intacct.Sdk.Tests.Xml
             target.Layout = "${message}";
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
 
-            SdkConfig config = new SdkConfig()
+
+
+            ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
@@ -453,15 +401,73 @@ namespace Intacct.Sdk.Tests.Xml
                 Logger = LogManager.GetCurrentClassLogger(),
             };
 
-            Content content = new Content()
+            RequestConfig requestConfig = new RequestConfig();
+
+            List<IFunction> contentBlock = new List<IFunction>();
+            contentBlock.Add(new ApiSessionCreate());
+
+            RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
+            OnlineResponse response = await requestHandler.ExecuteOnline(contentBlock);
+
+            Assert.IsTrue(target.Logs[0].Contains("intacct-api-net-client/")); // Check for the user agent
+        }
+
+        [TestMethod]
+        public async Task MockExecuteOfflineWithSessionCredsTest()
+        {
+            string xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+<response>
+      <acknowledgement>
+            <status>success</status>
+      </acknowledgement>
+      <control>
+            <status>success</status>
+            <senderid>testsenderid</senderid>
+            <controlid>requestUnitTest</controlid>
+            <uniqueid>false</uniqueid>
+            <dtdversion>3.0</dtdversion>
+      </control>
+</response>";
+
+            HttpResponseMessage mockResponse = new HttpResponseMessage()
             {
-                new ApiSessionCreate(),
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Content = new StringContent(xml)
             };
 
-            RequestHandler requestHandler = new RequestHandler(config);
-            SynchronousResponse response = await requestHandler.ExecuteSynchronous(config, content);
-            
-            Assert.IsTrue(target.Logs[0].Contains("intacct-api-net-client/")); // Check for the user agent
+            List<HttpResponseMessage> mockResponses = new List<HttpResponseMessage>
+            {
+                mockResponse,
+            };
+
+            MockHandler mockHandler = new MockHandler(mockResponses);
+
+            MemoryTarget target = new MemoryTarget();
+            target.Layout = "${message}";
+            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Warn);
+
+            ClientConfig clientConfig = new ClientConfig()
+            {
+                SenderId = "testsenderid",
+                SenderPassword = "pass123!",
+                SessionId = "testsession..",
+                MockHandler = mockHandler,
+                Logger = LogManager.GetCurrentClassLogger(),
+            };
+
+            RequestConfig requestConfig = new RequestConfig()
+            {
+                ControlId = "requestUnitTest",
+                PolicyId = "policyid123",
+            };
+
+            List<IFunction> contentBlock = new List<IFunction>();
+            contentBlock.Add(new ApiSessionCreate());
+
+            RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
+            OfflineResponse response = await requestHandler.ExecuteOffline(contentBlock);
+
+            Assert.IsTrue(target.Logs[0].Contains("Offline execution sent to Intacct using Session-based credentials."));
         }
 
     }

@@ -16,8 +16,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Intacct.Sdk.Tests.Helpers;
+using Intacct.Sdk.Credentials;
 
-namespace Intacct.Sdk.Tests
+namespace Intacct.Sdk.Tests.Credentials
 {
 
     [TestClass()]
@@ -27,12 +28,12 @@ namespace Intacct.Sdk.Tests
         [TestMethod()]
         public void DefaultEndpointTest()
         {
-            SdkConfig config = new SdkConfig();
+            ClientConfig config = new ClientConfig();
 
             Endpoint endpoint = new Endpoint(config);
 
             Assert.AreEqual("https://api.intacct.com/ia/xml/xmlgw.phtml", endpoint.Url);
-            StringAssert.Equals("https://api.intacct.com/ia/xml/xmlgw.phtml", endpoint);
+            Equals("https://api.intacct.com/ia/xml/xmlgw.phtml", endpoint);
         }
 
         [TestMethod()]
@@ -42,7 +43,7 @@ namespace Intacct.Sdk.Tests
 
             Environment.SetEnvironmentVariable("INTACCT_ENDPOINT_URL", url);
 
-            SdkConfig config = new SdkConfig();
+            ClientConfig config = new ClientConfig();
 
             Endpoint endpoint = new Endpoint(config);
 
@@ -57,7 +58,7 @@ namespace Intacct.Sdk.Tests
         {
             string url = "https://configunittest.intacct.com/ia/xml/xmlgw.phtml";
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
                 EndpointUrl = url
             };
@@ -71,9 +72,9 @@ namespace Intacct.Sdk.Tests
         [TestMethod()]
         public void NullEndpointTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
-                EndpointUrl = null
+                EndpointUrl = ""
             };
 
             Endpoint endpoint = new Endpoint(config);
@@ -86,7 +87,7 @@ namespace Intacct.Sdk.Tests
         [ExpectedExceptionWithMessage(typeof(ArgumentException), "Endpoint URL is not a valid URL")]
         public void InvalidUrlEndpointTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
                 EndpointUrl = "invalidurl"
             };
@@ -98,9 +99,9 @@ namespace Intacct.Sdk.Tests
         [ExpectedExceptionWithMessage(typeof(ArgumentException), "Endpoint URL is not a valid intacct.com domain name")]
         public void InvalidIntacctEndpointTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
-                EndpointUrl = "https://api.notintacct.com"
+                EndpointUrl = "https://api.example.com/xmlgw.phtml"
             };
 
             Endpoint endpoint = new Endpoint(config);

@@ -17,9 +17,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Credentials;
-using Intacct.Sdk.Xml.Request;
-using System.Net.Http;
-using System.Collections.Generic;
 
 namespace Intacct.Sdk.Tests.Credentials
 {
@@ -33,80 +30,54 @@ namespace Intacct.Sdk.Tests.Credentials
         [TestInitialize()]
         public void Initialize()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!"
             };
-            senderCreds = new SenderCredentials(config);
+            this.senderCreds = new SenderCredentials(config);
         }
 
         [TestMethod()]
         public void CredsFromArrayTest()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
                 SessionId = "faKEsesSiOnId..",
                 EndpointUrl = "https://p1.intacct.com/ia/xml/xmlgw.phtml"
             };
 
-            SessionCredentials sessionCreds = new SessionCredentials(config, senderCreds);
+            SessionCredentials sessionCreds = new SessionCredentials(config, this.senderCreds);
 
             Assert.AreEqual("faKEsesSiOnId..", sessionCreds.SessionId);
             StringAssert.Equals("https://p1.intacct.com/ia/xml/xmlgw.phtml", sessionCreds.Endpoint);
-            Assert.IsInstanceOfType(sessionCreds.SenderCreds, typeof(SenderCredentials));
+            Assert.IsInstanceOfType(sessionCreds.SenderCredentials, typeof(SenderCredentials));
         }
 
         [TestMethod()]
         public void CredsFromArrayNoEndpointTest()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
                 SessionId = "faKEsesSiOnId..",
-                EndpointUrl = null
+                EndpointUrl = ""
             };
 
-            SessionCredentials sessionCreds = new SessionCredentials(config, senderCreds);
+            SessionCredentials sessionCreds = new SessionCredentials(config, this.senderCreds);
 
             Assert.AreEqual("faKEsesSiOnId..", sessionCreds.SessionId);
             StringAssert.Equals("https://api.intacct.com/ia/xml/xmlgw.phtml", sessionCreds.Endpoint);
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required SessionId not supplied in params")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required Session ID not supplied in config")]
         public void CredsFromArrayNoSessionTest()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
-                SessionId = null
+                SessionId = ""
             };
-            SessionCredentials sessionCreds = new SessionCredentials(config, senderCreds);
-        }
-
-        [TestMethod()]
-        public void GetMockHandlerTest()
-        {
-            HttpResponseMessage mockResponse = new HttpResponseMessage()
-            {
-                StatusCode = System.Net.HttpStatusCode.OK,
-            };
-            List<HttpResponseMessage> mockResponses = new List<HttpResponseMessage>
-            {
-                mockResponse,
-            };
-
-            MockHandler mockHandler = new MockHandler(mockResponses);
-
-            SdkConfig config = new SdkConfig()
-            {
-                SessionId = "faKEsesSiOnId..",
-                EndpointUrl = "https://p1.intacct.com/ia/xml/xmlgw.phtml",
-                MockHandler = mockHandler,
-            };
-
-            SessionCredentials sessionCreds = new SessionCredentials(config, senderCreds);
-
-            Assert.IsInstanceOfType(sessionCreds.MockHandler, typeof(MockHandler));
+            SessionCredentials sessionCreds = new SessionCredentials(config, this.senderCreds);
         }
     }
 

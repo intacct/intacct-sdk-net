@@ -23,19 +23,18 @@ using Intacct.Sdk.Xml.Response;
 using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Xml;
 using Intacct.Sdk.Exceptions;
-using Intacct.Sdk.Xml.Response.Operation;
 using Org.XmlUnit.Diff;
 using Org.XmlUnit.Builder;
 
-namespace Intacct.Sdk.Tests.Xml.Response.Operation
+namespace Intacct.Sdk.Tests.Xml
 {
 
     [TestClass]
-    public class AuthenticationTest
+    public class OnlineResponseTest
     {
 
         [TestMethod()]
-        public void SuccessTest()
+        public void GetOperationTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <response>
@@ -51,7 +50,7 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
-                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
             </authentication>
             <result>
                   <status>success</status>
@@ -59,7 +58,7 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
                   <controlid>testControlId</controlid>
                   <data>
                         <api>
-                              <sessionid>faKEsesSiOnId..</sessionid>
+                              <sessionid>fAkESesSiOnId..</sessionid>
                               <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
                         </api>
                   </data>
@@ -74,16 +73,13 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
             
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
-            Authentication auth = response.Operation.Authentication;
-            Assert.AreEqual("success", auth.Status);
-            Assert.AreEqual("fakeuser", auth.UserId);
-            Assert.AreEqual("fakecompany", auth.CompanyId);
-            Assert.AreEqual(false, auth.SlideInUser);
+            OnlineResponse response = new OnlineResponse(stream);
+            Assert.IsInstanceOfType(response.Results, typeof(List<Result>));
         }
-
+        
         [TestMethod()]
-        public void SlideInUserExternalLoginTest()
+        [ExpectedExceptionWithMessage(typeof(IntacctException), "Response is missing operation block")]
+        public void MissingOperationBlockTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <response>
@@ -94,25 +90,6 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
       </control>
-      <operation>
-            <authentication>
-                  <status>success</status>
-                  <userid>ExtUser|fakeconsole|fakeuser</userid>
-                  <companyid>fakecompany</companyid>
-                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
-            </authentication>
-            <result>
-                  <status>success</status>
-                  <function>getAPISession</function>
-                  <controlid>testControlId</controlid>
-                  <data>
-                        <api>
-                              <sessionid>faKEsesSiOnId..</sessionid>
-                              <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
-                        </api>
-                  </data>
-            </result>
-      </operation>
 </response>";
 
             Stream stream = new MemoryStream();
@@ -122,14 +99,13 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
-            Authentication auth = response.Operation.Authentication;
-            Assert.AreEqual("ExtUser|fakeconsole|fakeuser", auth.UserId);
-            Assert.AreEqual(true, auth.SlideInUser);
+            OnlineResponse response = new OnlineResponse(stream);
         }
 
+
         [TestMethod()]
-        public void SlideInCPAUserLoginTest()
+        [ExpectedExceptionWithMessage(typeof(ResponseException), "Response authentication status failure")]
+        public void AuthenticationFailureTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <response>
@@ -142,59 +118,18 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
       </control>
       <operation>
             <authentication>
-                  <status>success</status>
-                  <userid>CPAUser</userid>
-                  <companyid>fakecompany</companyid>
-                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
-            </authentication>
-            <result>
-                  <status>success</status>
-                  <function>getAPISession</function>
-                  <controlid>testControlId</controlid>
-                  <data>
-                        <api>
-                              <sessionid>faKEsesSiOnId..</sessionid>
-                              <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
-                        </api>
-                  </data>
-            </result>
-      </operation>
-</response>";
-
-            Stream stream = new MemoryStream();
-            StreamWriter streamWriter = new StreamWriter(stream);
-            streamWriter.Write(xml);
-            streamWriter.Flush();
-
-            stream.Position = 0;
-
-            SynchronousResponse response = new SynchronousResponse(stream);
-            Authentication auth = response.Operation.Authentication;
-            Assert.AreEqual("CPAUser", auth.UserId);
-            Assert.AreEqual(true, auth.SlideInUser);
-        }
-
-        [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(IntacctException), "Authentication block is missing status element")]
-        public void MissingStatusElementTest()
-        {
-            string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<response>
-      <control>
-            <status>success</status>
-            <senderid>testsenderid</senderid>
-            <controlid>ControlIdHere</controlid>
-            <uniqueid>false</uniqueid>
-            <dtdversion>3.0</dtdversion>
-      </control>
-      <operation>
-            <authentication>
-                  <!--<status>success</status>-->
+                  <status>failure</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
-                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
-            <result/>
+            <errormessage>
+                  <error>
+                        <errorno>XL03000006</errorno>
+                        <description></description>
+                        <description2>Sign-in information is incorrect</description2>
+                        <correction></correction>
+                  </error>
+            </errormessage>
       </operation>
 </response>";
 
@@ -205,12 +140,12 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
+            OnlineResponse response = new OnlineResponse(stream);
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(IntacctException), "Authentication block is missing userid element")]
-        public void MissingUserIdElementTest()
+        [ExpectedExceptionWithMessage(typeof(IntacctException), "Authentication block is missing from operation element")]
+        public void MissingAuthenticationBlockTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <response>
@@ -221,15 +156,7 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
             <uniqueid>false</uniqueid>
             <dtdversion>3.0</dtdversion>
       </control>
-      <operation>
-            <authentication>
-                  <status>success</status>
-                  <!--<userid>fakeuser</userid>-->
-                  <companyid>fakecompany</companyid>
-                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
-            </authentication>
-            <result/>
-      </operation>
+      <operation/>
 </response>";
 
             Stream stream = new MemoryStream();
@@ -239,12 +166,12 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
+            OnlineResponse response = new OnlineResponse(stream);
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(IntacctException), "Authentication block is missing companyid element")]
-        public void MissingCompanyIdElementTest()
+        [ExpectedExceptionWithMessage(typeof(IntacctException), "Result block is missing from operation element")]
+        public void MissingResultBlockTest()
         {
             string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <response>
@@ -259,10 +186,9 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
             <authentication>
                   <status>success</status>
                   <userid>fakeuser</userid>
-                  <!--<companyid>fakecompany</companyid>-->
-                  <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <companyid>fakecompany</companyid>
+                  <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
             </authentication>
-            <result/>
       </operation>
 </response>";
 
@@ -273,7 +199,7 @@ namespace Intacct.Sdk.Tests.Xml.Response.Operation
 
             stream.Position = 0;
 
-            SynchronousResponse response = new SynchronousResponse(stream);
+            OnlineResponse response = new OnlineResponse(stream);
         }
 
     }

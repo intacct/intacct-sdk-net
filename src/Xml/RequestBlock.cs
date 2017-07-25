@@ -13,8 +13,10 @@
  * permissions and limitations under the License.
  */
 
+using Intacct.Sdk.Functions;
 using Intacct.Sdk.Xml.Request;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,66 +28,31 @@ namespace Intacct.Sdk.Xml
     public class RequestBlock
     {
         
-        /// <summary>
-        /// The Request's XML encoding
-        /// </summary>
-        protected Encoding encoding;
+        public Encoding Encoding;
 
-        /// <summary>
-        /// Gets the ControlBlock of the request
-        /// <seealso cref="ControlBlock"/>
-        /// </summary>
-        protected ControlBlock control;
+        public ControlBlock Control;
 
-        /// <summary>
-        /// Gets the OperationBlock of the request
-        /// <seealso cref="OperationBlock"/>
-        /// </summary>
-        protected OperationBlock operation;
-
-        /// <summary>
-        /// Constructs the RequestBlock object with the supplied config and content
-        /// </summary>
-        /// <param name="config"></param>
-        /// <param name="content"></param>
-        public RequestBlock(SdkConfig config, Content content)
+        public OperationBlock Operation;
+        
+        public RequestBlock(ClientConfig clientConfig, RequestConfig requestConfig, List<IFunction> content)
         {
-            if (!String.IsNullOrWhiteSpace(config.Encoding))
-            {
-                var encodingInfo = Encoding.GetEncodings().FirstOrDefault(info => info.Name == config.Encoding);
-                if (encodingInfo != null)
-                {
-                    Encoding encoding = encodingInfo.GetEncoding();
-                }
-                else
-                {
-                    throw new ArgumentException("Requested encoding is not supported");
-                }
-            }
-            else
-            {
-                encoding = Encoding.GetEncoding("UTF-8");
-            }
-            
-            control = new ControlBlock(config);
-            operation = new OperationBlock(config, content);
+            this.Encoding = requestConfig.Encoding;
+            this.Control = new ControlBlock(clientConfig, requestConfig);
+            this.Operation = new OperationBlock(clientConfig, requestConfig, content);
         }
-
-        /// <summary>
-        /// Returns a Stream of the XML request
-        /// </summary>
+        
         public Stream WriteXml()
         {
             Stream stream = new MemoryStream();
             XmlWriterSettings xmlSettings = new XmlWriterSettings();
-            xmlSettings.Encoding = encoding;
+            xmlSettings.Encoding = this.Encoding;
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             xml.WriteStartElement("request");
 
-            control.WriteXml(ref xml); // Create control block
+            this.Control.WriteXml(ref xml); // Create control block
 
-            operation.WriteXml(ref xml); // Create operation block
+            this.Operation.WriteXml(ref xml); // Create operation block
 
             xml.WriteEndElement(); // request
 

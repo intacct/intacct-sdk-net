@@ -30,7 +30,7 @@ namespace Intacct.Sdk.Xml.Response
         public List<string> Errors
         {
             get { return errors; }
-            set
+            private set
             {
                 errors = value;
             }

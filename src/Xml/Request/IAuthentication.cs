@@ -13,14 +13,11 @@
  * permissions and limitations under the License.
  */
 
-using Intacct.Sdk.Functions;
-using System.Collections.Generic;
-
-namespace Intacct.Sdk
+namespace Intacct.Sdk.Xml.Request
 {
-    
-    public class Content : List<IFunction>
+    public interface IAuthentication
     {
-        //nothing to see here
+
+        void WriteXml(ref IaXmlWriter xml);
     }
 }

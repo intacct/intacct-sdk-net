@@ -34,22 +34,26 @@ namespace Intacct.Sdk.Tests.Logging
         [TestMethod]
         public void RequestAndResponseRemovalTest()
         {
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
-                ControlId = "unittest",
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
                 CompanyId = "testcompany",
                 UserId = "testuser",
                 UserPassword = "P@ssW0rd!123",
             };
+
+            RequestConfig requestConfig = new RequestConfig()
+            {
+                ControlId = "unittest",
+            };
             
-            Content content = new Content()
+            List<IFunction> content = new List<IFunction>()
             {
                 new ApiSessionCreate(),
             };
 
-            RequestBlock xmlRequest = new RequestBlock(config, content);
+            RequestBlock xmlRequest = new RequestBlock(config, requestConfig, content);
 
             string xmlResponse = @"<?xml version=""1.0"" encoding=""UTF-8""?>
 <response>

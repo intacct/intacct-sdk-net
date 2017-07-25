@@ -17,9 +17,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Credentials;
-using Intacct.Sdk.Xml.Request;
-using System.Net.Http;
-using System.Collections.Generic;
 using IniParser;
 using System.IO;
 
@@ -33,7 +30,7 @@ namespace Intacct.Sdk.Tests.Credentials
         [TestMethod()]
         public void CredsFromArrayTest()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
@@ -53,7 +50,7 @@ namespace Intacct.Sdk.Tests.Credentials
             Environment.SetEnvironmentVariable("INTACCT_SENDER_ID", "envsender");
             Environment.SetEnvironmentVariable("INTACCT_SENDER_PASSWORD", "envpass");
 
-            SdkConfig config = new SdkConfig();
+            ClientConfig config = new ClientConfig();
 
             SenderCredentials senderCreds = new SenderCredentials(config);
 
@@ -65,10 +62,10 @@ namespace Intacct.Sdk.Tests.Credentials
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required SenderId not supplied in params or env variable \"INTACCT_SENDER_ID\"")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required Sender ID not supplied in config or env variable \"INTACCT_SENDER_ID\"")]
         public void CredsFromArrayNoSenderIdTest()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
                 SenderPassword = "pass123!"
             };
@@ -76,10 +73,10 @@ namespace Intacct.Sdk.Tests.Credentials
         }
 
         [TestMethod()]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required SenderPassword not supplied in params or env variable \"INTACCT_SENDER_PASSWORD\"")]
+        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Required Sender Password not supplied in config or env variable \"INTACCT_SENDER_PASSWORD\"")]
         public void CredsFromArrayNoSenderPasswordTest()
         {
-            SdkConfig config = new SdkConfig
+            ClientConfig config = new ClientConfig
             {
                 SenderId = "testsenderid"
             };
@@ -103,7 +100,7 @@ endpoint_url = https://unittest.intacct.com/ia/xmlgw.phtml";
                 sw.WriteLine(ini);
             }
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
                 ProfileFile = tempFile,
                 ProfileName = "unittest",
@@ -132,7 +129,7 @@ endpoint_url = https://unittest.intacct.com/ia/xmlgw.phtml";
                 sw.WriteLine(ini);
             }
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
                 ProfileFile = tempFile,
                 ProfileName = "unittest",

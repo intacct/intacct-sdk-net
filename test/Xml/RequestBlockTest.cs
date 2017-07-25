@@ -24,6 +24,7 @@ using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Xml;
 using Org.XmlUnit.Diff;
 using Org.XmlUnit.Builder;
+using Intacct.Sdk.Functions;
 
 namespace Intacct.Sdk.Tests.Xml
 {
@@ -37,17 +38,21 @@ namespace Intacct.Sdk.Tests.Xml
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?><request><control><senderid>testsenderid</senderid><password>pass123!</password><controlid>unittest</controlid><uniqueid>false</uniqueid><dtdversion>3.0</dtdversion><includewhitespace>false</includewhitespace></control><operation transaction=""false""><authentication><sessionid>testsession..</sessionid></authentication><content /></operation></request>";
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
                 SessionId = "testsession..",
+            };
+
+            RequestConfig requestConfig = new RequestConfig()
+            {
                 ControlId = "unittest",
             };
 
-            Content contentBlock = new Content();
+            List<IFunction> contentBlock = new List<IFunction>();
 
-            RequestBlock requestBlock = new RequestBlock(config, contentBlock);
+            RequestBlock requestBlock = new RequestBlock(config, requestConfig, contentBlock);
 
             Stream stream = requestBlock.WriteXml();
 
@@ -58,18 +63,6 @@ namespace Intacct.Sdk.Tests.Xml
                 .WithDifferenceEvaluator(DifferenceEvaluators.Default)
                 .Build();
             Assert.IsFalse(xmlDiff.HasDifferences(), xmlDiff.ToString());
-        }
-
-        [TestMethod]
-        [ExpectedExceptionWithMessage(typeof(ArgumentException), "Requested encoding is not supported")]
-        public void InvalidEncodingTest()
-        {
-            SdkConfig config = new SdkConfig()
-            {
-                Encoding = "invalid",
-            };
-
-            RequestBlock requestBlock = new RequestBlock(config, new Content());
         }
     }
 

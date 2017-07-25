@@ -82,11 +82,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Credentials\ProfileCredentialProviderTest.cs" />
-    <Compile Include="Credentials\SessionProviderTest.cs" />
+    <Compile Include="OfflineClientTest.cs" />
+    <Compile Include="OnlineClientTest.cs" />
+    <Compile Include="SessionProviderTest.cs" />
     <Compile Include="Credentials\SessionCredentialsTest.cs" />
     <Compile Include="Credentials\SenderCredentialsTest.cs" />
     <Compile Include="Credentials\LoginCredentialsTest.cs" />
-    <Compile Include="EndpointTest.cs" />
+    <Compile Include="Credentials\EndpointTest.cs" />
     <Compile Include="Functions\AccountsPayable\BillReverseTest.cs" />
     <Compile Include="Functions\AccountsPayable\ApPaymentReverseTest.cs" />
     <Compile Include="Functions\AccountsPayable\ApPaymentRequestVoidTest.cs" />
@@ -241,26 +243,22 @@
     <Compile Include="Helpers\ExpectedExceptionWithMessageAttribute.cs" />
     <Compile Include="Logging\MessageFormatterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IntacctClientTest.cs" />
     <Compile Include="Xml\IaXmlWriterTest.cs" />
-    <Compile Include="Xml\Request\Operation\LoginAuthenticationTest.cs" />
-    <Compile Include="Xml\Request\Operation\SessionAuthenticationTest.cs" />
+    <Compile Include="Xml\Request\LoginAuthenticationTest.cs" />
+    <Compile Include="Xml\Request\SessionAuthenticationTest.cs" />
     <Compile Include="Xml\RequestBlockTest.cs" />
     <Compile Include="Xml\Request\ControlBlockTest.cs" />
     <Compile Include="Xml\RequestHandlerTest.cs" />
     <Compile Include="Xml\Request\OperationBlockTest.cs" />
     <Compile Include="Xml\Response\ErrorMessageTest.cs" />
     <Compile Include="Xml\AbstractResponseTest.cs" />
-    <Compile Include="Xml\Response\OperationBlockTest.cs" />
     <Compile Include="Xml\Response\ControlTest.cs" />
-    <Compile Include="Xml\Response\Operation\AuthenticationTest.cs" />
-    <Compile Include="Xml\Response\AcknowledgementTest.cs" />
+    <Compile Include="Xml\Response\AuthenticationTest.cs" />
     <Compile Include="Xml\MockAbstractResponse.cs" />
-    <Compile Include="Exceptions\OperationExceptionTest.cs" />
     <Compile Include="Exceptions\ResponseExceptionTest.cs" />
-    <Compile Include="Xml\AsynchronousResponseTest.cs" />
-    <Compile Include="Xml\Response\Operation\ResultTest.cs" />
-    <Compile Include="Xml\SynchronousResponseTest.cs" />
+    <Compile Include="Xml\OfflineResponseTest.cs" />
+    <Compile Include="Xml\Response\ResultTest.cs" />
+    <Compile Include="Xml\OnlineResponseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\intacct-sdk-net.csproj">

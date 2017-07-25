@@ -17,7 +17,7 @@ using Intacct.Sdk.Exceptions;
 using System.IO;
 using System.Xml.Linq;
 
-namespace Intacct.Sdk.Xml.Response.Operation
+namespace Intacct.Sdk.Xml.Response
 {
 
     public class Authentication
@@ -40,18 +40,6 @@ namespace Intacct.Sdk.Xml.Response.Operation
             private set
             {
                 userId = value;
-                if (
-                    value == "CPAUser" 
-                    || value.StartsWith("ExtUser|") 
-                    || value.StartsWith("SvcUser|")
-                )
-                {
-                    SlideInUser = true;
-                }
-                else
-                {
-                    SlideInUser = false;
-                }
             }
         }
 
@@ -64,17 +52,7 @@ namespace Intacct.Sdk.Xml.Response.Operation
                 companyId = value;
             }
         }
-
-        private bool slideInUser;
-        public bool SlideInUser
-        {
-            get { return slideInUser; }
-            private set
-            {
-                slideInUser = value;
-            }
-        }
-
+        
         public Authentication(XElement authentication)
         {
             if (authentication.Element("status") == null)
@@ -90,9 +68,9 @@ namespace Intacct.Sdk.Xml.Response.Operation
                 throw new IntacctException("Authentication block is missing companyid element");
             }
             
-            Status = authentication.Element("status").Value;
-            UserId = authentication.Element("userid").Value;
-            CompanyId = authentication.Element("companyid").Value;
+            this.Status = authentication.Element("status").Value;
+            this.UserId = authentication.Element("userid").Value;
+            this.CompanyId = authentication.Element("companyid").Value;
 
             // TODO add getter/setter for elements: clientstatus, clientid, locationid, sessiontimestamp
         }

@@ -32,14 +32,6 @@ namespace Intacct.Sdk.Tests.Credentials
     public class ProfileCredentialProviderTest
     {
 
-        protected ProfileCredentialProvider provider;
-
-        [TestInitialize()]
-        public void Initialize()
-        {
-            provider = new ProfileCredentialProvider();
-        }
-
         [TestMethod()]
         public void GetCredentialsFromDefaultProfileTest()
         {
@@ -65,34 +57,22 @@ user_password = iniuserpass";
                 sw.WriteLine(ini);
             }
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
                 ProfileFile = tempFile,
             };
 
-            SdkConfig loginCreds = provider.GetLoginCredentials(config);
+            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
+            
+            Assert.AreEqual("defcompanyid", loginCreds.CompanyId);
+            Assert.AreEqual("defuserid", loginCreds.UserId);
+            Assert.AreEqual("defuserpass", loginCreds.UserPassword);
 
-            SdkConfig expectedLogin = new SdkConfig()
-            {
-                CompanyId = "defcompanyid",
-                UserId = "defuserid",
-                UserPassword = "defuserpass",
-            };
-            Assert.AreEqual(expectedLogin.CompanyId, loginCreds.CompanyId);
-            Assert.AreEqual(expectedLogin.UserId, loginCreds.UserId);
-            Assert.AreEqual(expectedLogin.UserPassword, loginCreds.UserPassword);
-
-            SdkConfig senderCreds = provider.GetSenderCredentials(config);
-
-            SdkConfig expectedSender = new SdkConfig()
-            {
-                SenderId = "defsenderid",
-                SenderPassword = "defsenderpass",
-                EndpointUrl = "https://unittest.intacct.com/ia/xmlgw.phtml",
-            };
-            Assert.AreEqual(expectedSender.SenderId, senderCreds.SenderId);
-            Assert.AreEqual(expectedSender.SenderPassword, senderCreds.SenderPassword);
-            Assert.AreEqual(expectedSender.EndpointUrl, senderCreds.EndpointUrl);
+            ClientConfig senderCreds = ProfileCredentialProvider.GetSenderCredentials(config);
+            
+            Assert.AreEqual("defsenderid", senderCreds.SenderId);
+            Assert.AreEqual("defsenderpass", senderCreds.SenderPassword);
+            Assert.AreEqual("https://unittest.intacct.com/ia/xmlgw.phtml", senderCreds.EndpointUrl);
         }
 
         [TestMethod()]
@@ -119,23 +99,17 @@ user_password = iniuserpass";
                 sw.WriteLine(ini);
             }
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
                 ProfileFile = tempFile,
                 ProfileName = "unittest",
             };
 
-            SdkConfig loginCreds = provider.GetLoginCredentials(config);
-
-            SdkConfig expectedLogin = new SdkConfig()
-            {
-                CompanyId = "inicompanyid",
-                UserId = "iniuserid",
-                UserPassword = "iniuserpass",
-            };
-            Assert.AreEqual(expectedLogin.CompanyId, loginCreds.CompanyId);
-            Assert.AreEqual(expectedLogin.UserId, loginCreds.UserId);
-            Assert.AreEqual(expectedLogin.UserPassword, loginCreds.UserPassword);
+            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
+            
+            Assert.AreEqual("inicompanyid", loginCreds.CompanyId);
+            Assert.AreEqual("iniuserid", loginCreds.UserId);
+            Assert.AreEqual("iniuserpass", loginCreds.UserPassword);
         }
 
         [TestMethod()]
@@ -155,12 +129,12 @@ sender_password = testsenderpass";
                 sw.WriteLine(ini);
             }
 
-            SdkConfig config = new SdkConfig()
+            ClientConfig config = new ClientConfig()
             {
                 ProfileFile = tempFile,
             };
 
-            SdkConfig loginCreds = provider.GetLoginCredentials(config);
+            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
         }
     }
 }

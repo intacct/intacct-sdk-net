@@ -34,7 +34,7 @@ namespace Intacct.Sdk.Functions
 
                 if (value.Length < 1 || value.Length > 256)
                 {
-                    throw new ArgumentException("ControlId must be between 1 and 256 characters in length");
+                    throw new ArgumentException("Control ID must be between 1 and 256 characters in length");
                 }
 
                 _controlId = value;
