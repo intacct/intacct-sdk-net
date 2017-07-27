@@ -45,7 +45,7 @@ namespace Intacct.Sdk.Logging
         /// MessageFormat constructor
         /// </summary>
         /// <param name="formatTemplate">Log message format template</param>
-        public MessageFormatter(string formatTemplate = CLF + DEBUG)
+        public MessageFormatter(string formatTemplate = DEBUG)
         {
             if (string.IsNullOrWhiteSpace(formatTemplate))
             {
