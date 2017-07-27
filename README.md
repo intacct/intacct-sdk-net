@@ -1,6 +1,6 @@
 # Intacct SDK for .NET
 
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/intacct/intacct-sdk-net&svg=true)](https://ci.appveyor.com/project/jimmymcpeter/intacct-sdk-net)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/Intacct/intacct-sdk-net?svg=true)](https://ci.appveyor.com/project/jimmymcpeter/intacct-sdk-net)
 [![Latest NuGet Version](https://badge.fury.io/nu/Intacct.SDK.svg)](https://www.nuget.org/packages/Intacct.SDK/)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.nuget.org/packages/Intacct.SDK/)
 
