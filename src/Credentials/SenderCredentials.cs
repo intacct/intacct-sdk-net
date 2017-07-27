@@ -14,6 +14,7 @@
  */
 
 using System;
+using System.IO.Abstractions;
 
 namespace Intacct.Sdk.Credentials
 {
@@ -35,6 +36,15 @@ namespace Intacct.Sdk.Credentials
         public Endpoint Endpoint;
 
         public SenderCredentials(ClientConfig config)
+        {
+            this.senderCredentials(config, new FileSystem());
+        }
+        public SenderCredentials(ClientConfig config, IFileSystem fileSystem)
+        {
+            this.senderCredentials(config, fileSystem);
+        }
+
+        public void senderCredentials(ClientConfig config, IFileSystem fileSystem)
         {
             string envProfileName = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable(SenderProfileEnvName))
                 ? Environment.GetEnvironmentVariable(SenderProfileEnvName)
@@ -59,7 +69,7 @@ namespace Intacct.Sdk.Credentials
                 && !string.IsNullOrEmpty(config.ProfileName)
             )
             {
-                ClientConfig profile = ProfileCredentialProvider.GetSenderCredentials(config);
+                ClientConfig profile = ProfileCredentialProvider.GetSenderCredentials(config, fileSystem);
 
                 if (!string.IsNullOrEmpty(profile.SenderId))
                 {

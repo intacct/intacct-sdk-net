@@ -19,6 +19,8 @@ using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Credentials;
 using IniParser;
 using System.IO;
+using System.IO.Abstractions.TestingHelpers;
+using System.Collections.Generic;
 
 namespace Intacct.Sdk.Tests.Credentials
 {
@@ -95,10 +97,11 @@ sender_password = inisenderpass
 endpoint_url = https://unittest.intacct.com/ia/xmlgw.phtml";
 
             string tempFile = Path.Combine(Path.GetTempPath(), ".intacct", "credentials.ini");
-            using (StreamWriter sw = new StreamWriter(tempFile))
+
+            var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
             {
-                sw.WriteLine(ini);
-            }
+                { tempFile, new MockFileData(ini) },
+            });
 
             ClientConfig config = new ClientConfig()
             {
@@ -106,7 +109,7 @@ endpoint_url = https://unittest.intacct.com/ia/xmlgw.phtml";
                 ProfileName = "unittest",
             };
 
-            SenderCredentials senderCreds = new SenderCredentials(config);
+            SenderCredentials senderCreds = new SenderCredentials(config, fileSystem);
             Assert.AreEqual("inisenderid", senderCreds.SenderId);
             Assert.AreEqual("inisenderpass", senderCreds.Password);
             Assert.AreEqual("https://unittest.intacct.com/ia/xmlgw.phtml", senderCreds.Endpoint.Url);
@@ -124,10 +127,11 @@ sender_password = inisenderpass
 endpoint_url = https://unittest.intacct.com/ia/xmlgw.phtml";
 
             string tempFile = Path.Combine(Path.GetTempPath(), ".intacct", "credentials.ini");
-            using (StreamWriter sw = new StreamWriter(tempFile))
+
+            var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
             {
-                sw.WriteLine(ini);
-            }
+                { tempFile, new MockFileData(ini) },
+            });
 
             ClientConfig config = new ClientConfig()
             {
@@ -136,7 +140,7 @@ endpoint_url = https://unittest.intacct.com/ia/xmlgw.phtml";
                 EndpointUrl = "https://somethingelse.intacct.com/ia/xmlgw.phtml",
             };
 
-            SenderCredentials senderCreds = new SenderCredentials(config);
+            SenderCredentials senderCreds = new SenderCredentials(config, fileSystem);
             Assert.AreEqual("inisenderid", senderCreds.SenderId);
             Assert.AreEqual("inisenderpass", senderCreds.Password);
             Assert.AreEqual("https://somethingelse.intacct.com/ia/xmlgw.phtml", senderCreds.Endpoint.Url);

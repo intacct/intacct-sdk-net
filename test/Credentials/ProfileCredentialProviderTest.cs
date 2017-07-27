@@ -24,6 +24,7 @@ using IniParser;
 using System.IO;
 using System.Text;
 using IniParser.Model;
+using System.IO.Abstractions.TestingHelpers;
 
 namespace Intacct.Sdk.Tests.Credentials
 {
@@ -35,8 +36,6 @@ namespace Intacct.Sdk.Tests.Credentials
         [TestMethod()]
         public void GetCredentialsFromDefaultProfileTest()
         {
-            var parser = new FileIniDataParser();
-
             string ini = @"
 [default]
 sender_id = defsenderid
@@ -52,23 +51,24 @@ user_id = iniuserid
 user_password = iniuserpass";
 
             string tempFile = Path.Combine(Path.GetTempPath(), ".intacct", "credentials.ini");
-            using (StreamWriter sw = new StreamWriter(tempFile))
+
+            var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
             {
-                sw.WriteLine(ini);
-            }
+                { tempFile, new MockFileData(ini) },
+            });
 
             ClientConfig config = new ClientConfig()
             {
                 ProfileFile = tempFile,
             };
 
-            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
+            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config, fileSystem);
             
             Assert.AreEqual("defcompanyid", loginCreds.CompanyId);
             Assert.AreEqual("defuserid", loginCreds.UserId);
             Assert.AreEqual("defuserpass", loginCreds.UserPassword);
 
-            ClientConfig senderCreds = ProfileCredentialProvider.GetSenderCredentials(config);
+            ClientConfig senderCreds = ProfileCredentialProvider.GetSenderCredentials(config, fileSystem);
             
             Assert.AreEqual("defsenderid", senderCreds.SenderId);
             Assert.AreEqual("defsenderpass", senderCreds.SenderPassword);
@@ -78,8 +78,6 @@ user_password = iniuserpass";
         [TestMethod()]
         public void GetLoginCredentialsFromSpecificProfileTest()
         {
-            var parser = new FileIniDataParser();
-
             string ini = @"
 [default]
 sender_id = defsenderid
@@ -94,10 +92,11 @@ user_id = iniuserid
 user_password = iniuserpass";
 
             string tempFile = Path.Combine(Path.GetTempPath(), ".intacct", "credentials.ini");
-            using (StreamWriter sw = new StreamWriter(tempFile))
+
+            var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
             {
-                sw.WriteLine(ini);
-            }
+                { tempFile, new MockFileData(ini) },
+            });
 
             ClientConfig config = new ClientConfig()
             {
@@ -105,7 +104,7 @@ user_password = iniuserpass";
                 ProfileName = "unittest",
             };
 
-            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
+            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config, fileSystem);
             
             Assert.AreEqual("inicompanyid", loginCreds.CompanyId);
             Assert.AreEqual("iniuserid", loginCreds.UserId);
@@ -116,25 +115,24 @@ user_password = iniuserpass";
         [ExpectedExceptionWithMessage(typeof(ArgumentException), "Profile name \"default\" not found in credentials file")]
         public void GetLoginCredentialsMissingDefault()
         {
-            var parser = new FileIniDataParser();
-
             string ini = @"
 [notdefault]
 sender_id = testsenderid
 sender_password = testsenderpass";
 
             string tempFile = Path.Combine(Path.GetTempPath(), ".intacct", "credentials.ini");
-            using (StreamWriter sw = new StreamWriter(tempFile))
+
+            var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
             {
-                sw.WriteLine(ini);
-            }
+                { tempFile, new MockFileData(ini) },
+            });
 
             ClientConfig config = new ClientConfig()
             {
                 ProfileFile = tempFile,
             };
 
-            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
+            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config, fileSystem);
         }
     }
 }

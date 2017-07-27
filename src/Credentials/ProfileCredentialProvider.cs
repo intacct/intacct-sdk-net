@@ -15,8 +15,10 @@
 
 using IniParser;
 using IniParser.Model;
+using IniParser.Parser;
 using System;
 using System.IO;
+using System.IO.Abstractions;
 
 namespace Intacct.Sdk.Credentials
 {
@@ -30,8 +32,17 @@ namespace Intacct.Sdk.Credentials
 
         public static ClientConfig GetLoginCredentials(ClientConfig config)
         {
+            return ProfileCredentialProvider.getLoginCredentials(config, new FileSystem());
+        }
+        public static ClientConfig GetLoginCredentials(ClientConfig config, IFileSystem fileSystem)
+        {
+            return ProfileCredentialProvider.getLoginCredentials(config, fileSystem);
+        }
+
+        private static ClientConfig getLoginCredentials(ClientConfig config, IFileSystem fileSystem)
+        {
             ClientConfig creds = new ClientConfig();
-            KeyDataCollection data = GetIniProfileData(config);
+            KeyDataCollection data = getIniProfileData(config, fileSystem);
             
             if (!string.IsNullOrEmpty(data["company_id"]))
             {
@@ -51,8 +62,17 @@ namespace Intacct.Sdk.Credentials
 
         public static ClientConfig GetSenderCredentials(ClientConfig config)
         {
+            return ProfileCredentialProvider.getSenderCredentials(config, new FileSystem());
+        }
+        public static ClientConfig GetSenderCredentials(ClientConfig config, IFileSystem fileSystem)
+        {
+            return ProfileCredentialProvider.getSenderCredentials(config, fileSystem);
+        }
+
+        private static ClientConfig getSenderCredentials(ClientConfig config, IFileSystem fileSystem)
+        {
             ClientConfig creds = new ClientConfig();
-            KeyDataCollection data = GetIniProfileData(config);
+            KeyDataCollection data = getIniProfileData(config, fileSystem);
 
             if (!string.IsNullOrEmpty(data["sender_id"]))
             {
@@ -78,8 +98,8 @@ namespace Intacct.Sdk.Credentials
 
             return profile;
         }
-
-        private static KeyDataCollection GetIniProfileData(ClientConfig config)
+        
+        private static KeyDataCollection getIniProfileData(ClientConfig config, IFileSystem fileSystem)
         {
             if (string.IsNullOrEmpty(config.ProfileName))
             {
@@ -90,8 +110,9 @@ namespace Intacct.Sdk.Credentials
                 config.ProfileFile = ProfileCredentialProvider.GetHomeDirProfile();
             }
 
-            var parser = new FileIniDataParser();
-            IniData data = parser.ReadFile(config.ProfileFile);
+            string dataString = fileSystem.File.ReadAllText(config.ProfileFile);
+            IniDataParser parser = new IniDataParser();
+            IniData data = parser.Parse(dataString);
             
             KeyDataCollection sectionData = data[config.ProfileName];
             if (sectionData == null)

@@ -19,6 +19,8 @@ using Intacct.Sdk.Tests.Helpers;
 using Intacct.Sdk.Credentials;
 using IniParser;
 using System.IO;
+using System.IO.Abstractions.TestingHelpers;
+using System.Collections.Generic;
 
 namespace Intacct.Sdk.Tests.Credentials
 {
@@ -72,10 +74,11 @@ user_id = iniuserid
 user_password = iniuserpass";
 
             string tempFile = Path.Combine(Path.GetTempPath(), ".intacct", "credentials.ini");
-            using (StreamWriter sw = new StreamWriter(tempFile))
+
+            var fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
             {
-                sw.WriteLine(ini);
-            }
+                { tempFile, new MockFileData(ini) },
+            });
 
             ClientConfig config = new ClientConfig()
             {
@@ -83,7 +86,7 @@ user_password = iniuserpass";
                 ProfileName = "unittest",
             };
 
-            LoginCredentials loginCreds = new LoginCredentials(config, senderCreds);
+            LoginCredentials loginCreds = new LoginCredentials(config, senderCreds, fileSystem);
             Assert.AreEqual("inicompanyid", loginCreds.CompanyId);
             Assert.AreEqual("iniuserid", loginCreds.UserId);
             Assert.AreEqual("iniuserpass", loginCreds.Password);
