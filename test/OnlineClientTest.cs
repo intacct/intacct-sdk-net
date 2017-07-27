@@ -91,7 +91,7 @@ namespace Intacct.Sdk.Tests
 
             OnlineClient client = new OnlineClient(clientConfig);
 
-            OnlineResponse response = await client.execute(new ApiSessionCreate("func1UnitTest"));
+            OnlineResponse response = await client.Execute(new ApiSessionCreate("func1UnitTest"));
 
             Assert.AreEqual("requestUnitTest", response.Control.ControlId);
         }
@@ -155,7 +155,7 @@ namespace Intacct.Sdk.Tests
 
             OnlineClient client = new OnlineClient(clientConfig);
 
-            OnlineResponse response = await client.execute(new ApiSessionCreate("func1UnitTest"));
+            OnlineResponse response = await client.Execute(new ApiSessionCreate("func1UnitTest"));
         }
 
         [TestMethod()]
@@ -245,7 +245,7 @@ namespace Intacct.Sdk.Tests
 
             OnlineClient client = new OnlineClient(clientConfig);
 
-            OnlineResponse response = await client.executeBatch(content, requestConfig);
+            OnlineResponse response = await client.ExecuteBatch(content, requestConfig);
         }
 
         
@@ -310,7 +310,7 @@ namespace Intacct.Sdk.Tests
 
             OnlineClient client = new OnlineClient(config);
 
-            OnlineResponse response = await client.execute(new ReadByQuery("func1UnitTest"));
+            OnlineResponse response = await client.Execute(new ReadByQuery("func1UnitTest"));
 
             Assert.IsTrue(target.Logs[0].Contains("<password>REDACTED</password>"));
         }

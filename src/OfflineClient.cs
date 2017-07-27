@@ -39,7 +39,7 @@ namespace Intacct.Sdk
         /// <param name="apiFunction"></param>
         /// <param name="requestConfig"></param>
         /// <returns></returns>
-        public async Task<OfflineResponse> execute(IFunction apiFunction, RequestConfig requestConfig = null)
+        public async Task<OfflineResponse> Execute(IFunction apiFunction, RequestConfig requestConfig = null)
         {
             List<IFunction> apiFunctions = new List<IFunction>();
             apiFunctions.Add(apiFunction);
@@ -53,7 +53,7 @@ namespace Intacct.Sdk
         /// <param name="apiFunctions"></param>
         /// <param name="requestConfig"></param>
         /// <returns></returns>
-        public async Task<OfflineResponse> executeBatch(List<IFunction> apiFunctions, RequestConfig requestConfig = null)
+        public async Task<OfflineResponse> ExecuteBatch(List<IFunction> apiFunctions, RequestConfig requestConfig = null)
         {
             return await this.ExecuteOfflineRequest(apiFunctions, requestConfig);
         }

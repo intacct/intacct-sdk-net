@@ -35,12 +35,12 @@ namespace Intacct.Sdk
         }
 
         /// <summary>
-        /// Execute one function to the Intacct API
+        /// Execute one Intacct API function
         /// </summary>
         /// <param name="apiFunction"></param>
         /// <param name="requestConfig"></param>
         /// <returns></returns>
-        public async Task<OnlineResponse> execute(IFunction apiFunction, RequestConfig requestConfig = null)
+        public async Task<OnlineResponse> Execute(IFunction apiFunction, RequestConfig requestConfig = null)
         {
             List<IFunction> apiFunctions = new List<IFunction>();
             apiFunctions.Add(apiFunction);
@@ -53,12 +53,12 @@ namespace Intacct.Sdk
         }
 
         /// <summary>
-        /// Execute multiple functions to the Intacct API
+        /// Execute multiple Intacct API functions
         /// </summary>
         /// <param name="apiFunctions"></param>
         /// <param name="requestConfig"></param>
         /// <returns></returns>
-        public async Task<OnlineResponse> executeBatch(List<IFunction> apiFunctions, RequestConfig requestConfig = null)
+        public async Task<OnlineResponse> ExecuteBatch(List<IFunction> apiFunctions, RequestConfig requestConfig = null)
         {
             OnlineResponse response = await this.ExecuteOnlineRequest(apiFunctions, requestConfig);
 

@@ -79,7 +79,7 @@ namespace Intacct.Sdk.Tests
 
             OfflineClient client = new OfflineClient(clientConfig);
 
-            OfflineResponse response = await client.execute(new ApiSessionCreate("func1UnitTest"), requestConfig);
+            OfflineResponse response = await client.Execute(new ApiSessionCreate("func1UnitTest"), requestConfig);
 
             Assert.AreEqual("requestUnitTest", response.Control.ControlId);
         }
@@ -132,7 +132,7 @@ namespace Intacct.Sdk.Tests
             List<IFunction> contentBlock = new List<IFunction>();
             contentBlock.Add(new ApiSessionCreate("func1UnitTest"));
 
-            OfflineResponse response = await client.executeBatch(contentBlock, requestConfig);
+            OfflineResponse response = await client.ExecuteBatch(contentBlock, requestConfig);
 
             Assert.AreEqual("requestUnitTest", response.Control.ControlId);
         }
