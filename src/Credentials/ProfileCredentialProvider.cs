@@ -115,7 +115,7 @@ namespace Intacct.Sdk.Credentials
             IniData data = parser.Parse(dataString);
             
             KeyDataCollection sectionData = data[config.ProfileName];
-            if (sectionData == null)
+            if (sectionData.Count == 0)
             {
                 throw new ArgumentException("Profile name \"" + config.ProfileName + "\" not found in credentials file");
             }
