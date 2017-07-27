@@ -6,7 +6,7 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <licenseUrl>https://github.com/Intacct/intacct-sdk-net/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/Intacct/intacct-sdk-net</projectUrl>
+    <projectUrl>https://developer.intacct.com/tools/sdk-net/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>https://github.com/Intacct/intacct-sdk-net/releases</releaseNotes>
