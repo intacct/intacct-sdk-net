@@ -1,12 +1,17 @@
 # Intacct SDK for .NET
 
-Please note the Intacct SDK for .NET is actively being developed.  This is a developer preview that should not be used in a production environment.
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/intacct/intacct-sdk-net&svg=true)](https://ci.appveyor.com/project/jimmymcpeter/intacct-sdk-net)
+[![Latest NuGet Version](https://badge.fury.io/nu/Intacct.SDK.svg)](https://www.nuget.org/packages/Intacct.SDK/)
+[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.nuget.org/packages/Intacct.SDK/)
 
 ## Resources
 
-* [Intacct][intacct] - Intacct's home page
+* [SDK Guides][sdk-homepage] - Getting started with the SDK
+* [SDK Reference][sdk-reference] - Code-level reference for the SDK
 * [Issues][sdk-issues] - Report issues with the SDK or submit pull requests
 * [License][sdk-license] - Apache 2.0 license
+* [Intacct Developer][ia-developer] - Intacct's Developer site
+* [Intacct][intacct] - Intacct's home page
 
 ## System Requirements
 
@@ -14,69 +19,9 @@ Please note the Intacct SDK for .NET is actively being developed.  This is a dev
 * .NET Framework >4.5.2
 
 [intacct]: http://www.intacct.com
+[ia-developer]: https://developer.intacct.com/
+[sdk-homepage]: https://developer.intacct.com/tools/sdk-net/
+[sdk-reference]: https://intacct.github.io/intacct-sdk-net/annotated.html
 [sdk-issues]: https://github.com/Intacct/intacct-sdk-net/issues
 [sdk-license]: http://www.apache.org/licenses/LICENSE-2.0
-
-## Quick Installation Guide
-
-Install the SDK using NuGet
-
-```bash
-PM> Install-Package Intacct.SDK
-```
-
-## Quick Example
-
-```c#
-using Intacct.Sdk;
-using Intacct.Sdk.Xml;
-using Intacct.Sdk.Functions.Common;
-using System;
-using System.Threading.Tasks;
-
-namespace ConsoleApplication1
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            try
-            {
-                SdkConfig config = new SdkConfig()
-                {
-                    SenderId = "senderid",
-                    SenderPassword = "senderpassword",
-                    CompanyId = "company",
-                    UserId = "user",
-                    UserPassword = "pass",
-                };
-                IntacctClient client = new IntacctClient(config);
-
-                Console.WriteLine("Current Company ID: " + client.SessionCreds.CurrentCompanyId);
-                Console.WriteLine("Current User ID: " + client.SessionCreds.CurrentUserId);
-
-                Read read = new Read()
-                {
-                    ObjectName = "VENDOR",
-                };
-                Content content = new Content();
-                content.Add(read);
-
-                Task<SynchronousResponse> response = client.Execute(content);
-
-                response.Wait();
-
-                Console.WriteLine("Read function control ID: " + response.Result.Control.ControlId);
-
-                Console.WriteLine("Number of vendor objects read: " + response.Result.Operation.Results[0].Count);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception caught: " + ex.Message);
-            }
-
-            Console.ReadLine();
-        }
-    }
-}
-```
+[nuget]: https://www.nuget.org/packages/Intacct.SDK/
