@@ -30,12 +30,18 @@ namespace Intacct.Sdk
         const string ProfileEnvName = "INTACCT_PROFILE";
 
         /// <summary>
+        /// Default Timeout for all SDK Calls
+        /// </summary>
+        protected readonly TimeSpan DefaultTimeout;
+
+        /// <summary>
         /// <seealso cref="Intacct.Sdk.Credentials.SessionCredentials"/>
         /// </summary>
         protected SessionCredentials sessionCreds;
 
         public AbstractClient(SdkConfig config)
         {
+            this.DefaultTimeout = config.Timeout;
             InitializeAsync(config).Wait();
         }
 
@@ -79,6 +85,7 @@ namespace Intacct.Sdk
                 Logger = sessionCreds.Logger,
                 LogFormatter = sessionCreds.LogMessageFormat,
                 LogLevel = sessionCreds.LogLevel,
+                Timeout = DefaultTimeout
             };
 
             return config;

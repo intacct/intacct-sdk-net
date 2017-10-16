@@ -44,7 +44,10 @@ namespace Intacct.Sdk
         {
             if (config == null)
             {
-                config = new SdkConfig();
+                config = new SdkConfig()
+                {
+                    Timeout = this.DefaultTimeout
+                };
             }
             return await base.Execute(contentBlock, transaction, requestControlId, uniqueFunctionControlIds, config);
         }
@@ -60,7 +63,10 @@ namespace Intacct.Sdk
         {
             if (config == null)
             {
-                config = new SdkConfig();
+                config = new SdkConfig()
+                {
+                    Timeout = this.DefaultTimeout
+                };
             }
             return await base.ExecuteAsync(contentBlock, asyncPolicyId, transaction, requestControlId, uniqueFunctionControlIds, config);
         }
