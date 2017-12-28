@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.0.0
-MinimumVisualStudioVersion = 10.0.0.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intacct.SDK", "Intacct.SDK\Intacct.SDK.csproj", "{74FC603A-430B-453A-BEA1-1CD7FAE59E50}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intacct.SDK.Tests", "Intacct.SDK.Tests\Intacct.SDK.Tests.csproj", "{E3636424-5894-4B8C-8511-1BD5CDCF1074}"
