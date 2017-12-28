@@ -16,7 +16,7 @@
 ## System Requirements
 
 * You must have an active Intacct Web Services Developer license
-* .NET Framework >4.5.2
+* .NET Core 1.0 or .NET Framework 4.6.1. The SDK targets [.NET Standard 1.6][dotnet-standard]
 
 [intacct]: http://www.intacct.com
 [ia-developer]: https://developer.intacct.com/
@@ -25,3 +25,4 @@
 [sdk-issues]: https://github.com/Intacct/intacct-sdk-net/issues
 [sdk-license]: http://www.apache.org/licenses/LICENSE-2.0
 [nuget]: https://www.nuget.org/packages/Intacct.SDK/
+[dotnet-standard]: https://docs.microsoft.com/en-us/dotnet/standard/net-standard
