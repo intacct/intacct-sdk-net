@@ -13,6 +13,7 @@
  * permissions and limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -30,11 +31,14 @@ namespace Intacct.SDK.Tests.Functions.Company
         [Fact]
         public void GetXmlTest()
         {
+            string fileData = @"hello,world
+unit,test";
+            
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <attachment>
     <attachmentname>input</attachmentname>
     <attachmenttype>csv</attachmenttype>
-    <attachmentdata>aGVsbG8sd29ybGQNCnVuaXQsdGVzdA==</attachmentdata>
+    <attachmentdata>" + Convert.ToBase64String(Encoding.UTF8.GetBytes(fileData)) + @"</attachmentdata>
 </attachment>";
 
             string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Functions", "Company", "File", "input.csv");
