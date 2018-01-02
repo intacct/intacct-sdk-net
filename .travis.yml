@@ -2,6 +2,12 @@ language: csharp
 solution: intacct-sdk-net.sln
 mono: none
 dotnet: 2.0.0
+install:
+- dotnet restore
+
+script:
+- dotnet build
+- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj
 
 notifications:
   slack:
