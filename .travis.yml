@@ -6,8 +6,8 @@ install:
 - dotnet restore
 
 script:
-- dotnet build
-- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj
+- dotnet build --configuration Release
+- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp2.0"
 
 notifications:
   slack:
