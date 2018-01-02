@@ -16,7 +16,7 @@
 using Intacct.SDK.Credentials;
 using Intacct.SDK.Logging;
 using Intacct.SDK.Xml.Request;
-using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace Intacct.SDK
 {
@@ -43,7 +43,7 @@ namespace Intacct.SDK
 
         public ICredentials Credentials;
 
-        public ILoggerAdapter Logger;
+        public ILogger Logger;
 
         public LogLevel LogLevel;
 

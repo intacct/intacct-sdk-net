@@ -18,19 +18,19 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Intacct.SDK.Logging;
-using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace Intacct.SDK.Xml
 {
     public class LoggingHandler : DelegatingHandler
     {
-        private ILoggerAdapter _logger;
+        private ILogger _logger;
         
         private MessageFormatter _logMessageFormatter;
         
         private LogLevel _logLevel;
 
-        public LoggingHandler(HttpMessageHandler innerHandler, ILoggerAdapter logger, MessageFormatter logMessageFormat, LogLevel logLevel) : base(innerHandler)
+        public LoggingHandler(HttpMessageHandler innerHandler, ILogger logger, MessageFormatter logMessageFormat, LogLevel logLevel) : base(innerHandler)
         {
             this._logger = logger;
             this._logMessageFormatter = logMessageFormat;
@@ -44,32 +44,11 @@ namespace Intacct.SDK.Xml
             try
             {
                 response = await base.SendAsync(request, cancellationToken);
-
-                switch (_logLevel)
-                {
-                    case LogLevel.Trace:
-                        _logger.LogTrace(_logMessageFormatter.Format(request, response));
-                        break;
-                    case LogLevel.Debug:
-                        _logger.LogDebug( _logMessageFormatter.Format(request, response));
-                        break;
-                    case LogLevel.Information:
-                        _logger.LogInformation(_logMessageFormatter.Format(request, response));
-                        break;
-                    case LogLevel.Warning:
-                        _logger.LogWarning(_logMessageFormatter.Format(request, response));
-                        break;
-                    case LogLevel.Error:
-                        _logger.LogError(_logMessageFormatter.Format(request, response));
-                        break;
-                    case LogLevel.Critical:
-                        _logger.LogCritical(_logMessageFormatter.Format(request, response));
-                        break;
-                }
+                _logger.Log(_logLevel, _logMessageFormatter.Format(request, response));
             }
             catch (Exception ex)
             {
-                _logger.LogError(_logMessageFormatter.Format(request, response), ex);
+                _logger.Log(_logLevel, ex, _logMessageFormatter.Format(request, response));
                 throw ex;
             }
 

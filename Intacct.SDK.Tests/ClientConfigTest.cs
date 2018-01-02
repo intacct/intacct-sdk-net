@@ -1,5 +1,5 @@
 ﻿using Intacct.SDK.Logging;
-using Microsoft.Extensions.Logging;
+using NLog;
 using Xunit;
 
 namespace Intacct.SDK.Tests

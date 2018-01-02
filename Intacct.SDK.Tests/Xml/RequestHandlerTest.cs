@@ -11,7 +11,9 @@ using Intacct.SDK.Logging;
 using Intacct.SDK.Tests.Logging;
 using Intacct.SDK.Xml;
 using Intacct.SDK.Xml.Request;
-using Microsoft.Extensions.Logging;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 using Xunit;
 
 namespace Intacct.SDK.Tests.Xml
@@ -383,11 +385,11 @@ namespace Intacct.SDK.Tests.Xml
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
-            MemoryStream stream = new MemoryStream();
-            LoggerFactory factory = new LoggerFactory();
-            factory.AddConsole();
-            ILogger logger = factory.CreateLogger("UnitTest");
-            ILoggerAdapter loggerAdapter = new MemoryStreamTestLogger(stream, logger);
+            MemoryTarget target = new MemoryTarget
+            {
+                Layout = "${message}"
+            };
+            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
             
             ClientConfig clientConfig = new ClientConfig()
             {
@@ -395,7 +397,7 @@ namespace Intacct.SDK.Tests.Xml
                 SenderPassword = "pass123!",
                 SessionId = "testsession..",
                 MockHandler = mockHandler,
-                Logger = loggerAdapter,
+                Logger = LogManager.GetCurrentClassLogger(),
             };
 
             RequestConfig requestConfig = new RequestConfig();
@@ -408,12 +410,8 @@ namespace Intacct.SDK.Tests.Xml
             RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
             OnlineResponse response = await requestHandler.ExecuteOnline(contentBlock);
 
-            stream.Position = 0;
-            StreamReader reader = new StreamReader(stream);
-            string logOutput = reader.ReadToEnd();
-            
             // Check for the user agent
-            Assert.Contains("intacct-api-net-client/", logOutput);
+            Assert.Contains("intacct-api-net-client/", target.Logs[0]);
         }
 
         [Fact]
@@ -446,19 +444,19 @@ namespace Intacct.SDK.Tests.Xml
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
-            MemoryStream stream = new MemoryStream();
-            LoggerFactory factory = new LoggerFactory();
-            factory.AddConsole();
-            ILogger logger = factory.CreateLogger("UnitTest");
-            ILoggerAdapter loggerAdapter = new MemoryStreamTestLogger(stream, logger);
-
+            MemoryTarget target = new MemoryTarget
+            {
+                Layout = "${message}"
+            };
+            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+            
             ClientConfig clientConfig = new ClientConfig()
             {
                 SenderId = "testsenderid",
                 SenderPassword = "pass123!",
                 SessionId = "testsession..",
                 MockHandler = mockHandler,
-                Logger = loggerAdapter,
+                Logger = LogManager.GetCurrentClassLogger(),
             };
 
             RequestConfig requestConfig = new RequestConfig()
@@ -474,13 +472,8 @@ namespace Intacct.SDK.Tests.Xml
 
             RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
             OfflineResponse response = await requestHandler.ExecuteOffline(contentBlock);
-
-            stream.Position = 0;
-            StreamReader reader = new StreamReader(stream);
-            string logOutput = reader.ReadToEnd();
             
-            // Check for the user agent
-            Assert.Contains("Offline execution sent to Intacct using Session-based credentials.", logOutput);
+            Assert.Contains("Offline execution sent to Intacct using Session-based credentials.", target.Logs[0]);
         }
     }
 }

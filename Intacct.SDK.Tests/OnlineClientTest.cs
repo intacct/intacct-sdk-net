@@ -10,11 +10,11 @@ using System.Xml;
 using Intacct.SDK.Exceptions;
 using Intacct.SDK.Functions;
 using Intacct.SDK.Functions.Common;
-using Intacct.SDK.Logging;
-using Intacct.SDK.Tests.Logging;
 using Intacct.SDK.Xml;
 using Intacct.SDK.Xml.Request;
-using Microsoft.Extensions.Logging;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 using Xunit;
 
 namespace Intacct.SDK.Tests
@@ -283,11 +283,11 @@ namespace Intacct.SDK.Tests
             };
             MockHandler mockHandler = new MockHandler(mockResponses);
             
-            MemoryStream stream = new MemoryStream();
-            LoggerFactory factory = new LoggerFactory();
-            factory.AddConsole();
-            ILogger logger = factory.CreateLogger("UnitTest");
-            ILoggerAdapter loggerAdapter = new MemoryStreamTestLogger(stream, logger);
+            MemoryTarget target = new MemoryTarget
+            {
+                Layout = "${message}"
+            };
+            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
             
             ClientConfig config = new ClientConfig
             {
@@ -295,18 +295,14 @@ namespace Intacct.SDK.Tests
                 SenderPassword = "testsendpass",
                 SessionId = "testsession..",
                 MockHandler = mockHandler,
-                Logger = loggerAdapter,
+                Logger = LogManager.GetCurrentClassLogger(),
             };
 
             OnlineClient client = new OnlineClient(config);
 
             OnlineResponse response = await client.Execute(new ReadByQuery("func1UnitTest"));
             
-            stream.Position = 0;
-            StreamReader reader = new StreamReader(stream);
-            string logOutput = reader.ReadToEnd();
-            
-            Assert.Contains("<password>REDACTED</password>", logOutput);
+            Assert.Contains("<password>REDACTED</password>", target.Logs[0]);
         }
     }
 }
