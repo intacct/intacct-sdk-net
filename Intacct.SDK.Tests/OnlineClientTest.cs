@@ -282,9 +282,11 @@ namespace Intacct.SDK.Tests
                 mockResponse1,
             };
             MockHandler mockHandler = new MockHandler(mockResponses);
-            
+
+            var guid = Guid.NewGuid().ToString();
             MemoryTarget target = new MemoryTarget
             {
+                Name = guid,
                 Layout = "${message}"
             };
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
@@ -295,7 +297,7 @@ namespace Intacct.SDK.Tests
                 SenderPassword = "testsendpass",
                 SessionId = "testsession..",
                 MockHandler = mockHandler,
-                Logger = LogManager.GetCurrentClassLogger(),
+                Logger = LogManager.GetLogger(guid),
             };
 
             OnlineClient client = new OnlineClient(config);

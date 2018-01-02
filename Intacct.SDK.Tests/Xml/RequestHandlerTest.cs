@@ -385,8 +385,10 @@ namespace Intacct.SDK.Tests.Xml
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
+            var guid = Guid.NewGuid().ToString();
             MemoryTarget target = new MemoryTarget
             {
+                Name = guid,
                 Layout = "${message}"
             };
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
@@ -397,7 +399,7 @@ namespace Intacct.SDK.Tests.Xml
                 SenderPassword = "pass123!",
                 SessionId = "testsession..",
                 MockHandler = mockHandler,
-                Logger = LogManager.GetCurrentClassLogger(),
+                Logger = LogManager.GetLogger(guid),
             };
 
             RequestConfig requestConfig = new RequestConfig();
@@ -444,8 +446,10 @@ namespace Intacct.SDK.Tests.Xml
 
             MockHandler mockHandler = new MockHandler(mockResponses);
 
+            var guid = Guid.NewGuid().ToString();
             MemoryTarget target = new MemoryTarget
             {
+                Name = guid,
                 Layout = "${message}"
             };
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
@@ -456,7 +460,7 @@ namespace Intacct.SDK.Tests.Xml
                 SenderPassword = "pass123!",
                 SessionId = "testsession..",
                 MockHandler = mockHandler,
-                Logger = LogManager.GetCurrentClassLogger(),
+                Logger = LogManager.GetLogger(guid),
             };
 
             RequestConfig requestConfig = new RequestConfig()
