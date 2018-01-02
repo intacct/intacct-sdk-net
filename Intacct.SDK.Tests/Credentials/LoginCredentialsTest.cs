@@ -59,7 +59,7 @@ namespace Intacct.SDK.Tests.Credentials
         [Fact]
         public void CredsFromProfileTest()
         {
-            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Credentials\\Ini\\default.ini");
+            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Credentials", "Ini", "default.ini");
 
             ClientConfig config = new ClientConfig()
             {

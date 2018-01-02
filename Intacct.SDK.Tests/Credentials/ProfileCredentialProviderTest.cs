@@ -25,7 +25,7 @@ namespace Intacct.SDK.Tests.Credentials
         [Fact]
         public void GetLoginCredentialsFromSpecificProfileTest()
         {
-            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Credentials\\Ini\\default.ini");
+            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Credentials", "Ini", "default.ini");
 
             ClientConfig config = new ClientConfig()
             {
@@ -43,7 +43,7 @@ namespace Intacct.SDK.Tests.Credentials
         [Fact]
         public void GetLoginCredentialsMissingDefault()
         {
-            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Credentials\\Ini\\notdefault.ini");
+            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Credentials", "Ini", "notdefault.ini");
 
             ClientConfig config = new ClientConfig()
             {

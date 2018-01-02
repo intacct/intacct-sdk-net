@@ -37,7 +37,7 @@ namespace Intacct.SDK.Tests.Functions.Company
     <attachmentdata>aGVsbG8sd29ybGQNCnVuaXQsdGVzdA==</attachmentdata>
 </attachment>";
 
-            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Functions\\Company\\File\\input.csv");
+            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Functions", "Company", "File", "input.csv");
 
             AttachmentFile record = new AttachmentFile()
             {
