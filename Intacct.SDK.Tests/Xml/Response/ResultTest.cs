@@ -507,7 +507,7 @@ namespace Intacct.SDK.Tests.Xml.Response
             Assert.Equal(2, result.TotalCount);
             Assert.Equal(1, result.NumRemaining);
             Assert.Equal("myResultId", result.ResultId);
-            Assert.Equal(1, result.Data.Count);
+            Assert.Single(result.Data);
         }
         
         [Fact]
