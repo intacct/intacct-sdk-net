@@ -53,7 +53,7 @@ namespace Intacct.SDK.Tests.Xml
             stream.Position = 0;
 
             OnlineResponse response = new OnlineResponse(stream);
-            Assert.IsType(typeof(List<Result>), response.Results);
+            Assert.IsType<List<Result>>(response.Results);
         }
         
         [Fact]

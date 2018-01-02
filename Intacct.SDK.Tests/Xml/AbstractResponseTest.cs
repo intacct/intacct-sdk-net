@@ -33,7 +33,7 @@ namespace Intacct.SDK.Tests.Xml
             stream.Position = 0;
 
             MockAbstractResponse response = new MockAbstractResponse(stream);
-            Assert.IsType(typeof(Control), response.Control);
+            Assert.IsType<Control>(response.Control);
         }
         
         [Fact]

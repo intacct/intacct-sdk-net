@@ -20,7 +20,6 @@ using System.Text;
 using System.Xml;
 using Intacct.SDK.Functions.AccountsPayable;
 using Intacct.SDK.Functions;
-using Intacct.SDK.Functions;
 using Intacct.SDK.Tests.Xml;
 using Intacct.SDK.Xml;
 using Xunit;

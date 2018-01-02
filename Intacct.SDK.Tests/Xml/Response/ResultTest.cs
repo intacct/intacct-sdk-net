@@ -50,11 +50,11 @@ namespace Intacct.SDK.Tests.Xml.Response
 
             OnlineResponse response = new OnlineResponse(stream);
             var result = response.Results[0];
-            Assert.IsType(typeof(Result), result);
+            Assert.IsType<Result>(result);
             Assert.Equal("success", result.Status);
             Assert.Equal("readByQuery", result.Function);
             Assert.Equal("testControlId", result.ControlId);
-            Assert.IsType(typeof(List<XElement>), result.Data);
+            Assert.IsType<List<XElement>>(result.Data);
             result.EnsureStatusSuccess();
         }
         
@@ -103,7 +103,7 @@ namespace Intacct.SDK.Tests.Xml.Response
             OnlineResponse response = new OnlineResponse(stream);
             var result = response.Results[0];
             Assert.Equal("failure", result.Status);
-            Assert.IsType(typeof(List<string>), result.Errors);
+            Assert.IsType<List<string>>(result.Errors);
         }
         
         [Fact]

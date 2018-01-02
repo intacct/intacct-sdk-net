@@ -87,7 +87,7 @@ namespace Intacct.SDK.Tests.Xml
             RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
             OnlineResponse response = await requestHandler.ExecuteOnline(contentBlock);
             
-            Assert.IsType(typeof(OnlineResponse), response);
+            Assert.IsType<OnlineResponse>(response);
         }
         
         [Fact]
@@ -142,7 +142,7 @@ namespace Intacct.SDK.Tests.Xml
             RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
             OfflineResponse response = await requestHandler.ExecuteOffline(contentBlock);
             
-            Assert.IsType(typeof(OfflineResponse), response);
+            Assert.IsType<OfflineResponse>(response);
         }
 
         [Fact]

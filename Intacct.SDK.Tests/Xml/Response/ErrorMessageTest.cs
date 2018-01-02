@@ -43,7 +43,7 @@ namespace Intacct.SDK.Tests.Xml.Response
 
             ErrorMessage errorMessage = new ErrorMessage(xml.Element("errormessage").Elements("error"));
             
-            Assert.IsType(typeof(List<string>), errorMessage.Errors);
+            Assert.IsType<List<string>>(errorMessage.Errors);
             
             Assert.Equal("1234 description Object definition 'BADOBJECT' not found. stripthesetags.", errorMessage.Errors[0]);
             Assert.Equal("5678 stripthesetags. Object definition 'BADOBJECT' not found. correct.", errorMessage.Errors[1]);

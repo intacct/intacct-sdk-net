@@ -20,8 +20,8 @@ namespace Intacct.SDK.Tests
             Assert.Equal(TimeSpan.FromSeconds(300), requestConfig.MaxTimeout);
             Assert.Equal(new[] { 524 }, requestConfig.NoRetryServerErrorCodes);
             Assert.Equal("", requestConfig.PolicyId);
-            Assert.Equal(false, requestConfig.Transaction);
-            Assert.Equal(false, requestConfig.UniqueId);
+            Assert.False(requestConfig.Transaction);
+            Assert.False(requestConfig.UniqueId);
         }
     }
 }
