@@ -7,6 +7,7 @@ install:
 
 script:
 - dotnet build --configuration Release
+- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp1.0"
 - dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp2.0"
 
 notifications:
