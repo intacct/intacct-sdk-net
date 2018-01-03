@@ -56,7 +56,7 @@ namespace Intacct.SDK.Tests.Functions.Common
 <function controlid=""unittest"">
     <read>
         <object>CLASS</object>
-        <keys>Key1,Key2</keys>
+        <keys>1,2</keys>
         <fields>Field1,Field2</fields>
         <returnFormat>xml</returnFormat>
         <docparid>Sales Invoice</docparid>
@@ -71,10 +71,10 @@ namespace Intacct.SDK.Tests.Functions.Common
                     "Field1",
                     "Field2",
                 },
-                Keys = new List<string>
+                Keys = new List<int>
                 {
-                    "Key1",
-                    "Key2",
+                    1,
+                    2,
                 },
                 DocParId = "Sales Invoice"
             };
@@ -90,10 +90,10 @@ namespace Intacct.SDK.Tests.Functions.Common
                 ObjectName = "CLASS"
             };
 
-            List<string> keys = new List<string>();
+            List<int> keys = new List<int>();
             for (int i = 1; i <= 101; i++)
             {
-                keys.Add(i.ToString());
+                keys.Add(i);
             }
             
             

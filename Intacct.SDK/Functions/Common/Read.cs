@@ -31,8 +31,8 @@ namespace Intacct.SDK.Functions.Common
             }
         );
         
-        private List<string> _keys;
-        public List<string> Keys
+        private List<int> _keys;
+        public List<int> Keys
         {
             get { return _keys; }
             set
@@ -61,7 +61,7 @@ namespace Intacct.SDK.Functions.Common
 
         public Read(string controlId = null) : base(controlId)
         {
-            Keys = new List<string>();
+            Keys = new List<int>();
         }
 
         public override void WriteXml(ref IaXmlWriter xml)
