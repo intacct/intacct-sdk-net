@@ -1,0 +1,4 @@
+var class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry =
+[
+    [ "AbstractStatisticalJournalEntry", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry.html#af35e984608822b0d77b07518ce48eeee", null ]
+];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['xml',['xml',['../class_intacct_1_1_sdk_1_1_xml_1_1_abstract_response.html#a34b95e681a4a040574f99c099c6ec9a1',1,'Intacct::Sdk::Xml::AbstractResponse']]],
-  ['xmlfilename',['XmlFilename',['../class_intacct_1_1_sdk_1_1_functions_1_1_platform_services_1_1_application_install.html#a2e4161877b48611aa487ceb4779f0760',1,'Intacct::Sdk::Functions::PlatformServices::ApplicationInstall']]]
+  ['zippostalcode',['ZipPostalCode',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a0a4fb7f21452ae41da4ccfde9eb7b216',1,'Intacct.SDK.Functions.AccountsPayable.AbstractVendor.ZipPostalCode()'],['../class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a76a909deb3934042002728a9dc374438',1,'Intacct.SDK.Functions.AccountsReceivable.AbstractCustomer.ZipPostalCode()'],['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#a142f346b69781968fc0df14eca9ecdfd',1,'Intacct.SDK.Functions.Company.AbstractContact.ZipPostalCode()']]]
 ];

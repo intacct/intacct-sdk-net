@@ -1,4 +1,0 @@
-var class_intacct_1_1_sdk_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry =
-[
-    [ "AbstractStatisticalJournalEntry", "class_intacct_1_1_sdk_1_1_functions_1_1_general_ledger_1_1_abstract_statistical_journal_entry.html#a54a111f6ce5123393a9a41e5b9521ebb", null ]
-];

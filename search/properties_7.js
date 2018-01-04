@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['maxretries',['MaxRetries',['../class_intacct_1_1_sdk_1_1_xml_1_1_request_handler.html#a1ff2ed88f5730e866cb2398185805bbd',1,'Intacct::Sdk::Xml::RequestHandler']]]
+  ['maxretries',['MaxRetries',['../class_intacct_1_1_s_d_k_1_1_request_config.html#a48a1b1cba1c4bb327f0e234fe89be6b6',1,'Intacct::SDK::RequestConfig']]]
 ];

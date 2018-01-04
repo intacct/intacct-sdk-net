@@ -1,0 +1,25 @@
+var class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task =
+[
+    [ "AbstractTask", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a7b1558e0b1ae2479494bfccc89f2e5b3", null ],
+    [ "AttachmentsId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a6812c52c7122669e92a4cab5bf1f4ea8", null ],
+    [ "Billable", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a07f245b1b79e81c28bcc1b3ad5fc4c3d", null ],
+    [ "ClassId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#aa38849087549907539c838346b76564b", null ],
+    [ "CustomFields", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a7f8b53c7b4fe505ad1b6221ecf2b4b3b", null ],
+    [ "Description", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a88ac1b34ddf99baa1a6962c85ab054a5", null ],
+    [ "EstimatedDuration", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#af6c5de38a330daae70b9acd3157aeca2", null ],
+    [ "ItemId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a06ad716e4bf965ece72be74eb358ec63", null ],
+    [ "Milestone", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#aa7615a02fd61fc4c37fea7e40f4d2d30", null ],
+    [ "ObservedPercentCompleted", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a9dfc6cde206072d47f61463cfb432716", null ],
+    [ "ParentTaskRecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a61d905e8d75f75949eeb05677dee74b4", null ],
+    [ "PlannedBeginDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a9bf3f0f8f5046d571bb7b32bbdbeec54", null ],
+    [ "PlannedDuration", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a3214879e9fae7ac0c3ddd3b6b0e95504", null ],
+    [ "PlannedEndDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a16d941dceb6a5f544b0495af04487d11", null ],
+    [ "Priority", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a4f39512f3ea9ab271311ab91ba2fb5d7", null ],
+    [ "ProjectId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a685cb8e692265454f95564ea171a1f0e", null ],
+    [ "RecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a0d95826d7289c1c2a4fdbe30b6d7dd19", null ],
+    [ "TaskName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#aaae5128f52bf96deee91eec8dc6082ad", null ],
+    [ "TaskStatus", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a76a8fdc1b61461b136c8dc733d04758b", null ],
+    [ "TimeType", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a5b06f2924db67c8a209ee6613581a1e8", null ],
+    [ "Utilized", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a5553326c0d2fe47574b2c74845552edd", null ],
+    [ "WbsCode", "class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_task.html#a0a1714a7c50494fca4a6d613212db7bb", null ]
+];

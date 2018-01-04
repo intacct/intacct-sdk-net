@@ -1,0 +1,27 @@
+var class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line =
+[
+    [ "AbstractPurchasingTransactionLine", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#ae3a69860f436c06640d02d21f9fb594c", null ],
+    [ "WriteXml", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#af6eeeadf7cc22596a895f30aa347bdef", null ],
+    [ "Billable", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a63a5f4b9a061939f5a1be52f45630957", null ],
+    [ "ClassId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#ad094758f94823acf935c159b853f3a8b", null ],
+    [ "ContractId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a2c14e02536e8f907bf020a3e5b576b03", null ],
+    [ "CustomerId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#adc2322b08bc7f1131c1e05fcff0ca287", null ],
+    [ "CustomFields", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#ab59d46525aeaaaf7db4aaf99c8d37395", null ],
+    [ "DepartmentId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#ac25e6fa22dfe3064e8dd53a577b43fee", null ],
+    [ "EmployeeId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a2bbaff2b9bf42d74effe39c93ece9c21", null ],
+    [ "Form1099", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a65be829f4d828eb2929786307275ae8e", null ],
+    [ "ItemDescription", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#ac5c97864a4baa123d51cb8103faebc11", null ],
+    [ "ItemDetails", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a8dd5bb2fa3d2de16387ae28df6df36a0", null ],
+    [ "ItemId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a6ea5dd09070442c47bb4ecae6a61c39d", null ],
+    [ "LocationId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a595371d0e20eea31bd26d55e8f1763d6", null ],
+    [ "Memo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a8eb09d91fa5b803d611aece136bc450f", null ],
+    [ "OverrideTaxAmount", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#afed60c968eca0b3b29a67e6339e448b1", null ],
+    [ "Price", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a9f0a90ed7f1904fa6148a9899d706a31", null ],
+    [ "ProjectId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#afaf24679e03094a54c57c0cf7fa3e24b", null ],
+    [ "Quantity", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a7c2704f9723a6abfb87a0c729636745c", null ],
+    [ "Tax", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#aac89768c1e1e8b9b8a8d66914e2fa5eb", null ],
+    [ "Taxable", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a4144dadadc9804777825b569db2cafb0", null ],
+    [ "Unit", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a220bb9816470fd434a5826698c982df9", null ],
+    [ "VendorId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a3361b15474e98b4ff43cae1228e5a56d", null ],
+    [ "WarehouseId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a2ebb02c386cc23a153cb17d0998a6fa0", null ]
+];

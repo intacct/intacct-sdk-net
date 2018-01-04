@@ -1,4 +1,4 @@
 var namespace_intacct =
 [
-    [ "Sdk", "namespace_intacct_1_1_sdk.html", "namespace_intacct_1_1_sdk" ]
+    [ "SDK", "namespace_intacct_1_1_s_d_k.html", "namespace_intacct_1_1_s_d_k" ]
 ];

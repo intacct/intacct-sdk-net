@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['journalentrycreate',['JournalEntryCreate',['../class_intacct_1_1_sdk_1_1_functions_1_1_general_ledger_1_1_journal_entry_create.html#abedfd7eee9c6c888c9ba7f24f1895b35',1,'Intacct::Sdk::Functions::GeneralLedger::JournalEntryCreate']]],
-  ['journalentrydelete',['JournalEntryDelete',['../class_intacct_1_1_sdk_1_1_functions_1_1_general_ledger_1_1_journal_entry_delete.html#a0485ef49e4200c750e848d972d83c6b7',1,'Intacct::Sdk::Functions::GeneralLedger::JournalEntryDelete']]],
-  ['journalentrylinecreate',['JournalEntryLineCreate',['../class_intacct_1_1_sdk_1_1_functions_1_1_general_ledger_1_1_journal_entry_line_create.html#aebc77550233f98a2d52f8c126076ff43',1,'Intacct::Sdk::Functions::GeneralLedger::JournalEntryLineCreate']]]
+  ['locationcreate',['LocationCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_create.html#aa7edda35d5d5883dc7a2ddd13bd2be9f',1,'Intacct::SDK::Functions::Company::LocationCreate']]],
+  ['locationdelete',['LocationDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_delete.html#ac71c72ffb4e2841cc1304bdcfd6da6a0',1,'Intacct::SDK::Functions::Company::LocationDelete']]],
+  ['locationupdate',['LocationUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_update.html#a14312f8196adb670ee0ad090861c44d2',1,'Intacct::SDK::Functions::Company::LocationUpdate']]],
+  ['logginghandler',['LoggingHandler',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_logging_handler.html#ab7c6399c9c4e530a50c6c225f9c8c335',1,'Intacct::SDK::Xml::LoggingHandler']]],
+  ['loginauthentication',['LoginAuthentication',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_request_1_1_login_authentication.html#a929e8348091ad4ec2cf745924fe97160',1,'Intacct::SDK::Xml::Request::LoginAuthentication']]],
+  ['logincredentials',['LoginCredentials',['../class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials.html#ae6cc5498e3a9c72222c63ccf3d36c27b',1,'Intacct::SDK::Credentials::LoginCredentials']]],
+  ['lookupprefix',['LookupPrefix',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer.html#a4e1f75e6a3cedc99b35ba2d487a0fe45',1,'Intacct::SDK::Xml::IaXmlWriter']]]
 ];

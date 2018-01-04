@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['operationblock_2ecs',['OperationBlock.cs',['../_request_2_operation_block_8cs.html',1,'(Global Namespace)'],['../_response_2_operation_block_8cs.html',1,'(Global Namespace)']]],
-  ['operationexception_2ecs',['OperationException.cs',['../_operation_exception_8cs.html',1,'']]],
-  ['orderentrytransactioncreate_2ecs',['OrderEntryTransactionCreate.cs',['../_order_entry_transaction_create_8cs.html',1,'']]],
-  ['orderentrytransactiondelete_2ecs',['OrderEntryTransactionDelete.cs',['../_order_entry_transaction_delete_8cs.html',1,'']]],
-  ['orderentrytransactionlinecreate_2ecs',['OrderEntryTransactionLineCreate.cs',['../_order_entry_transaction_line_create_8cs.html',1,'']]],
-  ['orderentrytransactionlineupdate_2ecs',['OrderEntryTransactionLineUpdate.cs',['../_order_entry_transaction_line_update_8cs.html',1,'']]],
-  ['orderentrytransactionupdate_2ecs',['OrderEntryTransactionUpdate.cs',['../_order_entry_transaction_update_8cs.html',1,'']]],
-  ['otherreceiptcreate_2ecs',['OtherReceiptCreate.cs',['../_other_receipt_create_8cs.html',1,'']]],
-  ['otherreceiptlinecreate_2ecs',['OtherReceiptLineCreate.cs',['../_other_receipt_line_create_8cs.html',1,'']]]
+  ['profilecredentialprovider_2ecs',['ProfileCredentialProvider.cs',['../_profile_credential_provider_8cs.html',1,'']]],
+  ['projectcreate_2ecs',['ProjectCreate.cs',['../_project_create_8cs.html',1,'']]],
+  ['projectdelete_2ecs',['ProjectDelete.cs',['../_project_delete_8cs.html',1,'']]],
+  ['projectupdate_2ecs',['ProjectUpdate.cs',['../_project_update_8cs.html',1,'']]],
+  ['purchasingtransactioncreate_2ecs',['PurchasingTransactionCreate.cs',['../_purchasing_transaction_create_8cs.html',1,'']]],
+  ['purchasingtransactiondelete_2ecs',['PurchasingTransactionDelete.cs',['../_purchasing_transaction_delete_8cs.html',1,'']]],
+  ['purchasingtransactionlinecreate_2ecs',['PurchasingTransactionLineCreate.cs',['../_purchasing_transaction_line_create_8cs.html',1,'']]]
 ];
