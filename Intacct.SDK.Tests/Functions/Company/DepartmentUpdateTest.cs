@@ -35,7 +35,6 @@ namespace Intacct.SDK.Tests.Functions.Company
     <update>
         <DEPARTMENT>
             <DEPARTMENTID>D1234</DEPARTMENTID>
-            <TITLE>hello world</TITLE>
         </DEPARTMENT>
     </update>
 </function>";
@@ -43,7 +42,6 @@ namespace Intacct.SDK.Tests.Functions.Company
             DepartmentUpdate record = new DepartmentUpdate("unittest")
             {
                 DepartmentId = "D1234",
-                DepartmentName = "hello world"
             };
             this.CompareXml(expected, record);
         }

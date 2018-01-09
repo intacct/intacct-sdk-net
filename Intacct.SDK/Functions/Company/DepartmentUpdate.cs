@@ -33,8 +33,8 @@ namespace Intacct.SDK.Functions.Company
             xml.WriteStartElement("DEPARTMENT");
 
             xml.WriteElement("DEPARTMENTID", DepartmentId, true);
-            xml.WriteElement("TITLE", DepartmentName, true);
-
+            
+            xml.WriteElement("TITLE", DepartmentName);
             xml.WriteElement("PARENTID", ParentDepartmentId);
             xml.WriteElement("SUPERVISORID", ManagerEmployeeId);
 
