@@ -45,12 +45,8 @@ namespace Intacct.SDK
                 NoRetryServerErrorCodes = new int[] { }, // Retry all 500 level errors
             };
 
-            RequestHandler requestHandler = new RequestHandler(config, requestConfig);
-            List<IFunction> content = new List<IFunction>
-            {
-                new ApiSessionCreate()
-            };
-            OnlineResponse response = await requestHandler.ExecuteOnline(content);
+            OnlineClient client = new OnlineClient(config);
+            OnlineResponse response = await client.Execute(new ApiSessionCreate(), requestConfig);
 
             Authentication authentication = response.Authentication;
             Result result = response.Results[0];
