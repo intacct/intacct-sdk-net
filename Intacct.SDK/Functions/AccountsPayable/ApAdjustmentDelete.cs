@@ -33,7 +33,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
 
             xml.WriteAttribute("key", RecordNo);
 
-            xml.WriteEndElement(); //delete_apaccountlabel
+            xml.WriteEndElement(); //delete_apadjustment
 
             xml.WriteEndElement(); //function
         }

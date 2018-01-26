@@ -17,7 +17,7 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestItem
+    public class ApPaymentRequestItem : IXmlObject
     {
        
         public int? ApplyToRecordId;

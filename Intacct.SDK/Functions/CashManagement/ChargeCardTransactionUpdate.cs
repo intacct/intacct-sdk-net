@@ -21,10 +21,6 @@ namespace Intacct.SDK.Functions.CashManagement
     public class ChargeCardTransactionUpdate : AbstractChargeCardTransaction
     {
 
-        public DateTime ReverseDate;
-
-        public string Memo;
-
         public ChargeCardTransactionUpdate(string controlId = null) : base(controlId)
         {
         }
