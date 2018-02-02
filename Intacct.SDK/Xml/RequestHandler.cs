@@ -53,7 +53,7 @@ namespace Intacct.SDK.Xml
 
             RequestBlock request = new RequestBlock(this.ClientConfig, this.RequestConfig, content);
 
-            OnlineResponse response = new OnlineResponse(await Execute(request.WriteXml()));
+            OnlineResponse response = new OnlineResponse(await Execute(request.WriteXml()).ConfigureAwait(false));
 
             return response;
         }
@@ -79,7 +79,7 @@ namespace Intacct.SDK.Xml
 
             RequestBlock request = new RequestBlock(this.ClientConfig, this.RequestConfig, content);
 
-            OfflineResponse response = new OfflineResponse(await Execute(request.WriteXml()));
+            OfflineResponse response = new OfflineResponse(await Execute(request.WriteXml()).ConfigureAwait(false));
 
             return response;
         }
@@ -101,11 +101,11 @@ namespace Intacct.SDK.Xml
             {
                 if (this.ClientConfig.Logger != null)
                 {
-                    return new LoggingHandler(new HttpClientHandler(), this.ClientConfig.Logger, this.ClientConfig.LogMessageFormatter, this.ClientConfig.LogLevel);
+                    return new LoggingHandler(new HttpClientHandler() {AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate }, this.ClientConfig.Logger, this.ClientConfig.LogMessageFormatter, this.ClientConfig.LogLevel);
                 }
                 else
                 {
-                    return new HttpClientHandler();
+                    return new HttpClientHandler() { AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate };
                 }
             }
         }
@@ -119,6 +119,7 @@ namespace Intacct.SDK.Xml
         {
             HttpClient client = new HttpClient(GetHttpMessageHandler());
             client.Timeout = this.RequestConfig.MaxTimeout;
+            client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip,deflate");
             client.DefaultRequestHeaders.UserAgent.ParseAdd("intacct-api-net-client/" + RequestHandler.Version);
 
             requestXml.Position = 0;
@@ -132,12 +133,12 @@ namespace Intacct.SDK.Xml
                     // Delay this retry based on exponential delay
                     await Task.Delay(ExponentialDelay(attempt));
                 }
-                HttpResponseMessage response = client.PostAsync(this.EndpointUrl, content).Result;
+                HttpResponseMessage response =await client.PostAsync(this.EndpointUrl, content).ConfigureAwait(false);
 
                 int httpCode = (int)response.StatusCode;
                 if (response.IsSuccessStatusCode)
                 {
-                    Stream stream = await response.Content.ReadAsStreamAsync();
+                    Stream stream= await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
                     return stream;
                 }
                 else if (Array.Exists(this.RequestConfig.NoRetryServerErrorCodes, element => element == httpCode))
