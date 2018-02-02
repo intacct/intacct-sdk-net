@@ -101,7 +101,7 @@ namespace Intacct.SDK.Xml
             {
                 if (this.ClientConfig.Logger != null)
                 {
-                    return new LoggingHandler(new HttpClientHandler() {AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate }, this.ClientConfig.Logger, this.ClientConfig.LogMessageFormatter, this.ClientConfig.LogLevel);
+                    return new LoggingHandler(new HttpClientHandler() { AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate }, this.ClientConfig.Logger, this.ClientConfig.LogMessageFormatter, this.ClientConfig.LogLevel);
                 }
                 else
                 {
@@ -133,7 +133,7 @@ namespace Intacct.SDK.Xml
                     // Delay this retry based on exponential delay
                     await Task.Delay(ExponentialDelay(attempt));
                 }
-                HttpResponseMessage response =await client.PostAsync(this.EndpointUrl, content).ConfigureAwait(false);
+                HttpResponseMessage response = await client.PostAsync(this.EndpointUrl, content).ConfigureAwait(false);
 
                 int httpCode = (int)response.StatusCode;
                 if (response.IsSuccessStatusCode)
