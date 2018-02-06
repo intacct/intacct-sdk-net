@@ -99,13 +99,18 @@ namespace Intacct.SDK.Xml
             }
             else
             {
+                HttpClientHandler httpClientHandler = new HttpClientHandler()
+                {
+                    AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
+                };
+                
                 if (this.ClientConfig.Logger != null)
                 {
-                    return new LoggingHandler(new HttpClientHandler() { AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate }, this.ClientConfig.Logger, this.ClientConfig.LogMessageFormatter, this.ClientConfig.LogLevel);
+                    return new LoggingHandler(httpClientHandler, this.ClientConfig.Logger, this.ClientConfig.LogMessageFormatter, this.ClientConfig.LogLevel);
                 }
                 else
                 {
-                    return new HttpClientHandler() { AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate };
+                    return httpClientHandler;
                 }
             }
         }
