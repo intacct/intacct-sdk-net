@@ -36,6 +36,8 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
     <create_arpayment>
         <customerid>C0020</customerid>
         <paymentamount>1922.12</paymentamount>
+        <overpaylocid>1020</overpaylocid>
+        <overpaydeptid>900</overpaydeptid>
         <datereceived>
             <year>2016</year>
             <month>06</month>
@@ -51,6 +53,8 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
                 TransactionPaymentAmount = 1922.12M,
                 ReceivedDate = new DateTime(2016, 06, 30),
                 PaymentMethod = "Printed Check",
+                OverpaymentDepartmentId = "900",
+                OverpaymentLocationId = "1020"
             };
 
             this.CompareXml(expected, record);
