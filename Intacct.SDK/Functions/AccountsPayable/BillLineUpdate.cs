@@ -13,32 +13,51 @@
  * permissions and limitations under the License.
  */
 
+using System;
 using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class BillLineCreate : AbstractBillLine
+    public class BillLineUpdate : AbstractBillLine
     {
 
-        public BillLineCreate()
+        private int _lineNo;
+        
+        public int LineNo
+        {
+            get => _lineNo;
+            set
+            {
+                if (value < 1)
+                {
+                    throw new ArgumentException("Line No must be greater than zero");
+                }
+
+                _lineNo = value;
+            }
+        }
+
+
+        public BillLineUpdate()
         {
         }
 
         public override void WriteXml(ref IaXmlWriter xml)
         {
-            xml.WriteStartElement("lineitem");
+            xml.WriteStartElement("updatelineitem");
+            xml.WriteAttribute("line_num", LineNo);
 
             if (!string.IsNullOrWhiteSpace(AccountLabel))
             {
                 xml.WriteElement("accountlabel", AccountLabel, true);
             }
-            else
+            else if (!string.IsNullOrWhiteSpace(GlAccountNumber))
             {
                 xml.WriteElement("glaccountno", GlAccountNumber, true);
             }
 
             xml.WriteElement("offsetglaccountno", OffsetGlAccountNumber);
-            xml.WriteElement("amount", TransactionAmount, true);
+            xml.WriteElement("amount", TransactionAmount);
             xml.WriteElement("allocationid", AllocationId);
             xml.WriteElement("memo", Memo);
             xml.WriteElement("locationid", LocationId);
@@ -60,8 +79,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
             xml.WriteElement("warehouseid", WarehouseId);
             xml.WriteElement("billable", Billable);
 
-            xml.WriteEndElement(); //lineitem
+            xml.WriteEndElement(); //updatelineitem
         }
-
     }
 }
