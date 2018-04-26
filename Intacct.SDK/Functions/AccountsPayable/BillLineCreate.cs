@@ -38,7 +38,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
             }
 
             xml.WriteElement("offsetglaccountno", OffsetGlAccountNumber);
-            xml.WriteElement("amount", TransactionAmount);
+            xml.WriteElement("amount", TransactionAmount, true);
             xml.WriteElement("allocationid", AllocationId);
             xml.WriteElement("memo", Memo);
             xml.WriteElement("locationid", LocationId);

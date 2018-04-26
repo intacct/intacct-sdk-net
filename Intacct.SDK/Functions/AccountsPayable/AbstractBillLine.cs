@@ -27,7 +27,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
 
         public string OffsetGlAccountNumber;
 
-        public decimal TransactionAmount;
+        public decimal? TransactionAmount;
 
         public string AllocationId;
 
