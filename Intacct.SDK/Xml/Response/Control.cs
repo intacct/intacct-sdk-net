@@ -40,32 +40,29 @@ namespace Intacct.SDK.Xml.Response
             this.Status = status.Value;
 
             var senderId = control.Element("senderid");
-            if (senderId == null)
+            if (senderId != null)
             {
-                throw new IntacctException("Control block is missing senderid element");
+                this.SenderId = senderId.Value;
             }
-            this.SenderId = senderId.Value;
+            
 
             var controlId = control.Element("controlid");
-            if (controlId == null)
+            if (controlId != null)
             {
-                throw new IntacctException("Control block is missing controlid element");
+                this.ControlId = controlId.Value;
             }
-            this.ControlId = controlId.Value;
 
             var uniqueId = control.Element("uniqueid");
-            if (uniqueId == null)
+            if (uniqueId != null)
             {
-                throw new IntacctException("Control block is missing uniqueid element");
+                this.UniqueId = uniqueId.Value;
             }
-            this.UniqueId = uniqueId.Value;
 
             var dtdVersion = control.Element("dtdversion");
-            if (dtdVersion == null)
+            if (dtdVersion != null)
             {
-                throw new IntacctException("Control block is missing dtdversion element");
+                this.DtdVersion = dtdVersion.Value;
             }
-            this.DtdVersion = dtdVersion.Value;
         }
     }
 }

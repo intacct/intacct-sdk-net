@@ -158,6 +158,13 @@ namespace Intacct.SDK.Xml
                 }
                 else
                 {
+                    string contentType = response.Content.Headers.ContentType.MediaType;
+                    if (contentType == "text/xml" || contentType == "application/xml")
+                    {
+                        Stream stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+                        return stream;
+                    }
+                    
                     // Throw exception for non-500 level errors
                     response.EnsureSuccessStatusCode();
                 }

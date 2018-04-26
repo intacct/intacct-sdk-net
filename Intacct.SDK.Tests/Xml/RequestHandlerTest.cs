@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Intacct.SDK.Exceptions;
 using Intacct.SDK.Functions;
 using Intacct.SDK.Logging;
 using Intacct.SDK.Tests.Logging;
@@ -300,6 +301,59 @@ namespace Intacct.SDK.Tests.Xml
             var ex = await Record.ExceptionAsync(() => requestHandler.ExecuteOnline(contentBlock));
             Assert.IsType<HttpRequestException>(ex);
             Assert.Equal("Request retry count exceeded max retry count: 5", ex.Message);
+        }
+        
+        [Fact]
+        public async Task Mock400LevelErrorWithXmlResponseTest()
+        {
+            string xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+<response>
+    <control>
+        <status>failure</status>
+    </control>
+    <errormessage>
+        <error>
+            <errorno>XMLGW_JPP0002</errorno>
+            <description>Sign-in information is incorrect. Please check your request.</description>
+        </error>
+    </errormessage>
+</response>";
+            
+            HttpResponseMessage mockResponse1 = new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.Unauthorized, // HTTP 401
+                Content = new StringContent(xml, Encoding.UTF8, "text/xml"),
+            };
+            
+            List<HttpResponseMessage> mockResponses = new List<HttpResponseMessage>
+            {
+                mockResponse1,
+            };
+
+            MockHandler mockHandler = new MockHandler(mockResponses);
+
+            ClientConfig clientConfig = new ClientConfig()
+            {
+                SenderId = "testsenderid",
+                SenderPassword = "pass123!",
+                CompanyId = "badcompany",
+                UserId = "baduser",
+                UserPassword = "badpass",
+                MockHandler = mockHandler,
+            };
+
+            RequestConfig requestConfig = new RequestConfig();
+
+            List<IFunction> contentBlock = new List<IFunction>
+            {
+                new ApiSessionCreate()
+            };
+
+            RequestHandler requestHandler = new RequestHandler(clientConfig, requestConfig);
+            
+            var ex = await Record.ExceptionAsync(() => requestHandler.ExecuteOnline(contentBlock));
+            Assert.IsType<ResponseException>(ex);
+            Assert.Equal("Response control status failure", ex.Message);
         }
 
         [Fact]
