@@ -49,7 +49,7 @@ namespace Intacct.SDK.Functions.Projects
             xml.WriteElement("TIMETYPENAME", TimeType);
             xml.WriteElement("PARENTKEY", ParentTaskRecordNo);
             xml.WriteElement("SUPDOCID", AttachmentsId);
-            xml.WriteElement("OBSPERCENTCOMPLETE", ObservedPercentCompleted);
+            // xml.WriteElement("OBSPERCENTCOMPLETE", ObservedPercentCompleted);
             xml.WriteElement("BUDGETQTY", PlannedDuration);
             xml.WriteElement("ESTQTY", EstimatedDuration);
 

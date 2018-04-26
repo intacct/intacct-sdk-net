@@ -55,6 +55,7 @@ namespace Intacct.SDK.Functions.Projects
 
         public string AttachmentsId;
 
+        [ObsoleteAttribute("The ObservedPercentComplete property is deprecated in the API. Use TODO instead.", false)]
         public decimal? ObservedPercentCompleted;
 
         public decimal? PlannedDuration;
