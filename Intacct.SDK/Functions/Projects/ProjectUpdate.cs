@@ -86,7 +86,7 @@ namespace Intacct.SDK.Functions.Projects
             xml.WriteElement("SUPDOCID", AttachmentsId);
             xml.WriteElement("BILLABLEEXPDEFAULT", BillableEmployeeExpense);
             xml.WriteElement("BILLABLEAPPODEFAULT", BillableApPurchasing);
-            xml.WriteElement("OBSPERCENTCOMPLETE", ObservedPercentComplete);
+            // xml.WriteElement("OBSPERCENTCOMPLETE", ObservedPercentComplete);
             xml.WriteElement("CURRENCY", Currency);
             xml.WriteElement("SONUMBER", SalesOrderNo);
             xml.WriteElement("PONUMBER", PurchaseOrderNo);

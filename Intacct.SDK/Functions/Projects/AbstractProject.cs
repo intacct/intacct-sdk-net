@@ -77,6 +77,7 @@ namespace Intacct.SDK.Functions.Projects
 
         public bool? BillableApPurchasing;
 
+        [ObsoleteAttribute("The ObservedPercentComplete property is deprecated in the API. Use TODO instead.", false)]
         public decimal? ObservedPercentComplete;
 
         public string Currency;
