@@ -31,9 +31,15 @@ namespace Intacct.SDK.Functions.Purchasing
             xml.WriteAttribute("controlid", ControlId, true);
 
             xml.WriteStartElement("update_potransaction");
-            xml.WriteAttribute("key", DocumentId, true);
-
-            xml.WriteElement("transactiontype", TransactionDefinition);
+            if (!string.IsNullOrWhiteSpace(ExternalId))
+            {
+                xml.WriteAttribute("key", ExternalId);
+                xml.WriteAttribute("externalkey", true);
+            }
+            else
+            {
+                xml.WriteAttribute("key", DocumentId);
+            }
 
             if (TransactionDate.HasValue)
             {
@@ -48,10 +54,6 @@ namespace Intacct.SDK.Functions.Purchasing
                 xml.WriteDateSplitElements(GlPostingDate.Value);
                 xml.WriteEndElement(); //dateposted
             }
-
-            xml.WriteElement("createdfrom", CreatedFrom);
-            xml.WriteElement("vendorid", VendorId);
-            xml.WriteElement("documentno", DocumentNumber);
 
             xml.WriteElement("referenceno", ReferenceNumber);
             xml.WriteElement("vendordocno", VendorDocNumber);
@@ -123,7 +125,7 @@ namespace Intacct.SDK.Functions.Purchasing
             if (Subtotals.Count > 0)
             {
                 xml.WriteStartElement("updatesubtotals");
-                foreach (AbstractTransactionSubtotal subtotal in Subtotals)
+                foreach (TransactionSubtotalUpdate subtotal in Subtotals)
                 {
                     subtotal.WriteXml(ref xml);
                 }

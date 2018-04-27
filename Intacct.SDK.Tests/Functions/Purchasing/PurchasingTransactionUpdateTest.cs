@@ -47,8 +47,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <update_potransaction key=""PO-2234"">
-        <transactiontype>Purchase Order</transactiontype>
+    <update_potransaction key=""20394"" externalkey=""true"">
         <datecreated>
             <year>2015</year>
             <month>06</month>
@@ -59,9 +58,6 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
             <month>06</month>
             <day>30</day>
         </dateposted>
-        <createdfrom>Purchase Order-P1002</createdfrom>
-        <vendorid>23530</vendorid>
-        <documentno>23430</documentno>
         <referenceno>234235</referenceno>
         <termname>N30</termname>
         <datedue>
@@ -104,10 +100,10 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
             </potransitem>
         </updatepotransitems>
         <updatesubtotals>
-            <subtotal>
+            <updatesubtotal>
                 <description>Subtotal description</description>
                 <total>223</total>
-            </subtotal>
+            </updatesubtotal>
         </updatesubtotals>
     </update_potransaction>
 </function>";
@@ -115,7 +111,6 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
             PurchasingTransactionUpdate record = new PurchasingTransactionUpdate("unittest")
             {
                 DocumentId = "PO-2234",
-                TransactionDefinition = "Purchase Order",
                 TransactionDate = new DateTime(2015, 06, 30),
                 GlPostingDate = new DateTime(2015, 06, 30),
                 CreatedFrom = "Purchase Order-P1002",
@@ -156,7 +151,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
             };
             record.Lines.Add(line2);
 
-            TransactionSubtotalCreate subtotal1 = new TransactionSubtotalCreate()
+            TransactionSubtotalUpdate subtotal1 = new TransactionSubtotalUpdate()
             {
                 Description = "Subtotal description",
                 Total = 223,
