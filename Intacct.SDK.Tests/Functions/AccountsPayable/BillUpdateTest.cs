@@ -28,9 +28,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <update_bill key=""1234"">
-        <updatebillitems />
-    </update_bill>
+    <update_bill key=""1234"" />
 </function>";
 
             BillUpdate record = new BillUpdate("unittest")
@@ -88,7 +86,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <update_bill key=""1234"">
+    <update_bill key=""20394"" externalkey=""true"">
         <vendorid>VENDOR1</vendorid>
         <datecreated>
             <year>2015</year>
@@ -107,19 +105,16 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
         </datedue>
         <termname>N30</termname>
         <action>Submit</action>
-        <batchkey>20323</batchkey>
         <billno>234</billno>
         <ponumber>234235</ponumber>
         <onhold>true</onhold>
         <description>Some description</description>
-        <externalid>20394</externalid>
         <payto>
             <contactname>28952</contactname>
         </payto>
         <returnto>
             <contactname>289533</contactname>
         </returnto>
-        <basecurr>USD</basecurr>
         <currency>USD</currency>
         <exchratedate>
             <year>2015</year>
@@ -127,7 +122,6 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
             <day>30</day>
         </exchratedate>
         <exchratetype>Intacct Daily Rate</exchratetype>
-        <nogl>false</nogl>
         <supdocid>6942</supdocid>
         <customfields>
             <customfield>
@@ -153,7 +147,6 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 DueDate = new DateTime(2020, 09, 24),
                 PaymentTerm = "N30",
                 Action = "Submit",
-                SummaryRecordNo = 20323,
                 BillNumber = "234",
                 ReferenceNumber = "234235",
                 OnHold = true,
@@ -161,11 +154,9 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 ExternalId = "20394",
                 PayToContactName = "28952",
                 ReturnToContactName = "289533",
-                BaseCurrency = "USD",
                 TransactionCurrency = "USD",
                 ExchangeRateDate = new DateTime(2015, 06, 30),
                 ExchangeRateType = "Intacct Daily Rate",
-                DoNotPostToGL = false,
                 AttachmentsId = "6942",
                 CustomFields = new Dictionary<string, dynamic>
                 {
