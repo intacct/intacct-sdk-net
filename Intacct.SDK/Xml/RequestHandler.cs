@@ -125,7 +125,7 @@ namespace Intacct.SDK.Xml
             HttpClient client = new HttpClient(GetHttpMessageHandler());
             client.Timeout = this.RequestConfig.MaxTimeout;
             client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip,deflate");
-            client.DefaultRequestHeaders.UserAgent.ParseAdd("intacct-api-net-client/" + RequestHandler.Version);
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("intacct-sdk-net-client/" + RequestHandler.Version);
 
             requestXml.Position = 0;
             StreamContent content = new StreamContent(requestXml);
