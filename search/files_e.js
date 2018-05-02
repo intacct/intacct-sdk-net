@@ -9,5 +9,6 @@ var searchData=
   ['statisticalaccountupdate_2ecs',['StatisticalAccountUpdate.cs',['../_statistical_account_update_8cs.html',1,'']]],
   ['statisticaljournalentrycreate_2ecs',['StatisticalJournalEntryCreate.cs',['../_statistical_journal_entry_create_8cs.html',1,'']]],
   ['statisticaljournalentrydelete_2ecs',['StatisticalJournalEntryDelete.cs',['../_statistical_journal_entry_delete_8cs.html',1,'']]],
-  ['statisticaljournalentrylinecreate_2ecs',['StatisticalJournalEntryLineCreate.cs',['../_statistical_journal_entry_line_create_8cs.html',1,'']]]
+  ['statisticaljournalentrylinecreate_2ecs',['StatisticalJournalEntryLineCreate.cs',['../_statistical_journal_entry_line_create_8cs.html',1,'']]],
+  ['subscriptionlist_2ecs',['SubscriptionList.cs',['../_subscription_list_8cs.html',1,'']]]
 ];

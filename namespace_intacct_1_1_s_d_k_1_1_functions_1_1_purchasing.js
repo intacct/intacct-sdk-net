@@ -4,5 +4,7 @@ var namespace_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing =
     [ "AbstractPurchasingTransactionLine", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line" ],
     [ "PurchasingTransactionCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_create" ],
     [ "PurchasingTransactionDelete", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_delete.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_delete" ],
-    [ "PurchasingTransactionLineCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_create" ]
+    [ "PurchasingTransactionLineCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_create" ],
+    [ "PurchasingTransactionLineUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_update" ],
+    [ "PurchasingTransactionUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_update" ]
 ];

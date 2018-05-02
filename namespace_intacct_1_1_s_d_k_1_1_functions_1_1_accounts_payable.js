@@ -24,8 +24,10 @@ var namespace_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable =
     [ "BillCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_create" ],
     [ "BillDelete", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_delete.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_delete" ],
     [ "BillLineCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_line_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_line_create" ],
+    [ "BillLineUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_line_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_line_update" ],
     [ "BillReverse", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_reverse.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_reverse" ],
     [ "BillSummaryCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_summary_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_summary_create" ],
+    [ "BillUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_bill_update" ],
     [ "VendorCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_vendor_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_vendor_create" ],
     [ "VendorDelete", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_vendor_delete.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_vendor_delete" ],
     [ "VendorUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_vendor_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_vendor_update" ]

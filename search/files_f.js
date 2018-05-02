@@ -2,6 +2,9 @@ var searchData=
 [
   ['taskcreate_2ecs',['TaskCreate.cs',['../_task_create_8cs.html',1,'']]],
   ['taskdelete_2ecs',['TaskDelete.cs',['../_task_delete_8cs.html',1,'']]],
+  ['taskobservedpercentcompletedcreate_2ecs',['TaskObservedPercentCompletedCreate.cs',['../_task_observed_percent_completed_create_8cs.html',1,'']]],
+  ['taskobservedpercentcompleteddelete_2ecs',['TaskObservedPercentCompletedDelete.cs',['../_task_observed_percent_completed_delete_8cs.html',1,'']]],
+  ['taskobservedpercentcompletedupdate_2ecs',['TaskObservedPercentCompletedUpdate.cs',['../_task_observed_percent_completed_update_8cs.html',1,'']]],
   ['taskupdate_2ecs',['TaskUpdate.cs',['../_task_update_8cs.html',1,'']]],
   ['timesheetcreate_2ecs',['TimesheetCreate.cs',['../_timesheet_create_8cs.html',1,'']]],
   ['timesheetdelete_2ecs',['TimesheetDelete.cs',['../_timesheet_delete_8cs.html',1,'']]],

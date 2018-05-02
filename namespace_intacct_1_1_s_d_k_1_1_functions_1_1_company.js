@@ -34,6 +34,8 @@ var namespace_intacct_1_1_s_d_k_1_1_functions_1_1_company =
     [ "LocationCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_create" ],
     [ "LocationDelete", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_delete.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_delete" ],
     [ "LocationUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_update" ],
+    [ "SubscriptionList", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_subscription_list.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_subscription_list" ],
     [ "UserCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_user_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_user_create" ],
+    [ "UserEffectivePermissionList", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_user_effective_permission_list.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_user_effective_permission_list" ],
     [ "UserUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_user_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_user_update" ]
 ];

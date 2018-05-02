@@ -2,6 +2,9 @@ var searchData=
 [
   ['taskcreate',['TaskCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_task_create.html#a04ff37e2f104393e108e370d4d72d3bf',1,'Intacct::SDK::Functions::Projects::TaskCreate']]],
   ['taskdelete',['TaskDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_task_delete.html#ab05a13d0fd75355a6f0a9b4d67949635',1,'Intacct::SDK::Functions::Projects::TaskDelete']]],
+  ['taskobservedpercentcompletedcreate',['TaskObservedPercentCompletedCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_task_observed_percent_completed_create.html#acc1692957f4ddb31d177d80258ea96eb',1,'Intacct::SDK::Functions::Projects::TaskObservedPercentCompletedCreate']]],
+  ['taskobservedpercentcompleteddelete',['TaskObservedPercentCompletedDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_task_observed_percent_completed_delete.html#aa6471da3561bc1eeb644e608008d6edb',1,'Intacct::SDK::Functions::Projects::TaskObservedPercentCompletedDelete']]],
+  ['taskobservedpercentcompletedupdate',['TaskObservedPercentCompletedUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_task_observed_percent_completed_update.html#aa47bf8af2f749f1aa858bf9d8f8abb7b',1,'Intacct::SDK::Functions::Projects::TaskObservedPercentCompletedUpdate']]],
   ['taskupdate',['TaskUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_task_update.html#a9ac1f100971d270aedebb9d87029354d',1,'Intacct::SDK::Functions::Projects::TaskUpdate']]],
   ['timesheetcreate',['TimesheetCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_timesheet_create.html#a49726cf56e37b91db17143d8bedfacf8',1,'Intacct::SDK::Functions::Projects::TimesheetCreate']]],
   ['timesheetdelete',['TimesheetDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_timesheet_delete.html#a8bb98b355768e1916bcead358903980d',1,'Intacct::SDK::Functions::Projects::TimesheetDelete']]],

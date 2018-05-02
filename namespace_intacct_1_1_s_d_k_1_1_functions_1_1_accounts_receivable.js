@@ -24,6 +24,8 @@ var namespace_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable =
     [ "InvoiceCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_create" ],
     [ "InvoiceDelete", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_delete.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_delete" ],
     [ "InvoiceLineCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_line_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_line_create" ],
+    [ "InvoiceLineUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_line_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_line_update" ],
     [ "InvoiceReverse", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_reverse.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_reverse" ],
-    [ "InvoiceSummaryCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_summary_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_summary_create" ]
+    [ "InvoiceSummaryCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_summary_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_summary_create" ],
+    [ "InvoiceUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_invoice_update" ]
 ];

@@ -9,5 +9,6 @@ var searchData=
   ['statisticalaccountupdate',['StatisticalAccountUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_statistical_account_update.html',1,'Intacct::SDK::Functions::GeneralLedger']]],
   ['statisticaljournalentrycreate',['StatisticalJournalEntryCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_statistical_journal_entry_create.html',1,'Intacct::SDK::Functions::GeneralLedger']]],
   ['statisticaljournalentrydelete',['StatisticalJournalEntryDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_statistical_journal_entry_delete.html',1,'Intacct::SDK::Functions::GeneralLedger']]],
-  ['statisticaljournalentrylinecreate',['StatisticalJournalEntryLineCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_statistical_journal_entry_line_create.html',1,'Intacct::SDK::Functions::GeneralLedger']]]
+  ['statisticaljournalentrylinecreate',['StatisticalJournalEntryLineCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_statistical_journal_entry_line_create.html',1,'Intacct::SDK::Functions::GeneralLedger']]],
+  ['subscriptionlist',['SubscriptionList',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_subscription_list.html',1,'Intacct::SDK::Functions::Company']]]
 ];

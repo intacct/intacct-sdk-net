@@ -59,6 +59,7 @@ var searchData=
   ['abstractlocation',['AbstractLocation',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_location.html',1,'Intacct::SDK::Functions::Company']]],
   ['abstractlogical',['AbstractLogical',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_logical_1_1_abstract_logical.html',1,'Intacct::SDK::Functions::Common::Query::Logical']]],
   ['abstractnull',['AbstractNull',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_abstract_null.html',1,'Intacct::SDK::Functions::Common::Query::Comparison']]],
+  ['abstractobservedpercentcompleted',['AbstractObservedPercentCompleted',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_observed_percent_completed.html',1,'Intacct::SDK::Functions::Projects']]],
   ['abstractorderentrytransaction',['AbstractOrderEntryTransaction',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction.html',1,'Intacct::SDK::Functions::OrderEntry']]],
   ['abstractorderentrytransactionline',['AbstractOrderEntryTransactionLine',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html',1,'Intacct::SDK::Functions::OrderEntry']]],
   ['abstractotherreceipt',['AbstractOtherReceipt',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_cash_management_1_1_abstract_other_receipt.html',1,'Intacct::SDK::Functions::CashManagement']]],
