@@ -29,9 +29,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <update_invoice key=""1234"">
-        <updateinvoiceitems />
-    </update_invoice>
+    <update_invoice key=""1234"" />
 </function>";
 
             InvoiceUpdate record = new InvoiceUpdate("unittest")
@@ -77,7 +75,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <update_invoice key=""1234"">
+    <update_invoice key=""20394"" externalkey=""true"">
         <customerid>CUSTOMER1</customerid>
         <datecreated>
             <year>2015</year>
@@ -96,19 +94,15 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
         </datedue>
         <termname>N30</termname>
         <action>Submit</action>
-        <batchkey>20323</batchkey>
         <invoiceno>234</invoiceno>
         <ponumber>234235</ponumber>
-        <onhold>true</onhold>
         <description>Some description</description>
-        <externalid>20394</externalid>
-        <billto>
+        <payto>
             <contactname>28952</contactname>
-        </billto>
-        <shipto>
+        </payto>
+        <returnto>
             <contactname>289533</contactname>
-        </shipto>
-        <basecurr>USD</basecurr>
+        </returnto>
         <currency>USD</currency>
         <exchratedate>
             <year>2015</year>
@@ -116,7 +110,6 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
             <day>30</day>
         </exchratedate>
         <exchratetype>Intacct Daily Rate</exchratetype>
-        <nogl>false</nogl>
         <supdocid>6942</supdocid>
         <customfields>
             <customfield>
@@ -145,19 +138,15 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
                 DueDate = new DateTime(2020, 09, 24),
                 PaymentTerm = "N30",
                 Action = "Submit",
-                SummaryRecordNo = 20323,
                 InvoiceNumber = "234",
                 ReferenceNumber = "234235",
-                OnHold = true,
                 Description = "Some description",
                 ExternalId = "20394",
                 BillToContactName = "28952",
                 ShipToContactName = "289533",
-                BaseCurrency = "USD",
                 TransactionCurrency = "USD",
                 ExchangeRateDate = new DateTime(2015, 06, 30),
                 ExchangeRateType = "Intacct Daily Rate",
-                DoNotPostToGl = false,
                 AttachmentsId = "6942",
                 CustomFields = new Dictionary<string, dynamic>
                 {

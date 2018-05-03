@@ -30,7 +30,15 @@ namespace Intacct.SDK.Functions.AccountsReceivable
             xml.WriteAttribute("controlid", ControlId, true);
 
             xml.WriteStartElement("update_invoice");
-            xml.WriteAttribute("key", RecordNo, true);
+            if (!string.IsNullOrWhiteSpace(ExternalId))
+            {
+                xml.WriteAttribute("key", ExternalId);
+                xml.WriteAttribute("externalkey", true);
+            }
+            else
+            {
+                xml.WriteAttribute("key", RecordNo);
+            }
             
             xml.WriteElement("customerid", CustomerId);
 
@@ -61,47 +69,66 @@ namespace Intacct.SDK.Functions.AccountsReceivable
             }
 
             xml.WriteElement("action", Action);
-            xml.WriteElement("batchkey", SummaryRecordNo);
             xml.WriteElement("invoiceno", InvoiceNumber);
             xml.WriteElement("ponumber", ReferenceNumber);
-            xml.WriteElement("onhold", OnHold);
             xml.WriteElement("description", Description);
-            xml.WriteElement("externalid", ExternalId);
 
             if (!string.IsNullOrWhiteSpace(BillToContactName))
             {
-                xml.WriteStartElement("billto");
+                xml.WriteStartElement("payto");
                 xml.WriteElement("contactname", BillToContactName);
-                xml.WriteEndElement(); //billto
+                xml.WriteEndElement(); //payto
             }
             if (!string.IsNullOrWhiteSpace(ShipToContactName))
             {
-                xml.WriteStartElement("shipto");
+                xml.WriteStartElement("returnto");
                 xml.WriteElement("contactname", ShipToContactName);
-                xml.WriteEndElement(); //shipto
+                xml.WriteEndElement(); //returnto
             }
 
             WriteXmlMultiCurrencySection(ref xml);
 
-            xml.WriteElement("nogl", DoNotPostToGl);
             xml.WriteElement("supdocid", AttachmentsId);
 
             xml.WriteCustomFieldsExplicit(CustomFields);
 
-            xml.WriteStartElement("updateinvoiceitems");
             if (Lines.Count > 0)
             {
+                xml.WriteStartElement("updateinvoiceitems");
                 foreach (AbstractInvoiceLine line in Lines)
                 {
                     line.WriteXml(ref xml);
                 }
+                xml.WriteEndElement(); //updateinvoiceitems
             }
-            xml.WriteEndElement(); //updateinvoiceitems
 
             xml.WriteEndElement(); //update_invoice
 
             xml.WriteEndElement(); //function
         }
 
+        private void WriteXmlMultiCurrencySection(ref IaXmlWriter xml)
+        {
+            xml.WriteElement("currency", TransactionCurrency);
+
+            if (ExchangeRateDate.HasValue)
+            {
+                xml.WriteStartElement("exchratedate");
+                xml.WriteDateSplitElements(ExchangeRateDate.Value);
+                xml.WriteEndElement(); //exchratedate
+            }
+            if (!string.IsNullOrWhiteSpace(ExchangeRateType))
+            {
+                xml.WriteElement("exchratetype", ExchangeRateType);
+            }
+            else if (ExchangeRateValue.HasValue)
+            {
+                xml.WriteElement("exchrate", ExchangeRateValue);
+            }
+            else if (!string.IsNullOrWhiteSpace(BaseCurrency) || !string.IsNullOrWhiteSpace(TransactionCurrency))
+            {
+                xml.WriteElement("exchratetype", ExchangeRateType, true);
+            }
+        }
     }
 }
