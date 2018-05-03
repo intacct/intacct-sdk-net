@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <PackageId>Intacct.SDK</PackageId>
-    <PackageVersion>2.0.2</PackageVersion>
+    <PackageVersion>2.0.4</PackageVersion>
     <Authors>intacct</Authors>
     <AssemblyTitle>Sage Intacct SDK</AssemblyTitle>
     <Description>Sage Intacct SDK for .NET</Description>
