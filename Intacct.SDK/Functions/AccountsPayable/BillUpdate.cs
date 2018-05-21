@@ -107,7 +107,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
             xml.WriteEndElement(); //function
         }
 
-        private void WriteXmlMultiCurrencySection(ref IaXmlWriter xml)
+        private new void WriteXmlMultiCurrencySection(ref IaXmlWriter xml)
         {
             xml.WriteElement("currency", TransactionCurrency);
 
