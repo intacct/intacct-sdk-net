@@ -112,15 +112,15 @@ namespace Intacct.SDK.Functions.Purchasing
 
             xml.WriteElement("state", State);
 
-            xml.WriteStartElement("updatepotransitems");
             if (Lines.Count > 0)
             {
+                xml.WriteStartElement("updatepotransitems");
                 foreach (AbstractPurchasingTransactionLine line in Lines)
                 {
                     line.WriteXml(ref xml);
                 }
+                xml.WriteEndElement(); //updatepotransitems
             }
-            xml.WriteEndElement(); //updatepotransitems
 
             if (Subtotals.Count > 0)
             {

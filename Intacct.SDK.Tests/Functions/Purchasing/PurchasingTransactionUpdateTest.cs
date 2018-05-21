@@ -29,9 +29,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <update_potransaction key=""Purchase Order-PO0213"">
-        <updatepotransitems />
-    </update_potransaction>
+    <update_potransaction key=""Purchase Order-PO0213"" />
 </function>";
 
             PurchasingTransactionUpdate record = new PurchasingTransactionUpdate("unittest")
