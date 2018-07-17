@@ -64,7 +64,7 @@ namespace Intacct.SDK
             
             RequestHandler requestHandler = new RequestHandler(this.Config, requestConfig);
 
-            OnlineResponse response = await requestHandler.ExecuteOnline(functions);
+            OnlineResponse response = await requestHandler.ExecuteOnline(functions).ConfigureAwait(false);
 
             return response;
         }
@@ -78,7 +78,7 @@ namespace Intacct.SDK
             
             RequestHandler requestHandler = new RequestHandler(this.Config, requestConfig);
 
-            OfflineResponse response = await requestHandler.ExecuteOffline(functions);
+            OfflineResponse response = await requestHandler.ExecuteOffline(functions).ConfigureAwait(false);
 
             return response;
         }

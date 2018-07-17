@@ -36,7 +36,7 @@ namespace Intacct.SDK.Xml.Request
             Queue = queue;
         }
         
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             if (Queue.Count > 0)
             {
@@ -50,7 +50,7 @@ namespace Intacct.SDK.Xml.Request
                 throw new InvalidOperationException("Mock queue is empty");
             }
 
-            return LastResponse;
+            return Task.FromResult(LastResponse);
         }
     }
 }
