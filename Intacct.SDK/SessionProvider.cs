@@ -46,7 +46,7 @@ namespace Intacct.SDK
             };
 
             OnlineClient client = new OnlineClient(config);
-            OnlineResponse response = await client.Execute(new ApiSessionCreate(), requestConfig);
+            OnlineResponse response = await client.Execute(new ApiSessionCreate(), requestConfig).ConfigureAwait(false);
 
             Authentication authentication = response.Authentication;
             Result result = response.Results[0];

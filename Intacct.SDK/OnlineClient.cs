@@ -49,7 +49,7 @@ namespace Intacct.SDK
                 apiFunction
             };
 
-            OnlineResponse response = await this.ExecuteOnlineRequest(apiFunctions, requestConfig);
+            OnlineResponse response = await this.ExecuteOnlineRequest(apiFunctions, requestConfig).ConfigureAwait(false);
 
             response.Results[0].EnsureStatusSuccess();
 
@@ -69,7 +69,7 @@ namespace Intacct.SDK
                 requestConfig = new RequestConfig();
             }
             
-            OnlineResponse response = await this.ExecuteOnlineRequest(apiFunctions, requestConfig);
+            OnlineResponse response = await this.ExecuteOnlineRequest(apiFunctions, requestConfig).ConfigureAwait(false);
 
             if (requestConfig.Transaction == true)
             {
