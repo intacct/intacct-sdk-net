@@ -43,7 +43,7 @@ namespace Intacct.SDK.Xml
 
             try
             {
-                response = await base.SendAsync(request, cancellationToken);
+                response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
                 _logger.Log(_logLevel, _logMessageFormatter.Format(request, response));
             }
             catch (Exception ex)

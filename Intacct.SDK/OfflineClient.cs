@@ -48,7 +48,7 @@ namespace Intacct.SDK
                 apiFunction
             };
 
-            return await this.ExecuteOfflineRequest(apiFunctions, requestConfig);
+            return await this.ExecuteOfflineRequest(apiFunctions, requestConfig).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Intacct.SDK
                 requestConfig = new RequestConfig();
             }
             
-            return await this.ExecuteOfflineRequest(apiFunctions, requestConfig);
+            return await this.ExecuteOfflineRequest(apiFunctions, requestConfig).ConfigureAwait(false);
         }
     }
 }
