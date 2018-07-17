@@ -48,7 +48,7 @@ namespace Intacct.SDK
                 apiFunction
             };
 
-            return await this.ExecuteOfflineRequest(apiFunctions, requestConfig);
+            return await this.ExecuteOfflineRequest(apiFunctions, requestConfig).ConfigureAwait(false);
         }
 
         /// <summary>
