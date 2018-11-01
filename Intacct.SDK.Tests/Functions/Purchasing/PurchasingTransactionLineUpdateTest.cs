@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2018 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -19,26 +19,26 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using Intacct.SDK.Functions.InventoryControl;
-using Intacct.SDK.Functions.OrderEntry;
+using Intacct.SDK.Functions.Purchasing;
 using Intacct.SDK.Functions;
 using Intacct.SDK.Tests.Xml;
 using Intacct.SDK.Xml;
 using Xunit;
 
-namespace Intacct.SDK.Tests.Functions.OrderEntry
+namespace Intacct.SDK.Tests.Functions.Purchasing
 {
-    public class OrderEntryTransactionLineUpdateTest : XmlObjectTestHelper
+    public class PurchasingTransactionLineUpdateTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<updatesotransitem line_num=""1"">
+<updatepotransitem line_num=""1"">
     <itemid>26323</itemid>
     <quantity>2340</quantity>
-</updatesotransitem>";
+</updatepotransitem>";
 
-            OrderEntryTransactionLineUpdate record = new OrderEntryTransactionLineUpdate()
+            PurchasingTransactionLineUpdate record = new PurchasingTransactionLineUpdate()
             {
                 LineNo = 1,
                 ItemId = "26323",
@@ -52,8 +52,7 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
         public void GetAllXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<updatesotransitem line_num=""1"">
-    <bundlenumber>092304</bundlenumber>
+<updatepotransitem line_num=""1"">
     <itemid>26323</itemid>
     <itemdesc>Item Description</itemdesc>
     <taxable>true</taxable>
@@ -61,11 +60,9 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
     <quantity>2340</quantity>
     <unit>593</unit>
     <linelevelsimpletaxtype>Test</linelevelsimpletaxtype>
-    <discountpercent>10.00</discountpercent>
     <price>32.35</price>
-    <discsurchargememo>None</discsurchargememo>
     <locationid>SF</locationid>
-    <departmentid>Receiving</departmentid>
+    <departmentid>Purchasing</departmentid>
     <memo>Memo</memo>
     <itemdetails>
         <itemdetail>
@@ -73,38 +70,24 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
             <lotno>3243</lotno>
         </itemdetail>
     </itemdetails>
+    <form1099>true</form1099>
     <customfields>
         <customfield>
             <customfieldname>customfield1</customfieldname>
             <customfieldvalue>customvalue1</customfieldvalue>
         </customfield>
     </customfields>
-    <revrectemplate>template</revrectemplate>
-    <revrecstartdate>
-        <year>2015</year>
-        <month>06</month>
-        <day>30</day>
-    </revrecstartdate>
-    <revrecenddate>
-        <year>2015</year>
-        <month>07</month>
-        <day>31</day>
-    </revrecenddate>
-    <renewalmacro>Quarterly</renewalmacro>
     <projectid>235</projectid>
     <customerid>23423434</customerid>
     <vendorid>797656</vendorid>
     <employeeid>90295</employeeid>
     <classid>243609</classid>
     <contractid>9062</contractid>
-    <fulfillmentstatus>Complete</fulfillmentstatus>
-    <taskno>9850</taskno>
-    <billingtemplate>3525</billingtemplate>
-</updatesotransitem>";
+    <billable>true</billable>
+</updatepotransitem>";
 
-            OrderEntryTransactionLineUpdate record = new OrderEntryTransactionLineUpdate() {
+            PurchasingTransactionLineUpdate record = new PurchasingTransactionLineUpdate() {
                 LineNo = 1,
-                BundleNumber = "092304",
                 ItemId = "26323",
                 ItemDescription = "Item Description",
                 Taxable = true,
@@ -112,19 +95,12 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
                 Quantity = 2340,
                 Unit = "593",
                 LineLevelSimpleTaxType = "Test",
-                DiscountPercent = 10.00M,
                 Price = 32.35M,
-                DiscountSurchargeMemo = "None",
                 Memo = "Memo",
-                RevRecTemplate = "template",
-                RevRecStartDate = new DateTime(2015, 06, 30),
-                RevRecEndDate = new DateTime(2015, 07, 31),
-                RenewalMacro = "Quarterly",
-                FulfillmentStatus = "Complete",
-                TaskNumber = "9850",
-                BillingTemplate = "3525",
+                Billable = true,
+                Form1099 = true,
                 LocationId = "SF",
-                DepartmentId = "Receiving",
+                DepartmentId = "Purchasing",
                 ProjectId = "235",
                 CustomerId = "23423434",
                 VendorId = "797656",

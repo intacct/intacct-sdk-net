@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2018 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -53,6 +53,7 @@ namespace Intacct.SDK.Functions.Purchasing
             xml.WriteElement("warehouseid", WarehouseId);
             xml.WriteElement("quantity", Quantity);
             xml.WriteElement("unit", Unit);
+            xml.WriteElement("linelevelsimpletaxtype", LineLevelSimpleTaxType);
             xml.WriteElement("price", Price);
             
             if (!string.IsNullOrWhiteSpace(LineDeliverToContactName))

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2018 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -33,6 +33,8 @@ namespace Intacct.SDK.Functions.Purchasing
         public decimal? Quantity;
 
         public string Unit;
+        
+        public string LineLevelSimpleTaxType;
 
         public decimal? Price;
 

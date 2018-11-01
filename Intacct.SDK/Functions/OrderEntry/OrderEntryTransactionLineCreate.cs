@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2018 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -38,6 +38,7 @@ namespace Intacct.SDK.Functions.OrderEntry
             xml.WriteElement("warehouseid", WarehouseId);
             xml.WriteElement("quantity", Quantity, true);
             xml.WriteElement("unit", Unit);
+            xml.WriteElement("linelevelsimpletaxtype", LineLevelSimpleTaxType);
             xml.WriteElement("discountpercent", DiscountPercent);
             xml.WriteElement("price", Price);
             xml.WriteElement("sourcelinekey", SourceLineRecordNo);

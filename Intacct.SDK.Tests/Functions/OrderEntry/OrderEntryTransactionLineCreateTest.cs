@@ -59,6 +59,7 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
     <warehouseid>93294</warehouseid>
     <quantity>2340</quantity>
     <unit>593</unit>
+    <linelevelsimpletaxtype>Test</linelevelsimpletaxtype>
     <discountpercent>10.00</discountpercent>
     <price>32.35</price>
     <discsurchargememo>None</discsurchargememo>
@@ -108,6 +109,7 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
                 WarehouseId = "93294",
                 Quantity = 2340,
                 Unit = "593",
+                LineLevelSimpleTaxType = "Test",
                 DiscountPercent = 10.00M,
                 Price = 32.35M,
                 DiscountSurchargeMemo = "None",
