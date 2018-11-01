@@ -21,7 +21,7 @@ namespace Intacct.SDK.Functions.OrderEntry
     public class OrderEntryTransactionLineCreate : AbstractOrderEntryTransactionLine
     {
         
-        public int SourceLineRecordNo;
+        public int? SourceLineRecordNo;
 
         public OrderEntryTransactionLineCreate()
         {

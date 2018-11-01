@@ -20,7 +20,7 @@ namespace Intacct.SDK.Functions.InventoryControl
     public class InventoryTransactionLineCreate : AbstractInventoryTransactionLine
     {
         
-        public int SourceLineRecordNo;
+        public int? SourceLineRecordNo;
 
         public InventoryTransactionLineCreate()
         {

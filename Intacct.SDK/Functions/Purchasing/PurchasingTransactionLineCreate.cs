@@ -21,7 +21,7 @@ namespace Intacct.SDK.Functions.Purchasing
     public class PurchasingTransactionLineCreate : AbstractPurchasingTransactionLine
     {
         
-        public int SourceLineRecordNo;
+        public int? SourceLineRecordNo;
 
         public PurchasingTransactionLineCreate()
         {
