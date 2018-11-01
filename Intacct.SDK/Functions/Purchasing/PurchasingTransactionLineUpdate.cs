@@ -60,12 +60,12 @@ namespace Intacct.SDK.Functions.Purchasing
 
             if (ItemDetails.Count > 0)
             {
-                xml.WriteStartElement("updateitemdetails");
+                xml.WriteStartElement("itemdetails");
                 foreach (AbstractTransactionItemDetail itemDetail in ItemDetails)
                 {
                     itemDetail.WriteXml(ref xml);
                 }
-                xml.WriteEndElement(); //updateitemdetails
+                xml.WriteEndElement(); //itemdetails
             }
 
             xml.WriteElement("form1099", Form1099);
