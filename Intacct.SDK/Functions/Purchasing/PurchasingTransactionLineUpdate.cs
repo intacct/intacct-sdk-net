@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2018 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -54,8 +54,6 @@ namespace Intacct.SDK.Functions.Purchasing
             xml.WriteElement("quantity", Quantity);
             xml.WriteElement("unit", Unit);
             xml.WriteElement("price", Price);
-            xml.WriteElement("overridetaxamount", OverrideTaxAmount);
-            xml.WriteElement("tax", Tax);
             xml.WriteElement("locationid", LocationId);
             xml.WriteElement("departmentid", DepartmentId);
             xml.WriteElement("memo", Memo);
