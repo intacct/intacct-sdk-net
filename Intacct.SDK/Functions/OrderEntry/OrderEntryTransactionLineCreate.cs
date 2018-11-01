@@ -84,6 +84,15 @@ namespace Intacct.SDK.Functions.OrderEntry
             xml.WriteElement("fulfillmentstatus", FulfillmentStatus);
             xml.WriteElement("taskno", TaskNumber);
             xml.WriteElement("billingtemplate", BillingTemplate);
+            
+            xml.WriteElement("dropship", DropShip);
+            
+            if (!string.IsNullOrWhiteSpace(LineShipToContactName))
+            {
+                xml.WriteStartElement("shipto");
+                xml.WriteElement("contactname", LineShipToContactName, true);
+                xml.WriteEndElement(); //shipto
+            }
 
             xml.WriteEndElement(); //sotransitem
         }

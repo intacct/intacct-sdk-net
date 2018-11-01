@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2018 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -58,6 +58,10 @@ namespace Intacct.SDK.Functions.OrderEntry
         public string TaskNumber;
 
         public string BillingTemplate;
+        
+        public bool? DropShip;
+
+        public string LineShipToContactName;
 
         public List<AbstractTransactionItemDetail> ItemDetails = new List<AbstractTransactionItemDetail>();
 
