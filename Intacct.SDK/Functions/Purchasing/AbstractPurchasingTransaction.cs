@@ -53,6 +53,8 @@ namespace Intacct.SDK.Functions.Purchasing
         public string ReturnToContactName;
 
         public string PayToContactName;
+        
+        public string DeliverToContactName;
 
         public string AttachmentsId;
 

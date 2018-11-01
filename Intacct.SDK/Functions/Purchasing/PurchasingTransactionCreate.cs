@@ -67,6 +67,13 @@ namespace Intacct.SDK.Functions.Purchasing
             xml.WriteStartElement("payto");
             xml.WriteElement("contactname", PayToContactName, true);
             xml.WriteEndElement(); //payto
+            
+            if (!string.IsNullOrWhiteSpace(DeliverToContactName))
+            {
+                xml.WriteStartElement("deliverto");
+                xml.WriteElement("contactname", DeliverToContactName, true);
+                xml.WriteEndElement(); //deliverto
+            }
 
             xml.WriteElement("supdocid", AttachmentsId);
             xml.WriteElement("externalid", ExternalId);
