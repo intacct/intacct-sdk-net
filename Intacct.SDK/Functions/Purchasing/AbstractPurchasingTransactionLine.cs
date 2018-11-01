@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2018 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -44,7 +44,13 @@ namespace Intacct.SDK.Functions.Purchasing
 
         public bool? Form1099;
 
+        public string Form1099Type;
+
+        public string Form1099Box;
+
         public bool? Billable;
+        
+        public string LineDeliverToContactName;
 
         public List<AbstractTransactionItemDetail> ItemDetails = new List<AbstractTransactionItemDetail>();
 

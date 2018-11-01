@@ -54,6 +54,14 @@ namespace Intacct.SDK.Functions.Purchasing
             xml.WriteElement("quantity", Quantity);
             xml.WriteElement("unit", Unit);
             xml.WriteElement("price", Price);
+            
+            if (!string.IsNullOrWhiteSpace(LineDeliverToContactName))
+            {
+                xml.WriteStartElement("deliverto");
+                xml.WriteElement("contactname", LineDeliverToContactName, true);
+                xml.WriteEndElement(); //deliverto
+            }
+            
             xml.WriteElement("locationid", LocationId);
             xml.WriteElement("departmentid", DepartmentId);
             xml.WriteElement("memo", Memo);
@@ -69,6 +77,8 @@ namespace Intacct.SDK.Functions.Purchasing
             }
 
             xml.WriteElement("form1099", Form1099);
+            xml.WriteElement("form1099type", Form1099Type);
+            xml.WriteElement("form1099box", Form1099Box);
 
             xml.WriteCustomFieldsExplicit(CustomFields);
 
