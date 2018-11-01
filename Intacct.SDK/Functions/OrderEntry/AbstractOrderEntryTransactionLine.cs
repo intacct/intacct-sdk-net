@@ -36,6 +36,8 @@ namespace Intacct.SDK.Functions.OrderEntry
         public decimal? Quantity;
 
         public string Unit;
+        
+        public string LineLevelSimpleTaxType;
 
         public decimal? DiscountPercent;
 
@@ -58,6 +60,10 @@ namespace Intacct.SDK.Functions.OrderEntry
         public string TaskNumber;
 
         public string BillingTemplate;
+        
+        public bool? DropShip;
+
+        public string LineShipToContactName;
 
         public List<AbstractTransactionItemDetail> ItemDetails = new List<AbstractTransactionItemDetail>();
 

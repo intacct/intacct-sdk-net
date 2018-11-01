@@ -53,24 +53,33 @@ namespace Intacct.SDK.Functions.Purchasing
             xml.WriteElement("warehouseid", WarehouseId);
             xml.WriteElement("quantity", Quantity);
             xml.WriteElement("unit", Unit);
+            xml.WriteElement("linelevelsimpletaxtype", LineLevelSimpleTaxType);
             xml.WriteElement("price", Price);
-            xml.WriteElement("overridetaxamount", OverrideTaxAmount);
-            xml.WriteElement("tax", Tax);
+            
+            if (!string.IsNullOrWhiteSpace(LineDeliverToContactName))
+            {
+                xml.WriteStartElement("deliverto");
+                xml.WriteElement("contactname", LineDeliverToContactName, true);
+                xml.WriteEndElement(); //deliverto
+            }
+            
             xml.WriteElement("locationid", LocationId);
             xml.WriteElement("departmentid", DepartmentId);
             xml.WriteElement("memo", Memo);
 
             if (ItemDetails.Count > 0)
             {
-                xml.WriteStartElement("updateitemdetails");
+                xml.WriteStartElement("itemdetails");
                 foreach (AbstractTransactionItemDetail itemDetail in ItemDetails)
                 {
                     itemDetail.WriteXml(ref xml);
                 }
-                xml.WriteEndElement(); //updateitemdetails
+                xml.WriteEndElement(); //itemdetails
             }
 
             xml.WriteElement("form1099", Form1099);
+            xml.WriteElement("form1099type", Form1099Type);
+            xml.WriteElement("form1099box", Form1099Box);
 
             xml.WriteCustomFieldsExplicit(CustomFields);
 

@@ -33,6 +33,8 @@ namespace Intacct.SDK.Functions.Purchasing
         public decimal? Quantity;
 
         public string Unit;
+        
+        public string LineLevelSimpleTaxType;
 
         public decimal? Price;
 
@@ -44,7 +46,13 @@ namespace Intacct.SDK.Functions.Purchasing
 
         public bool? Form1099;
 
+        public string Form1099Type;
+
+        public string Form1099Box;
+
         public bool? Billable;
+        
+        public string LineDeliverToContactName;
 
         public List<AbstractTransactionItemDetail> ItemDetails = new List<AbstractTransactionItemDetail>();
 

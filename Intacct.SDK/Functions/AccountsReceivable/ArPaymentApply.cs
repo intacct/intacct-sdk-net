@@ -21,6 +21,8 @@ namespace Intacct.SDK.Functions.AccountsReceivable
     {
 
         public int? SummaryRecordNo;
+        
+        public string Memo;
 
         public ArPaymentApply(string controlId = null) : base(controlId)
         {
@@ -40,15 +42,19 @@ namespace Intacct.SDK.Functions.AccountsReceivable
             xml.WriteEndElement(); //paymentdate
 
             xml.WriteElement("batchkey", SummaryRecordNo);
+            xml.WriteElement("memo", Memo);
             xml.WriteElement("overpaylocid", OverpaymentLocationId);
             xml.WriteElement("overpaydeptid", OverpaymentDepartmentId);
 
             if (ApplyToTransactions.Count > 0)
             {
+                xml.WriteStartElement("arpaymentitems");
                 foreach (ArPaymentItem applyToTransaction in ApplyToTransactions)
                 {
                     applyToTransaction.WriteXml(ref xml);
                 }
+                
+                xml.WriteEndElement(); //arpaymentitems
             }
 
             xml.WriteEndElement(); //apply_arpayment

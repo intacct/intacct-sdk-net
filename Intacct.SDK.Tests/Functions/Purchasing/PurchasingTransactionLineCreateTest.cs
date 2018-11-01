@@ -58,6 +58,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
     <warehouseid>93294</warehouseid>
     <quantity>2340</quantity>
     <unit>593</unit>
+    <linelevelsimpletaxtype>Test</linelevelsimpletaxtype>
     <price>32.35</price>
     <overridetaxamount>1.23</overridetaxamount>
     <tax>9.23</tax>
@@ -93,6 +94,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
                 WarehouseId = "93294",
                 Quantity = 2340,
                 Unit = "593",
+                LineLevelSimpleTaxType = "Test",
                 Price = 32.35M,
                 OverrideTaxAmount = 1.23M,
                 Tax = 9.23M,

@@ -45,6 +45,8 @@ namespace Intacct.SDK.Functions.AccountsReceivable
                 xml.WriteElement("bankaccountid", BankAccountId);
             }
 
+            xml.WriteElement("refid", ReferenceNumber);
+            
             xml.WriteElement("overpaylocid", OverpaymentLocationId);
             xml.WriteElement("overpaydeptid", OverpaymentDepartmentId);
             
