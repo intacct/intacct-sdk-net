@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2018 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -20,6 +20,8 @@ namespace Intacct.SDK.Functions.Purchasing
 {
     public class PurchasingTransactionLineCreate : AbstractPurchasingTransactionLine
     {
+        
+        public int SourceLineRecordNo;
 
         public PurchasingTransactionLineCreate()
         {
@@ -36,6 +38,7 @@ namespace Intacct.SDK.Functions.Purchasing
             xml.WriteElement("quantity", Quantity, true);
             xml.WriteElement("unit", Unit);
             xml.WriteElement("price", Price);
+            xml.WriteElement("sourcelinekey", SourceLineRecordNo);
             xml.WriteElement("overridetaxamount", OverrideTaxAmount);
             xml.WriteElement("tax", Tax);
             xml.WriteElement("locationid", LocationId);

@@ -19,6 +19,8 @@ namespace Intacct.SDK.Functions.InventoryControl
 {
     public class InventoryTransactionLineCreate : AbstractInventoryTransactionLine
     {
+        
+        public int SourceLineRecordNo;
 
         public InventoryTransactionLineCreate()
         {
@@ -34,6 +36,7 @@ namespace Intacct.SDK.Functions.InventoryControl
             xml.WriteElement("quantity", Quantity, true);
             xml.WriteElement("unit", Unit);
             xml.WriteElement("cost", Cost);
+            xml.WriteElement("sourcelinekey", SourceLineRecordNo);
             xml.WriteElement("locationid", LocationId);
             xml.WriteElement("departmentid", DepartmentId);
 
