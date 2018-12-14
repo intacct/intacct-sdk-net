@@ -28,6 +28,7 @@ namespace Intacct.SDK.Tests.Xml.Response
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -38,6 +39,7 @@ namespace Intacct.SDK.Tests.Xml.Response
                         <api>
                               <sessionid>faKEsesSiOnId..</sessionid>
                               <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                              <locationid></locationid>
                         </api>
                   </data>
             </result>
@@ -56,6 +58,7 @@ namespace Intacct.SDK.Tests.Xml.Response
             Assert.Equal("success", auth.Status);
             Assert.Equal("fakeuser", auth.UserId);
             Assert.Equal("fakecompany", auth.CompanyId);
+            Assert.Equal("", auth.EntityId);
         }
 
         [Fact]
@@ -75,6 +78,7 @@ namespace Intacct.SDK.Tests.Xml.Response
                   <!--<status>success</status>-->
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
             <result/>
@@ -110,6 +114,7 @@ namespace Intacct.SDK.Tests.Xml.Response
                   <status>success</status>
                   <!--<userid>fakeuser</userid>-->
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
             <result/>
@@ -145,6 +150,7 @@ namespace Intacct.SDK.Tests.Xml.Response
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <!--<companyid>fakecompany</companyid>-->
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
             </authentication>
             <result/>

@@ -36,6 +36,26 @@ namespace Intacct.SDK.Tests.Credentials
             ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
 
             Assert.Equal("inicompanyid", loginCreds.CompanyId);
+            Assert.Null(loginCreds.EntityId);
+            Assert.Equal("iniuserid", loginCreds.UserId);
+            Assert.Equal("iniuserpass", loginCreds.UserPassword);
+        }
+        
+        [Fact]
+        public void GetLoginCredentialsWithEntityFromSpecificProfileTest()
+        {
+            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Credentials", "Ini", "default.ini");
+
+            ClientConfig config = new ClientConfig()
+            {
+                ProfileFile = tempFile,
+                ProfileName = "entity",
+            };
+
+            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
+
+            Assert.Equal("inicompanyid", loginCreds.CompanyId);
+            Assert.Equal("inientityid", loginCreds.EntityId);
             Assert.Equal("iniuserid", loginCreds.UserId);
             Assert.Equal("iniuserpass", loginCreds.UserPassword);
         }

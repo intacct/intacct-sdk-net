@@ -50,6 +50,14 @@ namespace Intacct.SDK.Xml.Request
             }
         }
 
+        private string _entityId;
+
+        public string EntityId
+        {
+            get => this._entityId;
+            set => _entityId = value;
+        }
+
         private string _password;
 
         public string Password
@@ -65,11 +73,12 @@ namespace Intacct.SDK.Xml.Request
             }
         }
 
-        public LoginAuthentication(string userId, string companyId, string password)
+        public LoginAuthentication(string userId, string companyId, string password, string entityId = null)
         {
             this.UserId = userId;
             this.CompanyId = companyId;
             this.Password = password;
+            this.EntityId = entityId;
         }
 
         public void WriteXml(ref IaXmlWriter xml)
@@ -79,6 +88,10 @@ namespace Intacct.SDK.Xml.Request
             xml.WriteElementString("userid", this.UserId);
             xml.WriteElementString("companyid", this.CompanyId);
             xml.WriteElementString("password", this.Password);
+            if (this.EntityId != null)
+            {
+                xml.WriteElementString("locationid", this.EntityId);
+            }
             xml.WriteEndElement(); // login
             xml.WriteEndElement(); // authentication
         }

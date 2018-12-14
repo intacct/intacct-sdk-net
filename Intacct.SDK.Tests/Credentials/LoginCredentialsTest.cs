@@ -49,6 +49,29 @@ namespace Intacct.SDK.Tests.Credentials
             LoginCredentials loginCreds = new LoginCredentials(config, this.SenderCreds);
 
             Assert.Equal("testcompany", loginCreds.CompanyId);
+            Assert.Null(loginCreds.EntityId);
+            Assert.Equal("testuser", loginCreds.UserId);
+            Assert.Equal("testpass", loginCreds.Password);
+            Endpoint endpoint = loginCreds.SenderCredentials.Endpoint;
+            Assert.Equal("https://api.intacct.com/ia/xml/xmlgw.phtml", endpoint.ToString());
+            Assert.IsType<SenderCredentials>(loginCreds.SenderCredentials);
+        }
+        
+        [Fact]
+        public void CredsFromConfigWithEntityIdTest()
+        {
+            ClientConfig config = new ClientConfig
+            {
+                CompanyId = "testcompany",
+                EntityId = "testentity",
+                UserId = "testuser",
+                UserPassword = "testpass"
+            };
+
+            LoginCredentials loginCreds = new LoginCredentials(config, this.SenderCreds);
+
+            Assert.Equal("testcompany", loginCreds.CompanyId);
+            Assert.Equal("testentity", loginCreds.EntityId);
             Assert.Equal("testuser", loginCreds.UserId);
             Assert.Equal("testpass", loginCreds.Password);
             Endpoint endpoint = loginCreds.SenderCredentials.Endpoint;
@@ -69,8 +92,69 @@ namespace Intacct.SDK.Tests.Credentials
 
             LoginCredentials loginCreds = new LoginCredentials(config, this.SenderCreds);
             Assert.Equal("inicompanyid", loginCreds.CompanyId);
+            Assert.Null(loginCreds.EntityId);
             Assert.Equal("iniuserid", loginCreds.UserId);
             Assert.Equal("iniuserpass", loginCreds.Password);
+        }
+        
+        [Fact]
+        public void CredsFromProfileWithEntityTest()
+        {
+            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Credentials", "Ini", "default.ini");
+
+            ClientConfig config = new ClientConfig()
+            {
+                ProfileFile = tempFile,
+                ProfileName = "entity",
+            };
+
+            LoginCredentials loginCreds = new LoginCredentials(config, this.SenderCreds);
+            Assert.Equal("inicompanyid", loginCreds.CompanyId);
+            Assert.Equal("inientityid", loginCreds.EntityId);
+            Assert.Equal("iniuserid", loginCreds.UserId);
+            Assert.Equal("iniuserpass", loginCreds.Password);
+        }
+
+        [Fact]
+        public void CredsFromEnvironmentTest()
+        {
+            Environment.SetEnvironmentVariable("INTACCT_COMPANY_ID", "envcompany");
+            Environment.SetEnvironmentVariable("INTACCT_USER_ID", "envuser");
+            Environment.SetEnvironmentVariable("INTACCT_USER_PASSWORD", "envuserpass");
+
+            ClientConfig config = new ClientConfig();
+            LoginCredentials loginCreds = new LoginCredentials(config, this.SenderCreds);
+            
+            Assert.Equal("envcompany", loginCreds.CompanyId);
+            Assert.Null(loginCreds.EntityId);
+            Assert.Equal("envuser", loginCreds.UserId);
+            Assert.Equal("envuserpass", loginCreds.Password);
+            
+            Environment.SetEnvironmentVariable("INTACCT_COMPANY_ID", null);
+            Environment.SetEnvironmentVariable("INTACCT_USER_ID", null);
+            Environment.SetEnvironmentVariable("INTACCT_USER_PASSWORD", null);
+        }
+
+        [Fact]
+        public void CredsFromEnvironmentWithEntityTest()
+        {
+            Environment.SetEnvironmentVariable("INTACCT_COMPANY_ID", "envcompany");
+            Environment.SetEnvironmentVariable("INTACCT_ENTITY_ID", "enventity");
+            Environment.SetEnvironmentVariable("INTACCT_USER_ID", "envuser");
+            Environment.SetEnvironmentVariable("INTACCT_USER_PASSWORD", "envuserpass");
+
+            ClientConfig config = new ClientConfig();
+            LoginCredentials loginCreds = new LoginCredentials(config, this.SenderCreds);
+            
+            Assert.Equal("envcompany", loginCreds.CompanyId);
+            Assert.Equal("enventity", loginCreds.EntityId);
+            Assert.Equal("envuser", loginCreds.UserId);
+            Assert.Equal("envuserpass", loginCreds.Password);
+            
+            Environment.SetEnvironmentVariable("INTACCT_COMPANY_ID", null);
+            Environment.SetEnvironmentVariable("INTACCT_ENTITY_ID", null);
+            Environment.SetEnvironmentVariable("INTACCT_USER_ID", null);
+            Environment.SetEnvironmentVariable("INTACCT_USER_PASSWORD", null);
         }
         
         [Fact]

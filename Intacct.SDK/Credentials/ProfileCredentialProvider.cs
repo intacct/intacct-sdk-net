@@ -33,12 +33,18 @@ namespace Intacct.SDK.Credentials
             IConfigurationSection data = GetIniProfileData(config);
 
             string companyId = data.GetSection("company_id").Value;
+            string entityId = data.GetSection("entity_id").Value;
             string userId = data.GetSection("user_id").Value;
             string userPassword = data.GetSection("user_password").Value;
             
             if (!string.IsNullOrEmpty(companyId))
             {
                 creds.CompanyId = companyId;
+            }
+
+            if (!string.IsNullOrEmpty(entityId))
+            {
+                creds.EntityId = entityId;
             }
             if (!string.IsNullOrEmpty(userId))
             {

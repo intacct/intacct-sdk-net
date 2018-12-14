@@ -45,8 +45,15 @@ namespace Intacct.SDK
                 NoRetryServerErrorCodes = new int[] { }, // Retry all 500 level errors
             };
 
+            ApiSessionCreate apiFunction = new ApiSessionCreate();
+
+            if (!string.IsNullOrWhiteSpace(config.SessionId) && config.EntityId != null)
+            {
+                apiFunction.EntityId = config.EntityId;
+            }
+
             OnlineClient client = new OnlineClient(config);
-            OnlineResponse response = await client.Execute(new ApiSessionCreate(), requestConfig).ConfigureAwait(false);
+            OnlineResponse response = await client.Execute(apiFunction, requestConfig).ConfigureAwait(false);
 
             Authentication authentication = response.Authentication;
             Result result = response.Results[0];
@@ -56,8 +63,9 @@ namespace Intacct.SDK
             List<XElement> data = result.Data;
             XElement api = data[0];
 
-            config.SessionId = api.Element("sessionid").Value;
-            config.EndpointUrl = api.Element("endpoint").Value;
+            config.SessionId = api.Element("sessionid")?.Value;
+            config.EndpointUrl = api.Element("endpoint")?.Value;
+            config.EntityId = api.Element("locationid")?.Value;
 
             config.CompanyId = authentication.CompanyId;
             config.UserId = authentication.UserId;

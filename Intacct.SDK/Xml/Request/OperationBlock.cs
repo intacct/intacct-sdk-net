@@ -44,7 +44,7 @@ namespace Intacct.SDK.Xml.Request
             else if (credentials != null && credentials.GetType() == typeof(LoginCredentials))
             {
                 LoginCredentials loginCreds = credentials as LoginCredentials;
-                this.Authentication = new LoginAuthentication(loginCreds.UserId, loginCreds.CompanyId, loginCreds.Password);
+                this.Authentication = new LoginAuthentication(loginCreds.UserId, loginCreds.CompanyId, loginCreds.Password, loginCreds.EntityId);
             }
             else if (!string.IsNullOrEmpty(clientConfig.SessionId))
             {
@@ -56,7 +56,7 @@ namespace Intacct.SDK.Xml.Request
                 && !string.IsNullOrEmpty(clientConfig.UserPassword)
             )
             {
-                Authentication = new LoginAuthentication(clientConfig.UserId, clientConfig.CompanyId, clientConfig.UserPassword);
+                Authentication = new LoginAuthentication(clientConfig.UserId, clientConfig.CompanyId, clientConfig.UserPassword, clientConfig.EntityId);
             }
             else
             {

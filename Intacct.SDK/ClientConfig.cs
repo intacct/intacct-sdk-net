@@ -37,6 +37,8 @@ namespace Intacct.SDK
 
         public string CompanyId;
 
+        public string EntityId;
+
         public string UserId;
 
         public string UserPassword;

@@ -25,6 +25,8 @@ namespace Intacct.SDK.Xml.Response
         public string UserId { get; }
 
         public string CompanyId { get; }
+        
+        public string EntityId { get; }
 
         public Authentication(XElement authentication)
         {
@@ -48,8 +50,15 @@ namespace Intacct.SDK.Xml.Response
                 throw new IntacctException("Authentication block is missing companyid element");
             }
             this.CompanyId = companyId.Value;
+            
+            var entityId = authentication.Element("locationid");
+            if (entityId != null)
+            {
+                this.EntityId = entityId.Value;
+            }
+           
 
-            // TODO add getter/setter for elements: clientstatus, clientid, locationid, sessiontimestamp
+            // TODO add getter/setter for elements: clientstatus, clientid, sessiontimestamp
         }
     }
 }
