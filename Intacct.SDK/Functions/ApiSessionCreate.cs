@@ -20,6 +20,8 @@ namespace Intacct.SDK.Functions
     public class ApiSessionCreate : AbstractFunction
     {
 
+        public string EntityId;
+
         public ApiSessionCreate(string controlId = "") : base(controlId)
         {
         }
@@ -29,7 +31,14 @@ namespace Intacct.SDK.Functions
             xml.WriteStartElement("function");
             xml.WriteAttributeString("controlid", ControlId);
 
-            xml.WriteElementString("getAPISession", "");
+            xml.WriteStartElement("getAPISession");
+
+            if (EntityId != null)
+            {
+                xml.WriteElementString("locationid", EntityId);
+            }
+            
+            xml.WriteEndElement(); //getAPISession
 
             xml.WriteEndElement(); //function
         }

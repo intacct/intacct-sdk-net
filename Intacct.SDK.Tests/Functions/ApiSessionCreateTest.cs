@@ -37,5 +37,37 @@ namespace Intacct.SDK.Tests.Functions
             
             this.CompareXml(expected, apiFunction);
         }
+        
+        [Fact]
+        public void GetXmlWithLocationTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <getAPISession>
+        <locationid>100</locationid>
+    </getAPISession>
+</function>";
+
+            ApiSessionCreate apiFunction = new ApiSessionCreate("unittest");
+            apiFunction.EntityId = "100";
+            
+            this.CompareXml(expected, apiFunction);
+        }
+        
+        [Fact]
+        public void GetXmlWithEmptyLocationTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <getAPISession>
+        <locationid />
+    </getAPISession>
+</function>";
+
+            ApiSessionCreate apiFunction = new ApiSessionCreate("unittest");
+            apiFunction.EntityId = "";
+            
+            this.CompareXml(expected, apiFunction);
+        }
     }
 }
