@@ -187,5 +187,37 @@ namespace Intacct.SDK.Tests.Xml
             Assert.IsType<IntacctException>(ex);
             Assert.Equal("Result block is missing from operation element", ex.Message);
         }
+        
+        [Fact]
+        public void ThrowResponseExceptionWithErrorsTest()
+        {
+              string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<response>
+    <control>
+        <status>failure</status>
+        <senderid></senderid>
+        <controlid></controlid>
+    </control>
+    <errormessage>
+        <error>
+            <errorno>PL04000055</errorno>
+            <description></description>
+            <description2>This company is a demo company and has expired.</description2>
+            <correction></correction>
+        </error>
+    </errormessage>
+</response>";
+
+              Stream stream = new MemoryStream();
+              StreamWriter streamWriter = new StreamWriter(stream);
+              streamWriter.Write(xml);
+              streamWriter.Flush();
+            
+              stream.Position = 0;
+
+              var ex = Record.Exception(() => new OnlineResponse(stream));
+              Assert.IsType<ResponseException>(ex);
+              Assert.Equal("Response control status failure", ex.Message);
+        }
     }
 }
