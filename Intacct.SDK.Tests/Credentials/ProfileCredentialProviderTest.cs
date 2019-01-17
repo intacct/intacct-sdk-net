@@ -74,5 +74,23 @@ namespace Intacct.SDK.Tests.Credentials
             Assert.IsType<ArgumentException>(ex);
             Assert.Equal("Profile name \"default\" not found in credentials file", ex.Message);
         }
+
+        [Fact]
+        public void GetLoginCredentialsFromMissingIni()
+        {
+            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "invalid", "file.ini");
+
+            ClientConfig config = new ClientConfig()
+            {
+                ProfileFile = tempFile,
+            };
+
+            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
+
+            Assert.Null(loginCreds.CompanyId);
+            Assert.Null(loginCreds.EntityId);
+            Assert.Null(loginCreds.UserId);
+            Assert.Null(loginCreds.UserPassword);
+        }
     }
 }

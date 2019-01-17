@@ -30,6 +30,8 @@ namespace Intacct.SDK.Credentials
         public static ClientConfig GetLoginCredentials(ClientConfig config)
         {
             ClientConfig creds = new ClientConfig();
+            if (!ProfileFileExists(config)) return creds;
+            
             IConfigurationSection data = GetIniProfileData(config);
 
             string companyId = data.GetSection("company_id").Value;
@@ -61,6 +63,8 @@ namespace Intacct.SDK.Credentials
         public static ClientConfig GetSenderCredentials(ClientConfig config)
         {
             ClientConfig creds = new ClientConfig();
+            if (!ProfileFileExists(config)) return creds;
+            
             IConfigurationSection data = GetIniProfileData(config);
 
             string senderId = data.GetSection("sender_id").Value;
@@ -106,16 +110,22 @@ namespace Intacct.SDK.Credentials
             
             return profile;
         }
+
+        private static bool ProfileFileExists(ClientConfig config)
+        {
+            if (string.IsNullOrEmpty(config.ProfileFile))
+            {
+                config.ProfileFile = GetHomeDirProfile();
+            }
+            
+            return File.Exists(config.ProfileFile);
+        }
         
         private static IConfigurationSection GetIniProfileData(ClientConfig config)
         {
             if (string.IsNullOrEmpty(config.ProfileName))
             {
                 config.ProfileName = ProfileCredentialProvider.DefaultProfileName;
-            }
-            if (string.IsNullOrEmpty(config.ProfileFile))
-            {
-                config.ProfileFile = GetHomeDirProfile();
             }
             
             ConfigurationBuilder builder = new ConfigurationBuilder();
