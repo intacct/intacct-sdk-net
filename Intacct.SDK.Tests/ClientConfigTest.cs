@@ -18,6 +18,7 @@ namespace Intacct.SDK.Tests
             Assert.Null(clientConfig.SenderPassword);
             Assert.Null(clientConfig.SessionId);
             Assert.Null(clientConfig.CompanyId);
+            Assert.Null(clientConfig.EntityId);
             Assert.Null(clientConfig.UserId);
             Assert.Null(clientConfig.UserPassword);
             Assert.Null(clientConfig.Credentials);
