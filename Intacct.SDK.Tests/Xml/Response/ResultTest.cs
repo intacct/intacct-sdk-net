@@ -279,7 +279,7 @@ namespace Intacct.SDK.Tests.Xml.Response
             
             var ex = Record.Exception(() => result.EnsureStatusNotFailure());
             Assert.IsType<ResultException>(ex);
-            Assert.Equal("Result status: failure for Control ID: testFunctionId", ex.Message);
+            Assert.Equal("Result status: failure for Control ID: testFunctionId - XXX Object definition VENDOR2 not found", ex.Message);
         }
         
         [Fact]
@@ -336,7 +336,7 @@ namespace Intacct.SDK.Tests.Xml.Response
             
             var ex = Record.Exception(() => result.EnsureStatusSuccess());
             Assert.IsType<ResultException>(ex);
-            Assert.Equal("Result status: aborted for Control ID: testFunctionId", ex.Message);
+            Assert.Equal("Result status: aborted for Control ID: testFunctionId - Query Failed Object definition VENDOR9 not found - XL03000009 The entire transaction in this operation has been rolled back due to an error.", ex.Message);
         }
         
         [Fact]

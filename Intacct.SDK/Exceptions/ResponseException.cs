@@ -27,17 +27,30 @@ namespace Intacct.SDK.Exceptions
         {
         }
 
-        public ResponseException(string message) : base(message)
+        public ResponseException(string message)
+            : base(message)
         {
         }
 
-        public ResponseException(string message, List<string> errors) : base(message)
+        public ResponseException(string message, List<string> errors)
+            : base(ImplodeErrorsToMessage(message, errors))
         {
             Errors = errors;
         }
 
-        public ResponseException(string message, List<string> errors, Exception innerException) : base(message, innerException)
+        public ResponseException(string message, List<string> errors, Exception innerException)
+            : base(ImplodeErrorsToMessage(message, errors), innerException)
         {
+        }
+
+        private static string ImplodeErrorsToMessage(string message, List<string> errors)
+        {
+            if (errors.Count > 0)
+            {
+                message = message + " - " + string.Join(" - ", errors);
+            }
+
+            return message;
         }
     }
 }

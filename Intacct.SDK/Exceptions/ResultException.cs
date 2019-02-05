@@ -20,21 +20,23 @@ namespace Intacct.SDK.Exceptions
 {
     public class ResultException: ResponseException
     {
-        
+
         public ResultException()
         {
         }
-
-        public ResultException(string message) : base(message)
+        
+        public ResultException(string message)
+            : base(message)
         {
         }
 
-        public ResultException(string message, List<string> errors) : base(message)
+        public ResultException(string message, List<string> errors)
+            : base(message, errors)
         {
-            this.Errors = errors;
         }
 
-        public ResultException(string message, List<string> errors, Exception innerException) : base(message, errors, innerException)
+        public ResultException(string message, List<string> errors, Exception innerException)
+            : base(message, errors, innerException)
         {
         }
     }

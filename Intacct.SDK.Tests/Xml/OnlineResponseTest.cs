@@ -123,7 +123,7 @@ namespace Intacct.SDK.Tests.Xml
 
             var ex = Record.Exception(() => new OnlineResponse(stream));
             Assert.IsType<ResponseException>(ex);
-            Assert.Equal("Response authentication status failure", ex.Message);
+            Assert.Equal("Response authentication status failure - XL03000006 Sign-in information is incorrect", ex.Message);
         }
         
         [Fact]
@@ -217,7 +217,7 @@ namespace Intacct.SDK.Tests.Xml
 
               var ex = Record.Exception(() => new OnlineResponse(stream));
               Assert.IsType<ResponseException>(ex);
-              Assert.Equal("Response control status failure", ex.Message);
+              Assert.Equal("Response control status failure - PL04000055 This company is a demo company and has expired.", ex.Message);
         }
     }
 }

@@ -104,7 +104,7 @@ namespace Intacct.SDK.Tests.Xml
 
             var ex = Record.Exception(() => new MockAbstractResponse(stream));
             Assert.IsType<ResponseException>(ex);
-            Assert.Equal("Response control status failure", ex.Message);
+            Assert.Equal("Response control status failure - XL03000006 test is not a valid transport policy.", ex.Message);
         }
     }
 }

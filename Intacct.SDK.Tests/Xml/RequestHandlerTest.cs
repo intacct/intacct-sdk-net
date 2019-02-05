@@ -357,7 +357,7 @@ namespace Intacct.SDK.Tests.Xml
             
             var ex = await Record.ExceptionAsync(() => requestHandler.ExecuteOnline(contentBlock));
             Assert.IsType<ResponseException>(ex);
-            Assert.Equal("Response control status failure", ex.Message);
+            Assert.Equal("Response control status failure - XMLGW_JPP0002 Sign-in information is incorrect. Please check your request.", ex.Message);
         }
 
         [Fact]
