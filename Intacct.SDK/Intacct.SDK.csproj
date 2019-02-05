@@ -10,7 +10,7 @@
     <PackageLicenseUrl>https://github.com/Intacct/intacct-sdk-net/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://developer.intacct.com/tools/sdk-net/</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/Intacct/intacct-sdk-net/releases</PackageReleaseNotes>
-    <Copyright>Copyright © 2018 Sage Intacct, Inc.</Copyright>
+    <Copyright>Copyright © 2019 Sage Intacct, Inc.</Copyright>
     <PackageTags>intacct sdk sage</PackageTags>
   </PropertyGroup>
   <ItemGroup>
