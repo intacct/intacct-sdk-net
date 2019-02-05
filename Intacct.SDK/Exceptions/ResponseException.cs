@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -27,17 +27,30 @@ namespace Intacct.SDK.Exceptions
         {
         }
 
-        public ResponseException(string message) : base(message)
+        public ResponseException(string message)
+            : base(message)
         {
         }
 
-        public ResponseException(string message, List<string> errors) : base(message)
+        public ResponseException(string message, List<string> errors)
+            : base(ImplodeErrorsToMessage(message, errors))
         {
             Errors = errors;
         }
 
-        public ResponseException(string message, List<string> errors, Exception innerException) : base(message, innerException)
+        public ResponseException(string message, List<string> errors, Exception innerException)
+            : base(ImplodeErrorsToMessage(message, errors), innerException)
         {
+        }
+
+        private static string ImplodeErrorsToMessage(string message, List<string> errors)
+        {
+            if (errors.Count > 0)
+            {
+                message = message + " - " + string.Join(" - ", errors);
+            }
+
+            return message;
         }
     }
 }

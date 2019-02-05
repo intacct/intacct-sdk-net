@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -30,15 +30,23 @@ namespace Intacct.SDK.Credentials
         public static ClientConfig GetLoginCredentials(ClientConfig config)
         {
             ClientConfig creds = new ClientConfig();
+            if (!ProfileFileExists(config)) return creds;
+            
             IConfigurationSection data = GetIniProfileData(config);
 
             string companyId = data.GetSection("company_id").Value;
+            string entityId = data.GetSection("entity_id").Value;
             string userId = data.GetSection("user_id").Value;
             string userPassword = data.GetSection("user_password").Value;
             
             if (!string.IsNullOrEmpty(companyId))
             {
                 creds.CompanyId = companyId;
+            }
+
+            if (!string.IsNullOrEmpty(entityId))
+            {
+                creds.EntityId = entityId;
             }
             if (!string.IsNullOrEmpty(userId))
             {
@@ -55,6 +63,8 @@ namespace Intacct.SDK.Credentials
         public static ClientConfig GetSenderCredentials(ClientConfig config)
         {
             ClientConfig creds = new ClientConfig();
+            if (!ProfileFileExists(config)) return creds;
+            
             IConfigurationSection data = GetIniProfileData(config);
 
             string senderId = data.GetSection("sender_id").Value;
@@ -100,16 +110,22 @@ namespace Intacct.SDK.Credentials
             
             return profile;
         }
+
+        private static bool ProfileFileExists(ClientConfig config)
+        {
+            if (string.IsNullOrEmpty(config.ProfileFile))
+            {
+                config.ProfileFile = GetHomeDirProfile();
+            }
+            
+            return File.Exists(config.ProfileFile);
+        }
         
         private static IConfigurationSection GetIniProfileData(ClientConfig config)
         {
             if (string.IsNullOrEmpty(config.ProfileName))
             {
                 config.ProfileName = ProfileCredentialProvider.DefaultProfileName;
-            }
-            if (string.IsNullOrEmpty(config.ProfileFile))
-            {
-                config.ProfileFile = GetHomeDirProfile();
             }
             
             ConfigurationBuilder builder = new ConfigurationBuilder();

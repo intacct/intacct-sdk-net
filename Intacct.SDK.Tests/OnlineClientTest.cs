@@ -38,6 +38,7 @@ namespace Intacct.SDK.Tests
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>
@@ -48,6 +49,7 @@ namespace Intacct.SDK.Tests
                         <api>
                               <sessionid>unittest..</sessionid>
                               <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                              <locationid></locationid>
                         </api>
                   </data>
             </result>
@@ -99,6 +101,7 @@ namespace Intacct.SDK.Tests
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>
@@ -142,7 +145,7 @@ namespace Intacct.SDK.Tests
 
             var ex = await Record.ExceptionAsync(() => client.Execute(new ApiSessionCreate("func1UnitTest")));
             Assert.IsType<ResultException>(ex);
-            Assert.Equal("Result status: failure for Control ID: func1UnitTest", ex.Message);
+            Assert.Equal("Result status: failure for Control ID: func1UnitTest - Get API Session Failed Something went wrong", ex.Message);
         }
 
         [Fact]
@@ -162,6 +165,7 @@ namespace Intacct.SDK.Tests
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>
@@ -235,7 +239,7 @@ namespace Intacct.SDK.Tests
 
             var ex = await Record.ExceptionAsync(() => client.ExecuteBatch(content, requestConfig));
             Assert.IsType<ResultException>(ex);
-            Assert.Equal("Result status: failure for Control ID: func2UnitTest", ex.Message);
+            Assert.Equal("Result status: failure for Control ID: func2UnitTest - Get API Session Failed Something went wrong - XL03000009 The entire transaction in this operation has been rolled back due to an error.", ex.Message);
         }
 
         [Fact]
@@ -255,6 +259,7 @@ namespace Intacct.SDK.Tests
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>

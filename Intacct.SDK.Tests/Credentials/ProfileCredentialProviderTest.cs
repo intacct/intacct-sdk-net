@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -36,6 +36,26 @@ namespace Intacct.SDK.Tests.Credentials
             ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
 
             Assert.Equal("inicompanyid", loginCreds.CompanyId);
+            Assert.Null(loginCreds.EntityId);
+            Assert.Equal("iniuserid", loginCreds.UserId);
+            Assert.Equal("iniuserpass", loginCreds.UserPassword);
+        }
+        
+        [Fact]
+        public void GetLoginCredentialsWithEntityFromSpecificProfileTest()
+        {
+            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "Credentials", "Ini", "default.ini");
+
+            ClientConfig config = new ClientConfig()
+            {
+                ProfileFile = tempFile,
+                ProfileName = "entity",
+            };
+
+            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
+
+            Assert.Equal("inicompanyid", loginCreds.CompanyId);
+            Assert.Equal("inientityid", loginCreds.EntityId);
             Assert.Equal("iniuserid", loginCreds.UserId);
             Assert.Equal("iniuserpass", loginCreds.UserPassword);
         }
@@ -53,6 +73,24 @@ namespace Intacct.SDK.Tests.Credentials
             var ex = Record.Exception(() => ProfileCredentialProvider.GetLoginCredentials(config));
             Assert.IsType<ArgumentException>(ex);
             Assert.Equal("Profile name \"default\" not found in credentials file", ex.Message);
+        }
+
+        [Fact]
+        public void GetLoginCredentialsFromMissingIni()
+        {
+            string tempFile = Path.Combine(Directory.GetCurrentDirectory(), "invalid", "file.ini");
+
+            ClientConfig config = new ClientConfig()
+            {
+                ProfileFile = tempFile,
+            };
+
+            ClientConfig loginCreds = ProfileCredentialProvider.GetLoginCredentials(config);
+
+            Assert.Null(loginCreds.CompanyId);
+            Assert.Null(loginCreds.EntityId);
+            Assert.Null(loginCreds.UserId);
+            Assert.Null(loginCreds.UserPassword);
         }
     }
 }

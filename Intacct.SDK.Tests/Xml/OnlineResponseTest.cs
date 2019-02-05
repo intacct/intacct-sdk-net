@@ -29,6 +29,7 @@ namespace Intacct.SDK.Tests.Xml
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
             </authentication>
             <result>
@@ -39,6 +40,7 @@ namespace Intacct.SDK.Tests.Xml
                         <api>
                               <sessionid>fAkESesSiOnId..</sessionid>
                               <endpoint>https://api.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                              <locationid></locationid>
                         </api>
                   </data>
             </result>
@@ -99,6 +101,7 @@ namespace Intacct.SDK.Tests.Xml
                   <status>failure</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
             </authentication>
             <errormessage>
                   <error>
@@ -120,7 +123,7 @@ namespace Intacct.SDK.Tests.Xml
 
             var ex = Record.Exception(() => new OnlineResponse(stream));
             Assert.IsType<ResponseException>(ex);
-            Assert.Equal("Response authentication status failure", ex.Message);
+            Assert.Equal("Response authentication status failure - XL03000006 Sign-in information is incorrect", ex.Message);
         }
         
         [Fact]
@@ -167,6 +170,7 @@ namespace Intacct.SDK.Tests.Xml
                   <status>success</status>
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-10-22T20:58:27-07:00</sessiontimestamp>
             </authentication>
       </operation>
@@ -182,6 +186,38 @@ namespace Intacct.SDK.Tests.Xml
             var ex = Record.Exception(() => new OnlineResponse(stream));
             Assert.IsType<IntacctException>(ex);
             Assert.Equal("Result block is missing from operation element", ex.Message);
+        }
+        
+        [Fact]
+        public void ThrowResponseExceptionWithErrorsTest()
+        {
+              string xml = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<response>
+    <control>
+        <status>failure</status>
+        <senderid></senderid>
+        <controlid></controlid>
+    </control>
+    <errormessage>
+        <error>
+            <errorno>PL04000055</errorno>
+            <description></description>
+            <description2>This company is a demo company and has expired.</description2>
+            <correction></correction>
+        </error>
+    </errormessage>
+</response>";
+
+              Stream stream = new MemoryStream();
+              StreamWriter streamWriter = new StreamWriter(stream);
+              streamWriter.Write(xml);
+              streamWriter.Flush();
+            
+              stream.Position = 0;
+
+              var ex = Record.Exception(() => new OnlineResponse(stream));
+              Assert.IsType<ResponseException>(ex);
+              Assert.Equal("Response control status failure - PL04000055 This company is a demo company and has expired.", ex.Message);
         }
     }
 }

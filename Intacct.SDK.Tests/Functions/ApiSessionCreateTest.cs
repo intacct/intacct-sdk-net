@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -34,6 +34,38 @@ namespace Intacct.SDK.Tests.Functions
 </function>";
 
             ApiSessionCreate apiFunction = new ApiSessionCreate("unittest");
+            
+            this.CompareXml(expected, apiFunction);
+        }
+        
+        [Fact]
+        public void GetXmlWithLocationTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <getAPISession>
+        <locationid>100</locationid>
+    </getAPISession>
+</function>";
+
+            ApiSessionCreate apiFunction = new ApiSessionCreate("unittest");
+            apiFunction.EntityId = "100";
+            
+            this.CompareXml(expected, apiFunction);
+        }
+        
+        [Fact]
+        public void GetXmlWithEmptyLocationTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <getAPISession>
+        <locationid />
+    </getAPISession>
+</function>";
+
+            ApiSessionCreate apiFunction = new ApiSessionCreate("unittest");
+            apiFunction.EntityId = "";
             
             this.CompareXml(expected, apiFunction);
         }

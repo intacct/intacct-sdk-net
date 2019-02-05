@@ -27,6 +27,42 @@ namespace Intacct.SDK.Tests.Xml.Request
             
             this.CompareXml(expected, loginAuth);
         }
+        
+        [Fact]
+        public void WriteXmlWithEntityTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<authentication>
+    <login>
+        <userid>testuser</userid>
+        <companyid>testcompany</companyid>
+        <password>testpass</password>
+        <locationid>testentity</locationid>
+    </login>
+</authentication>";
+
+            LoginAuthentication loginAuth = new LoginAuthentication("testuser", "testcompany", "testpass", "testentity");
+            
+            this.CompareXml(expected, loginAuth);
+        }
+        
+        [Fact]
+        public void WriteXmlWithEmptyEntityTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<authentication>
+    <login>
+        <userid>testuser</userid>
+        <companyid>testcompany</companyid>
+        <password>testpass</password>
+        <locationid />
+    </login>
+</authentication>";
+
+            LoginAuthentication loginAuth = new LoginAuthentication("testuser", "testcompany", "testpass", "");
+            
+            this.CompareXml(expected, loginAuth);
+        }
 
         [Fact]
         public void InvalidCompanyIdTest()

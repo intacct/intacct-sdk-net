@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -24,6 +24,8 @@ namespace Intacct.SDK.Credentials
         
         public const string CompanyIdEnvName = "INTACCT_COMPANY_ID";
         
+        public const string EntityIdEnvName = "INTACCT_ENTITY_ID";
+        
         public const string UserIdEnvName = "INTACCT_USER_ID";
 
         public const string UserPasswordEnvName = "INTACCT_USER_PASSWORD";
@@ -31,6 +33,8 @@ namespace Intacct.SDK.Credentials
         public const string DefaultCompanyProfile = "default";
 
         public string CompanyId;
+
+        public string EntityId;
 
         public string UserId;
 
@@ -54,6 +58,11 @@ namespace Intacct.SDK.Credentials
             {
                 config.CompanyId = Environment.GetEnvironmentVariable(LoginCredentials.CompanyIdEnvName);
             }
+
+            if (string.IsNullOrEmpty(config.EntityId))
+            {
+                config.EntityId = Environment.GetEnvironmentVariable(LoginCredentials.EntityIdEnvName);
+            }
             if (string.IsNullOrEmpty(config.UserId))
             {
                 config.UserId = Environment.GetEnvironmentVariable(LoginCredentials.UserIdEnvName);
@@ -76,6 +85,11 @@ namespace Intacct.SDK.Credentials
                 {
                     config.CompanyId = profile.CompanyId;
                 }
+
+                if (!string.IsNullOrEmpty(profile.EntityId))
+                {
+                    config.EntityId = profile.EntityId;
+                }
                 if (!string.IsNullOrEmpty(profile.UserId))
                 {
                     config.UserId = profile.UserId;
@@ -91,6 +105,7 @@ namespace Intacct.SDK.Credentials
                 throw new ArgumentException("Required Company ID not supplied in config or env variable \"" +
                                             LoginCredentials.CompanyIdEnvName + "\"");
             }
+            // Entity ID is not required, no Error
             if (string.IsNullOrEmpty(config.UserId))
             {
                 throw new ArgumentException("Required User ID not supplied in config or env variable \"" +
@@ -103,6 +118,7 @@ namespace Intacct.SDK.Credentials
             }
 
             this.CompanyId = config.CompanyId;
+            this.EntityId = config.EntityId;
             this.UserId = config.UserId;
             this.Password = config.UserPassword;
             this.SenderCredentials = senderCreds;

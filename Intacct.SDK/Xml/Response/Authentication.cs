@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -25,6 +25,8 @@ namespace Intacct.SDK.Xml.Response
         public string UserId { get; }
 
         public string CompanyId { get; }
+        
+        public string EntityId { get; }
 
         public Authentication(XElement authentication)
         {
@@ -48,8 +50,15 @@ namespace Intacct.SDK.Xml.Response
                 throw new IntacctException("Authentication block is missing companyid element");
             }
             this.CompanyId = companyId.Value;
+            
+            var entityId = authentication.Element("locationid");
+            if (entityId != null)
+            {
+                this.EntityId = entityId.Value;
+            }
+           
 
-            // TODO add getter/setter for elements: clientstatus, clientid, locationid, sessiontimestamp
+            // TODO add getter/setter for elements: clientstatus, clientid, sessiontimestamp
         }
     }
 }

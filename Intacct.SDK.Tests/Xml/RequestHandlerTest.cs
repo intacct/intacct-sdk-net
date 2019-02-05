@@ -38,6 +38,7 @@ namespace Intacct.SDK.Tests.Xml
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>
@@ -48,6 +49,7 @@ namespace Intacct.SDK.Tests.Xml
                         <api>
                               <sessionid>unittest..</sessionid>
                               <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                              <locationid></locationid>
                         </api>
                   </data>
             </result>
@@ -190,6 +192,7 @@ namespace Intacct.SDK.Tests.Xml
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>
@@ -200,6 +203,7 @@ namespace Intacct.SDK.Tests.Xml
                         <api>
                               <sessionid>unittest..</sessionid>
                               <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                              <locationid></locationid>
                         </api>
                   </data>
             </result>
@@ -353,7 +357,7 @@ namespace Intacct.SDK.Tests.Xml
             
             var ex = await Record.ExceptionAsync(() => requestHandler.ExecuteOnline(contentBlock));
             Assert.IsType<ResponseException>(ex);
-            Assert.Equal("Response control status failure", ex.Message);
+            Assert.Equal("Response control status failure - XMLGW_JPP0002 Sign-in information is incorrect. Please check your request.", ex.Message);
         }
 
         [Fact]
@@ -410,6 +414,7 @@ namespace Intacct.SDK.Tests.Xml
                   <status>success</status>
                   <userid>testuser</userid>
                   <companyid>testcompany</companyid>
+                  <locationid></locationid>
                   <sessiontimestamp>2015-12-06T15:57:08-08:00</sessiontimestamp>
             </authentication>
             <result>
@@ -420,6 +425,7 @@ namespace Intacct.SDK.Tests.Xml
                         <api>
                               <sessionid>unittest..</sessionid>
                               <endpoint>https://unittest.intacct.com/ia/xml/xmlgw.phtml</endpoint>
+                              <locationid></locationid>
                         </api>
                   </data>
             </result>

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2018 Sage Intacct, Inc.
+ * Copyright 2019 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -20,21 +20,23 @@ namespace Intacct.SDK.Exceptions
 {
     public class ResultException: ResponseException
     {
-        
+
         public ResultException()
         {
         }
-
-        public ResultException(string message) : base(message)
+        
+        public ResultException(string message)
+            : base(message)
         {
         }
 
-        public ResultException(string message, List<string> errors) : base(message)
+        public ResultException(string message, List<string> errors)
+            : base(message, errors)
         {
-            this.Errors = errors;
         }
 
-        public ResultException(string message, List<string> errors, Exception innerException) : base(message, errors, innerException)
+        public ResultException(string message, List<string> errors, Exception innerException)
+            : base(message, errors, innerException)
         {
         }
     }
