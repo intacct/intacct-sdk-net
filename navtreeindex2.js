@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a9027af9bcada12d395e7825e007386c1":[0,0,0,2,1,6,5],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a9701411d4f416013f54c39010b251514":[0,0,0,2,1,6,11],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#aa8b020d4c8cac070bf00bad1c1cbe802":[0,0,0,2,1,6,0],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#aa9e79ce0122c2f7000d7a777d08750a3":[0,0,0,2,1,6,22],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#ab7b39d7343129188362c08131a507136":[0,0,0,2,1,6,8],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#abcf1cd9fac8e90b10f53a677750ebbb7":[0,0,0,2,1,6,17],
@@ -52,7 +55,8 @@ var NAVTREEINDEX2 =
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_ar_adjustment_summary_create.html#a4f9fac58aff8c4c4a73895497a3eb704":[0,0,0,2,1,12,1],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_ar_adjustment_summary_create.html#a70bc7e5f53c759dfbc0bb02eb026f31e":[0,0,0,2,1,12,0],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_ar_payment_apply.html":[0,0,0,2,1,13],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_ar_payment_apply.html#a595264dbabeb58edb62da4ee2e49b84b":[0,0,0,2,1,13,2],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_ar_payment_apply.html#a595264dbabeb58edb62da4ee2e49b84b":[0,0,0,2,1,13,3],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_ar_payment_apply.html#a78d28e2ac22e18bbf23568519d16791f":[0,0,0,2,1,13,2],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_ar_payment_apply.html#a91e6a59aff17d5fd2053986bf29cccf5":[0,0,0,2,1,13,1],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_ar_payment_apply.html#aefd232578cf4ffa8c0c0ee46286446d4":[0,0,0,2,1,13,0],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_ar_payment_create.html":[0,0,0,2,1,14],
@@ -109,6 +113,7 @@ var NAVTREEINDEX2 =
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_api_session_create.html":[0,0,0,2,15],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_api_session_create.html#a7e2e44bd59adfbad39194e7211b9276b":[0,0,0,2,15,0],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_api_session_create.html#ad0cbfe7652254df4de4ccd3938f8cdd6":[0,0,0,2,15,1],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_api_session_create.html#af8e8ad63780693796581fac7e6b26142":[0,0,0,2,15,2],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_cash_management_1_1_abstract_charge_card_transaction.html":[0,0,0,2,2,0],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_cash_management_1_1_abstract_charge_card_transaction.html#a0c2f3f73bc62a93c2ec56ae8b304f674":[0,0,0,2,2,0,7],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_cash_management_1_1_abstract_charge_card_transaction.html#a1547690ac55254fa0f1fb4886a435522":[0,0,0,2,2,0,10],
@@ -244,10 +249,5 @@ var NAVTREEINDEX2 =
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_date.html#ab3306bb57b835338a67eef7fae2642a3":[0,0,0,2,3,0,0,0,0,0],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_date_time.html":[0,0,0,2,3,0,0,0,1],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_date_time.html#a464f4bab0c83578ccb300750be03c7b9":[0,0,0,2,3,0,0,0,1,0],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_decimal.html":[0,0,0,2,3,0,0,0,2],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_decimal.html#ae0cd1a69bb2ec3a558e1990c8a29dfb5":[0,0,0,2,3,0,0,0,2,0],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_integer.html":[0,0,0,2,3,0,0,0,3],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_integer.html#aff2791935c195134ac6e23151c809e44":[0,0,0,2,3,0,0,0,3,0],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_null.html":[0,0,0,2,3,0,0,0,4],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_null.html#a67809e8f13ec44eaf41722ee7fa9981b":[0,0,0,2,3,0,0,0,4,0]
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_decimal.html":[0,0,0,2,3,0,0,0,2]
 };

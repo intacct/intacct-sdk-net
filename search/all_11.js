@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['intacct_2esdk_2eassemblyinfo_2ecs',['Intacct.SDK.AssemblyInfo.cs',['../_release_2netstandard1_86_2_intacct_8_s_d_k_8_assembly_info_8cs.html',1,'']]],
+  ['intacct_2esdk_2eassemblyinfo_2ecs',['Intacct.SDK.AssemblyInfo.cs',['../_release_2netstandard1_86_2_intacct_8_s_d_k_8_assembly_info_8cs.html',1,'(Global Namespace)'],['../_release_2netstandard2_80_2_intacct_8_s_d_k_8_assembly_info_8cs.html',1,'(Global Namespace)']]],
   ['read',['Read',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_read.html',1,'Intacct.SDK.Functions.Common.Read'],['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_read.html#ad54e9d31431526c906ba9a0c3d6aee2f',1,'Intacct.SDK.Functions.Common.Read.Read()']]],
   ['read_2ecs',['Read.cs',['../_read_8cs.html',1,'']]],
   ['readbyname',['ReadByName',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_read_by_name.html',1,'Intacct.SDK.Functions.Common.ReadByName'],['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_read_by_name.html#a9c024740053d27f14e4c19ac97f5a170',1,'Intacct.SDK.Functions.Common.ReadByName.ReadByName()']]],

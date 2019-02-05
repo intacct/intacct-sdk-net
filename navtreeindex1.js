@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#abb430b783bc97e6c644a08eda0f5823c":[0,0,0,2,0,8,17],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#abb46c1da9921a5c55ae923e2435d8c38":[0,0,0,2,0,8,28],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#ac246306c0c471d4ebbb418e079ddf8eb":[0,0,0,2,0,8,25],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#ac37889d33ab6189ab280ebac77b63e67":[0,0,0,2,0,8,40],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#ac4dbf62c5754a00d091bcb2abdcc569a":[0,0,0,2,0,8,58],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#ac652ff96e15ba50768fffc275782e911":[0,0,0,2,0,8,61],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a8228a9bc371aaf7b3cc1e19bed33ba1b":[0,0,0,2,1,6,20],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a89e60c570dcba522a54eb7395f75eb07":[0,0,0,2,1,6,7],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a8dd9549dd7cc1004f72da694d2d53cf8":[0,0,0,2,1,6,3],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a8f0d2d864eece63ef94c5f6cebc11a95":[0,0,0,2,1,6,6],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a9027af9bcada12d395e7825e007386c1":[0,0,0,2,1,6,5],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a9701411d4f416013f54c39010b251514":[0,0,0,2,1,6,11],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#aa8b020d4c8cac070bf00bad1c1cbe802":[0,0,0,2,1,6,0]
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a8f0d2d864eece63ef94c5f6cebc11a95":[0,0,0,2,1,6,6]
 };

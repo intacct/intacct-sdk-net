@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['intacct_2esdk_2eassemblyinfo_2ecs',['Intacct.SDK.AssemblyInfo.cs',['../_release_2netstandard1_86_2_intacct_8_s_d_k_8_assembly_info_8cs.html',1,'']]],
+  ['intacct_2esdk_2eassemblyinfo_2ecs',['Intacct.SDK.AssemblyInfo.cs',['../_release_2netstandard1_86_2_intacct_8_s_d_k_8_assembly_info_8cs.html',1,'(Global Namespace)'],['../_release_2netstandard2_80_2_intacct_8_s_d_k_8_assembly_info_8cs.html',1,'(Global Namespace)']]],
   ['read_2ecs',['Read.cs',['../_read_8cs.html',1,'']]],
   ['readbyname_2ecs',['ReadByName.cs',['../_read_by_name_8cs.html',1,'']]],
   ['readbyquery_2ecs',['ReadByQuery.cs',['../_read_by_query_8cs.html',1,'']]],

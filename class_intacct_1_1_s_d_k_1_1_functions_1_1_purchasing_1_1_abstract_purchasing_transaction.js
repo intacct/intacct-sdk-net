@@ -5,6 +5,7 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing
     [ "BaseCurrency", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a821cbc2f9f9bcd3bf46f45d6bec01f2f", null ],
     [ "CreatedFrom", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a58b3422f1086c530efb4ef3961add730", null ],
     [ "CustomFields", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#af748541a41f908e5356bb4eea9f3aea2", null ],
+    [ "DeliverToContactName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a27f00d67046885f5f71c51f68634458c", null ],
     [ "DocumentId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a1354b31260a98de75719fac88b559f02", null ],
     [ "DocumentNumber", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a2fcb5c85b01eb47c8cdae9f937c417b8", null ],
     [ "DueDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a74e707fc18e73a72e5c9c796e46a9c07", null ],

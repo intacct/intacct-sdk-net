@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['sendasync',['SendAsync',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_logging_handler.html#ab6795c115a44475ed81d277f55a6d290',1,'Intacct.SDK.Xml.LoggingHandler.SendAsync()'],['../class_intacct_1_1_s_d_k_1_1_xml_1_1_request_1_1_mock_handler.html#a3fe7a4bb3ac8138ed7cfa77716329fac',1,'Intacct.SDK.Xml.Request.MockHandler.SendAsync()']]],
+  ['sendasync',['SendAsync',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_logging_handler.html#ab6795c115a44475ed81d277f55a6d290',1,'Intacct.SDK.Xml.LoggingHandler.SendAsync()'],['../class_intacct_1_1_s_d_k_1_1_xml_1_1_request_1_1_mock_handler.html#a96eba09a9eed335a0a8a0f8117ad99f4',1,'Intacct.SDK.Xml.Request.MockHandler.SendAsync()']]],
   ['sendercredentials',['SenderCredentials',['../class_intacct_1_1_s_d_k_1_1_credentials_1_1_sender_credentials.html#a8101af3cf2a9ab09264fb9370f0fd676',1,'Intacct::SDK::Credentials::SenderCredentials']]],
   ['sessionauthentication',['SessionAuthentication',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_request_1_1_session_authentication.html#a61ddddfc45082316192c3f65d32b5fc8',1,'Intacct::SDK::Xml::Request::SessionAuthentication']]],
   ['sessioncredentials',['SessionCredentials',['../class_intacct_1_1_s_d_k_1_1_credentials_1_1_session_credentials.html#a74b0ce07ee0b7b9065cc1c60f669d678',1,'Intacct::SDK::Credentials::SessionCredentials']]],

@@ -5,6 +5,8 @@ var class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials =
     [ "CompanyIdEnvName", "class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials.html#aaa345a63314c56865bd74706afbe5785", null ],
     [ "CompanyProfileEnvName", "class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials.html#a00c33c9f3fbe30d62b3ece41ea364433", null ],
     [ "DefaultCompanyProfile", "class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials.html#a892369d891506be28fd5749e8f3ea565", null ],
+    [ "EntityId", "class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials.html#a3770e4511a4a54988043df7ba482890e", null ],
+    [ "EntityIdEnvName", "class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials.html#a25c80d3e483a9de92ab44e371c795b8a", null ],
     [ "Password", "class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials.html#a3fa935598d4a3dafb2b95f11ed2516ba", null ],
     [ "UserId", "class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials.html#a1a99f549e790d24da287c7234d5422cd", null ],
     [ "UserIdEnvName", "class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials.html#a172f98eacc839d4215e3342811102157", null ],

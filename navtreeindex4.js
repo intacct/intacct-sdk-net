@@ -1,5 +1,10 @@
 var NAVTREEINDEX4 =
 {
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_update.html#a90bb365245fa049bbb5075dcc6cde646":[0,0,0,2,4,25,0],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_update.html#afb440fbed6aa42fb0b24ed43258f8c75":[0,0,0,2,4,25,1],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_custom_allocation_split.html":[0,0,0,2,4,26],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_custom_allocation_split.html#a673a462ae5519c891eee9df7a29ffbf7":[0,0,0,2,4,26,0],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_department_create.html":[0,0,0,2,4,27],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_department_create.html#a6e00f1f1f556d3a078c08dcc200de6ae":[0,0,0,2,4,27,1],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_department_create.html#a734a39d468cd6eee4724ea349aa46284":[0,0,0,2,4,27,0],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_department_delete.html":[0,0,0,2,4,28],
@@ -244,10 +249,5 @@ var NAVTREEINDEX4 =
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#a7e73a6d38b06c2f83acc6b40d33dfb66":[0,0,0,2,7,3,3],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#a8b59fb06fdf113cdfa10e931829fb8f2":[0,0,0,2,7,3,0],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#a909be6fc1932ff8e93c53563d8444fe4":[0,0,0,2,7,3,1],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#aa8f79fe26d9737bb27a52d3a34621b90":[0,0,0,2,7,3,11],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#ac74a7aaca49d2a84d75045e0bd2c9551":[0,0,0,2,7,3,8],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#aeb50fe177ccd05926dee99d45d23a259":[0,0,0,2,7,3,9],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#af68caea5bce18f864eb111cead20f23f":[0,0,0,2,7,3,2],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#afd709d5d23045e4609ce708471f8b77c":[0,0,0,2,7,3,14],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#aff2eff4dba03f7d624697b1c3651f94d":[0,0,0,2,7,3,12]
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#aa8f79fe26d9737bb27a52d3a34621b90":[0,0,0,2,7,3,11]
 };

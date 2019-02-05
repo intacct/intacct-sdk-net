@@ -4,6 +4,7 @@ var class_intacct_1_1_s_d_k_1_1_client_config =
     [ "CompanyId", "class_intacct_1_1_s_d_k_1_1_client_config.html#a262256efb1421855bd252aa93668aab9", null ],
     [ "Credentials", "class_intacct_1_1_s_d_k_1_1_client_config.html#afaab3df1e219b5c01fe1dd80ba841c83", null ],
     [ "EndpointUrl", "class_intacct_1_1_s_d_k_1_1_client_config.html#aa2cb204a0922f0f5e71c2e3488477891", null ],
+    [ "EntityId", "class_intacct_1_1_s_d_k_1_1_client_config.html#a9a3edf48a3d09bcb08e8bcbe1864a275", null ],
     [ "Logger", "class_intacct_1_1_s_d_k_1_1_client_config.html#a50b8c6ab6a229a37dfcfa9b8486ec8ca", null ],
     [ "LogLevel", "class_intacct_1_1_s_d_k_1_1_client_config.html#a557a6a1f55f64da8767f0f38874b84f0", null ],
     [ "LogMessageFormatter", "class_intacct_1_1_s_d_k_1_1_client_config.html#ac2b885fe3076e08cbc219f02444fd817", null ],
