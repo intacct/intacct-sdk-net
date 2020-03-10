@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -19,7 +19,6 @@ namespace Intacct.SDK.Functions.AccountsPayable
 {
     public class ApPaymentRequestCreate : AbstractApPaymentRequest
     {
-
         public ApPaymentRequestCreate(string controlId = null) : base(controlId)
         {
         }
@@ -28,53 +27,49 @@ namespace Intacct.SDK.Functions.AccountsPayable
         {
             xml.WriteStartElement("function");
             xml.WriteAttribute("controlid", ControlId, true);
-           
-            xml.WriteStartElement("create_paymentrequest");
 
-            if (!string.IsNullOrWhiteSpace(ChargeCardId))
+            xml.WriteStartElement("create");
+            xml.WriteStartElement("APPYMT");
+
+            xml.WriteElement("PAYMENTMETHOD", PaymentMethod, true);
+            xml.WriteElement("FINANCIALENTITY", AccountId, true);
+            xml.WriteElement("VENDORID", VendorId, true);
+
+            xml.WriteElement("PAYMENTREQUESTMETHOD", MergeOption);
+            xml.WriteElement("GROUPPAYMENTS", GroupPayments);
+
+            if (ExchangeRateDate.HasValue)
             {
-                xml.WriteElement("chargecardid", ChargeCardId);
-            }
-            else
-            {
-                xml.WriteElement("bankaccountid", BankAccountId);
+                xml.WriteElement("EXCH_RATE_DATE", ExchangeRateDate, IaXmlWriter.IntacctDateFormat);
             }
 
-            xml.WriteElement("vendorid", VendorId, true);
+            xml.WriteElement("EXCH_RATE_TYPE_ID", ExchangeRateType);
+            xml.WriteElement("DOCNUMBER", DocumentNo);
+            xml.WriteElement("DESCRIPTION", Memo);
+            xml.WriteElement("PAYMENTCONTACT", NotificationContactName);
 
-            xml.WriteElement("memo", Memo);
+            xml.WriteElement("PAYMENTDATE", PaymentDate, IaXmlWriter.IntacctDateFormat, true);
 
-            xml.WriteElement("paymentmethod", PaymentMethod, true);
-
-            xml.WriteElement("grouppayments", GroupPayments);
-
-            xml.WriteStartElement("paymentdate");
-            xml.WriteDateSplitElements(PaymentDate, true);
-            xml.WriteEndElement(); //paymentdate
-
-            xml.WriteElement("paymentoption", MergeOption);
+            xml.WriteElement("CURRENCY", TransactionCurrency);
+            xml.WriteElement("BASECURR", BaseCurrency);
+            xml.WriteElement("AMOUNTTOPAY", TransactionAmountPaid);
+            xml.WriteElement("ACTION", Action);
 
             if (ApplyToTransactions.Count > 0)
             {
-                xml.WriteStartElement("paymentrequestitems");
-                foreach (ApPaymentRequestItem applyToTransaction in ApplyToTransactions)
+                xml.WriteStartElement("APPYMTDETAILS");
+                foreach (IApPaymentRequestApplyToTransaction applyToTransaction in ApplyToTransactions)
                 {
                     applyToTransaction.WriteXml(ref xml);
                 }
-                xml.WriteEndElement(); //paymentrequestitems
+
+                xml.WriteEndElement(); //APPYMTDETAILS
             }
 
-            xml.WriteElement("documentnumber", DocumentNo);
-             
-            // TODO: review paymentdescription vs memo
-            xml.WriteElement("paymentdescription", Memo);
-
-            xml.WriteElement("paymentcontact", NotificationContactName);
-
-            xml.WriteEndElement(); //create_paymentrequest
+            xml.WriteEndElement(); //APPYMT
+            xml.WriteEndElement(); //create
 
             xml.WriteEndElement(); //function
         }
-
     }
 }

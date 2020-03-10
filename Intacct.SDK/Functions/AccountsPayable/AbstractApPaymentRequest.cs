@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -25,9 +25,21 @@ namespace Intacct.SDK.Functions.AccountsPayable
 
         public string PaymentMethod;
 
-        public string BankAccountId;
+        public string AccountId;
 
-        public string ChargeCardId;
+        [Obsolete("This property is obsolete. Use AccountId instead.", false)]
+        public string BankAccountId
+        {
+            get => AccountId;
+            set => AccountId = value;
+        }
+
+        [Obsolete("This property is obsolete. Use AccountId instead.", false)]
+        public string ChargeCardId
+        {
+            get => AccountId;
+            set => AccountId = value;
+        }
 
         public string VendorId;
 
@@ -36,16 +48,32 @@ namespace Intacct.SDK.Functions.AccountsPayable
         public bool? GroupPayments;
 
         public DateTime PaymentDate;
+        
+        public string BaseCurrency;
+        
+        public string TransactionCurrency;
+        
+        public decimal? TransactionAmountPaid;
 
-        public decimal TransactionAmount;
-
+        [Obsolete("This property is obsolete. Use TransactionAmountPaid instead.", false)]
+        public decimal? TransactionAmount
+        {
+            get => TransactionAmountPaid;
+            set => TransactionAmountPaid = value;
+        }
+        
+        public DateTime? ExchangeRateDate;
+        public string ExchangeRateType;
+        
         public string DocumentNo;
 
         public string Memo;
 
         public string NotificationContactName;
+        
+        public string Action;
 
-        public List<ApPaymentRequestItem> ApplyToTransactions = new List<ApPaymentRequestItem>();
+        public List<IApPaymentRequestApplyToTransaction> ApplyToTransactions = new List<IApPaymentRequestApplyToTransaction>();
 
         protected AbstractApPaymentRequest(string controlId = null) : base(controlId)
         {
