@@ -21,9 +21,9 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy
         {
         }
 
-        public override string GetDirection()
+        protected override string GetDirection()
         {
-            return Direction.ascending.ToString();
+            return Direction.Ascending.ToString().ToLower();
         }
     }
 }

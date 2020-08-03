@@ -13,10 +13,12 @@
  * permissions and limitations under the License.
  */
 
+using Intacct.SDK.Xml;
+
 namespace Intacct.SDK.Functions.Common.NewQuery
 {
-    public interface IQueryFunction
+    public interface IQueryFunction : IXmlObject
     {
-        
+        new void WriteXml(ref IaXmlWriter xml);
     }
 }

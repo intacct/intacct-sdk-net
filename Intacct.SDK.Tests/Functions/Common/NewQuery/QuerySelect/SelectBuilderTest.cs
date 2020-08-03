@@ -14,7 +14,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,7 +28,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
     public class SelectBuilderTest : XmlObjectTestHelper
     {
         [Fact]
-        public void TestField()
+        public void FieldTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>" +
                               "<field>CUSTOMERID</field>";
@@ -42,7 +41,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Field("CUSTOMERID").GetFields();
+            ISelect[] fields = builder.Field("CUSTOMERID").GetFields();
 
             foreach (var field in fields)
             {
@@ -58,7 +57,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         }
         
         [Fact]
-        public void NullField()
+        public void NullFieldTest()
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Field(null));
             Assert.IsType<ArgumentException>(ex);
@@ -66,7 +65,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         }
         
         [Fact]
-        public void EmptyField()
+        public void EmptyFieldTest()
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Field(""));
             Assert.IsType<ArgumentException>(ex);
@@ -74,16 +73,16 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         }
         
         [Fact]
-        public void Fields()
+        public void CountFieldsTest()
         {
             string[] fields = {"CUSTOMERID", "TOTALDUE", "WHENDUE", "TOTALENTERED", "TOTALDUE", "RECORDNO"};
-            List<ISelect> fieldList = (new SelectBuilder()).Fields(fields).GetFields();
+            ISelect[] fieldList = (new SelectBuilder()).Fields(fields).GetFields();
             
-            Assert.Equal(fields.Count(), fieldList.Count);
+            Assert.Equal(fields.Count(), fieldList.Length);
         }
         
         [Fact]
-        public void EmptyFields()
+        public void EmptyFieldsTest()
         {
             string[] fields = {""};
             var ex = Record.Exception(() => (new SelectBuilder()).Fields(fields));
@@ -92,7 +91,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         }
 
         [Fact]
-        public void TestAverage()
+        public void AverageTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>" +
                               "<avg>PRICE</avg>";
@@ -105,7 +104,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Average("PRICE").GetFields();
+            ISelect[] fields = builder.Average("PRICE").GetFields();
 
             foreach (var field in fields)
             {
@@ -121,15 +120,15 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         }
 
         [Fact]
-        public void TestNullAverage()
+        public void NullAverageTest()
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Average(null));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Field name for avg cannot be empty or null. Provide a field name for the builder.", ex.Message);
+            Assert.Equal("Field name for Avg cannot be empty or null. Provide a field name for the builder.", ex.Message);
         }
 
         [Fact]
-        public void TestCount()
+        public void CountTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>" +
                               "<count>PRICE</count>";
@@ -142,7 +141,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Count("PRICE").GetFields();
+            ISelect[] fields = builder.Count("PRICE").GetFields();
 
             foreach (var field in fields)
             {
@@ -158,15 +157,15 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         }
         
         [Fact]
-        public void TestNullCount()
+        public void NullCountTest()
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Count(null));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Field name for count cannot be empty or null. Provide a field name for the builder.", ex.Message);
+            Assert.Equal("Field name for Count cannot be empty or null. Provide a field name for the builder.", ex.Message);
         }
         
         [Fact]
-        public void TestMinimum()
+        public void MinimumTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>" +
                               "<min>PRICE</min>";
@@ -179,7 +178,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Minimum("PRICE").GetFields();
+            ISelect[] fields = builder.Minimum("PRICE").GetFields();
 
             foreach (var field in fields)
             {
@@ -195,15 +194,15 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         }
         
         [Fact]
-        public void TestNullMinimum()
+        public void NullMinimumTest()
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Minimum(null));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Field name for min cannot be empty or null. Provide a field name for the builder.", ex.Message);
+            Assert.Equal("Field name for Min cannot be empty or null. Provide a field name for the builder.", ex.Message);
         }
         
         [Fact]
-        public void TestMaximum()
+        public void MaximumTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>" +
                               "<max>PRICE</max>";
@@ -216,7 +215,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Maximum("PRICE").GetFields();
+            ISelect[] fields = builder.Maximum("PRICE").GetFields();
 
             foreach (var field in fields)
             {
@@ -232,15 +231,15 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         }
         
         [Fact]
-        public void TestNullMaximum()
+        public void NullMaximumTest()
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Maximum(null));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Field name for max cannot be empty or null. Provide a field name for the builder.", ex.Message);
+            Assert.Equal("Field name for Max cannot be empty or null. Provide a field name for the builder.", ex.Message);
         }
         
         [Fact]
-        public void TestSum()
+        public void SumTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>" +
                               "<sum>PRICE</sum>";
@@ -253,7 +252,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Sum("PRICE").GetFields();
+            ISelect[] fields = builder.Sum("PRICE").GetFields();
 
             foreach (var field in fields)
             {
@@ -269,11 +268,11 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         }
         
         [Fact]
-        public void TestNullSum()
+        public void NullSumTest()
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Sum(null));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Field name for sum cannot be empty or null. Provide a field name for the builder.", ex.Message);
+            Assert.Equal("Field name for Sum cannot be empty or null. Provide a field name for the builder.", ex.Message);
         }
     }
 }

@@ -14,15 +14,13 @@
  */
 
 using System;
-using System.Linq.Expressions;
 
 namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 {
     public class SelectFunctionFactory
     {
-        public AbstractSelectFunction create(string functionName, string fieldName)
+        public AbstractSelectFunction Create(AbstractSelectFunction.Aggregate functionName, string fieldName)
         {
-            AbstractSelectFunction function;
             if (string.IsNullOrEmpty(fieldName))
             {
                 throw new ArgumentException("Field name for " + functionName +  " cannot be empty or null. Provide a field name for the builder.");
@@ -30,26 +28,19 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 
             switch (functionName)
             {
-                case AbstractSelectFunction.AVERAGE:
-                    function = new Average(fieldName);
-                    break;
-                case AbstractSelectFunction.COUNT:
-                    function = new Count(fieldName);
-                    break;
-                case AbstractSelectFunction.MINIMUM:
-                    function = new Minimum(fieldName);
-                    break;
-                case AbstractSelectFunction.MAXIMUM:
-                    function = new Maximum(fieldName);
-                    break;
-                case AbstractSelectFunction.SUM:
-                    function = new Sum(fieldName);
-                    break;
-                default:
-                    throw new ArgumentException(functionName + " function doesn't exist.");
+                case AbstractSelectFunction.Aggregate.Avg:
+                    return new Average(fieldName);
+                case AbstractSelectFunction.Aggregate.Count:
+                    return new Count(fieldName);
+                case AbstractSelectFunction.Aggregate.Min:
+                    return new Minimum(fieldName);
+                case AbstractSelectFunction.Aggregate.Max:
+                    return new Maximum(fieldName);
+                case AbstractSelectFunction.Aggregate.Sum:
+                    return new Sum(fieldName);
             }
 
-            return function;
+            throw new ArgumentException(functionName + " function doesn't exist.");
         }
     }
 }

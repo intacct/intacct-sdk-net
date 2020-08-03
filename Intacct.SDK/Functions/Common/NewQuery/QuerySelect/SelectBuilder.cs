@@ -21,7 +21,7 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
     {
         private readonly List<ISelect> _selects;
 
-        private SelectFunctionFactory _factory;
+        private readonly SelectFunctionFactory _factory;
 
         public SelectBuilder()
         {
@@ -48,37 +48,37 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 
         public SelectBuilder Average(string fieldName)
         {
-            _selects.Add(_factory.create(AbstractSelectFunction.AVERAGE, fieldName));
+            _selects.Add(_factory.Create(AbstractSelectFunction.Aggregate.Avg, fieldName));
             return this;
         }
 
         public SelectBuilder Count(string fieldName)
         {
-            _selects.Add(_factory.create(AbstractSelectFunction.COUNT, fieldName));
+            _selects.Add(_factory.Create(AbstractSelectFunction.Aggregate.Count, fieldName));
             return this;
         }
 
         public SelectBuilder Minimum(string fieldName)
         {
-            _selects.Add(_factory.create(AbstractSelectFunction.MINIMUM, fieldName));
+            _selects.Add(_factory.Create(AbstractSelectFunction.Aggregate.Min, fieldName));
             return this;
         }
 
         public SelectBuilder Maximum(string fieldName)
         {
-            _selects.Add(_factory.create(AbstractSelectFunction.MAXIMUM, fieldName));
+            _selects.Add(_factory.Create(AbstractSelectFunction.Aggregate.Max, fieldName));
             return this;
         }
 
         public SelectBuilder Sum(string fieldName)
         {
-            _selects.Add(_factory.create(AbstractSelectFunction.SUM, fieldName));
+            _selects.Add(_factory.Create(AbstractSelectFunction.Aggregate.Sum, fieldName));
             return this;
         }
         
-        public List<ISelect> GetFields()
+        public ISelect[] GetFields()
         {
-            return _selects;
+            return _selects.ToArray();
         }
     }
 }

@@ -13,17 +13,12 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
-{
-    public class Maximum : AbstractSelectFunction
-    {
-        public Maximum(string fieldName) : base(fieldName)
-        {
-        }
+using Intacct.SDK.Xml;
 
-        protected override string GetFunctionName()
-        {
-            return Aggregate.Max.ToString().ToLower();
-        }
+namespace Intacct.SDK.Functions.Common.NewQuery.QueryFilter
+{
+    public interface IFilter
+    {
+        void WriteXml(ref IaXmlWriter xml);
     }
 }

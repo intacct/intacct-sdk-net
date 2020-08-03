@@ -21,9 +21,9 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
         {
         }
 
-        public override string getFunctionName()
+        protected override string GetFunctionName()
         {
-            return AVERAGE;
+            return Aggregate.Avg.ToString().ToLower();
         }
     }
 }

@@ -14,14 +14,13 @@
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy
 {
     public class OrderBuilder
     {
-        private List<IOrder> _orders;
+        private readonly List<IOrder> _orders;
 
         public OrderBuilder()
         {
@@ -30,7 +29,7 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy
 
         public OrderBuilder Ascending(string fieldName)
         {
-            this.validateFieldName(fieldName);
+            this.ValidateFieldName(fieldName);
             OrderAscending orderAscending = new OrderAscending(fieldName);
             this._orders.Add(orderAscending);
 
@@ -39,14 +38,14 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy
         
         public OrderBuilder Descending(string fieldName)
         {
-            this.validateFieldName(fieldName);
+            this.ValidateFieldName(fieldName);
             OrderDescending orderDescending = new OrderDescending(fieldName);
             this._orders.Add(orderDescending);
 
             return this;
         }
 
-        private void validateFieldName(string fieldName)
+        private void ValidateFieldName(string fieldName)
         {
             if (string.IsNullOrEmpty(fieldName))
             {
@@ -54,9 +53,9 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy
             }
         }
 
-        public List<IOrder> getOrders()
+        public IOrder[] GetOrders()
         {
-            return this._orders;
+            return this._orders.ToArray();
         }
     }
 }

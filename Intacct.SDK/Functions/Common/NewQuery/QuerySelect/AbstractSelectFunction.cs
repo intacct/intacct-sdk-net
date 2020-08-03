@@ -19,28 +19,27 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 {
     public abstract class AbstractSelectFunction : ISelect
     {
-        public const string AVERAGE = "avg";
-
-        public const string MINIMUM = "min";
-
-        public const string MAXIMUM = "max";
-
-        public const string COUNT = "count";
-
-        public const string SUM = "sum";
-
+        public enum Aggregate
+        {
+            Avg,
+            Min,
+            Max,
+            Count,
+            Sum
+        }
+        
         private readonly string _fieldName;
 
-        public AbstractSelectFunction(string fieldName)
+        protected AbstractSelectFunction(string fieldName)
         {
             _fieldName = fieldName;
         }
 
-        public abstract string getFunctionName();
+        protected abstract string GetFunctionName();
     
         public void WriteXml(ref IaXmlWriter xml)
         {
-            xml.WriteElement(getFunctionName(), _fieldName, false);
+            xml.WriteElement(GetFunctionName(), _fieldName);
         }
     }
 }

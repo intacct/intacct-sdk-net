@@ -18,8 +18,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using Intacct.SDK.Exceptions;
 using Intacct.SDK.Functions.Common.NewQuery;
-using Intacct.SDK.Functions;
+using Intacct.SDK.Functions.Common.NewQuery.QueryFilter;
 using Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy;
 using Intacct.SDK.Functions.Common.NewQuery.QuerySelect;
 using Intacct.SDK.Tests.Xml;
@@ -31,7 +32,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
     public class QueryTest : XmlObjectTestHelper
     {
         [Fact]
-        public void TestDefaultParams()
+        public void DefaultParamsTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
@@ -44,9 +45,9 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 </function>";
 
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Field("CUSTOMERID").GetFields();
+            ISelect[] fields = builder.Field("CUSTOMERID").GetFields();
             
-            QueryFunction query = new QueryFunction("unittest")
+            IQueryFunction query = new QueryFunction("unittest")
             {
                 ObjectName =  "CUSTOMER",
                 SelectFields =  fields
@@ -56,7 +57,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
         }
 
         [Fact]
-        public void TestALLParams()
+        public void AllParamsTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
@@ -76,9 +77,9 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 </function>";
 
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Field("CUSTOMERID").Field("RECORDNO").GetFields();
+            ISelect[] fields = builder.Field("CUSTOMERID").Field("RECORDNO").GetFields();
             
-            QueryFunction query = new QueryFunction("unittest")
+            IQueryFunction query = new QueryFunction("unittest")
             {
                 ObjectName =  "CUSTOMER",
                 DocParId = "REPORT",
@@ -92,7 +93,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
         }
         
         [Fact]
-        public void TestEmptySelect()
+        public void EmptySelectTest()
         {
             Stream stream = new MemoryStream();
             XmlWriterSettings xmlSettings = new XmlWriterSettings
@@ -102,9 +103,9 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            QueryFunction query = new QueryFunction("unittest")
+            IQueryFunction query = new QueryFunction("unittest")
             {
-                SelectFields = new List<ISelect>()
+                SelectFields = new ISelect[0]
             };
             
             var ex = Record.Exception(() => query.WriteXml(ref xml));
@@ -113,7 +114,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
         }
         
         [Fact]
-        public void TestMissingObject()
+        public void MissingObjectTest()
         {
             Stream stream = new MemoryStream();
             XmlWriterSettings xmlSettings = new XmlWriterSettings
@@ -124,9 +125,9 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
 
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Field("CUSTOMERID").GetFields();
+            ISelect[] fields = builder.Field("CUSTOMERID").GetFields();
 
-            QueryFunction query = new QueryFunction("unittest")
+            IQueryFunction query = new QueryFunction("unittest")
             {
                 SelectFields =  fields
             };
@@ -137,7 +138,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
         }
         
         [Fact]
-        public void TestNotSelectFields()
+        public void NoSelectFieldsTest()
         {
             Stream stream = new MemoryStream();
             XmlWriterSettings xmlSettings = new XmlWriterSettings
@@ -147,7 +148,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            QueryFunction query = new QueryFunction("unittest")
+            IQueryFunction query = new QueryFunction("unittest")
             {
                 ObjectName = "CUSTOMER"
             };
@@ -158,7 +159,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
         }
         
         [Fact]
-        public void TestEmptyObjectName()
+        public void EmptyObjectNameTest()
         {
             Stream stream = new MemoryStream();
             XmlWriterSettings xmlSettings = new XmlWriterSettings
@@ -169,9 +170,9 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Field("CUSTOMERID").GetFields();
+            ISelect[] fields = builder.Field("CUSTOMERID").GetFields();
 
-            QueryFunction query = new QueryFunction("unittest")
+            IQueryFunction query = new QueryFunction("unittest")
             {
                 ObjectName = "",
                 SelectFields =  fields
@@ -183,18 +184,10 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
         }
         
         [Fact]
-        public void TestNegativeOffset()
+        public void NegativeOffsetTest()
         {
-            Stream stream = new MemoryStream();
-            XmlWriterSettings xmlSettings = new XmlWriterSettings
-            {
-                Encoding = Encoding.GetEncoding("UTF-8")
-            };
-
-            IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
-            
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Field("CUSTOMERID").GetFields();
+            ISelect[] fields = builder.Field("CUSTOMERID").GetFields();
 
             QueryFunction query = new QueryFunction("unittest")
             {
@@ -203,23 +196,15 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             };
             
             var ex = Record.Exception(() => query.Offset = -1);
-            Assert.IsType<ArgumentException>(ex);
+            Assert.IsType<IntacctException>(ex);
             Assert.Equal("Offset cannot be negative. Set Offset to zero or greater than zero.", ex.Message);
         }
         
         [Fact]
-        public void TestNegativePagesize()
+        public void NegativePagesizeTest()
         {
-            Stream stream = new MemoryStream();
-            XmlWriterSettings xmlSettings = new XmlWriterSettings
-            {
-                Encoding = Encoding.GetEncoding("UTF-8")
-            };
-
-            IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
-            
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Field("CUSTOMERID").GetFields();
+            ISelect[] fields = builder.Field("CUSTOMERID").GetFields();
 
             QueryFunction query = new QueryFunction("unittest")
             {
@@ -228,12 +213,28 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             };
             
             var ex = Record.Exception(() => query.PageSize = -1);
-            Assert.IsType<ArgumentException>(ex);
+            Assert.IsType<IntacctException>(ex);
             Assert.Equal("PageSize cannot be negative. Set PageSize greater than zero.", ex.Message);
         }
         
         [Fact]
-        public void TestFields()
+        public void EmptyFieldNameForAscendingTest()
+        {
+            var ex = Record.Exception(() => (new OrderBuilder()).Ascending(""));
+            Assert.IsType<ArgumentException>(ex);
+            Assert.Equal("Field name for field cannot be empty or null. Provide a field for the builder.", ex.Message);
+        }
+
+        [Fact]
+        public void EmptyFieldNameForDescendingTest()
+        {
+            var ex = Record.Exception(() => (new OrderBuilder()).Descending(""));
+            Assert.IsType<ArgumentException>(ex);
+            Assert.Equal("Field name for field cannot be empty or null. Provide a field for the builder.", ex.Message);
+        }
+        
+        [Fact]
+        public void FieldsTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
@@ -257,10 +258,10 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
                 "TOTALDUE",
                 "RECORDNO" };
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Fields(fieldNames).GetFields();
+            ISelect[] fields = builder.Fields(fieldNames).GetFields();
             
             
-            QueryFunction query = new QueryFunction("unittest")
+            IQueryFunction query = new QueryFunction("unittest")
             {
                 ObjectName =  "ARINVOICE",
                 SelectFields =  fields
@@ -269,7 +270,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             this.CompareXml(expected, query);
         }
         [Fact]
-        public void TestAggregateFunctions()
+        public void AggregateFunctionsTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
@@ -285,15 +286,9 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
         <object>ARINVOICE</object>
     </query>
 </function>";
-
-            string[] fieldNames = { "CUSTOMERID",
-                "TOTALDUE",
-                "WHENDUE",
-                "TOTALENTERED",
-                "TOTALDUE",
-                "RECORDNO" };
+            
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Field("CUSTOMERID").
+            ISelect[] fields = builder.Field("CUSTOMERID").
                     Average("TOTALDUE").
                     Minimum("WHENDUE").
                     Maximum("TOTALENTERED").
@@ -301,7 +296,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
                     Count("RECORDNO").
                     GetFields();
 
-            QueryFunction query = new QueryFunction("unittest")
+            IQueryFunction query = new QueryFunction("unittest")
             {
                 ObjectName =  "ARINVOICE",
                 SelectFields =  fields
@@ -311,7 +306,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
         }
         
         [Fact]
-        public void TestOrderBy()
+        public void OrderByTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
@@ -334,15 +329,303 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 </function>";
 
             SelectBuilder builder = new SelectBuilder();
-            List<ISelect> fields = builder.Field("CUSTOMERID").GetFields();
+            ISelect[] fields = builder.Field("CUSTOMERID").GetFields();
 
-            List<IOrder> orderBy = (new OrderBuilder()).Ascending("TOTALDUE").Descending("RECORDNO").getOrders();
+            IOrder[] orderBy = (new OrderBuilder()).Ascending("TOTALDUE").Descending("RECORDNO").GetOrders();
             
-            QueryFunction query = new QueryFunction("unittest")
+            IQueryFunction query = new QueryFunction("unittest")
             {
                 ObjectName =  "CLASS",
                 SelectFields = fields,
                 OrderBy = orderBy
+            };
+            
+            this.CompareXml(expected, query);
+        }
+        
+        [Fact]
+        public void EmptyOrderByTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <query>
+        <select>
+            <field>CUSTOMERID</field>
+        </select>
+        <object>CLASS</object>
+    </query>
+</function>";
+
+            SelectBuilder builder = new SelectBuilder();
+            ISelect[] fields = builder.Field("CUSTOMERID").GetFields();
+
+            IQueryFunction query = new QueryFunction("unittest")
+            {
+                ObjectName =  "CLASS",
+                SelectFields = fields,
+                OrderBy = new IOrder[0]
+            };
+            
+            this.CompareXml(expected, query);
+        }
+        
+        [Fact]
+        public void FilterTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <query>
+        <select>
+            <field>CUSTOMERID</field>
+            <field>RECORDNO</field>
+        </select>
+        <object>ARINVOICE</object>
+        <filter>
+            <lessthanorequalto>
+                <field>RECORDNO</field>
+                <value>10</value>
+            </lessthanorequalto>
+        </filter>
+    </query>
+</function>";
+
+            SelectBuilder builder = new SelectBuilder();
+            ISelect[] fields = builder.Fields(new[] {"CUSTOMERID", "RECORDNO"}).GetFields();
+
+            IFilter filter = (new Filter("RECORDNO")).LessThanOrEqualTo("10");
+            
+            IQueryFunction query = new QueryFunction("unittest")
+            {
+                ObjectName =  "ARINVOICE",
+                SelectFields = fields,
+                Filter = filter
+            };
+            
+            this.CompareXml(expected, query);
+        }
+        
+        [Fact]
+        public void FilterAndConditionTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <query>
+        <select>
+            <field>CUSTOMERID</field>
+            <field>RECORDNO</field>
+        </select>
+        <object>ARINVOICE</object>
+        <filter>
+            <and>
+                <greaterthanorequalto>
+                    <field>RECORDNO</field>
+                    <value>1</value>
+                </greaterthanorequalto>
+                <lessthanorequalto>
+                    <field>RECORDNO</field>
+                    <value>100</value>
+                </lessthanorequalto>
+            </and>
+        </filter>
+    </query>
+</function>";
+
+            SelectBuilder builder = new SelectBuilder();
+            ISelect[] fields = builder.Fields(new[] {"CUSTOMERID","RECORDNO"}).GetFields();
+
+            AndOperator filter = new AndOperator(new List<IFilter>());
+            filter.AddFilter((new Filter("RECORDNO")).GreaterThanOrEqualTo("1"));
+            filter.AddFilter((new Filter("RECORDNO")).LessThanOrEqualTo("100"));
+            
+            IQueryFunction query = new QueryFunction("unittest")
+            {
+                ObjectName =  "ARINVOICE",
+                SelectFields = fields,
+                Filter = filter
+            };
+            
+            this.CompareXml(expected, query);
+        }
+        
+        [Fact]
+        public void FilterOrConditionTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <query>
+        <select>
+            <field>CUSTOMERID</field>
+            <field>RECORDNO</field>
+        </select>
+        <object>ARINVOICE</object>
+        <filter>
+            <or>
+                <lessthanorequalto>
+                    <field>RECORDNO</field>
+                    <value>10</value>
+                </lessthanorequalto>
+                <equalto>
+                    <field>RECORDNO</field>
+                    <value>100</value>
+                </equalto>
+                <equalto>
+                    <field>RECORDNO</field>
+                    <value>1000</value>
+                </equalto>
+                <equalto>
+                    <field>RECORDNO</field>
+                    <value>10000</value>
+                </equalto>
+            </or>
+        </filter>
+    </query>
+</function>";
+
+            SelectBuilder builder = new SelectBuilder();
+            ISelect[] fields = builder.Fields(new[] {"CUSTOMERID","RECORDNO"}).GetFields();
+
+            OrOperator filter = new OrOperator(new List<IFilter>());
+            filter.AddFilter((new Filter("RECORDNO")).LessThanOrEqualTo("10"));
+            filter.AddFilter((new Filter("RECORDNO")).EqualTo("100"));
+            filter.AddFilter((new Filter("RECORDNO")).EqualTo("1000"));
+            filter.AddFilter((new Filter("RECORDNO")).EqualTo("10000"));
+            
+            IQueryFunction query = new QueryFunction("unittest")
+            {
+                ObjectName =  "ARINVOICE",
+                SelectFields = fields,
+                Filter = filter
+            };
+            
+            this.CompareXml(expected, query);
+        }
+        
+        [Fact]
+        public void FilterOrWithAndConditionTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <query>
+        <select>
+            <field>BATCHNO</field>
+            <field>RECORDNO</field>
+            <field>STATE</field>
+        </select>
+        <object>GLBATCH</object>
+        <filter>
+            <or>
+                <equalto>
+                    <field>JOURNAL</field>
+                    <value>APJ</value>
+                </equalto>
+                <and>
+                    <greaterthanorequalto>
+                        <field>BATCHNO</field>
+                        <value>1</value>
+                    </greaterthanorequalto>
+                    <equalto>
+                        <field>STATE</field>
+                        <value>Posted</value>
+                    </equalto>
+                </and>
+            </or>
+        </filter>
+    </query>
+</function>";
+
+            SelectBuilder builder = new SelectBuilder();
+            ISelect[] fields = builder.Fields(new[] {"BATCHNO","RECORDNO","STATE"}).GetFields();
+
+            AndOperator batchnoAndState = new AndOperator(new List<IFilter>());
+            batchnoAndState.AddFilter((new Filter("BATCHNO")).GreaterThanOrEqualTo("1"));
+            batchnoAndState.AddFilter((new Filter("STATE")).EqualTo("Posted"));
+            
+            IFilter journal = new Filter("JOURNAL").EqualTo("APJ");
+            
+            IFilter filter = new OrOperator(new List<IFilter>(){journal, batchnoAndState});
+            
+            IQueryFunction query = new QueryFunction("unittest")
+            {
+                ObjectName =  "GLBATCH",
+                SelectFields = fields,
+                Filter = filter
+            };
+            
+            this.CompareXml(expected, query);
+        }
+        
+        [Fact]
+        public void ThreeLevelFilterTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <query>
+        <select>
+            <field>BATCHNO</field>
+            <field>RECORDNO</field>
+            <field>STATE</field>
+        </select>
+        <object>GLBATCH</object>
+        <filter>
+            <or>
+                <and>
+                    <equalto>
+                        <field>JOURNAL</field>
+                        <value>APJ</value>
+                    </equalto>
+                    <equalto>
+                        <field>STATE</field>
+                        <value>Posted</value>
+                    </equalto>
+                </and>
+                <and>
+                    <equalto>
+                        <field>JOURNAL</field>
+                        <value>RCPT</value>
+                    </equalto>
+                    <equalto>
+                        <field>STATE</field>
+                        <value>Posted</value>
+                    </equalto>
+                    <or>
+                        <equalto>
+                            <field>RECORDNO</field>
+                            <value>168</value>
+                        </equalto>
+                        <equalto>
+                            <field>RECORDNO</field>
+                            <value>132</value>
+                        </equalto>
+                    </or>
+                </and>
+            </or>
+        </filter>
+    </query>
+</function>";
+
+            SelectBuilder builder = new SelectBuilder();
+            ISelect[] fields = builder.Fields(new[] {"BATCHNO","RECORDNO","STATE"}).GetFields();
+
+            AndOperator apjAndState = new AndOperator(new List<IFilter>());
+            apjAndState.AddFilter((new Filter("JOURNAL")).EqualTo("APJ"));
+            apjAndState.AddFilter((new Filter("STATE")).EqualTo("Posted"));
+            
+            OrOperator recordnoOr = new OrOperator(new List<IFilter>());
+            recordnoOr.AddFilter((new Filter("RECORDNO")).EqualTo("168"));
+            recordnoOr.AddFilter((new Filter("RECORDNO")).EqualTo("132"));
+            
+            AndOperator rcptAndState = new AndOperator(new List<IFilter>());
+            rcptAndState.AddFilter((new Filter("JOURNAL")).EqualTo("RCPT"));
+            rcptAndState.AddFilter((new Filter("STATE")).EqualTo("Posted"));
+            rcptAndState.AddFilter(recordnoOr);
+            
+            IFilter filter = new OrOperator(new List<IFilter>(){apjAndState, rcptAndState});
+
+            IQueryFunction query = new QueryFunction("unittest")
+            {
+                ObjectName =  "GLBATCH",
+                SelectFields = fields,
+                Filter = filter
             };
             
             this.CompareXml(expected, query);

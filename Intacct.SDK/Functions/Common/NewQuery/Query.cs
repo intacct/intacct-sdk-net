@@ -14,23 +14,24 @@
  */
 
 using System;
-using System.Collections.Generic;
+using Intacct.SDK.Exceptions;
+using Intacct.SDK.Functions.Common.NewQuery.QueryFilter;
 using Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy;
 using Intacct.SDK.Functions.Common.NewQuery.QuerySelect;
 using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.Common.NewQuery
 {
-    public class QueryFunction : AbstractFunction
+    public class QueryFunction : AbstractFunction, IQueryFunction
     {
-        public List<ISelect> SelectFields { get; set; }
+        public ISelect[] SelectFields { get; set; }
         public string ObjectName { get; set; }
         
         private string _docParId;
         
         public string DocParId
         {
-            get { return _docParId; }
+            get => _docParId; 
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
@@ -40,47 +41,47 @@ namespace Intacct.SDK.Functions.Common.NewQuery
                 _docParId = value;
             }
         }
-        
-        public List<IOrder> OrderBy { get; set; }
-        
-        public QueryFunction(string controlId = null) : base(controlId)
-        {
-        }
-        
+        public IFilter Filter { get; set; } 
+        public IOrder[] OrderBy { get; set; }
+
         public bool? CaseInsensitive { get; set; }
 
         private int? _pageSize;
 
         public int? PageSize
         {
-            get { return _pageSize; }
+            get => _pageSize;
             set
             {
                 if (value < 1)
                 {
-                    throw new ArgumentException("PageSize cannot be negative. Set PageSize greater than zero.");
+                    throw new IntacctException("PageSize cannot be negative. Set PageSize greater than zero.");
                 }
 
                 _pageSize = value;
             }
         }
 
-        private int? _offset { get; set; }
+        private int? _offset;
 
         public int? Offset
         {
-            get { return _offset; }
+            get => _offset;
             set
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Offset cannot be negative. Set Offset to zero or greater than zero.");
+                    throw new IntacctException("Offset cannot be negative. Set Offset to zero or greater than zero.");
                 }
 
                 _offset = value;
             }
         }
 
+        public QueryFunction(string controlId = null) : base(controlId)
+        {
+        }
+        
         public override void WriteXml(ref IaXmlWriter xml)
         {
             xml.WriteStartElement("function");
@@ -88,7 +89,7 @@ namespace Intacct.SDK.Functions.Common.NewQuery
 
             xml.WriteStartElement("query");
 
-            if (SelectFields == null || SelectFields.Count == 0)
+            if (SelectFields == null || SelectFields.Length == 0)
             {
                 throw new ArgumentException("Select fields are required for query; set through method SelectFields setter.");
             }
@@ -109,10 +110,17 @@ namespace Intacct.SDK.Functions.Common.NewQuery
             
             if (string.IsNullOrEmpty(DocParId) == false)
             {
-                xml.WriteElement("docparid", DocParId, false);
+                xml.WriteElement("docparid", DocParId);
             }
 
-            if (OrderBy != null && OrderBy.Count > 0)
+            if (Filter != null)
+            {
+                xml.WriteStartElement("filter");
+                Filter.WriteXml(ref xml);
+                xml.WriteEndElement(); //filter
+            }
+            
+            if (OrderBy != null && OrderBy.Length > 0)
             {
                 xml.WriteStartElement("orderby");
                 foreach (var order in OrderBy)
@@ -125,18 +133,18 @@ namespace Intacct.SDK.Functions.Common.NewQuery
             if (CaseInsensitive != null)
             {
                 xml.WriteStartElement("options");
-                xml.WriteElement("caseinsensitive", CaseInsensitive, false);
+                xml.WriteElement("caseinsensitive", CaseInsensitive);
                 xml.WriteEndElement(); //options
             }
 
             if (_pageSize != null)
             {
-                xml.WriteElement("pagesize", _pageSize, false);
+                xml.WriteElement("pagesize", _pageSize);
             }
 
             if (_offset != null)
             {
-                xml.WriteElement("offset", _offset, false);
+                xml.WriteElement("offset", _offset);
             }
             
             xml.WriteEndElement(); //query

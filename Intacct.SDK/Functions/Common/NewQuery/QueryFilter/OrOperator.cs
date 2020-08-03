@@ -13,17 +13,19 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
+using System.Collections.Generic;
+
+namespace Intacct.SDK.Functions.Common.NewQuery.QueryFilter
 {
-    public class Maximum : AbstractSelectFunction
+    public class OrOperator : AbstractOperator
     {
-        public Maximum(string fieldName) : base(fieldName)
+        public OrOperator(List<IFilter> filters) : base(filters)
         {
         }
 
-        protected override string GetFunctionName()
+        protected override string GetOperator()
         {
-            return Aggregate.Max.ToString().ToLower();
+            return Operator.Or.ToString().ToLower();
         }
     }
 }

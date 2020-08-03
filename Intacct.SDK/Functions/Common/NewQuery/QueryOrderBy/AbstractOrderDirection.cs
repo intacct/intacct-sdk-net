@@ -13,33 +13,31 @@
  * permissions and limitations under the License.
  */
 
-using System;
-using Intacct.SDK.Functions.Common.NewQuery.QuerySelect;
 using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy
 {
     public abstract class AbstractOrderDirection : IOrder
     {
-        public enum Direction
+        protected enum Direction
         {
-            ascending,
-            descending
+            Ascending,
+            Descending
         }
 
-        private string _fieldName;
+        private readonly string _fieldName;
 
-        public AbstractOrderDirection(string fieldName)
+        protected AbstractOrderDirection(string fieldName)
         {
             this._fieldName = fieldName;
         }
         
-        public abstract string GetDirection();
+        protected abstract string GetDirection();
 
         public void WriteXml(ref IaXmlWriter xml)
         {
             xml.WriteStartElement("order");
-            xml.WriteElement("field", _fieldName, false);
+            xml.WriteElement("field", _fieldName);
             xml.WriteElement(GetDirection(), "", true);
             xml.WriteEndElement(); // order
         }
