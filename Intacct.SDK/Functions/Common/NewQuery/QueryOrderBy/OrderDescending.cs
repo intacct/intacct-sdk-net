@@ -16,14 +16,16 @@
 namespace Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy
 {
     public class OrderDescending : AbstractOrderDirection
-    {
+    { 
+        private const string Descending = "descending";
+        
         public OrderDescending(string fieldName) : base(fieldName)
         {
         }
 
         protected override string GetDirection()
         {
-            return Direction.Descending.ToString().ToLower();
+            return Descending;
         }
     }
 }

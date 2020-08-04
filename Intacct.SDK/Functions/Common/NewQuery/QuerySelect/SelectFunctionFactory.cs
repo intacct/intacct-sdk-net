@@ -19,28 +19,37 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 {
     public class SelectFunctionFactory
     {
-        public AbstractSelectFunction Create(AbstractSelectFunction.Aggregate functionName, string fieldName)
+        public AbstractSelectFunction Create(string functionName, string fieldName)
         {
             if (string.IsNullOrEmpty(fieldName))
             {
                 throw new ArgumentException("Field name for " + functionName +  " cannot be empty or null. Provide a field name for the builder.");
             }
 
+            AbstractSelectFunction selectFunction;
+
             switch (functionName)
             {
-                case AbstractSelectFunction.Aggregate.Avg:
-                    return new Average(fieldName);
-                case AbstractSelectFunction.Aggregate.Count:
-                    return new Count(fieldName);
-                case AbstractSelectFunction.Aggregate.Min:
-                    return new Minimum(fieldName);
-                case AbstractSelectFunction.Aggregate.Max:
-                    return new Maximum(fieldName);
-                case AbstractSelectFunction.Aggregate.Sum:
-                    return new Sum(fieldName);
+                case AbstractSelectFunction.Average:
+                    selectFunction = new Average(fieldName);
+                    break;
+                case AbstractSelectFunction.Count:
+                    selectFunction = new Count(fieldName);
+                    break;
+                case AbstractSelectFunction.Minimum:
+                    selectFunction = new Minimum(fieldName);
+                    break;
+                case AbstractSelectFunction.Maximum:
+                    selectFunction = new Maximum(fieldName);
+                    break;
+                case AbstractSelectFunction.Sum:
+                    selectFunction = new Sum(fieldName);
+                    break;
+                default:
+                    throw new ArgumentException(functionName + " function doesn't exist.");
             }
 
-            throw new ArgumentException(functionName + " function doesn't exist.");
+            return selectFunction;
         }
     }
 }

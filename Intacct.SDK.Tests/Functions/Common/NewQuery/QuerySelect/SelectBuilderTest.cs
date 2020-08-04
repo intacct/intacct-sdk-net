@@ -124,7 +124,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Average(null));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Field name for Avg cannot be empty or null. Provide a field name for the builder.", ex.Message);
+            Assert.Equal("Field name for avg cannot be empty or null. Provide a field name for the builder.", ex.Message);
         }
 
         [Fact]
@@ -161,7 +161,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Count(null));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Field name for Count cannot be empty or null. Provide a field name for the builder.", ex.Message);
+            Assert.Equal("Field name for count cannot be empty or null. Provide a field name for the builder.", ex.Message);
         }
         
         [Fact]
@@ -198,7 +198,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Minimum(null));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Field name for Min cannot be empty or null. Provide a field name for the builder.", ex.Message);
+            Assert.Equal("Field name for min cannot be empty or null. Provide a field name for the builder.", ex.Message);
         }
         
         [Fact]
@@ -235,7 +235,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Maximum(null));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Field name for Max cannot be empty or null. Provide a field name for the builder.", ex.Message);
+            Assert.Equal("Field name for max cannot be empty or null. Provide a field name for the builder.", ex.Message);
         }
         
         [Fact]
@@ -272,7 +272,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         {
             var ex = Record.Exception(() => (new SelectBuilder()).Sum(null));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Field name for Sum cannot be empty or null. Provide a field name for the builder.", ex.Message);
+            Assert.Equal("Field name for sum cannot be empty or null. Provide a field name for the builder.", ex.Message);
         }
     }
 }

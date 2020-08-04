@@ -51,8 +51,8 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
             List<IFilter> filters = new List<IFilter>();
-            filters.Add((new Filter("RECORDNO")).GreaterThanOrEqualTo("1"));
-            filters.Add((new Filter("RECORDNO")).LessThanOrEqualTo("100"));
+            filters.Add((new Filter("RECORDNO")).SetGreaterThanOrEqualTo("1"));
+            filters.Add((new Filter("RECORDNO")).SetLessThanOrEqualTo("100"));
             IFilter andFilter = new AndOperator(filters);
             andFilter.WriteXml(ref xml);
             
@@ -76,7 +76,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
             List<IFilter> filters = new List<IFilter>();
-            filters.Add((new Filter("RECORDNO")).GreaterThanOrEqualTo("1"));
+            filters.Add((new Filter("RECORDNO")).SetGreaterThanOrEqualTo("1"));
             IFilter andFilter = new AndOperator(filters);
 
             var ex = Record.Exception(() => andFilter.WriteXml(ref xml));
@@ -146,8 +146,8 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
             AndOperator andFilter = new AndOperator(null);
-            andFilter.AddFilter((new Filter("RECORDNO")).GreaterThanOrEqualTo("1"));
-            andFilter.AddFilter((new Filter("RECORDNO")).LessThanOrEqualTo("100"));
+            andFilter.AddFilter((new Filter("RECORDNO")).SetGreaterThanOrEqualTo("1"));
+            andFilter.AddFilter((new Filter("RECORDNO")).SetLessThanOrEqualTo("100"));
             andFilter.WriteXml(ref xml);
             
             xml.Flush();

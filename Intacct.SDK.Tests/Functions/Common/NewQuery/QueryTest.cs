@@ -392,7 +392,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             SelectBuilder builder = new SelectBuilder();
             ISelect[] fields = builder.Fields(new[] {"CUSTOMERID", "RECORDNO"}).GetFields();
 
-            IFilter filter = (new Filter("RECORDNO")).LessThanOrEqualTo("10");
+            IFilter filter = (new Filter("RECORDNO")).SetLessThanOrEqualTo("10");
             
             IQueryFunction query = new QueryFunction("unittest")
             {
@@ -434,8 +434,8 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             ISelect[] fields = builder.Fields(new[] {"CUSTOMERID","RECORDNO"}).GetFields();
 
             AndOperator filter = new AndOperator(new List<IFilter>());
-            filter.AddFilter((new Filter("RECORDNO")).GreaterThanOrEqualTo("1"));
-            filter.AddFilter((new Filter("RECORDNO")).LessThanOrEqualTo("100"));
+            filter.AddFilter((new Filter("RECORDNO")).SetGreaterThanOrEqualTo("1"));
+            filter.AddFilter((new Filter("RECORDNO")).SetLessThanOrEqualTo("100"));
             
             IQueryFunction query = new QueryFunction("unittest")
             {
@@ -485,10 +485,10 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             ISelect[] fields = builder.Fields(new[] {"CUSTOMERID","RECORDNO"}).GetFields();
 
             OrOperator filter = new OrOperator(new List<IFilter>());
-            filter.AddFilter((new Filter("RECORDNO")).LessThanOrEqualTo("10"));
-            filter.AddFilter((new Filter("RECORDNO")).EqualTo("100"));
-            filter.AddFilter((new Filter("RECORDNO")).EqualTo("1000"));
-            filter.AddFilter((new Filter("RECORDNO")).EqualTo("10000"));
+            filter.AddFilter((new Filter("RECORDNO")).SetLessThanOrEqualTo("10"));
+            filter.AddFilter((new Filter("RECORDNO")).SetEqualTo("100"));
+            filter.AddFilter((new Filter("RECORDNO")).SetEqualTo("1000"));
+            filter.AddFilter((new Filter("RECORDNO")).SetEqualTo("10000"));
             
             IQueryFunction query = new QueryFunction("unittest")
             {
@@ -537,10 +537,10 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             ISelect[] fields = builder.Fields(new[] {"BATCHNO","RECORDNO","STATE"}).GetFields();
 
             AndOperator batchnoAndState = new AndOperator(new List<IFilter>());
-            batchnoAndState.AddFilter((new Filter("BATCHNO")).GreaterThanOrEqualTo("1"));
-            batchnoAndState.AddFilter((new Filter("STATE")).EqualTo("Posted"));
+            batchnoAndState.AddFilter((new Filter("BATCHNO")).SetGreaterThanOrEqualTo("1"));
+            batchnoAndState.AddFilter((new Filter("STATE")).SetEqualTo("Posted"));
             
-            IFilter journal = new Filter("JOURNAL").EqualTo("APJ");
+            IFilter journal = new Filter("JOURNAL").SetEqualTo("APJ");
             
             IFilter filter = new OrOperator(new List<IFilter>(){journal, batchnoAndState});
             
@@ -607,16 +607,16 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             ISelect[] fields = builder.Fields(new[] {"BATCHNO","RECORDNO","STATE"}).GetFields();
 
             AndOperator apjAndState = new AndOperator(new List<IFilter>());
-            apjAndState.AddFilter((new Filter("JOURNAL")).EqualTo("APJ"));
-            apjAndState.AddFilter((new Filter("STATE")).EqualTo("Posted"));
+            apjAndState.AddFilter((new Filter("JOURNAL")).SetEqualTo("APJ"));
+            apjAndState.AddFilter((new Filter("STATE")).SetEqualTo("Posted"));
             
             OrOperator recordnoOr = new OrOperator(new List<IFilter>());
-            recordnoOr.AddFilter((new Filter("RECORDNO")).EqualTo("168"));
-            recordnoOr.AddFilter((new Filter("RECORDNO")).EqualTo("132"));
+            recordnoOr.AddFilter((new Filter("RECORDNO")).SetEqualTo("168"));
+            recordnoOr.AddFilter((new Filter("RECORDNO")).SetEqualTo("132"));
             
             AndOperator rcptAndState = new AndOperator(new List<IFilter>());
-            rcptAndState.AddFilter((new Filter("JOURNAL")).EqualTo("RCPT"));
-            rcptAndState.AddFilter((new Filter("STATE")).EqualTo("Posted"));
+            rcptAndState.AddFilter((new Filter("JOURNAL")).SetEqualTo("RCPT"));
+            rcptAndState.AddFilter((new Filter("STATE")).SetEqualTo("Posted"));
             rcptAndState.AddFilter(recordnoOr);
             
             IFilter filter = new OrOperator(new List<IFilter>(){apjAndState, rcptAndState});

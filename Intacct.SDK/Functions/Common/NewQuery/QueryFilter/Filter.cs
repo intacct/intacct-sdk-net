@@ -21,22 +21,19 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryFilter
 {
     public class Filter : IFilter
     {
-        protected enum Operation
-        {
-            EqualTo,
-            NotEqualTo,
-            LessThan,
-            LessThanOrEqualTo,
-            GreaterThan,
-            GreaterThanOrEqualTo,
-            Between,
-            In,
-            NotIn,
-            Like,
-            NotLike,
-            IsNull,
-            IsNotNull
-        }
+        private const string EqualTo = "equalto";
+        private const string NotEqualTo = "notequalto";
+        private const string LessThan = "lessthan";
+        private const string LessThanOrEqualTo = "lessthanorequalto";
+        private const string GreaterThan = "greaterthan";
+        private const string GreaterThanOrEqualTo = "greaterthanorequalto";
+        private const string Between = "between";
+        private const string In = "in";
+        private const string NotIn = "notin";
+        private const string Like = "like";
+        private const string NotLike = "notlike";
+        private const string IsNull = "isnull";
+        private const string IsNotNull = "isnotnull";
 
         private readonly string _fieldName;
 
@@ -44,61 +41,61 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryFilter
 
         private List<string> _values;
 
-        private Operation _operation;
+        private string _operation;
 
         public Filter(string fieldName)
         {
             _fieldName = fieldName;
         }
 
-        public IFilter EqualTo(string value)
+        public IFilter SetEqualTo(string value)
         {
             _value = value;
-            _operation = Operation.EqualTo;
+            _operation = EqualTo;
             return this;
         }
 
-        public IFilter NotEqualTo(string value)
+        public IFilter SetNotEqualTo(string value)
         {
             _value = value;
-            _operation = Operation.NotEqualTo;
+            _operation = NotEqualTo;
             return this;
         }
         
-        public IFilter LessThan(string value)
+        public IFilter SetLessThan(string value)
         {
             _value = value;
-            _operation = Operation.LessThan;
+            _operation = LessThan;
             return this;
         }
 
-        public IFilter LessThanOrEqualTo(string value)
+        public IFilter SetLessThanOrEqualTo(string value)
         {
             _value = value;
-            _operation = Operation.LessThanOrEqualTo;
+            _operation = LessThanOrEqualTo;
             return this;
         }
 
-        public IFilter GreaterThan(string value)
+        public IFilter SetGreaterThan(string value)
         {
             _value = value;
-            _operation = Operation.GreaterThan;
+            _operation = GreaterThan;
             return this;
         }
 
-        public IFilter GreaterThanOrEqualTo(string value)
+        public IFilter SetGreaterThanOrEqualTo(string value)
         {
             _value = value;
-            _operation = Operation.GreaterThanOrEqualTo;
+            _operation = GreaterThanOrEqualTo;
             return this;
         }
 
-        public IFilter Between(List<string> values)
+        public IFilter SetBetween(List<string> values)
         {
             if (values != null && values.Count == 2)
             {
                 _values = values;
-                _operation = Operation.Between;
+                _operation = Between;
                 return this;
             }
             else
@@ -107,49 +104,49 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryFilter
             }
         }
 
-        public IFilter In(List<string> values)
+        public IFilter SetIn(List<string> values)
         {
             _values = values;
-            _operation = Operation.In;
+            _operation = In;
             return this;
         }
 
-        public IFilter NotIn(List<string> values)
+        public IFilter SetNotIn(List<string> values)
         {
             _values = values;
-            _operation = Operation.NotIn;
+            _operation = NotIn;
             return this;
         }
 
-        public IFilter Like(string value)
+        public IFilter SetLike(string value)
         {
             _value = value;
-            _operation = Operation.Like;
+            _operation = Like;
             return this;
         }
 
-        public IFilter NotLike(string value)
+        public IFilter SetNotLike(string value)
         {
             _value = value;
-            _operation = Operation.NotLike;
+            _operation = NotLike;
             return this;
         }
         
-        public IFilter IsNull()
+        public IFilter SetIsNull()
         {
-            _operation = Operation.IsNull;
+            _operation = IsNull;
             return this;
         }
         
-        public IFilter IsNotNull()
+        public IFilter SetIsNotNull()
         {
-            _operation = Operation.IsNotNull;
+            _operation = IsNotNull;
             return this;
         }
 
         public void WriteXml(ref IaXmlWriter xml)
         {
-            xml.WriteStartElement(_operation.ToString().ToLower());
+            xml.WriteStartElement(_operation);
             xml.WriteElement("field", _fieldName);
             if (_value != null)
             {

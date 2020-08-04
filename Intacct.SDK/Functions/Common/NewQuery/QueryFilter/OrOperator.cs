@@ -19,13 +19,15 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryFilter
 {
     public class OrOperator : AbstractOperator
     {
+        private const string Or = "or";
+        
         public OrOperator(List<IFilter> filters) : base(filters)
         {
         }
 
         protected override string GetOperator()
         {
-            return Operator.Or.ToString().ToLower();
+            return Or;
         }
     }
 }

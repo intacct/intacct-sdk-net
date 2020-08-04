@@ -58,10 +58,10 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
             List<IFilter> filters = new List<IFilter>();
-            filters.Add((new Filter("RECORDNO")).LessThanOrEqualTo("1"));
-            filters.Add((new Filter("RECORDNO")).EqualTo("100"));
-            filters.Add((new Filter("RECORDNO")).EqualTo("1000"));
-            filters.Add((new Filter("RECORDNO")).EqualTo("10000"));
+            filters.Add((new Filter("RECORDNO")).SetLessThanOrEqualTo("1"));
+            filters.Add((new Filter("RECORDNO")).SetEqualTo("100"));
+            filters.Add((new Filter("RECORDNO")).SetEqualTo("1000"));
+            filters.Add((new Filter("RECORDNO")).SetEqualTo("10000"));
             IFilter orFilter = new OrOperator(filters);
             orFilter.WriteXml(ref xml);
             
@@ -85,7 +85,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
             List<IFilter> filters = new List<IFilter>();
-            filters.Add((new Filter("RECORDNO")).GreaterThanOrEqualTo("1"));
+            filters.Add((new Filter("RECORDNO")).SetGreaterThanOrEqualTo("1"));
             IFilter orFilter = new OrOperator(filters);
 
             var ex = Record.Exception(() => orFilter.WriteXml(ref xml));
@@ -163,10 +163,10 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
             OrOperator orFilter = new OrOperator(null);
-            orFilter.AddFilter((new Filter("RECORDNO")).LessThanOrEqualTo("1"));
-            orFilter.AddFilter((new Filter("RECORDNO")).EqualTo("100"));
-            orFilter.AddFilter((new Filter("RECORDNO")).EqualTo("1000"));
-            orFilter.AddFilter((new Filter("RECORDNO")).EqualTo("10000"));
+            orFilter.AddFilter((new Filter("RECORDNO")).SetLessThanOrEqualTo("1"));
+            orFilter.AddFilter((new Filter("RECORDNO")).SetEqualTo("100"));
+            orFilter.AddFilter((new Filter("RECORDNO")).SetEqualTo("1000"));
+            orFilter.AddFilter((new Filter("RECORDNO")).SetEqualTo("10000"));
             orFilter.WriteXml(ref xml);
             
             xml.Flush();

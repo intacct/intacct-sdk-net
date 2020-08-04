@@ -23,7 +23,7 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 
         protected override string GetFunctionName()
         {
-            return Aggregate.Min.ToString().ToLower();
+            return AbstractSelectFunction.Minimum;
         }
     }
 }

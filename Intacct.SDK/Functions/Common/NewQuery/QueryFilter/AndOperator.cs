@@ -19,13 +19,15 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryFilter
 {
     public class AndOperator : AbstractOperator
     {
+        private const string And = "and";
+        
         public AndOperator(List<IFilter> filters) : base(filters)
         {
         }
 
         protected override string GetOperator()
         {
-            return Operator.And.ToString().ToLower();
+            return And;
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("CUSTOMERID")).EqualTo("10");
+            IFilter filter = (new Filter("CUSTOMERID")).SetEqualTo("10");
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -72,7 +72,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("CUSTOMERID")).NotEqualTo("10");
+            IFilter filter = (new Filter("CUSTOMERID")).SetNotEqualTo("10");
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -100,7 +100,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("RECORDNO")).LessThan("100");
+            IFilter filter = (new Filter("RECORDNO")).SetLessThan("100");
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -128,7 +128,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("CUSTOMERID")).LessThanOrEqualTo("100");
+            IFilter filter = (new Filter("CUSTOMERID")).SetLessThanOrEqualTo("100");
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -156,7 +156,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("RECORDNO")).GreaterThan("100");
+            IFilter filter = (new Filter("RECORDNO")).SetGreaterThan("100");
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -184,7 +184,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("RECORDNO")).GreaterThanOrEqualTo("100");
+            IFilter filter = (new Filter("RECORDNO")).SetGreaterThanOrEqualTo("100");
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -213,7 +213,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("WHENDUE")).Between(new List<string>(){"10/01/2019","12/31/2019"});
+            IFilter filter = (new Filter("WHENDUE")).SetBetween(new List<string>(){"10/01/2019","12/31/2019"});
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -227,7 +227,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
         [Fact]
         public void OneBetweenTest()
         {
-            var ex = Record.Exception(() =>  (new Filter("RECORDNO")).Between(new List<string>(){"10/01/2019"}));
+            var ex = Record.Exception(() =>  (new Filter("RECORDNO")).SetBetween(new List<string>(){"10/01/2019"}));
             Assert.IsType<IntacctException>(ex);
             Assert.Equal("Two strings expected for between filter", ex.Message);
         }
@@ -252,7 +252,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("RECORDNO")).In(new List<string>(){"04","05","06","07"});
+            IFilter filter = (new Filter("RECORDNO")).SetIn(new List<string>(){"04","05","06","07"});
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -283,7 +283,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("RECORDNO")).NotIn(new List<string>(){"04","05","06","07"});
+            IFilter filter = (new Filter("RECORDNO")).SetNotIn(new List<string>(){"04","05","06","07"});
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -311,7 +311,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("VENDORNAME")).Like("B%");
+            IFilter filter = (new Filter("VENDORNAME")).SetLike("B%");
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -339,7 +339,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("VENDORNAME")).NotLike("ACME%");
+            IFilter filter = (new Filter("VENDORNAME")).SetNotLike("ACME%");
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -366,7 +366,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("DESCRIPTION")).IsNull();
+            IFilter filter = (new Filter("DESCRIPTION")).SetIsNull();
             filter.WriteXml(ref xml);
             
             xml.Flush();
@@ -393,7 +393,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
 
             IaXmlWriter xml = new IaXmlWriter(stream, xmlSettings);
             
-            IFilter filter = (new Filter("DESCRIPTION")).IsNotNull();
+            IFilter filter = (new Filter("DESCRIPTION")).SetIsNotNull();
             filter.WriteXml(ref xml);
             
             xml.Flush();

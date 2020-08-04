@@ -23,7 +23,7 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 
         protected override string GetFunctionName()
         {
-            return Aggregate.Sum.ToString().ToLower();
+            return AbstractSelectFunction.Sum;
         }
     }
 }

@@ -20,8 +20,6 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 {
     public class Field : ISelect 
     {
-        private const string FIELD = "field";
-
         private string FieldName { get; set; }
 
         public Field(string fieldName)
@@ -37,7 +35,7 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 
         public void WriteXml(ref IaXmlWriter xml)
         {
-            xml.WriteElement(FIELD, FieldName, false);
+            xml.WriteElement("field", FieldName, false);
         }
     }
 }

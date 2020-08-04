@@ -19,12 +19,6 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy
 {
     public abstract class AbstractOrderDirection : IOrder
     {
-        protected enum Direction
-        {
-            Ascending,
-            Descending
-        }
-
         private readonly string _fieldName;
 
         protected AbstractOrderDirection(string fieldName)

@@ -48,31 +48,31 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 
         public SelectBuilder Average(string fieldName)
         {
-            _selects.Add(_factory.Create(AbstractSelectFunction.Aggregate.Avg, fieldName));
+            _selects.Add(_factory.Create(AbstractSelectFunction.Average, fieldName));
             return this;
         }
 
         public SelectBuilder Count(string fieldName)
         {
-            _selects.Add(_factory.Create(AbstractSelectFunction.Aggregate.Count, fieldName));
+            _selects.Add(_factory.Create(AbstractSelectFunction.Count, fieldName));
             return this;
         }
 
         public SelectBuilder Minimum(string fieldName)
         {
-            _selects.Add(_factory.Create(AbstractSelectFunction.Aggregate.Min, fieldName));
+            _selects.Add(_factory.Create(AbstractSelectFunction.Minimum, fieldName));
             return this;
         }
 
         public SelectBuilder Maximum(string fieldName)
         {
-            _selects.Add(_factory.Create(AbstractSelectFunction.Aggregate.Max, fieldName));
+            _selects.Add(_factory.Create(AbstractSelectFunction.Maximum, fieldName));
             return this;
         }
 
         public SelectBuilder Sum(string fieldName)
         {
-            _selects.Add(_factory.Create(AbstractSelectFunction.Aggregate.Sum, fieldName));
+            _selects.Add(_factory.Create(AbstractSelectFunction.Sum, fieldName));
             return this;
         }
         

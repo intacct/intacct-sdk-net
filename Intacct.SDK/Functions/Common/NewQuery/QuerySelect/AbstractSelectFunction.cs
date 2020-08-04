@@ -19,14 +19,15 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QuerySelect
 {
     public abstract class AbstractSelectFunction : ISelect
     {
-        public enum Aggregate
-        {
-            Avg,
-            Min,
-            Max,
-            Count,
-            Sum
-        }
+        public const string Average = "avg";
+
+        public const string Count = "count";
+
+        public const string Minimum = "min";
+
+        public const string Maximum = "max";
+
+        public const string Sum = "sum";
         
         private readonly string _fieldName;
 

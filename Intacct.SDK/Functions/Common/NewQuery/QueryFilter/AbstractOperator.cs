@@ -21,12 +21,6 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryFilter
 {
     public abstract class AbstractOperator : IFilter
     {
-        protected enum Operator
-        {
-            Or,
-            And
-        }
-        
         private readonly List<IFilter> _filters;
 
         protected AbstractOperator(List<IFilter> filters)

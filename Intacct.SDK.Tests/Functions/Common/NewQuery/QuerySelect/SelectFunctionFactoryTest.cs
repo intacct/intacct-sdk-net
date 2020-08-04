@@ -24,8 +24,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         [Fact]
         public void CreateAvgTest()
         {
-            
-            AbstractSelectFunction avg = (new SelectFunctionFactory()).Create(AbstractSelectFunction.Aggregate.Avg, "CUSTOMERID");
+            AbstractSelectFunction avg = (new SelectFunctionFactory()).Create(AbstractSelectFunction.Average, "CUSTOMERID");
             
             Assert.IsType<Average>(avg);
         }
@@ -33,8 +32,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         [Fact]
         public void CreateMinTest()
         {
-            
-            AbstractSelectFunction min = (new SelectFunctionFactory()).Create(AbstractSelectFunction.Aggregate.Min, "CUSTOMERID");
+            AbstractSelectFunction min = (new SelectFunctionFactory()).Create(AbstractSelectFunction.Minimum, "CUSTOMERID");
             
             Assert.IsType<Minimum>(min);
         }
@@ -42,8 +40,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         [Fact]
         public void CreateMaxTest()
         {
-            
-            AbstractSelectFunction max = (new SelectFunctionFactory()).Create(AbstractSelectFunction.Aggregate.Max, "CUSTOMERID");
+            AbstractSelectFunction max = (new SelectFunctionFactory()).Create(AbstractSelectFunction.Maximum, "CUSTOMERID");
             
             Assert.IsType<Maximum>(max);
         }
@@ -51,8 +48,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         [Fact]
         public void CreateCountTest()
         {
-            
-            AbstractSelectFunction count = (new SelectFunctionFactory()).Create(AbstractSelectFunction.Aggregate.Count, "CUSTOMERID");
+            AbstractSelectFunction count = (new SelectFunctionFactory()).Create(AbstractSelectFunction.Count, "CUSTOMERID");
             
             Assert.IsType<Count>(count);
         }
@@ -60,8 +56,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QuerySelect
         [Fact]
         public void CreateSumTest()
         {
-            
-            AbstractSelectFunction sum = (new SelectFunctionFactory()).Create(AbstractSelectFunction.Aggregate.Sum, "CUSTOMERID");
+            AbstractSelectFunction sum = (new SelectFunctionFactory()).Create(AbstractSelectFunction.Sum, "CUSTOMERID");
             
             Assert.IsType<Sum>(sum);
         }
