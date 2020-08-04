@@ -26,7 +26,7 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryFilter
             EqualTo,
             NotEqualTo,
             LessThan,
-            LessThanOfEqualTo,
+            LessThanOrEqualTo,
             GreaterThan,
             GreaterThanOrEqualTo,
             Between,

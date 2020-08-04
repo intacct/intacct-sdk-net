@@ -59,7 +59,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery.QueryFilter
         public void NotEqualToTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>" +
-                              "<notequalto>" + 
+                              "<notequalto>" +
                               "<field>CUSTOMERID</field>" +
                               "<value>10</value>" +
                               "</notequalto>";
