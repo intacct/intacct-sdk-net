@@ -75,7 +75,7 @@ namespace Intacct.SDK.Functions.Common.NewQuery.QueryFilter
         public IFilter LessThanOrEqualTo(string value)
         {
             _value = value;
-            _operation = Operation.LessThanOfEqualTo;
+            _operation = Operation.LessThanOrEqualTo;
             return this;
         }
 
