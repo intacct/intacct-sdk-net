@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -74,7 +74,6 @@ namespace Intacct.SDK.Functions.AccountsPayable
             {
                 xml.WriteElement("STATUS", "inactive");
             }
-
             xml.WriteElement("HIDEDISPLAYCONTACT", ExcludedFromContactList);
             xml.WriteElement("VENDTYPE", VendorTypeId);
             xml.WriteElement("PARENTID", ParentVendorId);
@@ -83,6 +82,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
             xml.WriteElement("NAME1099", Form1099Name);
             xml.WriteElement("FORM1099TYPE", Form1099Type);
             xml.WriteElement("FORM1099BOX", Form1099Box);
+            xml.WriteElement("W9_ON_FILE", W9OnFile);
             xml.WriteElement("SUPDOCID", AttachmentsId);
             xml.WriteElement("APACCOUNT", DefaultExpenseGlAccountNo);
             xml.WriteElement("CREDITLIMIT", CreditLimit);
