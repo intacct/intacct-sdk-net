@@ -19,6 +19,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using Intacct.SDK.Exceptions;
+using Intacct.SDK.Functions;
 using Intacct.SDK.Functions.Common.NewQuery;
 using Intacct.SDK.Functions.Common.NewQuery.QueryFilter;
 using Intacct.SDK.Functions.Common.NewQuery.QueryOrderBy;
@@ -621,7 +622,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             IFilter filter = new OrOperator(new List<IFilter>(){apjAndState, rcptAndState});
 
-            IQueryFunction query = new QueryFunction("unittest")
+            IFunction query = new QueryFunction("unittest")
             {
                 ObjectName =  "GLBATCH",
                 SelectFields = fields,

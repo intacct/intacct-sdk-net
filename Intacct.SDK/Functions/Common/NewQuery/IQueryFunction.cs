@@ -17,7 +17,7 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.Common.NewQuery
 {
-    public interface IQueryFunction : IXmlObject
+    public interface IQueryFunction : IFunction
     {
         new void WriteXml(ref IaXmlWriter xml);
     }
