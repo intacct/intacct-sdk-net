@@ -50,7 +50,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "CUSTOMER",
+                FromObject =  "CUSTOMER",
                 SelectFields =  fields
             };
             
@@ -82,7 +82,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "CUSTOMER",
+                FromObject =  "CUSTOMER",
                 DocParId = "REPORT",
                 SelectFields =  fields,
                 CaseInsensitive = true,
@@ -135,7 +135,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             var ex = Record.Exception(() => query.WriteXml(ref xml));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Object Name is required for query; set through method from setter.", ex.Message);
+            Assert.Equal("From Object is required for query; set through method from setter.", ex.Message);
         }
         
         [Fact]
@@ -151,7 +151,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName = "CUSTOMER"
+                FromObject = "CUSTOMER"
             };
             
             var ex = Record.Exception(() => query.WriteXml(ref xml));
@@ -175,13 +175,13 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName = "",
+                FromObject = "",
                 SelectFields =  fields
             };
             
             var ex = Record.Exception(() => query.WriteXml(ref xml));
             Assert.IsType<ArgumentException>(ex);
-            Assert.Equal("Object Name is required for query; set through method from setter.", ex.Message);
+            Assert.Equal("From Object is required for query; set through method from setter.", ex.Message);
         }
         
         [Fact]
@@ -192,7 +192,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 
             QueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName = "CUSTOMER",
+                FromObject = "CUSTOMER",
                 SelectFields =  fields,
             };
             
@@ -209,7 +209,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 
             QueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName = "CUSTOMER",
+                FromObject = "CUSTOMER",
                 SelectFields =  fields,
             };
             
@@ -264,7 +264,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "ARINVOICE",
+                FromObject =  "ARINVOICE",
                 SelectFields =  fields
             };
             
@@ -299,7 +299,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "ARINVOICE",
+                FromObject =  "ARINVOICE",
                 SelectFields =  fields
             };
             
@@ -336,7 +336,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "CLASS",
+                FromObject =  "CLASS",
                 SelectFields = fields,
                 OrderBy = orderBy
             };
@@ -362,7 +362,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "CLASS",
+                FromObject =  "CLASS",
                 SelectFields = fields,
                 OrderBy = new IOrder[0]
             };
@@ -397,7 +397,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "ARINVOICE",
+                FromObject =  "ARINVOICE",
                 SelectFields = fields,
                 Filter = filter
             };
@@ -440,7 +440,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "ARINVOICE",
+                FromObject =  "ARINVOICE",
                 SelectFields = fields,
                 Filter = filter
             };
@@ -493,7 +493,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "ARINVOICE",
+                FromObject =  "ARINVOICE",
                 SelectFields = fields,
                 Filter = filter
             };
@@ -547,7 +547,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             
             IQueryFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "GLBATCH",
+                FromObject =  "GLBATCH",
                 SelectFields = fields,
                 Filter = filter
             };
@@ -624,7 +624,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
 
             IFunction query = new QueryFunction("unittest")
             {
-                ObjectName =  "GLBATCH",
+                FromObject =  "GLBATCH",
                 SelectFields = fields,
                 Filter = filter
             };

@@ -25,7 +25,8 @@ namespace Intacct.SDK.Functions.Common.NewQuery
     public class QueryFunction : AbstractFunction, IQueryFunction
     {
         public ISelect[] SelectFields { get; set; }
-        public string ObjectName { get; set; }
+        
+        public string FromObject { get; set; }
         
         private string _docParId;
         
@@ -41,7 +42,9 @@ namespace Intacct.SDK.Functions.Common.NewQuery
                 _docParId = value;
             }
         }
+        
         public IFilter Filter { get; set; } 
+        
         public IOrder[] OrderBy { get; set; }
 
         public bool? CaseInsensitive { get; set; }
@@ -101,12 +104,12 @@ namespace Intacct.SDK.Functions.Common.NewQuery
             }
             xml.WriteEndElement(); //select
 
-            if (string.IsNullOrEmpty(ObjectName))
+            if (string.IsNullOrEmpty(FromObject))
             {
-                throw new ArgumentException("Object Name is required for query; set through method from setter.");
+                throw new ArgumentException("From Object is required for query; set through method from setter.");
             }
             
-            xml.WriteElement("object", ObjectName, true);
+            xml.WriteElement("object", FromObject, true);
             
             if (string.IsNullOrEmpty(DocParId) == false)
             {
