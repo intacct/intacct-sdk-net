@@ -9,12 +9,12 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_exp
     [ "ExpenseAdjustmentNumber", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#ad756c3fa0c27cdeb746fb60f9c5b4fd9", null ],
     [ "ExpenseReportNumber", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#a560567ebef63182ec03efa7c3bedcd07", null ],
     [ "ExternalId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#af19db50bcebde7b5efe0b780baffbaee", null ],
-    [ "GlPostingDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#ad08d457a537a725fef0ecc2703795246", null ],
+    [ "GlPostingDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#a285dcc4e2724f008e50090d20d09061b", null ],
     [ "Lines", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#aafe5edf69e2915bda7624fe70d833e1e", null ],
     [ "Memo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#ac51d70e8e62e4374ea55bc397be071a9", null ],
     [ "ReasonForExpense", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#a063706ca59e723a98e5dcf548fe5312a", null ],
-    [ "RecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#a4a2b976b0e136daab4c3abaaf4c013f3", null ],
+    [ "RecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#a19d2ec83e353be380097a6ce6af4e43e", null ],
     [ "ReimbursementCurrency", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#ab23c5dd32b3a92cc90d059cb23cf5d3b", null ],
-    [ "SummaryRecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#a36cf4f962ca65d34b783d684960f3136", null ],
+    [ "SummaryRecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#ab4c6a936928561b927a24055d14cfbd3", null ],
     [ "TransactionDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_adjustment.html#a0d963d58337c436eeedde985b15b4bef", null ]
 ];

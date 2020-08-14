@@ -12,6 +12,6 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_inventory_control_1_1_abstract_inv
     [ "ReferenceNumber", "class_intacct_1_1_s_d_k_1_1_functions_1_1_inventory_control_1_1_abstract_inventory_transaction.html#af01b7361f5627c3fbeb1b619ddbe9fc1", null ],
     [ "State", "class_intacct_1_1_s_d_k_1_1_functions_1_1_inventory_control_1_1_abstract_inventory_transaction.html#ac6fa71cedb754b1eff258db4452603d5", null ],
     [ "Subtotals", "class_intacct_1_1_s_d_k_1_1_functions_1_1_inventory_control_1_1_abstract_inventory_transaction.html#a84276020086516a7e1196020fc8bf566", null ],
-    [ "TransactionDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_inventory_control_1_1_abstract_inventory_transaction.html#a4fc29335fec1fa6a02853ac919ae34ea", null ],
+    [ "TransactionDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_inventory_control_1_1_abstract_inventory_transaction.html#ab30e90f777267c42bc95a8734d306603", null ],
     [ "TransactionDefinition", "class_intacct_1_1_s_d_k_1_1_functions_1_1_inventory_control_1_1_abstract_inventory_transaction.html#a74e7a549da0457e46d673c88b20becaa", null ]
 ];

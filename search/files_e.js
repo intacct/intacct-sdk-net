@@ -1,14 +1,15 @@
 var searchData=
 [
-  ['sendercredentials_2ecs',['SenderCredentials.cs',['../_sender_credentials_8cs.html',1,'']]],
-  ['sessionauthentication_2ecs',['SessionAuthentication.cs',['../_session_authentication_8cs.html',1,'']]],
-  ['sessioncredentials_2ecs',['SessionCredentials.cs',['../_session_credentials_8cs.html',1,'']]],
-  ['sessionprovider_2ecs',['SessionProvider.cs',['../_session_provider_8cs.html',1,'']]],
-  ['statisticalaccountcreate_2ecs',['StatisticalAccountCreate.cs',['../_statistical_account_create_8cs.html',1,'']]],
-  ['statisticalaccountdelete_2ecs',['StatisticalAccountDelete.cs',['../_statistical_account_delete_8cs.html',1,'']]],
-  ['statisticalaccountupdate_2ecs',['StatisticalAccountUpdate.cs',['../_statistical_account_update_8cs.html',1,'']]],
-  ['statisticaljournalentrycreate_2ecs',['StatisticalJournalEntryCreate.cs',['../_statistical_journal_entry_create_8cs.html',1,'']]],
-  ['statisticaljournalentrydelete_2ecs',['StatisticalJournalEntryDelete.cs',['../_statistical_journal_entry_delete_8cs.html',1,'']]],
-  ['statisticaljournalentrylinecreate_2ecs',['StatisticalJournalEntryLineCreate.cs',['../_statistical_journal_entry_line_create_8cs.html',1,'']]],
-  ['subscriptionlist_2ecs',['SubscriptionList.cs',['../_subscription_list_8cs.html',1,'']]]
+  ['read_2ecs_1929',['Read.cs',['../_read_8cs.html',1,'']]],
+  ['readbyname_2ecs_1930',['ReadByName.cs',['../_read_by_name_8cs.html',1,'']]],
+  ['readbyquery_2ecs_1931',['ReadByQuery.cs',['../_read_by_query_8cs.html',1,'']]],
+  ['readmore_2ecs_1932',['ReadMore.cs',['../_read_more_8cs.html',1,'']]],
+  ['reimbursementrequestcreate_2ecs_1933',['ReimbursementRequestCreate.cs',['../_reimbursement_request_create_8cs.html',1,'']]],
+  ['reimbursementrequestitem_2ecs_1934',['ReimbursementRequestItem.cs',['../_reimbursement_request_item_8cs.html',1,'']]],
+  ['requestblock_2ecs_1935',['RequestBlock.cs',['../_request_block_8cs.html',1,'']]],
+  ['requestconfig_2ecs_1936',['RequestConfig.cs',['../_request_config_8cs.html',1,'']]],
+  ['requesthandler_2ecs_1937',['RequestHandler.cs',['../_request_handler_8cs.html',1,'']]],
+  ['responseexception_2ecs_1938',['ResponseException.cs',['../_response_exception_8cs.html',1,'']]],
+  ['result_2ecs_1939',['Result.cs',['../_result_8cs.html',1,'']]],
+  ['resultexception_2ecs_1940',['ResultException.cs',['../_result_exception_8cs.html',1,'']]]
 ];

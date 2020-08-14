@@ -5,7 +5,6 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_ent
     [ "AllocationId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a54c3684e24114078b3be8fef9e5899d1", null ],
     [ "ClassId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#aec5aa959d45d2007a1747bdd70a33be3", null ],
     [ "ContractId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#aa06b21d50e29b06435d3a4a8de8e9dfd", null ],
-    [ "CustomAllocationId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a1f8f7e928a0385e6d65325403890b699", null ],
     [ "CustomAllocationSplits", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#abac71322655f919e362296a2a7345c1c", null ],
     [ "CustomerId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#abb382511be4b37c510298fa33dd2a289", null ],
     [ "CustomFields", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a117c6336f5ae7d9e28a7d9274c14c508", null ],

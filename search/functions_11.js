@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['vendorcreate',['VendorCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_vendor_create.html#a9931eabc272aabd351a7b329ef1d203e',1,'Intacct::SDK::Functions::AccountsPayable::VendorCreate']]],
-  ['vendordelete',['VendorDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_vendor_delete.html#a44432b3a7f0ce5053af58a00bf13f0d7',1,'Intacct::SDK::Functions::AccountsPayable::VendorDelete']]],
-  ['vendorupdate',['VendorUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_vendor_update.html#a6098c438e052907266d857778854ae31',1,'Intacct::SDK::Functions::AccountsPayable::VendorUpdate']]]
+  ['usercreate_2277',['UserCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_user_create.html#a946a198df8f0fb4edf2bdf1a3e5e4556',1,'Intacct::SDK::Functions::Company::UserCreate']]],
+  ['usereffectivepermissionlist_2278',['UserEffectivePermissionList',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_user_effective_permission_list.html#a1b4b37a8913e6ad5bf9213e7267acac8',1,'Intacct::SDK::Functions::Company::UserEffectivePermissionList']]],
+  ['userupdate_2279',['UserUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_user_update.html#a178a7ddaff4e40357b790d40d4054dd8',1,'Intacct::SDK::Functions::Company::UserUpdate']]]
 ];

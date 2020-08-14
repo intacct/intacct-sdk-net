@@ -1,7 +1,7 @@
 var class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_department =
 [
     [ "AbstractDepartment", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_department.html#a3645f7124558a7d0ea180d74ef18f9a6", null ],
-    [ "Active", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_department.html#a09cee997515370babb32590aeaeca16f", null ],
+    [ "Active", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_department.html#a365bbcf3c831ce365e5d6fe15eb75596", null ],
     [ "CustomFields", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_department.html#a77d1a888517cd413ddfd20e4e6f3f5e1", null ],
     [ "DepartmentId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_department.html#a06e2f783207d0ed859a9afc83e77ebf7", null ],
     [ "DepartmentName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_department.html#a0c654cd0099192ace3f25245f70856eb", null ],

@@ -17,8 +17,8 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_a
     [ "Memo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment_line.html#a763b376eb8c20ae85d2ef1cfc5b71234", null ],
     [ "OffsetGlAccountNumber", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment_line.html#a7030116a21d085ae4f21d6bcfe9471c0", null ],
     [ "ProjectId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment_line.html#a85695252bd8b7b7a0d4330b730939bcc", null ],
-    [ "TotalDue", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment_line.html#ad137893c879df93273177b3d1c1c10ba", null ],
-    [ "TotalPaid", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment_line.html#aabe0c40a1934000a09015334ccd6bf8b", null ],
+    [ "TotalDue", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment_line.html#a85ef00000c1812c866f1a1734650c085", null ],
+    [ "TotalPaid", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment_line.html#a66b3b3af3593dfeee69aa1ec3011fd24", null ],
     [ "TransactionAmount", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment_line.html#aaeb2c07f4b5688fa893415e07dd3a8b8", null ],
     [ "VendorId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment_line.html#a35c96ab1f820ac11707b8f4ffeef42bf", null ],
     [ "WarehouseId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_adjustment_line.html#ad8903bff65da134bdadad4217784b1ce", null ]

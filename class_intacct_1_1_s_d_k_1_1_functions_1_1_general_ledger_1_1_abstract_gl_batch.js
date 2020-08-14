@@ -8,8 +8,8 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_bat
     [ "HistoryComment", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#aceda8ce9589056c82a006d0e487728c2", null ],
     [ "JournalSymbol", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#a925af74e55deb2b78bd7e7400d9c32d4", null ],
     [ "Lines", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#abb1e523417888481ad2db3a4eb1d446e", null ],
-    [ "PostingDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#a304897cb0bae5da446422710a582f9c5", null ],
-    [ "RecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#a987d07bd2aab81487a63db0e0ede1c31", null ],
+    [ "PostingDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#a9d0b59a49421931408f16c1a0f87f106", null ],
+    [ "RecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#aa3bf01e5d8fd4fc68c28c46beafeec02", null ],
     [ "ReferenceNumber", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#a93dfee4f6396e795efabb1fd70ad3a04", null ],
-    [ "ReverseDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#a1baf6c45474b69d2a60b627fd36f3eab", null ]
+    [ "ReverseDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#a04408cfcf593b1887f221c9b5952f3d8", null ]
 ];
