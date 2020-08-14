@@ -1,15 +1,20 @@
 var searchData=
 [
-  ['profilecredentialprovider_2ecs',['ProfileCredentialProvider.cs',['../_profile_credential_provider_8cs.html',1,'']]],
-  ['projectcreate_2ecs',['ProjectCreate.cs',['../_project_create_8cs.html',1,'']]],
-  ['projectdelete_2ecs',['ProjectDelete.cs',['../_project_delete_8cs.html',1,'']]],
-  ['projectobservedpercentcompletedcreate_2ecs',['ProjectObservedPercentCompletedCreate.cs',['../_project_observed_percent_completed_create_8cs.html',1,'']]],
-  ['projectobservedpercentcompleteddelete_2ecs',['ProjectObservedPercentCompletedDelete.cs',['../_project_observed_percent_completed_delete_8cs.html',1,'']]],
-  ['projectobservedpercentcompletedupdate_2ecs',['ProjectObservedPercentCompletedUpdate.cs',['../_project_observed_percent_completed_update_8cs.html',1,'']]],
-  ['projectupdate_2ecs',['ProjectUpdate.cs',['../_project_update_8cs.html',1,'']]],
-  ['purchasingtransactioncreate_2ecs',['PurchasingTransactionCreate.cs',['../_purchasing_transaction_create_8cs.html',1,'']]],
-  ['purchasingtransactiondelete_2ecs',['PurchasingTransactionDelete.cs',['../_purchasing_transaction_delete_8cs.html',1,'']]],
-  ['purchasingtransactionlinecreate_2ecs',['PurchasingTransactionLineCreate.cs',['../_purchasing_transaction_line_create_8cs.html',1,'']]],
-  ['purchasingtransactionlineupdate_2ecs',['PurchasingTransactionLineUpdate.cs',['../_purchasing_transaction_line_update_8cs.html',1,'']]],
-  ['purchasingtransactionupdate_2ecs',['PurchasingTransactionUpdate.cs',['../_purchasing_transaction_update_8cs.html',1,'']]]
+  ['offlineclient_2ecs_1898',['OfflineClient.cs',['../_offline_client_8cs.html',1,'']]],
+  ['offlineresponse_2ecs_1899',['OfflineResponse.cs',['../_offline_response_8cs.html',1,'']]],
+  ['onlineclient_2ecs_1900',['OnlineClient.cs',['../_online_client_8cs.html',1,'']]],
+  ['onlineresponse_2ecs_1901',['OnlineResponse.cs',['../_online_response_8cs.html',1,'']]],
+  ['operationblock_2ecs_1902',['OperationBlock.cs',['../_operation_block_8cs.html',1,'']]],
+  ['orcondition_2ecs_1903',['OrCondition.cs',['../_or_condition_8cs.html',1,'']]],
+  ['orderascending_2ecs_1904',['OrderAscending.cs',['../_order_ascending_8cs.html',1,'']]],
+  ['orderbuilder_2ecs_1905',['OrderBuilder.cs',['../_order_builder_8cs.html',1,'']]],
+  ['orderdescending_2ecs_1906',['OrderDescending.cs',['../_order_descending_8cs.html',1,'']]],
+  ['orderentrytransactioncreate_2ecs_1907',['OrderEntryTransactionCreate.cs',['../_order_entry_transaction_create_8cs.html',1,'']]],
+  ['orderentrytransactiondelete_2ecs_1908',['OrderEntryTransactionDelete.cs',['../_order_entry_transaction_delete_8cs.html',1,'']]],
+  ['orderentrytransactionlinecreate_2ecs_1909',['OrderEntryTransactionLineCreate.cs',['../_order_entry_transaction_line_create_8cs.html',1,'']]],
+  ['orderentrytransactionlineupdate_2ecs_1910',['OrderEntryTransactionLineUpdate.cs',['../_order_entry_transaction_line_update_8cs.html',1,'']]],
+  ['orderentrytransactionupdate_2ecs_1911',['OrderEntryTransactionUpdate.cs',['../_order_entry_transaction_update_8cs.html',1,'']]],
+  ['oroperator_2ecs_1912',['OrOperator.cs',['../_or_operator_8cs.html',1,'']]],
+  ['otherreceiptcreate_2ecs_1913',['OtherReceiptCreate.cs',['../_other_receipt_create_8cs.html',1,'']]],
+  ['otherreceiptlinecreate_2ecs_1914',['OtherReceiptLineCreate.cs',['../_other_receipt_line_create_8cs.html',1,'']]]
 ];

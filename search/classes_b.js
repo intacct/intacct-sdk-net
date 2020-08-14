@@ -1,14 +1,20 @@
 var searchData=
 [
-  ['projectcreate',['ProjectCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_project_create.html',1,'Intacct::SDK::Functions::Projects']]],
-  ['projectdelete',['ProjectDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_project_delete.html',1,'Intacct::SDK::Functions::Projects']]],
-  ['projectobservedpercentcompletedcreate',['ProjectObservedPercentCompletedCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_project_observed_percent_completed_create.html',1,'Intacct::SDK::Functions::Projects']]],
-  ['projectobservedpercentcompleteddelete',['ProjectObservedPercentCompletedDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_project_observed_percent_completed_delete.html',1,'Intacct::SDK::Functions::Projects']]],
-  ['projectobservedpercentcompletedupdate',['ProjectObservedPercentCompletedUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_project_observed_percent_completed_update.html',1,'Intacct::SDK::Functions::Projects']]],
-  ['projectupdate',['ProjectUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_project_update.html',1,'Intacct::SDK::Functions::Projects']]],
-  ['purchasingtransactioncreate',['PurchasingTransactionCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_create.html',1,'Intacct::SDK::Functions::Purchasing']]],
-  ['purchasingtransactiondelete',['PurchasingTransactionDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_delete.html',1,'Intacct::SDK::Functions::Purchasing']]],
-  ['purchasingtransactionlinecreate',['PurchasingTransactionLineCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_create.html',1,'Intacct::SDK::Functions::Purchasing']]],
-  ['purchasingtransactionlineupdate',['PurchasingTransactionLineUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_line_update.html',1,'Intacct::SDK::Functions::Purchasing']]],
-  ['purchasingtransactionupdate',['PurchasingTransactionUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_purchasing_transaction_update.html',1,'Intacct::SDK::Functions::Purchasing']]]
+  ['offlineclient_1532',['OfflineClient',['../class_intacct_1_1_s_d_k_1_1_offline_client.html',1,'Intacct::SDK']]],
+  ['offlineresponse_1533',['OfflineResponse',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_offline_response.html',1,'Intacct::SDK::Xml']]],
+  ['onlineclient_1534',['OnlineClient',['../class_intacct_1_1_s_d_k_1_1_online_client.html',1,'Intacct::SDK']]],
+  ['onlineresponse_1535',['OnlineResponse',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_online_response.html',1,'Intacct::SDK::Xml']]],
+  ['operationblock_1536',['OperationBlock',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_request_1_1_operation_block.html',1,'Intacct::SDK::Xml::Request']]],
+  ['orcondition_1537',['OrCondition',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_logical_1_1_or_condition.html',1,'Intacct::SDK::Functions::Common::Query::Logical']]],
+  ['orderascending_1538',['OrderAscending',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_order_ascending.html',1,'Intacct::SDK::Functions::Common::NewQuery::QueryOrderBy']]],
+  ['orderbuilder_1539',['OrderBuilder',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_order_builder.html',1,'Intacct::SDK::Functions::Common::NewQuery::QueryOrderBy']]],
+  ['orderdescending_1540',['OrderDescending',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_order_descending.html',1,'Intacct::SDK::Functions::Common::NewQuery::QueryOrderBy']]],
+  ['orderentrytransactioncreate_1541',['OrderEntryTransactionCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_order_entry_transaction_create.html',1,'Intacct::SDK::Functions::OrderEntry']]],
+  ['orderentrytransactiondelete_1542',['OrderEntryTransactionDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_order_entry_transaction_delete.html',1,'Intacct::SDK::Functions::OrderEntry']]],
+  ['orderentrytransactionlinecreate_1543',['OrderEntryTransactionLineCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_order_entry_transaction_line_create.html',1,'Intacct::SDK::Functions::OrderEntry']]],
+  ['orderentrytransactionlineupdate_1544',['OrderEntryTransactionLineUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_order_entry_transaction_line_update.html',1,'Intacct::SDK::Functions::OrderEntry']]],
+  ['orderentrytransactionupdate_1545',['OrderEntryTransactionUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_order_entry_transaction_update.html',1,'Intacct::SDK::Functions::OrderEntry']]],
+  ['oroperator_1546',['OrOperator',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_or_operator.html',1,'Intacct::SDK::Functions::Common::NewQuery::QueryFilter']]],
+  ['otherreceiptcreate_1547',['OtherReceiptCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_cash_management_1_1_other_receipt_create.html',1,'Intacct::SDK::Functions::CashManagement']]],
+  ['otherreceiptlinecreate_1548',['OtherReceiptLineCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_cash_management_1_1_other_receipt_line_create.html',1,'Intacct::SDK::Functions::CashManagement']]]
 ];

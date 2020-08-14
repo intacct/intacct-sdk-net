@@ -2,7 +2,7 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact =
 [
     [ "AbstractContact", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#a79b5b4e10a7afd1872671d491f812d2b", null ],
     [ "WriteXmlMailAddress", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#a3bd222dc901a187b06bbc0f2ca6c687b", null ],
-    [ "Active", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#a66cc326a718a5132a2ec7356e2df87c1", null ],
+    [ "Active", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#acfa847d5da35c6bd02503ece907e498c", null ],
     [ "AddressLine1", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#aeb3c575f7378faf486dc136e5633b3e2", null ],
     [ "AddressLine2", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#a054680297978996e1aca28005e650534", null ],
     [ "CellularPhoneNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#aa8ba572352204100a19f097c523a4cde", null ],
@@ -25,7 +25,7 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact =
     [ "SecondaryPhoneNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#abb5dbc687d3a529208900a100e4ba6e9", null ],
     [ "SecondaryUrl", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#a4bc05644af714c03b2d99d13849222a3", null ],
     [ "StateProvince", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#a61d11f645f4ad008d220a8fbc202524b", null ],
-    [ "Taxable", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#a1cae5e3584476bf0af5ee0b21dfd63bf", null ],
+    [ "Taxable", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#a76ab7bdd3ed0f3759892e02f404d21b0", null ],
     [ "TaxId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#aebd40bf12433f59167badb9c6e3448c4", null ],
     [ "ZipPostalCode", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_contact.html#a142f346b69781968fc0df14eca9ecdfd", null ]
 ];

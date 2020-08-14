@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['locationcreate',['LocationCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_create.html#aa7edda35d5d5883dc7a2ddd13bd2be9f',1,'Intacct::SDK::Functions::Company::LocationCreate']]],
-  ['locationdelete',['LocationDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_delete.html#ac71c72ffb4e2841cc1304bdcfd6da6a0',1,'Intacct::SDK::Functions::Company::LocationDelete']]],
-  ['locationupdate',['LocationUpdate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_location_update.html#a14312f8196adb670ee0ad090861c44d2',1,'Intacct::SDK::Functions::Company::LocationUpdate']]],
-  ['logginghandler',['LoggingHandler',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_logging_handler.html#ab7c6399c9c4e530a50c6c225f9c8c335',1,'Intacct::SDK::Xml::LoggingHandler']]],
-  ['loginauthentication',['LoginAuthentication',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_request_1_1_login_authentication.html#afe14b4cdc4a3e40ee930f2e10ada8c7c',1,'Intacct::SDK::Xml::Request::LoginAuthentication']]],
-  ['logincredentials',['LoginCredentials',['../class_intacct_1_1_s_d_k_1_1_credentials_1_1_login_credentials.html#ae6cc5498e3a9c72222c63ccf3d36c27b',1,'Intacct::SDK::Credentials::LoginCredentials']]],
-  ['lookupprefix',['LookupPrefix',['../class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer.html#a4e1f75e6a3cedc99b35ba2d487a0fe45',1,'Intacct::SDK::Xml::IaXmlWriter']]]
+  ['journalentrycreate_2183',['JournalEntryCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_journal_entry_create.html#a0b35c0457db05cecc3b19b5116390d66',1,'Intacct::SDK::Functions::GeneralLedger::JournalEntryCreate']]],
+  ['journalentrydelete_2184',['JournalEntryDelete',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_journal_entry_delete.html#a8c03a905fe0f228e0544c5f85d77c664',1,'Intacct::SDK::Functions::GeneralLedger::JournalEntryDelete']]],
+  ['journalentrylinecreate_2185',['JournalEntryLineCreate',['../class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_journal_entry_line_create.html#a299efb07a7e6711e515620c85ec8d0d7',1,'Intacct::SDK::Functions::GeneralLedger::JournalEntryLineCreate']]]
 ];

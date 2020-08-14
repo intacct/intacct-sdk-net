@@ -1,25 +1,26 @@
 /*
-@ @licstart  The following is the entire license notice for the
-JavaScript code in this file.
+ @licstart  The following is the entire license notice for the JavaScript code in this file.
 
-Copyright (C) 1997-2017 by Dimitri van Heesch
+ The MIT License (MIT)
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+ Copyright (C) 1997-2020 by Dimitri van Heesch
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ and associated documentation files (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ The above copyright notice and this permission notice shall be included in all copies or
+ substantial portions of the Software.
 
-@licend  The above is the entire license notice
-for the JavaScript code in this file
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+ BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var NAVTREE =
 [
@@ -32,14 +33,15 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#abb430b783bc97e6c644a08eda0f5823c",
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a9027af9bcada12d395e7825e007386c1",
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_equal_to_1_1_equal_to_decimal.html#ae0cd1a69bb2ec3a558e1990c8a29dfb5",
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_update.html#a90bb365245fa049bbb5075dcc6cde646",
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_expense_report.html#ac74a7aaca49d2a84d75045e0bd2c9551",
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_inventory_control_1_1_abstract_inventory_transaction_line.html#a7770a3c9466c83d9dec4f35abfe0b372",
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_projects_1_1_abstract_project.html#a6b449c0dcc8c9d7374a3a21f387a62e8",
-"class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer.html#a40158e91e7c8c63cbf0921fc3b452d4a"
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#aefdadbe787b4211309900b312e4361fe",
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#a29d43824fd60378aedb95a4d15217638",
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_order_by_1_1_order_builder.html",
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_abstract_location.html#a423a5519fcf591315ceafe940ab00a9a",
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses_1_1_abstract_employee.html#aaafddffcc7de5f875d692ff0db1aeb0f",
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_account_update.html#a1bffcb8a5da308755a80b3ae59ed3400",
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a72100f21f48113bd268314f203b7f58d",
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction_line.html#a9c3425db813330d310139d2fe823ff01",
+"namespace_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

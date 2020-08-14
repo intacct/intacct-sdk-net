@@ -1,0 +1,4 @@
+var interface_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_i_filter =
+[
+    [ "WriteXml", "interface_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_filter_1_1_i_filter.html#a30e253a9a9395fcc92e38629251f021c", null ]
+];

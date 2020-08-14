@@ -1,0 +1,4 @@
+var class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_select_1_1_select_function_factory =
+[
+    [ "Create", "class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_select_1_1_select_function_factory.html#adae28667edbb05682a893c2177afdcb8", null ]
+];

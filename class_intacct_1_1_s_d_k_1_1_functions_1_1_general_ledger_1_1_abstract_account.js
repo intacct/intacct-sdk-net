@@ -7,6 +7,6 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_accoun
     [ "GlAccountAlternative", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_account.html#a2ee813f0bea5b4c93c58123b849913e4", null ],
     [ "M3ReturnCode", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_account.html#a33106e4670d355bdb59de097fafd94e5", null ],
     [ "NormalBalance", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_account.html#aea6f8d27291cbee6a0160e167ca5ddcc", null ],
-    [ "Taxable", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_account.html#ad688710feafc57c169894bd16f8d52ac", null ],
+    [ "Taxable", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_account.html#ad4342f0c9b7ada1e95bc741b95ea536e", null ],
     [ "TaxReturnCode", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_account.html#a218e5570dbf56f18b0b844513f2c23ee", null ]
 ];
