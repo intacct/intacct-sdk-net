@@ -34,6 +34,7 @@ namespace Intacct.SDK.Functions.AccountsReceivable
             
             xml.WriteElement("customerid", CustomerId, true);
             xml.WriteElement("paymentamount", TransactionPaymentAmount, true);
+            xml.WriteElement("batchkey", SummaryRecordNo);
             xml.WriteElement("translatedamount", BasePaymentAmount);
 
             if (!string.IsNullOrWhiteSpace(UndepositedFundsGlAccountNo))
