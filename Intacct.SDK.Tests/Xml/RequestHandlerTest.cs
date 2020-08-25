@@ -1,15 +1,26 @@
-﻿using System;
+﻿/*
+ * Copyright 2020 Sage Intacct, Inc.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ * use this file except in compliance with the License. You may obtain a copy 
+ * of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * or in the "LICENSE" file accompanying this file. This file is distributed on 
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+ * express or implied. See the License for the specific language governing 
+ * permissions and limitations under the License.
+ */
+
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
 using Intacct.SDK.Exceptions;
 using Intacct.SDK.Functions;
-using Intacct.SDK.Logging;
-using Intacct.SDK.Tests.Logging;
 using Intacct.SDK.Xml;
 using Intacct.SDK.Xml.Request;
 using NLog;
@@ -58,7 +69,7 @@ namespace Intacct.SDK.Tests.Xml
 
             HttpResponseMessage mockResponse = new HttpResponseMessage()
             {
-                StatusCode = System.Net.HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(xml)
             };
 
@@ -112,7 +123,7 @@ namespace Intacct.SDK.Tests.Xml
 
             HttpResponseMessage mockResponse = new HttpResponseMessage()
             {
-                StatusCode = System.Net.HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(xml)
             };
 
@@ -212,11 +223,11 @@ namespace Intacct.SDK.Tests.Xml
 
             HttpResponseMessage mockResponse1 = new HttpResponseMessage()
             {
-                StatusCode = System.Net.HttpStatusCode.BadGateway,
+                StatusCode = HttpStatusCode.BadGateway,
             };
             HttpResponseMessage mockResponse2 = new HttpResponseMessage()
             {
-                StatusCode = System.Net.HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(xml)
             };
 
@@ -434,7 +445,7 @@ namespace Intacct.SDK.Tests.Xml
 
             HttpResponseMessage mockResponse = new HttpResponseMessage()
             {
-                StatusCode = System.Net.HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(xml)
             };
 
@@ -496,7 +507,7 @@ namespace Intacct.SDK.Tests.Xml
 
             HttpResponseMessage mockResponse = new HttpResponseMessage()
             {
-                StatusCode = System.Net.HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.OK,
                 Content = new StringContent(xml)
             };
 

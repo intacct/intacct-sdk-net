@@ -13,12 +13,8 @@
  * permissions and limitations under the License.
  */
 
-using System.IO;
-using System.Text;
-using System.Xml;
 using Intacct.SDK.Functions;
 using Intacct.SDK.Tests.Xml;
-using Intacct.SDK.Xml;
 using Xunit;
 
 namespace Intacct.SDK.Tests.Functions
