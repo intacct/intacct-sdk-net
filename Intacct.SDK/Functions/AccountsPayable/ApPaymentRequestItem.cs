@@ -13,14 +13,15 @@
  * permissions and limitations under the License.
  */
 
+using System;
 using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestItem : IXmlObject
+    [Obsolete("This class is obsolete. Use ApPaymentRequestApplyToBill instead.", false)]
+    public class ApPaymentRequestItem : IApPaymentRequestApplyToTransaction
     {
-       
-        public int? ApplyToRecordId;
+        public int? ApplyToRecordId { get; set; }
 
         public decimal? AmountToApply;
 
@@ -34,16 +35,14 @@ namespace Intacct.SDK.Functions.AccountsPayable
 
         public void WriteXml(ref IaXmlWriter xml)
         {
+            xml.WriteStartElement("APPYMTDETAIL");
 
-            xml.WriteStartElement("paymentrequestitem");
+            xml.WriteElement("RECORDKEY", ApplyToRecordId, true);
+            xml.WriteElement("TRX_PAYMENTAMOUNT", AmountToApply, true);
+            xml.WriteElement("CREDITTOAPPLY", CreditToApply);
+            xml.WriteElement("DISCOUNTTOAPPLY", DiscountToApply);
 
-            xml.WriteElement("key", ApplyToRecordId, true);
-            xml.WriteElement("paymentamount", AmountToApply, true);
-            xml.WriteElement("credittoapply", CreditToApply);
-            xml.WriteElement("discounttoapply", DiscountToApply);
-
-            xml.WriteEndElement(); //paymentrequestitem
+            xml.WriteEndElement(); //APPYMTDETAIL
         }
-
     }
 }

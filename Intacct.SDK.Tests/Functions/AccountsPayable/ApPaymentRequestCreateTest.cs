@@ -29,26 +29,300 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     public class ApPaymentRequestCreateTest : XmlObjectTestHelper
     {
         [Fact]
-        public void GetXmlTest()
+        public void CreateCheckForBillGetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <create_paymentrequest>
-        <bankaccountid>BA1143</bankaccountid>
-        <vendorid>V0001</vendorid>
-        <paymentmethod>Printed Check</paymentmethod>
-        <paymentdate>
-            <year>2015</year>
-            <month>06</month>
-            <day>30</day>
-        </paymentdate>
-        <paymentrequestitems>
-            <paymentrequestitem>
-                <key>123</key>
-                <paymentamount>100.12</paymentamount>
-            </paymentrequestitem>
-        </paymentrequestitems>
-    </create_paymentrequest>
+    <create>
+        <APPYMT>
+            <PAYMENTMETHOD>Printed Check</PAYMENTMETHOD>
+            <FINANCIALENTITY>BA1143</FINANCIALENTITY>
+            <VENDORID>V0001</VENDORID>
+            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
+            <APPYMTDETAILS>
+                <APPYMTDETAIL>
+                    <RECORDKEY>123</RECORDKEY>
+                    <TRX_PAYMENTAMOUNT>100.12</TRX_PAYMENTAMOUNT>
+                </APPYMTDETAIL>
+            </APPYMTDETAILS>
+        </APPYMT>
+    </create>
+</function>";
+
+            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            {
+                AccountId = "BA1143",
+                VendorId = "V0001",
+                PaymentMethod = "Printed Check",
+                PaymentDate = new DateTime(2015, 06, 30),
+            };
+
+            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
+            {
+                ApplyToRecordId = 123,
+                PaymentAmount = 100.12M,
+            };
+
+            record.ApplyToTransactions.Add(line1);
+            
+            this.CompareXml(expected, record);
+        }
+        
+        [Fact]
+        public void CreateXferForBillLineGetXmlTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <create>
+        <APPYMT>
+            <PAYMENTMETHOD>EFT</PAYMENTMETHOD>
+            <FINANCIALENTITY>BA1143</FINANCIALENTITY>
+            <VENDORID>V0001</VENDORID>
+            <DOCNUMBER>12345</DOCNUMBER>
+            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
+            <APPYMTDETAILS>
+                <APPYMTDETAIL>
+                    <RECORDKEY>123</RECORDKEY>
+                    <ENTRYKEY>456</ENTRYKEY>
+                    <TRX_PAYMENTAMOUNT>100.12</TRX_PAYMENTAMOUNT>
+                </APPYMTDETAIL>
+            </APPYMTDETAILS>
+        </APPYMT>
+    </create>
+</function>";
+
+            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            {
+                AccountId = "BA1143",
+                VendorId = "V0001",
+                PaymentMethod = "EFT",
+                PaymentDate = new DateTime(2015, 06, 30),
+                DocumentNo = "12345",
+            };
+
+            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
+            {
+                ApplyToRecordId = 123,
+                ApplyToRecordLineId = 456,
+                PaymentAmount = 100.12M,
+            };
+
+            record.ApplyToTransactions.Add(line1);
+            
+            this.CompareXml(expected, record);
+        }
+        
+        
+        
+        [Fact]
+        public void CreateCheckForBillDiscountGetXmlTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <create>
+        <APPYMT>
+            <PAYMENTMETHOD>Printed Check</PAYMENTMETHOD>
+            <FINANCIALENTITY>BA1143</FINANCIALENTITY>
+            <VENDORID>V0001</VENDORID>
+            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
+            <APPYMTDETAILS>
+                <APPYMTDETAIL>
+                    <RECORDKEY>123</RECORDKEY>
+                    <DISCOUNTDATE>06/29/2015</DISCOUNTDATE>
+                    <TRX_PAYMENTAMOUNT>294.00</TRX_PAYMENTAMOUNT>
+                </APPYMTDETAIL>
+            </APPYMTDETAILS>
+        </APPYMT>
+    </create>
+</function>";
+
+            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            {
+                AccountId = "BA1143",
+                VendorId = "V0001",
+                PaymentMethod = "Printed Check",
+                PaymentDate = new DateTime(2015, 06, 30),
+            };
+
+            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
+            {
+                ApplyToRecordId = 123,
+                PaymentAmount = 294.00M,
+                ApplyToDiscountDate = new DateTime(2015, 06, 29),
+            };
+
+            record.ApplyToTransactions.Add(line1);
+            
+            this.CompareXml(expected, record);
+        }
+        
+        [Fact]
+        public void CreateForCreditMemoAndUseDebitXmlTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <create>
+        <APPYMT>
+            <PAYMENTMETHOD>Printed Check</PAYMENTMETHOD>
+            <FINANCIALENTITY>BA1143</FINANCIALENTITY>
+            <VENDORID>V0001</VENDORID>
+            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
+            <APPYMTDETAILS>
+                <APPYMTDETAIL>
+                    <POSADJKEY>2595</POSADJKEY>
+                    <POSADJENTRYKEY>42962</POSADJENTRYKEY>
+                    <TRX_PAYMENTAMOUNT>1.00</TRX_PAYMENTAMOUNT>
+                </APPYMTDETAIL>
+                <APPYMTDETAIL>
+                    <POSADJKEY>2595</POSADJKEY>
+                    <POSADJENTRYKEY>42962</POSADJENTRYKEY>
+                    <ADJUSTMENTKEY>2590</ADJUSTMENTKEY>
+                    <ADJUSTMENTENTRYKEY>42949</ADJUSTMENTENTRYKEY>
+                    <TRX_ADJUSTMENTAMOUNT>1.01</TRX_ADJUSTMENTAMOUNT>
+                </APPYMTDETAIL>
+            </APPYMTDETAILS>
+        </APPYMT>
+    </create>
+</function>";
+
+            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            {
+                AccountId = "BA1143",
+                VendorId = "V0001",
+                PaymentMethod = "Printed Check",
+                PaymentDate = new DateTime(2015, 06, 30),
+            };
+
+            ApPaymentRequestApplyToCreditMemo line1 = new ApPaymentRequestApplyToCreditMemo()
+            {
+                ApplyToRecordId = 2595,
+                ApplyToRecordLineId = 42962,
+                PaymentAmount = 1.00M,
+            };
+
+            record.ApplyToTransactions.Add(line1);
+            
+            ApPaymentRequestApplyToCreditMemo line2 = new ApPaymentRequestApplyToCreditMemo()
+            {
+                ApplyToRecordId = 2595,
+                ApplyToRecordLineId = 42962,
+            };
+            ApPaymentRequestUseExistingDebitMemo useExisting2 = new ApPaymentRequestUseExistingDebitMemo()
+            {
+                ExistingRecordId = 2590,
+                ExistingRecordLineId = 42949,
+                ExistingAmount = 1.01M,
+            };
+            line2.UseExistingTransaction = useExisting2;
+
+            record.ApplyToTransactions.Add(line2);
+            
+            this.CompareXml(expected, record);
+        }
+        
+        [Fact]
+        public void CreateForBillAndUseAllTheThingsXmlTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <create>
+        <APPYMT>
+            <PAYMENTMETHOD>Printed Check</PAYMENTMETHOD>
+            <FINANCIALENTITY>BA1143</FINANCIALENTITY>
+            <VENDORID>V0001</VENDORID>
+            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
+            <APPYMTDETAILS>
+                <APPYMTDETAIL>
+                    <RECORDKEY>30</RECORDKEY>
+                    <ENTRYKEY>60</ENTRYKEY>
+                    <TRX_PAYMENTAMOUNT>1.00</TRX_PAYMENTAMOUNT>
+                </APPYMTDETAIL>
+                <APPYMTDETAIL>
+                    <RECORDKEY>30</RECORDKEY>
+                    <ENTRYKEY>60</ENTRYKEY>
+                    <ADVANCEKEY>2584</ADVANCEKEY>
+                    <ADVANCEENTRYKEY>42931</ADVANCEENTRYKEY>
+                    <TRX_POSTEDADVANCEAMOUNT>2.49</TRX_POSTEDADVANCEAMOUNT>
+                </APPYMTDETAIL>
+                <APPYMTDETAIL>
+                    <RECORDKEY>30</RECORDKEY>
+                    <ENTRYKEY>60</ENTRYKEY>
+                    <ADJUSTMENTKEY>2590</ADJUSTMENTKEY>
+                    <ADJUSTMENTENTRYKEY>42949</ADJUSTMENTENTRYKEY>
+                    <TRX_ADJUSTMENTAMOUNT>2.01</TRX_ADJUSTMENTAMOUNT>
+                </APPYMTDETAIL>
+            </APPYMTDETAILS>
+        </APPYMT>
+    </create>
+</function>";
+
+            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            {
+                AccountId = "BA1143",
+                VendorId = "V0001",
+                PaymentMethod = "Printed Check",
+                PaymentDate = new DateTime(2015, 06, 30),
+            };
+
+            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
+            {
+                ApplyToRecordId = 30,
+                ApplyToRecordLineId = 60,
+                PaymentAmount = 1.00M,
+            };
+            record.ApplyToTransactions.Add(line1);
+            
+            ApPaymentRequestApplyToBill line2 = new ApPaymentRequestApplyToBill()
+            {
+                ApplyToRecordId = 30,
+                ApplyToRecordLineId = 60,
+            };
+            ApPaymentRequestUseExistingAdvance useExisting2 = new ApPaymentRequestUseExistingAdvance()
+            {
+                ExistingRecordId = 2584,
+                ExistingRecordLineId = 42931,
+                ExistingAmount = 2.49M,
+            };
+            line2.UseExistingTransaction = useExisting2;
+            record.ApplyToTransactions.Add(line2);
+            
+            ApPaymentRequestApplyToBill line3 = new ApPaymentRequestApplyToBill()
+            {
+                ApplyToRecordId = 30,
+                ApplyToRecordLineId = 60,
+            };
+            ApPaymentRequestUseExistingDebitMemo useExisting3 = new ApPaymentRequestUseExistingDebitMemo()
+            {
+                ExistingRecordId = 2590,
+                ExistingRecordLineId = 42949,
+                ExistingAmount = 2.01M,
+            };
+            line3.UseExistingTransaction = useExisting3;
+            record.ApplyToTransactions.Add(line3);
+
+            this.CompareXml(expected, record);
+        }
+        
+        
+        [Fact]
+        public void LegacyMapGetXmlTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <create>
+        <APPYMT>
+            <PAYMENTMETHOD>Printed Check</PAYMENTMETHOD>
+            <FINANCIALENTITY>BA1143</FINANCIALENTITY>
+            <VENDORID>V0001</VENDORID>
+            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
+            <APPYMTDETAILS>
+                <APPYMTDETAIL>
+                    <RECORDKEY>123</RECORDKEY>
+                    <TRX_PAYMENTAMOUNT>100.12</TRX_PAYMENTAMOUNT>
+                </APPYMTDETAIL>
+            </APPYMTDETAILS>
+        </APPYMT>
+    </create>
 </function>";
 
             ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
@@ -71,34 +345,31 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
         }
         
         [Fact]
-        public void GetAllXmlTest()
+        public void LegacyMapGetAllXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <create_paymentrequest>
-        <bankaccountid>BA1143</bankaccountid>
-        <vendorid>V0001</vendorid>
-        <memo>Memo</memo>
-        <paymentmethod>Printed Check</paymentmethod>
-        <grouppayments>true</grouppayments>
-        <paymentdate>
-            <year>2015</year>
-            <month>06</month>
-            <day>30</day>
-        </paymentdate>
-        <paymentoption>vendorpref</paymentoption>
-        <paymentrequestitems>
-            <paymentrequestitem>
-                <key>123</key>
-                <paymentamount>100.12</paymentamount>
-                <credittoapply>8.12</credittoapply>
-                <discounttoapply>1.21</discounttoapply>
-            </paymentrequestitem>
-        </paymentrequestitems>
-        <documentnumber>10000</documentnumber>
-        <paymentdescription>Memo</paymentdescription>
-        <paymentcontact>Jim Smith</paymentcontact>
-    </create_paymentrequest>
+    <create>
+        <APPYMT>
+            <PAYMENTMETHOD>Printed Check</PAYMENTMETHOD>
+            <FINANCIALENTITY>BA1143</FINANCIALENTITY>
+            <VENDORID>V0001</VENDORID>
+            <PAYMENTREQUESTMETHOD>vendorpref</PAYMENTREQUESTMETHOD>
+            <GROUPPAYMENTS>true</GROUPPAYMENTS>
+            <DOCNUMBER>10000</DOCNUMBER>
+            <DESCRIPTION>Memo</DESCRIPTION>
+            <PAYMENTCONTACT>Jim Smith</PAYMENTCONTACT>
+            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
+            <APPYMTDETAILS>
+                <APPYMTDETAIL>
+                    <RECORDKEY>123</RECORDKEY>
+                    <TRX_PAYMENTAMOUNT>100.12</TRX_PAYMENTAMOUNT>
+                    <CREDITTOAPPLY>8.12</CREDITTOAPPLY>
+                    <DISCOUNTTOAPPLY>1.21</DISCOUNTTOAPPLY>
+                </APPYMTDETAIL>
+            </APPYMTDETAILS>
+        </APPYMT>
+    </create>
 </function>";
 
             ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
