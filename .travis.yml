@@ -1,7 +1,7 @@
 language: csharp
 solution: intacct-sdk-net.sln
 mono: none
-dotnet: 3.1.401
+dotnet: 2.1.300
 install:
 - dotnet restore
 
@@ -9,9 +9,6 @@ script:
 - dotnet build --configuration Release
 - dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp2.0"
 - dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp2.1"
-- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp2.2"
-- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp3.0"
-- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp3.1"
 
 notifications:
   slack:
