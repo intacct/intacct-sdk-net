@@ -50,6 +50,8 @@ namespace Intacct.SDK.Functions.GeneralLedger
 
         public string WarehouseId;
 
+        public string TaskId;
+
         public List<CustomAllocationSplit> CustomAllocationSplits = new List<CustomAllocationSplit>();
 
         public Dictionary<string, dynamic> CustomFields = new Dictionary<string, dynamic>();

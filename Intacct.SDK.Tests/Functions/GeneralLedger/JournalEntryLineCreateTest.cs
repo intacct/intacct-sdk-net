@@ -84,6 +84,7 @@ namespace Intacct.SDK.Tests.Functions.GeneralLedger
     <CLASSID>C200</CLASSID>
     <CONTRACTID>C300</CONTRACTID>
     <WAREHOUSEID>W100</WAREHOUSEID>
+    <TASKID>T100</TASKID>
     <DESCRIPTION>my memo</DESCRIPTION>
     <CUSTOM01>123</CUSTOM01>
 </GLENTRY>";
@@ -106,6 +107,7 @@ namespace Intacct.SDK.Tests.Functions.GeneralLedger
                 ClassId = "C200",
                 ContractId = "C300",
                 WarehouseId = "W100",
+                TaskId = "T100",
                 CustomFields = new Dictionary<string, dynamic>
                 {
                     { "CUSTOM01", "123" }
