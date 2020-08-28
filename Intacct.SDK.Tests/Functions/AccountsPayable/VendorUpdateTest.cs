@@ -14,13 +14,8 @@
  */
 
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Xml;
 using Intacct.SDK.Functions.AccountsPayable;
-using Intacct.SDK.Functions;
 using Intacct.SDK.Tests.Xml;
-using Intacct.SDK.Xml;
 using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.AccountsPayable
@@ -81,6 +76,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                     <STATE>CA</STATE>
                     <ZIP>95110</ZIP>
                     <COUNTRY>United States</COUNTRY>
+                    <ISOCOUNTRYCODE>USA</ISOCOUNTRYCODE>
                 </MAILADDRESS>
             </DISPLAYCONTACT>
             <ONETIME>false</ONETIME>
@@ -158,6 +154,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 StateProvince = "CA",
                 ZipPostalCode = "95110",
                 Country = "United States",
+                IsoCountryCode = "USA",
                 OneTime = false,
                 Active = true,
                 ExcludedFromContactList = false,

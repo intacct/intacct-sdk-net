@@ -71,6 +71,8 @@ namespace Intacct.SDK.Functions.AccountsPayable
 
         public string Country;
 
+        public string IsoCountryCode;
+
         public bool? ExcludedFromContactList;
 
         public string VendorTypeId;
@@ -164,6 +166,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
                 || !string.IsNullOrWhiteSpace(StateProvince)
                 || !string.IsNullOrWhiteSpace(ZipPostalCode)
                 || !string.IsNullOrWhiteSpace(Country)
+                || !string.IsNullOrWhiteSpace(IsoCountryCode)
             )
             {
                 xml.WriteStartElement("MAILADDRESS");
@@ -174,6 +177,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
                 xml.WriteElementString("STATE", StateProvince);
                 xml.WriteElementString("ZIP", ZipPostalCode);
                 xml.WriteElementString("COUNTRY", Country);
+                xml.WriteElementString("ISOCOUNTRYCODE", IsoCountryCode);
 
                 xml.WriteEndElement(); //MAILADDRESS
             }
