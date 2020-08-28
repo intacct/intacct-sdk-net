@@ -13,6 +13,7 @@
  * permissions and limitations under the License.
  */
 
+using System;
 using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.GlobalConsolidations
@@ -31,10 +32,17 @@ namespace Intacct.SDK.Functions.GlobalConsolidations
             xml.WriteStartElement("consolidate");
 
             xml.WriteElement("bookid", ReportingBookId, true);
-            
+
             xml.WriteElement("reportingperiodname", ReportingPeriodName, true);
 
-            xml.WriteElement("offline", ProcessOffline);
+            if (ProcessOffline == true) 
+            {
+                xml.WriteElement("offline", "T");
+            } else if (ProcessOffline == false)
+            {
+                xml.WriteElement("offline", "F");
+            }
+
             xml.WriteElement("updatesucceedingperiods", UpdateSucceedingPeriods);
             xml.WriteElement("changesonly", ChangesOnly);
             xml.WriteElement("email", NotificationEmail);
