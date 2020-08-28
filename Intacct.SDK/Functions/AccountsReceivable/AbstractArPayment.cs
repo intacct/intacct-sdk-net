@@ -23,7 +23,7 @@ namespace Intacct.SDK.Functions.AccountsReceivable
         public int? RecordNo;
 
         public string PaymentMethod;
-
+        
         public string BankAccountId;
 
         public string UndepositedFundsGlAccountNo;
@@ -37,6 +37,8 @@ namespace Intacct.SDK.Functions.AccountsReceivable
         public DateTime? ReceivedDate;
 
         public decimal? TransactionPaymentAmount;
+
+        public int? SummaryRecordNo;
 
         public decimal? BasePaymentAmount;
 
