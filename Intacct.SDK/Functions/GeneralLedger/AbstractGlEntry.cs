@@ -36,6 +36,8 @@ namespace Intacct.SDK.Functions.GeneralLedger
 
         public string ProjectId;
 
+        public string TaskId;
+        
         public string CustomerId;
 
         public string VendorId;

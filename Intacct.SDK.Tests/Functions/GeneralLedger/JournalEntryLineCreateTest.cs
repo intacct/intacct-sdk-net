@@ -15,14 +15,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Xml;
 using Intacct.SDK.Functions.Company;
 using Intacct.SDK.Functions.GeneralLedger;
-using Intacct.SDK.Functions;
 using Intacct.SDK.Tests.Xml;
-using Intacct.SDK.Xml;
 using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.GeneralLedger
@@ -77,6 +72,7 @@ namespace Intacct.SDK.Tests.Functions.GeneralLedger
     <LOCATION>100</LOCATION>
     <DEPARTMENT>ADM</DEPARTMENT>
     <PROJECTID>P100</PROJECTID>
+    <TASKID>T123</TASKID>
     <CUSTOMERID>C100</CUSTOMERID>
     <VENDORID>V100</VENDORID>
     <EMPLOYEEID>E100</EMPLOYEEID>
@@ -99,6 +95,7 @@ namespace Intacct.SDK.Tests.Functions.GeneralLedger
                 LocationId = "100",
                 DepartmentId = "ADM",
                 ProjectId = "P100",
+                TaskId = "T123",
                 CustomerId = "C100",
                 VendorId = "V100",
                 EmployeeId = "E100",
