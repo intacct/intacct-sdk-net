@@ -14,13 +14,8 @@
  */
 
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Xml;
 using Intacct.SDK.Functions.Projects;
-using Intacct.SDK.Functions;
 using Intacct.SDK.Tests.Xml;
-using Intacct.SDK.Xml;
 using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.Projects
@@ -44,6 +39,32 @@ namespace Intacct.SDK.Tests.Functions.Projects
             {
                 ProjectName = "hello world",
                 ProjectCategory = "Contract"
+            };
+            this.CompareXml(expected, record);
+        }
+        
+        [Fact]
+        public void GetXmlWithNullValueCustomFieldTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <create>
+        <PROJECT>
+            <NAME>hello world</NAME>
+            <PROJECTCATEGORY>Contract</PROJECTCATEGORY>
+            <customfield1 />
+        </PROJECT>
+    </create>
+</function>";
+
+            ProjectCreate record = new ProjectCreate("unittest")
+            {
+                ProjectName = "hello world",
+                ProjectCategory = "Contract",
+                CustomFields = new Dictionary<string, dynamic>
+                {
+                    { "customfield1", null }
+                },
             };
             this.CompareXml(expected, record);
         }
