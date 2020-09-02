@@ -48,6 +48,8 @@ namespace Intacct.SDK.Functions.Common.NewQuery
         public IOrder[] OrderBy { get; set; }
 
         public bool? CaseInsensitive { get; set; }
+        
+        public bool? ShowPrivate { get; set; }
 
         private int? _pageSize;
 
@@ -133,12 +135,19 @@ namespace Intacct.SDK.Functions.Common.NewQuery
                 xml.WriteEndElement(); //orderby
             }
 
+            xml.WriteStartElement("options");
+            
             if (CaseInsensitive != null)
             {
-                xml.WriteStartElement("options");
                 xml.WriteElement("caseinsensitive", CaseInsensitive);
-                xml.WriteEndElement(); //options
             }
+            
+            if (ShowPrivate != null)
+            {
+                xml.WriteElement("showprivate", ShowPrivate);
+            }
+            
+            xml.WriteEndElement(); //options
 
             if (_pageSize != null)
             {
