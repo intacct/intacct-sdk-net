@@ -53,9 +53,12 @@ namespace Intacct.SDK.Functions.Purchasing
             xml.WriteElement("vendordocno", VendorDocNumber);
             xml.WriteElement("termname", PaymentTerm);
 
-            xml.WriteStartElement("datedue");
-            xml.WriteDateSplitElements(DueDate.Value, true);
-            xml.WriteEndElement(); //datedue
+            if (this.DueDate.HasValue)
+            {
+                xml.WriteStartElement("datedue");
+                xml.WriteDateSplitElements(DueDate.Value, true);
+                xml.WriteEndElement(); //datedue
+            }
 
             xml.WriteElement("message", Message);
             xml.WriteElement("shippingmethod", ShippingMethod);
