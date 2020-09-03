@@ -222,7 +222,6 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
                 TransactionDefinition = "Purchase Order",
                 TransactionDate = new DateTime(2015, 06, 30),
                 VendorId = "2530",
-                DueDate = null,
                 PaymentTerm = "N30",
             };
 
