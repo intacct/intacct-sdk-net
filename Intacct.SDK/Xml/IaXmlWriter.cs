@@ -324,7 +324,14 @@ namespace Intacct.SDK.Xml
                 {
                     WriteStartElement("customfield");
                     WriteElement("customfieldname", customField.Key, true);
-                    WriteElement("customfieldvalue", customField.Value, true);
+                    if (customField.Value == null)
+                    {
+                        WriteElement("customfieldvalue", "", true);
+                    }
+                    else
+                    {
+                        WriteElement("customfieldvalue", customField.Value, true);
+                    }
                     WriteEndElement(); //customfield
                 }
                 WriteEndElement(); //customfields
@@ -337,7 +344,14 @@ namespace Intacct.SDK.Xml
             {
                 foreach (KeyValuePair<string, dynamic> customField in customFields)
                 {
-                    WriteElement(customField.Key, customField.Value, true);
+                    if (customField.Value == null)
+                    {
+                        WriteElement(customField.Key, "", true);
+                    }
+                    else
+                    {
+                        WriteElement(customField.Key, customField.Value, true);
+                    }
                 }
             }
         }

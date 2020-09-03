@@ -33,8 +33,17 @@ namespace Intacct.SDK.Functions.GlobalConsolidations
             xml.WriteElement("bookid", ReportingBookId, true);
             
             xml.WriteElement("reportingperiodname", ReportingPeriodName, true);
+            
+            switch (ProcessOffline)
+            {
+                case true:
+                    xml.WriteElement("offline", "T");
+                    break;
+                case false:
+                    xml.WriteElement("offline", "F");
+                    break;
+            }
 
-            xml.WriteElement("offline", ProcessOffline);
             xml.WriteElement("updatesucceedingperiods", UpdateSucceedingPeriods);
             xml.WriteElement("changesonly", ChangesOnly);
             xml.WriteElement("email", NotificationEmail);

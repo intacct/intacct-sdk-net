@@ -79,6 +79,7 @@ namespace Intacct.SDK.Functions.GeneralLedger
                 xml.WriteElement("LOCATION", LocationId);
                 xml.WriteElement("DEPARTMENT", DepartmentId);
                 xml.WriteElement("PROJECTID", ProjectId);
+                xml.WriteElement("TASKID", TaskId);
                 xml.WriteElement("CUSTOMERID", CustomerId);
                 xml.WriteElement("VENDORID", VendorId);
                 xml.WriteElement("EMPLOYEEID", EmployeeId);

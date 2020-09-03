@@ -14,14 +14,8 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Xml;
 using Intacct.SDK.Functions.AccountsReceivable;
-using Intacct.SDK.Functions;
 using Intacct.SDK.Tests.Xml;
-using Intacct.SDK.Xml;
 using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.AccountsReceivable
@@ -36,6 +30,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
     <create_arpayment>
         <customerid>C0020</customerid>
         <paymentamount>1922.12</paymentamount>
+        <batchkey>123</batchkey>
         <refid>1000</refid>
         <overpaylocid>1020</overpaylocid>
         <overpaydeptid>900</overpaydeptid>
@@ -52,6 +47,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
             {
                 CustomerId = "C0020",
                 TransactionPaymentAmount = 1922.12M,
+                SummaryRecordNo = 123,
                 ReceivedDate = new DateTime(2016, 06, 30),
                 PaymentMethod = "Printed Check",
                 ReferenceNumber = "1000",

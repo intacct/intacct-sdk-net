@@ -42,6 +42,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             <field>CUSTOMERID</field>
         </select>
         <object>CUSTOMER</object>
+        <options />
     </query>
 </function>";
 
@@ -71,6 +72,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
         <docparid>REPORT</docparid>
         <options>
             <caseinsensitive>true</caseinsensitive>
+            <showprivate>true</showprivate>
         </options>
         <pagesize>10</pagesize>
         <offset>5</offset>
@@ -86,6 +88,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
                 DocParId = "REPORT",
                 SelectFields =  fields,
                 CaseInsensitive = true,
+                ShowPrivate = true,
                 PageSize = 10,
                 Offset = 5
             };
@@ -249,6 +252,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             <field>RECORDNO</field>
         </select>
         <object>ARINVOICE</object>
+        <options />
     </query>
 </function>";
 
@@ -285,6 +289,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             <count>RECORDNO</count>
         </select>
         <object>ARINVOICE</object>
+        <options />
     </query>
 </function>";
             
@@ -326,6 +331,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
                 <descending />
             </order>
         </orderby>
+        <options />
     </query>
 </function>";
 
@@ -354,6 +360,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
             <field>CUSTOMERID</field>
         </select>
         <object>CLASS</object>
+        <options />
     </query>
 </function>";
 
@@ -387,6 +394,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
                 <value>10</value>
             </lessthanorequalto>
         </filter>
+        <options />
     </query>
 </function>";
 
@@ -428,6 +436,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
                 </lessthanorequalto>
             </and>
         </filter>
+        <options />
     </query>
 </function>";
 
@@ -479,6 +488,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
                 </equalto>
             </or>
         </filter>
+        <options />
     </query>
 </function>";
 
@@ -531,6 +541,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
                 </and>
             </or>
         </filter>
+        <options />
     </query>
 </function>";
 
@@ -601,6 +612,7 @@ namespace Intacct.SDK.Tests.Functions.Common.NewQuery
                 </and>
             </or>
         </filter>
+        <options />
     </query>
 </function>";
 

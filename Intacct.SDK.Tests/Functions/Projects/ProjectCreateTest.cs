@@ -47,5 +47,31 @@ namespace Intacct.SDK.Tests.Functions.Projects
             };
             this.CompareXml(expected, record);
         }
+        
+        [Fact]
+        public void GetXmlWithNullValueCustomFieldTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <create>
+        <PROJECT>
+            <NAME>hello world</NAME>
+            <PROJECTCATEGORY>Contract</PROJECTCATEGORY>
+            <customfield1 />
+        </PROJECT>
+    </create>
+</function>";
+
+            ProjectCreate record = new ProjectCreate("unittest")
+            {
+                ProjectName = "hello world",
+                ProjectCategory = "Contract",
+                CustomFields = new Dictionary<string, dynamic>
+                {
+                    { "customfield1", null }
+                },
+            };
+            this.CompareXml(expected, record);
+        }
     }
 }

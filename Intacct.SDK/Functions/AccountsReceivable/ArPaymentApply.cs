@@ -20,8 +20,6 @@ namespace Intacct.SDK.Functions.AccountsReceivable
     public class ArPaymentApply : AbstractArPayment
     {
 
-        public int? SummaryRecordNo;
-        
         public string Memo;
 
         public ArPaymentApply(string controlId = null) : base(controlId)
