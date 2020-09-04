@@ -24,6 +24,8 @@ namespace Intacct.SDK.Functions.AccountsReceivable
 
         public string PaymentMethod;
 
+        public int? SummaryRecordNo;
+        
         public string BankAccountId;
 
         public string UndepositedFundsGlAccountNo;

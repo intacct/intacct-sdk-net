@@ -192,5 +192,53 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
             
             this.CompareXml(expected, record);
         }
+        
+        [Fact]
+        public void GetXmlDateDueNullTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <create_potransaction>
+        <transactiontype>Purchase Order</transactiontype>
+        <datecreated>
+            <year>2015</year>
+            <month>06</month>
+            <day>30</day>
+        </datecreated>
+        <vendorid>2530</vendorid>
+        <termname>N30</termname>
+        <returnto>
+            <contactname />
+        </returnto>
+        <payto>
+            <contactname />
+        </payto>
+        <potransitems>
+            <potransitem>
+                <itemid>02354032</itemid>
+                <quantity>1200</quantity>
+            </potransitem>
+        </potransitems>
+    </create_potransaction>
+</function>";
+
+            PurchasingTransactionCreate record = new PurchasingTransactionCreate("unittest")
+            {
+                TransactionDefinition = "Purchase Order",
+                TransactionDate = new DateTime(2015, 06, 30),
+                VendorId = "2530",
+                PaymentTerm = "N30",
+            };
+
+            PurchasingTransactionLineCreate line1 = new PurchasingTransactionLineCreate()
+            {
+                ItemId = "02354032",
+                Quantity = 1200,
+            };
+
+            record.Lines.Add(line1);
+
+            this.CompareXml(expected, record);
+        }
     }
 }

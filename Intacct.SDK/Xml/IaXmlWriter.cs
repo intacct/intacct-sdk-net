@@ -278,6 +278,12 @@ namespace Intacct.SDK.Xml
             }
         }
 
+        public void WriteEmptyElement(string localName)
+        {
+            _writer.WriteStartElement(localName);
+            _writer.WriteEndElement();
+        }
+        
         public void WriteAttribute(string localName, string value, bool writeNull = false)
         {
             if (!string.IsNullOrEmpty(value) || writeNull == true)
@@ -324,7 +330,15 @@ namespace Intacct.SDK.Xml
                 {
                     WriteStartElement("customfield");
                     WriteElement("customfieldname", customField.Key, true);
-                    WriteElement("customfieldvalue", customField.Value, true);
+                    
+                    if (customField.Value == null)
+                    {
+                        WriteEmptyElement("customfieldvalue");
+                    }
+                    else
+                    {
+                        WriteElement("customfieldvalue", customField.Value, true);
+                    }
                     WriteEndElement(); //customfield
                 }
                 WriteEndElement(); //customfields
@@ -337,7 +351,14 @@ namespace Intacct.SDK.Xml
             {
                 foreach (KeyValuePair<string, dynamic> customField in customFields)
                 {
-                    WriteElement(customField.Key, customField.Value, true);
+                    if (customField.Value == null)
+                    {
+                        WriteEmptyElement(customField.Key);
+                    }
+                    else
+                    {
+                        WriteElement(customField.Key, customField.Value, true);
+                    }
                 }
             }
         }

@@ -15,13 +15,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Xml;
 using Intacct.SDK.Functions.AccountsPayable;
-using Intacct.SDK.Functions;
 using Intacct.SDK.Tests.Xml;
-using Intacct.SDK.Xml;
 using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.AccountsPayable
@@ -118,6 +113,10 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 <customfieldname>customfield1</customfieldname>
                 <customfieldvalue>customvalue1</customfieldvalue>
             </customfield>
+            <customfield>
+                <customfieldname>customfield2</customfieldname>
+                <customfieldvalue />
+            </customfield>
         </customfields>
         <billitems>
             <lineitem>
@@ -152,7 +151,8 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 AttachmentsId = "6942",
                 CustomFields = new Dictionary<string, dynamic>
                 {
-                    { "customfield1", "customvalue1" }
+                    { "customfield1", "customvalue1" },
+                    { "customfield2", null }
                 },
             };
 
