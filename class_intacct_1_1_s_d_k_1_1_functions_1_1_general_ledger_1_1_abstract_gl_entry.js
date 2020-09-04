@@ -15,6 +15,7 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_ent
     [ "LocationId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a11488034ddb4b1f4c9bdb69de5adeb03", null ],
     [ "Memo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a076aceb5e69f26485168c780a1e71ace", null ],
     [ "ProjectId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a7695fed896f4077b6ef1df6c1a8a45ce", null ],
+    [ "TaskId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a8dca7d7c81e44a89b7984c8e3803fc6a", null ],
     [ "VendorId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a3c654cf315ec4b55182b02f51106c6a8", null ],
     [ "WarehouseId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_entry.html#a22eaed6e8796c1011920931d378a98b8", null ]
 ];

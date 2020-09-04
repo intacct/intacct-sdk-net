@@ -29,6 +29,7 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vend
     [ "Form1099Name", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a9742c3b77ef44fde7527e2d1a65f7b48", null ],
     [ "Form1099Type", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a472706b32b197bbb092906f42b2027b8", null ],
     [ "GlGroupName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#abb46c1da9921a5c55ae923e2435d8c38", null ],
+    [ "IsoCountryCode", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#af093b8cb9eaf0345e74d28fda3446eb4", null ],
     [ "LastName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#afe15d623d4ebad14a7f0a24c6a4884b0", null ],
     [ "LocationAssignedAccountNoDisplayedOnCheckStub", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a75c9d23fb7bc6b3916a3ef65c97c4919", null ],
     [ "MergePaymentRequests", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a94e85602e6108d71218895ef73e47b25", null ],

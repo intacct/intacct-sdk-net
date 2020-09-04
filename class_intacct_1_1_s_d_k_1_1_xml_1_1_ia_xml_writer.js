@@ -24,6 +24,7 @@ var class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer =
     [ "WriteElement", "class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer.html#ad4a0174cde8240255057e14700b0f937", null ],
     [ "WriteElement", "class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer.html#a656a79570e0b102298dd3287ef390512", null ],
     [ "WriteElement", "class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer.html#af7e013783b27f43b6ef8042b65d6ab07", null ],
+    [ "WriteEmptyElement", "class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer.html#adebb2d20822e3ce34268ecc74b4261d8", null ],
     [ "WriteEndAttribute", "class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer.html#adf88e97e41d69120d0f4ecba7c220521", null ],
     [ "WriteEndDocument", "class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer.html#a5b81157c3d202aaa7712d4903f2f0cdc", null ],
     [ "WriteEndElement", "class_intacct_1_1_s_d_k_1_1_xml_1_1_ia_xml_writer.html#a6ab8d2429224e41a1cd536b9d094b4d9", null ],

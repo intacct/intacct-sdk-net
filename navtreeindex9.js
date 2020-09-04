@@ -1,5 +1,12 @@
 var NAVTREEINDEX9 =
 {
+"namespace_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_less_than_or_equal_to.html":[0,0,0,2,3,1,0,5],
+"namespace_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_comparison_1_1_like.html":[0,0,0,2,3,1,0,6],
+"namespace_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_query_1_1_logical.html":[0,0,0,2,3,1,1],
+"namespace_intacct_1_1_s_d_k_1_1_functions_1_1_company.html":[0,0,0,2,4],
+"namespace_intacct_1_1_s_d_k_1_1_functions_1_1_contracts_rev_mgmt.html":[0,0,0,2,5],
+"namespace_intacct_1_1_s_d_k_1_1_functions_1_1_data_delivery_service.html":[0,0,0,2,6],
+"namespace_intacct_1_1_s_d_k_1_1_functions_1_1_employee_expenses.html":[0,0,0,2,7],
 "namespace_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger.html":[0,0,0,2,8],
 "namespace_intacct_1_1_s_d_k_1_1_functions_1_1_global_consolidations.html":[0,0,0,2,9],
 "namespace_intacct_1_1_s_d_k_1_1_functions_1_1_inventory_control.html":[0,0,0,2,10],

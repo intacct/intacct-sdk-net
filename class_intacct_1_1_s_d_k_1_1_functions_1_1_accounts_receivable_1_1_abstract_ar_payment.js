@@ -17,6 +17,7 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_a
     [ "ReceivedDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#aa9c591b8fb3a44d9239b465723dc946a", null ],
     [ "RecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#af327721800c754bb2bd7b77df7076b2d", null ],
     [ "ReferenceNumber", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#ae41811e88e080b890e43d983d361dee9", null ],
+    [ "SummaryRecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#afbd7878fa37c8de7bbd4781b9ad8cdef", null ],
     [ "TransactionCurrency", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#ae4d01e1d8e5d63051126e7d2bb55f2b6", null ],
     [ "TransactionPaymentAmount", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#a5929d64c909abb962eea95e94b4acaae", null ],
     [ "UndepositedFundsGlAccountNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_ar_payment.html#a2866e53852edec36a7420e47b10e17b4", null ]
