@@ -9,5 +9,6 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_fun
     [ "Offset", "class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_function.html#a1626c877e00ef09c0be78641c8b9f0b9", null ],
     [ "OrderBy", "class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_function.html#a9ea4a520c88987ad6cce58d86f70111d", null ],
     [ "PageSize", "class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_function.html#a871ec39083337447b62cc11a00880895", null ],
-    [ "SelectFields", "class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_function.html#a0e7d2be1e7f183012ee6322186ad125a", null ]
+    [ "SelectFields", "class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_function.html#a0e7d2be1e7f183012ee6322186ad125a", null ],
+    [ "ShowPrivate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_query_function.html#ae586a4228b5720aa83db29912c0ad2ce", null ]
 ];

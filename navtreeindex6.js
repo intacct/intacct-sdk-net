@@ -1,5 +1,11 @@
 var NAVTREEINDEX6 =
 {
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_account_create.html#a2c699b8baa3850e78f36fffc77831daa":[0,0,0,2,8,9,0],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_account_create.html#a8fa508769a01c8249ed9484d2ae3fa5c":[0,0,0,2,8,9,1],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_account_delete.html":[0,0,0,2,8,10],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_account_delete.html#a252822eb3e1bc9feae10afbca2ad1f11":[0,0,0,2,8,10,0],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_account_delete.html#ae1e62f7e7c22e502ffd016c6b281967f":[0,0,0,2,8,10,1],
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_account_update.html":[0,0,0,2,8,11],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_account_update.html#a1bffcb8a5da308755a80b3ae59ed3400":[0,0,0,2,8,11,0],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_account_update.html#a9df606646beb2ee9dafe24eca2b6e437":[0,0,0,2,8,11,1],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_journal_entry_create.html":[0,0,0,2,8,12],
@@ -243,11 +249,5 @@ var NAVTREEINDEX6 =
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a14f4194c55d2602738a880db795503e0":[0,0,0,2,11,1,31],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a1e05d2d1b667e5c0d386fac6ff3ffb00":[0,0,0,2,11,1,20],
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a26d3e792e7d328c676c8193bf274d9c3":[0,0,0,2,11,1,4],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a2cb9c2a7bce017bfed1cdc8d5782f309":[0,0,0,2,11,1,23],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a2d86973125f397032cb6ca34e9341bc9":[0,0,0,2,11,1,24],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a313a558f977c8890ee77f34d59d2b6eb":[0,0,0,2,11,1,32],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a40a6f54c68dc72d1ad0ed284ca095e22":[0,0,0,2,11,1,3],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a50ecc243e3131fc216b7747229f4180d":[0,0,0,2,11,1,10],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a5cc15a0dfe5ccd77e826ff61c385b24d":[0,0,0,2,11,1,8],
-"class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a5e1c5cee476d814f5f0290a24759ab74":[0,0,0,2,11,1,7]
+"class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_abstract_order_entry_transaction_line.html#a2cb9c2a7bce017bfed1cdc8d5782f309":[0,0,0,2,11,1,23]
 };
