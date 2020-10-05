@@ -33,7 +33,10 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <delete_paymentrequest key=""1234"" />
+    <delete>
+        <object>APPYMT</object>
+        <keys>1234</keys>
+    </delete>
 </function>";
 
             ApPaymentRequestDelete record = new ApPaymentRequestDelete("unittest")

@@ -29,11 +29,12 @@ namespace Intacct.SDK.Functions.AccountsPayable
             xml.WriteStartElement("function");
             xml.WriteAttribute("controlid", ControlId, true);
            
-            xml.WriteStartElement("delete_paymentrequest");
+            xml.WriteStartElement("delete");
 
-            xml.WriteAttribute("key", RecordNo, true);
+            xml.WriteElement("object", "APPYMT");
+            xml.WriteElement("keys", RecordNo);
             
-            xml.WriteEndElement(); //delete_paymentrequest
+            xml.WriteEndElement(); //delete
 
             xml.WriteEndElement(); //function
         }
