@@ -14,14 +14,8 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Xml;
 using Intacct.SDK.Functions.AccountsPayable;
-using Intacct.SDK.Functions;
 using Intacct.SDK.Tests.Xml;
-using Intacct.SDK.Xml;
 using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.AccountsPayable
@@ -305,7 +299,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
         
         
         [Fact]
-        public void LegacyMapGetXmlTest()
+        public void GetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
@@ -327,16 +321,16 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
 
             ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
             {
-                BankAccountId = "BA1143",
+                AccountId = "BA1143",
                 VendorId = "V0001",
                 PaymentMethod = "Printed Check",
                 PaymentDate = new DateTime(2015, 06, 30),
             };
 
-            ApPaymentRequestItem line1 = new ApPaymentRequestItem()
+            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
             {
                 ApplyToRecordId = 123,
-                AmountToApply = 100.12M,
+                PaymentAmount = 100.12M,
             };
 
             record.ApplyToTransactions.Add(line1);
@@ -345,7 +339,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
         }
         
         [Fact]
-        public void LegacyMapGetAllXmlTest()
+        public void GetAllXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
@@ -363,9 +357,9 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
             <APPYMTDETAILS>
                 <APPYMTDETAIL>
                     <RECORDKEY>123</RECORDKEY>
-                    <TRX_PAYMENTAMOUNT>100.12</TRX_PAYMENTAMOUNT>
-                    <CREDITTOAPPLY>8.12</CREDITTOAPPLY>
                     <DISCOUNTTOAPPLY>1.21</DISCOUNTTOAPPLY>
+                    <CREDITTOAPPLY>8.12</CREDITTOAPPLY>
+                    <TRX_PAYMENTAMOUNT>100.12</TRX_PAYMENTAMOUNT>
                 </APPYMTDETAIL>
             </APPYMTDETAILS>
         </APPYMT>
@@ -374,7 +368,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
 
             ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
             {
-                BankAccountId = "BA1143",
+                AccountId = "BA1143",
                 VendorId = "V0001",
                 Memo = "Memo",
                 PaymentMethod = "Printed Check",
@@ -385,10 +379,10 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 NotificationContactName = "Jim Smith",
             };
 
-            ApPaymentRequestItem line1 = new ApPaymentRequestItem()
+            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
             {
                 ApplyToRecordId = 123,
-                AmountToApply = 100.12M,
+                PaymentAmount = 100.12M,
                 CreditToApply = 8.12M,
                 DiscountToApply = 1.21M,
             };

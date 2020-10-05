@@ -27,20 +27,6 @@ namespace Intacct.SDK.Functions.AccountsPayable
 
         public string AccountId;
 
-        [Obsolete("This property is obsolete. Use AccountId instead.", false)]
-        public string BankAccountId
-        {
-            get => AccountId;
-            set => AccountId = value;
-        }
-
-        [Obsolete("This property is obsolete. Use AccountId instead.", false)]
-        public string ChargeCardId
-        {
-            get => AccountId;
-            set => AccountId = value;
-        }
-
         public string VendorId;
 
         public string MergeOption;
@@ -55,14 +41,8 @@ namespace Intacct.SDK.Functions.AccountsPayable
         
         public decimal? TransactionAmountPaid;
 
-        [Obsolete("This property is obsolete. Use TransactionAmountPaid instead.", false)]
-        public decimal? TransactionAmount
-        {
-            get => TransactionAmountPaid;
-            set => TransactionAmountPaid = value;
-        }
-        
         public DateTime? ExchangeRateDate;
+        
         public string ExchangeRateType;
         
         public string DocumentNo;
