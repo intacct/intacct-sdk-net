@@ -9,6 +9,8 @@ script:
 - dotnet build --configuration Release
 - dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp2.0"
 - dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp2.1"
+- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp3.0"
+- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp3.1"
 
 notifications:
   slack:

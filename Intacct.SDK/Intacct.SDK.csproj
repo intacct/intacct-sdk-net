@@ -1,13 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk" xmlns:license="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Intacct.SDK</PackageId>
-    <PackageVersion>2.3.0</PackageVersion>
+    <PackageVersion>3.0.0</PackageVersion>
     <Authors>intacct</Authors>
     <AssemblyTitle>Sage Intacct SDK</AssemblyTitle>
     <Description>Sage Intacct SDK for .NET</Description>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>https://github.com/Intacct/intacct-sdk-net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseFile>licenses\LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://developer.intacct.com/tools/sdk-net/</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/Intacct/intacct-sdk-net/releases</PackageReleaseNotes>
     <Copyright>Copyright © 2020 Sage Intacct, Inc.</Copyright>
@@ -22,5 +22,11 @@
     <PackageReference Include="NLog" Version="4.5.3" />
     <PackageReference Include="System.Net.Http" Version="4.3.3" />
     <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="licenses\LICENSE">
+      <Pack>true</Pack>
+      <PackagePath />
+    </None>
   </ItemGroup>
 </Project>
