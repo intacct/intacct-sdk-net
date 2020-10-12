@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" xmlns:license="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <PackageId>Intacct.SDK</PackageId>
     <PackageVersion>3.0.0</PackageVersion>
     <Authors>intacct</Authors>
