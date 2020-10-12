@@ -1,19 +1,17 @@
 language: csharp
 solution: intacct-sdk-net.sln
-jobs:
-  include:
-    - dotnet: 3.1.402
-      mono: none
-      env: DOTNETCORE=3  # optional, can be used to take different code paths in your script
-    - mono: latest
-
+mono: none
+dotnet: # Include one of the frameworks
+  - 2.1.804 # EOL for 2.1: 2021.08.21
+before_install:
+  # explicitly install other targeted SDKs side by side
+  - sudo apt-get install dotnet-sdk-3.1
 install:
 - dotnet restore
 
 script:
-- msbuild /p:Configuration=Release intacct-sdk-net.sln
-- mono ./packages/xunit.runners.*/tools/xunit.console.clr4.exe ./Intacct.SDK.Tests/bin/Release/Intacct.SDK.Tests.dll
 - dotnet build --configuration Release
+- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp2.1"
 - dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp3.1"
 
 notifications:
