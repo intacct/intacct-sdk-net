@@ -17,7 +17,7 @@
 ## System Requirements
 
 * You must have an active Sage Intacct Web Services Developer license
-* .NET Core 1.0 or .NET Framework 4.6.1. The SDK targets [.NET Standard 1.6][dotnet-standard].
+* .NET Core 1.0 or .NET Framework 4.6.1. The SDK targets [.NET Standard 1.6][dotnet-standard] and [.NET Standard 2.0][dotnet-standard].
 
 [intacct]: http://www.intacct.com
 [ia-developer]: https://developer.intacct.com/
