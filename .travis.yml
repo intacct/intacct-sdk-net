@@ -1,14 +1,18 @@
 language: csharp
 solution: intacct-sdk-net.sln
 mono: none
-dotnet: 2.1.300
+dotnet: # Include one of the frameworks
+  - 2.1.804 # EOL for 2.1: 2021.08.21
+before_install:
+  # explicitly install other targeted SDKs side by side
+  - sudo apt-get install dotnet-sdk-3.1
 install:
 - dotnet restore
 
 script:
 - dotnet build --configuration Release
-- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp2.0"
 - dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp2.1"
+- dotnet test Intacct.SDK.Tests/Intacct.SDK.Tests.csproj --framework "netcoreapp3.1"
 
 notifications:
   slack:
