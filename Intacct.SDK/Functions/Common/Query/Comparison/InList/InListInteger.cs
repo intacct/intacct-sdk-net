@@ -20,12 +20,14 @@ namespace Intacct.SDK.Functions.Common.Query.Comparison.InList
         public override string ToString()
         {
             string clause = "";
+            string notClause = "";
+            
             if (Negate == true)
             {
-                clause = "NOT ";
+                notClause = " NOT";
             }
             
-            clause = clause + Field + " IN (" + string.Join(",", ValuesList) + ")";
+            clause =  Field +  notClause + " IN (" + string.Join(",", ValuesList) + ")";
 
             return clause;
         }

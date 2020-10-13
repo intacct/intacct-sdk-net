@@ -53,7 +53,7 @@ namespace Intacct.SDK.Tests.Functions.Common.Query.Comparison.InList
                 }
             };
             
-            Assert.Equal("NOT VENDORID IN ('V0001','V0002','V0003')", condition.ToString());
+            Assert.Equal("VENDORID NOT IN ('V0001','V0002','V0003')", condition.ToString());
         }
         
         [Fact]
