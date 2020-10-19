@@ -399,6 +399,8 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
             <VENDORID>V0001</VENDORID>
             <PAYMENTREQUESTMETHOD>vendorpref</PAYMENTREQUESTMETHOD>
             <GROUPPAYMENTS>true</GROUPPAYMENTS>
+            <EXCH_RATE_DATE>06/30/2015</EXCH_RATE_DATE>
+            <EXCH_RATE_TYPE_ID>Intacct Daily Rate</EXCH_RATE_TYPE_ID>
             <DOCNUMBER>10000</DOCNUMBER>
             <DESCRIPTION>Memo</DESCRIPTION>
             <PAYMENTCONTACT>Jim Smith</PAYMENTCONTACT>
@@ -423,6 +425,8 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 PaymentMethod = "Printed Check",
                 GroupPayments = true,
                 PaymentDate = new DateTime(2015, 06, 30),
+                ExchangeRateDate = new DateTime(2015,06,30),
+                ExchangeRateType = "Intacct Daily Rate",
                 MergeOption = "vendorpref",
                 DocumentNo = "10000",
                 NotificationContactName = "Jim Smith",
