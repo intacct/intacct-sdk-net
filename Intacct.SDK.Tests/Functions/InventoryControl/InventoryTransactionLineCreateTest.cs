@@ -64,6 +64,7 @@ namespace Intacct.SDK.Tests.Functions.InventoryControl
     <itemdetails>
         <itemdetail>
             <quantity>52</quantity>
+            <serialno>S111</serialno>
             <lotno>3243</lotno>
         </itemdetail>
     </itemdetails>
@@ -106,6 +107,7 @@ namespace Intacct.SDK.Tests.Functions.InventoryControl
             {
                 Quantity = 52,
                 LotNumber = "3243",
+                SerialNumber = "S111"
             };
             record.ItemDetails.Add(detail1);
             
