@@ -18,7 +18,7 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestUseExistingAdvance : IApPaymentRequestUseExistingTransaction
+    public class ApPaymentUseExistingAdvance : IApPaymentUseExistingTransaction
     {
         /// <summary>
         /// Use existing Record ID.  This is the record number of an Advance (APADVANCE).
@@ -35,15 +35,16 @@ namespace Intacct.SDK.Functions.AccountsPayable
         /// Existing amount to use.  Amount you want to use to apply against the related Bill/Credit Memo.
         /// </summary>
         public decimal? ExistingAmount;
-        
-        
-        public ApPaymentRequestUseExistingAdvance()
+
+
+        public string getLineKey()
         {
+            return "ADVANCEKEY";
         }
         
         public void WriteXml(ref IaXmlWriter xml)
         {
-            xml.WriteElement("ADVANCEKEY", ExistingRecordId, true);
+            xml.WriteElement(getLineKey(), ExistingRecordId, true);
             xml.WriteElement("ADVANCEENTRYKEY", ExistingRecordLineId);
             xml.WriteElement("TRX_POSTEDADVANCEAMOUNT", ExistingAmount);
         }

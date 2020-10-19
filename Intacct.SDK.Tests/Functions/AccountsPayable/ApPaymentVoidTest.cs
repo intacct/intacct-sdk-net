@@ -26,7 +26,7 @@ using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.AccountsPayable
 {
-    public class ApPaymentRequestVoidTest : XmlObjectTestHelper
+    public class ApPaymentVoidTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
@@ -40,7 +40,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </void_appaymentrequest>
 </function>";
 
-            ApPaymentRequestVoid record = new ApPaymentRequestVoid("unittest")
+            ApPaymentVoid record = new ApPaymentVoid("unittest")
             {
                 RecordNo = 1234,
             };

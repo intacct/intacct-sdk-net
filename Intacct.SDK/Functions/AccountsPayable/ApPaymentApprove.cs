@@ -17,10 +17,10 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestApprove : AbstractApPaymentRequest
+    public class ApPaymentApprove : AbstractApPayment
     {
 
-        public ApPaymentRequestApprove(string controlId = null) : base(controlId)
+        public ApPaymentApprove(string controlId = null) : base(controlId)
         {
         }
 

@@ -20,7 +20,7 @@ using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.AccountsPayable
 {
-    public class ApPaymentRequestCreateTest : XmlObjectTestHelper
+    public class ApPaymentCreateTest : XmlObjectTestHelper
     {
         [Fact]
         public void CreateCheckForBillGetXmlTest()
@@ -43,7 +43,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </create>
 </function>";
 
-            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            ApPaymentCreate record = new ApPaymentCreate("unittest")
             {
                 AccountId = "BA1143",
                 VendorId = "V0001",
@@ -51,13 +51,13 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 PaymentDate = new DateTime(2015, 06, 30),
             };
 
-            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
+            ApPaymentDetailForBill line1 = new ApPaymentDetailForBill()
             {
-                ApplyToRecordId = 123,
+                BillRecordNo = 123,
                 PaymentAmount = 100.12M,
             };
 
-            record.ApplyToTransactions.Add(line1);
+            record.ApPaymentDetails.Add(line1);
             
             this.CompareXml(expected, record);
         }
@@ -85,7 +85,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </create>
 </function>";
 
-            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            ApPaymentCreate record = new ApPaymentCreate("unittest")
             {
                 AccountId = "BA1143",
                 VendorId = "V0001",
@@ -94,14 +94,14 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 DocumentNo = "12345",
             };
 
-            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
+            ApPaymentDetailForBill line1 = new ApPaymentDetailForBill()
             {
-                ApplyToRecordId = 123,
-                ApplyToRecordLineId = 456,
+                BillRecordNo = 123,
+                BillLineRecordNo = 456,
                 PaymentAmount = 100.12M,
             };
 
-            record.ApplyToTransactions.Add(line1);
+            record.ApPaymentDetails.Add(line1);
             
             this.CompareXml(expected, record);
         }
@@ -130,7 +130,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </create>
 </function>";
 
-            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            ApPaymentCreate record = new ApPaymentCreate("unittest")
             {
                 AccountId = "BA1143",
                 VendorId = "V0001",
@@ -138,14 +138,14 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 PaymentDate = new DateTime(2015, 06, 30),
             };
 
-            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
+            ApPaymentDetailForBill line1 = new ApPaymentDetailForBill()
             {
-                ApplyToRecordId = 123,
+                BillRecordNo = 123,
                 PaymentAmount = 294.00M,
                 ApplyToDiscountDate = new DateTime(2015, 06, 29),
             };
 
-            record.ApplyToTransactions.Add(line1);
+            record.ApPaymentDetails.Add(line1);
             
             this.CompareXml(expected, record);
         }
@@ -179,7 +179,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </create>
 </function>";
 
-            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            ApPaymentCreate record = new ApPaymentCreate("unittest")
             {
                 AccountId = "BA1143",
                 VendorId = "V0001",
@@ -187,21 +187,21 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 PaymentDate = new DateTime(2015, 06, 30),
             };
 
-            ApPaymentRequestApplyToCreditMemo line1 = new ApPaymentRequestApplyToCreditMemo()
+            ApPaymentDetailForAdjustment line1 = new ApPaymentDetailForAdjustment()
             {
-                ApplyToRecordId = 2595,
-                ApplyToRecordLineId = 42962,
+                CreditMemoRecordNo = 2595,
+                CreditMemoLineRecordNo = 42962,
                 PaymentAmount = 1.00M,
             };
 
-            record.ApplyToTransactions.Add(line1);
+            record.ApPaymentDetails.Add(line1);
             
-            ApPaymentRequestApplyToCreditMemo line2 = new ApPaymentRequestApplyToCreditMemo()
+            ApPaymentDetailForAdjustment line2 = new ApPaymentDetailForAdjustment()
             {
-                ApplyToRecordId = 2595,
-                ApplyToRecordLineId = 42962,
+                CreditMemoRecordNo = 2595,
+                CreditMemoLineRecordNo = 42962,
             };
-            ApPaymentRequestUseExistingDebitMemo useExisting2 = new ApPaymentRequestUseExistingDebitMemo()
+            ApPaymentUseExistingDebitMemo useExisting2 = new ApPaymentUseExistingDebitMemo()
             {
                 ExistingRecordId = 2590,
                 ExistingRecordLineId = 42949,
@@ -209,7 +209,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
             };
             line2.UseExistingTransaction = useExisting2;
 
-            record.ApplyToTransactions.Add(line2);
+            record.ApPaymentDetails.Add(line2);
             
             this.CompareXml(expected, record);
         }
@@ -250,7 +250,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </create>
 </function>";
 
-            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            ApPaymentCreate record = new ApPaymentCreate("unittest")
             {
                 AccountId = "BA1143",
                 VendorId = "V0001",
@@ -258,45 +258,94 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 PaymentDate = new DateTime(2015, 06, 30),
             };
 
-            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
+            ApPaymentDetailForBill line1 = new ApPaymentDetailForBill()
             {
-                ApplyToRecordId = 30,
-                ApplyToRecordLineId = 60,
+                BillRecordNo = 30,
+                BillLineRecordNo = 60,
                 PaymentAmount = 1.00M,
             };
-            record.ApplyToTransactions.Add(line1);
+            record.ApPaymentDetails.Add(line1);
             
-            ApPaymentRequestApplyToBill line2 = new ApPaymentRequestApplyToBill()
+            ApPaymentDetailForBill line2 = new ApPaymentDetailForBill()
             {
-                ApplyToRecordId = 30,
-                ApplyToRecordLineId = 60,
+                BillRecordNo = 30,
+                BillLineRecordNo = 60,
             };
-            ApPaymentRequestUseExistingAdvance useExisting2 = new ApPaymentRequestUseExistingAdvance()
+            IApPaymentUseExistingTransaction useExisting2 = new ApPaymentUseExistingAdvance()
             {
                 ExistingRecordId = 2584,
                 ExistingRecordLineId = 42931,
                 ExistingAmount = 2.49M,
             };
             line2.UseExistingTransaction = useExisting2;
-            record.ApplyToTransactions.Add(line2);
+            record.ApPaymentDetails.Add(line2);
             
-            ApPaymentRequestApplyToBill line3 = new ApPaymentRequestApplyToBill()
+            ApPaymentDetailForBill line3 = new ApPaymentDetailForBill()
             {
-                ApplyToRecordId = 30,
-                ApplyToRecordLineId = 60,
+                BillRecordNo = 30,
+                BillLineRecordNo = 60,
             };
-            ApPaymentRequestUseExistingDebitMemo useExisting3 = new ApPaymentRequestUseExistingDebitMemo()
+            ApPaymentUseExistingDebitMemo useExisting3 = new ApPaymentUseExistingDebitMemo()
             {
                 ExistingRecordId = 2590,
                 ExistingRecordLineId = 42949,
                 ExistingAmount = 2.01M,
             };
             line3.UseExistingTransaction = useExisting3;
-            record.ApplyToTransactions.Add(line3);
+            record.ApPaymentDetails.Add(line3);
 
             this.CompareXml(expected, record);
         }
         
+        [Fact]
+        public void CreateForBillAndUseNegativeBillXmlTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <create>
+        <APPYMT>
+            <PAYMENTMETHOD>Cash</PAYMENTMETHOD>
+            <FINANCIALENTITY>BOA</FINANCIALENTITY>
+            <VENDORID>a4</VENDORID>
+            <PAYMENTDATE>10/06/2020</PAYMENTDATE>
+            <CURRENCY>USD</CURRENCY>
+            <APPYMTDETAILS>
+                <APPYMTDETAIL>
+                    <RECORDKEY>3693</RECORDKEY>
+                    <INLINEKEY>3694</INLINEKEY>
+                    <TRX_INLINEAMOUNT>70</TRX_INLINEAMOUNT>
+                    <TRX_PAYMENTAMOUNT>8.8</TRX_PAYMENTAMOUNT>
+                </APPYMTDETAIL>
+            </APPYMTDETAILS>
+        </APPYMT>
+    </create>
+</function>";
+
+            ApPaymentCreate record = new ApPaymentCreate("unittest")
+            {
+                AccountId = "BOA",
+                VendorId = "a4",
+                PaymentMethod = "Cash",
+                PaymentDate = new DateTime(2020, 10, 06),
+                TransactionCurrency = "USD"
+            };
+
+            ApPaymentDetailForBill line = new ApPaymentDetailForBill()
+            {
+                BillRecordNo = 3693,
+                PaymentAmount = 8.8M,
+            };
+            
+            IApPaymentUseExistingTransaction useExisting = new ApPaymentUseExistingNegativeBill()
+            {
+                ExistingRecordId = 3694,
+                ExistingAmount = 70M,
+            };
+            line.UseExistingTransaction = useExisting;
+            record.ApPaymentDetails.Add(line);
+
+            this.CompareXml(expected, record);
+        }
         
         [Fact]
         public void GetXmlTest()
@@ -319,7 +368,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </create>
 </function>";
 
-            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            ApPaymentCreate record = new ApPaymentCreate("unittest")
             {
                 AccountId = "BA1143",
                 VendorId = "V0001",
@@ -327,13 +376,13 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 PaymentDate = new DateTime(2015, 06, 30),
             };
 
-            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
+            ApPaymentDetailForBill line1 = new ApPaymentDetailForBill()
             {
-                ApplyToRecordId = 123,
+                BillRecordNo = 123,
                 PaymentAmount = 100.12M,
             };
 
-            record.ApplyToTransactions.Add(line1);
+            record.ApPaymentDetails.Add(line1);
             
             this.CompareXml(expected, record);
         }
@@ -366,7 +415,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </create>
 </function>";
 
-            ApPaymentRequestCreate record = new ApPaymentRequestCreate("unittest")
+            ApPaymentCreate record = new ApPaymentCreate("unittest")
             {
                 AccountId = "BA1143",
                 VendorId = "V0001",
@@ -379,15 +428,15 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 NotificationContactName = "Jim Smith",
             };
 
-            ApPaymentRequestApplyToBill line1 = new ApPaymentRequestApplyToBill()
+            ApPaymentDetailForBill line1 = new ApPaymentDetailForBill()
             {
-                ApplyToRecordId = 123,
+                BillRecordNo = 123,
                 PaymentAmount = 100.12M,
                 CreditToApply = 8.12M,
                 DiscountToApply = 1.21M,
             };
 
-            record.ApplyToTransactions.Add(line1);
+            record.ApPaymentDetails.Add(line1);
             
             this.CompareXml(expected, record);
         }

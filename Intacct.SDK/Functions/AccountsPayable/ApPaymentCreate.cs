@@ -17,9 +17,9 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestCreate : AbstractApPaymentRequest
+    public class ApPaymentCreate : AbstractApPayment
     {
-        public ApPaymentRequestCreate(string controlId = null) : base(controlId)
+        public ApPaymentCreate(string controlId = null) : base(controlId)
         {
         }
 
@@ -55,12 +55,12 @@ namespace Intacct.SDK.Functions.AccountsPayable
             xml.WriteElement("AMOUNTTOPAY", TransactionAmountPaid);
             xml.WriteElement("ACTION", Action);
 
-            if (ApplyToTransactions.Count > 0)
+            if (ApPaymentDetails.Count > 0)
             {
                 xml.WriteStartElement("APPYMTDETAILS");
-                foreach (IApPaymentRequestApplyToTransaction applyToTransaction in ApplyToTransactions)
+                foreach (IApPaymentDetail apPaymentDetail in ApPaymentDetails)
                 {
-                    applyToTransaction.WriteXml(ref xml);
+                    apPaymentDetail.WriteXml(ref xml);
                 }
 
                 xml.WriteEndElement(); //APPYMTDETAILS

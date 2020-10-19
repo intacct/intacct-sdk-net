@@ -13,12 +13,47 @@
  * permissions and limitations under the License.
  */
 
+using System;
+using System.Collections.Generic;
+
 namespace Intacct.SDK.Functions.AccountsPayable
 {
     public abstract class AbstractApPayment : AbstractFunction
     {
 
         public int? RecordNo;
+
+        public string PaymentMethod;
+
+        public string AccountId;
+
+        public string VendorId;
+
+        public string MergeOption;
+
+        public bool? GroupPayments;
+
+        public DateTime PaymentDate;
+        
+        public string BaseCurrency;
+        
+        public string TransactionCurrency;
+        
+        public decimal? TransactionAmountPaid;
+
+        public DateTime? ExchangeRateDate;
+        
+        public string ExchangeRateType;
+        
+        public string DocumentNo;
+
+        public string Memo;
+
+        public string NotificationContactName;
+        
+        public string Action;
+
+        public List<IApPaymentDetail> ApPaymentDetails = new List<IApPaymentDetail>();
 
         protected AbstractApPayment(string controlId = null) : base(controlId)
         {

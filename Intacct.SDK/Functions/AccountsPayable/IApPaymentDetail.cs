@@ -17,8 +17,7 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public interface IApPaymentRequestApplyToTransaction : IXmlObject
+    public interface IApPaymentDetail : IXmlObject
     {
-        int? ApplyToRecordId { get; set; }
     }
 }

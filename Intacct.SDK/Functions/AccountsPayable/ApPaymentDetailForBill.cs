@@ -18,25 +18,20 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestApplyToBill : IApPaymentRequestApplyToTransaction
+    public class ApPaymentDetailForBill : AbstractApPaymentDetail
     {
        
         /// <summary>
-        /// Apply to Record ID.  This is the record number of a Bill (APBILL).
+        /// This is the record number of a Bill (APBILL).
         /// </summary>
-        public int? ApplyToRecordId { get; set; }
+        public int? BillRecordNo { get; set; }
         
         /// <summary>
-        /// Apply to Record Line ID.  This is the record number of a Bill Line (APBILLITEM).  This must be an
-        /// owned record of the ApplyToRecordId attribute.
+        /// This is the record number of a Bill Line (APBILLITEM).  This must be an
+        /// owned record of the BillRecordNo attribute.
         /// </summary>
-        public int? ApplyToRecordLineId;
+        public int? BillLineRecordNo;
 
-        /// <summary>
-        /// Payment amount.  Enter an amount you want to pay.  Not required if applying an existing transaction.
-        /// </summary>
-        public decimal? PaymentAmount;
-        
         /// <summary>
         /// Credit to apply.  Use this to have the system select available credits to use.  Do not use this if you are 
         /// applying an existing transaction.
@@ -57,19 +52,15 @@ namespace Intacct.SDK.Functions.AccountsPayable
         /// <summary>
         /// Use existing transaction.  Specify an existing transaction to apply against the ApplyToRecordNo.
         /// </summary>
-        public IApPaymentRequestUseExistingTransaction UseExistingTransaction;
+        public IApPaymentUseExistingTransaction UseExistingTransaction;
 
-        public ApPaymentRequestApplyToBill()
-        {
-        }
-
-        public void WriteXml(ref IaXmlWriter xml)
+        public override void WriteXml(ref IaXmlWriter xml)
         {
 
             xml.WriteStartElement("APPYMTDETAIL");
 
-            xml.WriteElement("RECORDKEY", ApplyToRecordId, true);
-            xml.WriteElement("ENTRYKEY", ApplyToRecordLineId);
+            xml.WriteElement("RECORDKEY", BillRecordNo, true);
+            xml.WriteElement("ENTRYKEY", BillLineRecordNo);
 
             if (ApplyToDiscountDate.HasValue)
             {

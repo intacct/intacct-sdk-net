@@ -22,8 +22,6 @@ namespace Intacct.SDK.Functions.AccountsPayable
     {
         public DateTime ReverseDate;
             
-        public string Memo;
-
         public ApPaymentReverse(string controlId = null) : base(controlId)
         {
         }

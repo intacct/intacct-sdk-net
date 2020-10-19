@@ -18,41 +18,36 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestApplyToCreditMemo : IApPaymentRequestApplyToTransaction
+    public class ApPaymentDetailForAdjustment : AbstractApPaymentDetail
     {
        
         /// <summary>
         /// Apply to Record ID.  This is the record number of a Credit Memo (APADJUSTMENT).
         /// </summary>
-        public int? ApplyToRecordId { get; set; }
+        public int? CreditMemoRecordNo { get; set; }
         
         /// <summary>
         /// Apply to Record Line ID.  This is the record number of a Credit Memo Line (APADJUSTMENTITEM).  This must be
-        /// an owned record of the ApplyToRecordId attribute.
+        /// an owned record of the BillRecordNo attribute.
         /// </summary>
-        public int? ApplyToRecordLineId;
+        public int? CreditMemoLineRecordNo;
 
-        /// <summary>
-        /// Payment amount.  Enter an amount you want to pay.  Not required if applying an existing transaction.
-        /// </summary>
-        public decimal? PaymentAmount;
-        
         /// <summary>
         /// Use existing transaction.  Specify an existing transaction to apply against the ApplyToRecordNo.
         /// </summary>
-        public IApPaymentRequestUseExistingTransaction UseExistingTransaction;
+        public IApPaymentUseExistingTransaction UseExistingTransaction;
 
-        public ApPaymentRequestApplyToCreditMemo()
+        public ApPaymentDetailForAdjustment()
         {
         }
 
-        public void WriteXml(ref IaXmlWriter xml)
+        public override void WriteXml(ref IaXmlWriter xml)
         {
 
             xml.WriteStartElement("APPYMTDETAIL");
 
-            xml.WriteElement("POSADJKEY", ApplyToRecordId, true);
-            xml.WriteElement("POSADJENTRYKEY", ApplyToRecordLineId);
+            xml.WriteElement("POSADJKEY", CreditMemoRecordNo, true);
+            xml.WriteElement("POSADJENTRYKEY", CreditMemoLineRecordNo);
 
             if (UseExistingTransaction != null)
             {

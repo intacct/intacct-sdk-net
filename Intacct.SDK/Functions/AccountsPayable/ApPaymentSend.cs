@@ -17,10 +17,10 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestConfirm : AbstractApPaymentRequest
+    public class ApPaymentSend : AbstractApPayment
     {
 
-        public ApPaymentRequestConfirm(string controlId = null) : base(controlId)
+        public ApPaymentSend(string controlId = null) : base(controlId)
         {
         }
 
@@ -29,15 +29,15 @@ namespace Intacct.SDK.Functions.AccountsPayable
             xml.WriteStartElement("function");
             xml.WriteAttribute("controlid", ControlId, true);
            
-            xml.WriteStartElement("confirm_appaymentrequest");
+            xml.WriteStartElement("send_appaymentrequest");
 
             xml.WriteStartElement("appaymentkeys");
 
             xml.WriteElement("appaymentkey", RecordNo, true);
 
-            xml.WriteEndElement(); //appaymentkeys
-
-            xml.WriteEndElement(); //confirm_appaymentrequest
+            xml.WriteEndElement();
+            
+            xml.WriteEndElement(); //send_appaymentrequest
 
             xml.WriteEndElement(); //function
         }

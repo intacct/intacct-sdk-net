@@ -18,15 +18,15 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestUseExistingNegativeBill : IApPaymentRequestUseExistingTransaction
+    public class ApPaymentUseExistingDebitMemo : IApPaymentUseExistingTransaction
     {
         /// <summary>
-        /// Use existing Record ID.  This is the record number of a Negative Bill (APBILL).
+        /// Use existing Record ID.  This is the record number of a Debit Memo (APADJUSTMENT).
         /// </summary>
         public int? ExistingRecordId { get; set; }
         
         /// <summary>
-        /// Use existing Record Line ID.  This is the record number of a Negative Bill Line (APBILLITEM).
+        /// Use existing Record Line ID.  This is the record number of a Debit Memo Line (APADJUSTMENTITEM).
         /// This must be an owned record of the ExistingRecordId attribute.
         /// </summary>
         public int? ExistingRecordLineId;
@@ -37,15 +37,15 @@ namespace Intacct.SDK.Functions.AccountsPayable
         public decimal? ExistingAmount;
         
         
-        public ApPaymentRequestUseExistingNegativeBill()
+        public ApPaymentUseExistingDebitMemo()
         {
         }
         
         public void WriteXml(ref IaXmlWriter xml)
         {
-            xml.WriteElement("INLINEKEY", ExistingRecordId, true);
-            xml.WriteElement("INLINEENTRYKEY", ExistingRecordLineId);
-            xml.WriteElement("TRX_INLINEAMOUNT", ExistingAmount);
+            xml.WriteElement("ADJUSTMENTKEY", ExistingRecordId, true);
+            xml.WriteElement("ADJUSTMENTENTRYKEY", ExistingRecordLineId);
+            xml.WriteElement("TRX_ADJUSTMENTAMOUNT", ExistingAmount);
         }
     }
 }

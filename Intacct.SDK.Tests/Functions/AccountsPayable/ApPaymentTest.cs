@@ -26,7 +26,7 @@ using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.AccountsPayable
 {
-    public class ApPaymentReverseTest : XmlObjectTestHelper
+    public class ApPaymentTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
