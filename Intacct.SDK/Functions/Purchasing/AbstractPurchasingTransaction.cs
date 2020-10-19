@@ -76,6 +76,8 @@ namespace Intacct.SDK.Functions.Purchasing
 
         public string ProjectId;
 
+        public string Comment;
+
         public List<AbstractTransactionSubtotal> Subtotals = new List<AbstractTransactionSubtotal>();
 
         public List<AbstractPurchasingTransactionLine> Lines = new List<AbstractPurchasingTransactionLine>();
