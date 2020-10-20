@@ -34,7 +34,7 @@ namespace Intacct.SDK.Functions.InventoryControl
             {
                 xml.WriteElement("serialno", SerialNumber);
             }
-            else if (!string.IsNullOrWhiteSpace(LotNumber))
+            if (!string.IsNullOrWhiteSpace(LotNumber))
             {
                 xml.WriteElement("lotno", LotNumber);
             }
