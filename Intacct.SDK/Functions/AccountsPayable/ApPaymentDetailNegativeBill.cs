@@ -13,12 +13,23 @@
  * permissions and limitations under the License.
  */
 
-using Intacct.SDK.Xml;
-
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public interface IApPaymentDetail : IXmlObject
+    public class ApPaymentDetailNegativeBill : AbstractApPaymentDetailCredit
     {
-        new void WriteXml(ref IaXmlWriter xml);
+        public override string GetKeyType()
+        {
+            return "INLINEKEY";
+        }
+
+        public override string GetEntryKeyType()
+        {
+            return "INLINEENTRYKEY";
+        }
+
+        public override string GetTransactionType()
+        {
+            return "TRX_INLINEAMOUNT";
+        }
     }
 }

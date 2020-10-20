@@ -18,7 +18,7 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentDetailForBill : AbstractApPaymentDetail
+    public class ApPaymentDetailBill : AbstractApPaymentDetail
     {
        
         /// <summary>
@@ -52,7 +52,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
         /// <summary>
         /// Use existing transaction.  Specify an existing transaction to apply against the ApplyToRecordNo.
         /// </summary>
-        public IApPaymentUseExistingTransaction UseExistingTransaction;
+        public IApPaymentDetailTransaction DetailTransaction;
 
         public override void WriteXml(ref IaXmlWriter xml)
         {
@@ -71,9 +71,9 @@ namespace Intacct.SDK.Functions.AccountsPayable
                 xml.WriteElement("DISCOUNTTOAPPLY", DiscountToApply);
             }
 
-            if (UseExistingTransaction != null)
+            if (DetailTransaction != null)
             {
-                UseExistingTransaction.WriteXml(ref xml);
+                DetailTransaction.WriteXml(ref xml);
             }
             else
             {

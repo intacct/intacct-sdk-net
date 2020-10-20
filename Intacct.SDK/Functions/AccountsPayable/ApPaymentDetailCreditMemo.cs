@@ -18,7 +18,7 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentDetailForAdjustment : AbstractApPaymentDetail
+    public class ApPaymentDetailCreditMemo : AbstractApPaymentDetail
     {
        
         /// <summary>
@@ -35,9 +35,9 @@ namespace Intacct.SDK.Functions.AccountsPayable
         /// <summary>
         /// Use existing transaction.  Specify an existing transaction to apply against the ApplyToRecordNo.
         /// </summary>
-        public IApPaymentUseExistingTransaction UseExistingTransaction;
+        public IApPaymentDetailTransaction DetailTransaction;
 
-        public ApPaymentDetailForAdjustment()
+        public ApPaymentDetailCreditMemo()
         {
         }
 
@@ -49,9 +49,9 @@ namespace Intacct.SDK.Functions.AccountsPayable
             xml.WriteElement("POSADJKEY", CreditMemoRecordNo, true);
             xml.WriteElement("POSADJENTRYKEY", CreditMemoLineRecordNo);
 
-            if (UseExistingTransaction != null)
+            if (DetailTransaction != null)
             {
-                UseExistingTransaction.WriteXml(ref xml);
+                DetailTransaction.WriteXml(ref xml);
             }
 
             xml.WriteElement("TRX_PAYMENTAMOUNT", PaymentAmount);

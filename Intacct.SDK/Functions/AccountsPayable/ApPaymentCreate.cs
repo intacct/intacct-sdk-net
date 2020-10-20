@@ -32,7 +32,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
             xml.WriteStartElement("APPYMT");
 
             xml.WriteElement("PAYMENTMETHOD", PaymentMethod, true);
-            xml.WriteElement("FINANCIALENTITY", AccountId, true);
+            xml.WriteElement("FINANCIALENTITY", FinancialEntityId, true);
             xml.WriteElement("VENDORID", VendorId, true);
 
             xml.WriteElement("PAYMENTREQUESTMETHOD", MergeOption);

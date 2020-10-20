@@ -13,16 +13,23 @@
  * permissions and limitations under the License.
  */
 
-using Intacct.SDK.Xml;
-
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public interface IApPaymentUseExistingTransaction : IXmlObject
+    public class ApPaymentDetailDebitMemo : AbstractApPaymentDetailCredit
     {
-        int? ExistingRecordId { get; set; }
+        public override string GetKeyType()
+        {
+            return "ADJUSTMENTKEY";
+        }
 
-        //getABCKey();
+        public override string GetEntryKeyType()
+        {
+            return "ADJUSTMENTENTRYKEY";
+        }
 
-//        getLineKey();
+        public override string GetTransactionType()
+        {
+            return "TRX_ADJUSTMENTAMOUNT";
+        }
     }
 }

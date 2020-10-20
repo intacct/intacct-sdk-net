@@ -13,12 +13,23 @@
  * permissions and limitations under the License.
  */
 
-using Intacct.SDK.Xml;
-
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public interface IApPaymentDetail : IXmlObject
+    public class ApPaymentDetailAdvance : AbstractApPaymentDetailCredit
     {
-        new void WriteXml(ref IaXmlWriter xml);
+        public override string GetKeyType()
+        {
+            return "ADVANCEKEY";
+        }
+
+        public override string GetEntryKeyType()
+        {
+            return "ADVANCEENTRYKEY";
+        }
+
+        public override string GetTransactionType()
+        {
+            return "TRX_POSTEDADVANCEAMOUNT";
+        }
     }
 }

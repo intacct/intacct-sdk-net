@@ -25,7 +25,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
 
         public string PaymentMethod;
 
-        public string AccountId;
+        public string FinancialEntityId;
 
         public string VendorId;
 

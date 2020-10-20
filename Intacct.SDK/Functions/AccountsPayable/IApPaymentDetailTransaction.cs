@@ -17,7 +17,7 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public interface IApPaymentDetail : IXmlObject
+    public interface IApPaymentDetailTransaction : IXmlObject
     {
         new void WriteXml(ref IaXmlWriter xml);
     }
