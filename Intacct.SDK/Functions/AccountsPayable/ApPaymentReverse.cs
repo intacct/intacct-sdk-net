@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -18,12 +18,16 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentReverse : AbstractApPayment
+    public class ApPaymentReverse : AbstractFunction
     {
+        public int RecordNo;
+        
         public DateTime ReverseDate;
+        public string Memo { get; set; }
             
         public ApPaymentReverse(string controlId = null) : base(controlId)
         {
+            ControlId = controlId;
         }
 
         public override void WriteXml(ref IaXmlWriter xml)

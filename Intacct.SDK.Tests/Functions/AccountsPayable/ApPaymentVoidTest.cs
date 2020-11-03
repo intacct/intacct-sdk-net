@@ -28,6 +28,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
 {
     public class ApPaymentVoidTest : XmlObjectTestHelper
     {
+        private readonly ApPaymentFactory _factory = new ApPaymentFactory();
         [Fact]
         public void GetXmlTest()
         {
@@ -40,10 +41,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </void_appaymentrequest>
 </function>";
 
-            ApPaymentVoid record = new ApPaymentVoid("unittest")
-            {
-                RecordNo = 1234,
-            };
+            AbstractApPaymentFunction record = _factory.Generate(AbstractApPaymentFunction.Void, 1234, "unittest");
             
             this.CompareXml(expected, record);
         }

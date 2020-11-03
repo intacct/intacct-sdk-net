@@ -17,10 +17,13 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentCreate : AbstractApPayment
+    public class ApPaymentCreate : AbstractFunction
     {
-        public ApPaymentCreate(string controlId = null) : base(controlId)
+        private readonly ApPaymentInfo _apPaymentInfo;
+
+        public ApPaymentCreate(ApPaymentInfo apPaymentInfo, string controlId = null) : base(controlId)
         {
+            _apPaymentInfo = apPaymentInfo;
         }
 
         public override void WriteXml(ref IaXmlWriter xml)
@@ -31,34 +34,34 @@ namespace Intacct.SDK.Functions.AccountsPayable
             xml.WriteStartElement("create");
             xml.WriteStartElement("APPYMT");
 
-            xml.WriteElement("PAYMENTMETHOD", PaymentMethod, true);
-            xml.WriteElement("FINANCIALENTITY", FinancialEntityId, true);
-            xml.WriteElement("VENDORID", VendorId, true);
+            xml.WriteElement("PAYMENTMETHOD", _apPaymentInfo.PaymentMethod, true);
+            xml.WriteElement("FINANCIALENTITY", _apPaymentInfo.FinancialEntityId, true);
+            xml.WriteElement("VENDORID", _apPaymentInfo.VendorId, true);
 
-            xml.WriteElement("PAYMENTREQUESTMETHOD", MergeOption);
-            xml.WriteElement("GROUPPAYMENTS", GroupPayments);
+            xml.WriteElement("PAYMENTREQUESTMETHOD", _apPaymentInfo.MergeOption);
+            xml.WriteElement("GROUPPAYMENTS", _apPaymentInfo.GroupPayments);
 
-            if (ExchangeRateDate.HasValue)
+            if (_apPaymentInfo.ExchangeRateDate.HasValue)
             {
-                xml.WriteElement("EXCH_RATE_DATE", ExchangeRateDate, IaXmlWriter.IntacctDateFormat);
+                xml.WriteElement("EXCH_RATE_DATE", _apPaymentInfo.ExchangeRateDate, IaXmlWriter.IntacctDateFormat);
             }
 
-            xml.WriteElement("EXCH_RATE_TYPE_ID", ExchangeRateType);
-            xml.WriteElement("DOCNUMBER", DocumentNo);
-            xml.WriteElement("DESCRIPTION", Memo);
-            xml.WriteElement("PAYMENTCONTACT", NotificationContactName);
+            xml.WriteElement("EXCH_RATE_TYPE_ID", _apPaymentInfo.ExchangeRateType);
+            xml.WriteElement("DOCNUMBER", _apPaymentInfo.DocumentNo);
+            xml.WriteElement("DESCRIPTION", _apPaymentInfo.Memo);
+            xml.WriteElement("PAYMENTCONTACT", _apPaymentInfo.NotificationContactName);
 
-            xml.WriteElement("PAYMENTDATE", PaymentDate, IaXmlWriter.IntacctDateFormat, true);
+            xml.WriteElement("PAYMENTDATE", _apPaymentInfo.PaymentDate, IaXmlWriter.IntacctDateFormat, true);
 
-            xml.WriteElement("CURRENCY", TransactionCurrency);
-            xml.WriteElement("BASECURR", BaseCurrency);
-            xml.WriteElement("AMOUNTTOPAY", TransactionAmountPaid);
-            xml.WriteElement("ACTION", Action);
+            xml.WriteElement("CURRENCY", _apPaymentInfo.TransactionCurrency);
+            xml.WriteElement("BASECURR", _apPaymentInfo.BaseCurrency);
+            xml.WriteElement("AMOUNTTOPAY", _apPaymentInfo.TransactionAmountPaid);
+            xml.WriteElement("ACTION", _apPaymentInfo.Action);
 
-            if (ApPaymentDetails.Count > 0)
+            if (_apPaymentInfo.ApPaymentDetails.Count > 0)
             {
                 xml.WriteStartElement("APPYMTDETAILS");
-                foreach (IApPaymentDetail apPaymentDetail in ApPaymentDetails)
+                foreach (IApPaymentDetail apPaymentDetail in _apPaymentInfo.ApPaymentDetails)
                 {
                     apPaymentDetail.WriteXml(ref xml);
                 }

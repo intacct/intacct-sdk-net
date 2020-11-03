@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -17,8 +17,14 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public abstract class AbstractApPaymentDetailCredit : IApPaymentDetailTransaction
+    public abstract class AbstractApPaymentDetailCredit : IApPaymentDetailCredit
     {
+        public const string DebitMemo = "debit memo";
+
+        public const string NegativeBill = "negative bill";
+
+        public const string Advance = "advance";
+        
         public int? RecordNo{ get; set; }
         
         public int? LineRecordNo;

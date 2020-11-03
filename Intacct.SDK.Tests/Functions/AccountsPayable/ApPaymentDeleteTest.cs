@@ -28,6 +28,8 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
 {
     public class ApPaymentDeleteTest : XmlObjectTestHelper
     {
+        private readonly ApPaymentFactory _factory = new ApPaymentFactory();
+
         [Fact]
         public void GetXmlTest()
         {
@@ -39,11 +41,8 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </delete>
 </function>";
 
-            ApPaymentDelete record = new ApPaymentDelete("unittest")
-            {
-                RecordNo = 1234,
-            };
-            
+            AbstractApPaymentFunction record = _factory.Generate(AbstractApPaymentFunction.Delete, 1234, "unittest");
+
             this.CompareXml(expected, record);
         }
     }

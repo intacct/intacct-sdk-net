@@ -13,48 +13,32 @@
  * permissions and limitations under the License.
  */
 
-using System;
 using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentDetailCreditMemo : AbstractApPaymentDetail
+    public class ApPaymentDetailCreditMemo : IApPaymentDetail
     {
-       
-        /// <summary>
-        /// Apply to Record ID.  This is the record number of a Credit Memo (APADJUSTMENT).
-        /// </summary>
-        public int? CreditMemoRecordNo { get; set; }
-        
-        /// <summary>
-        /// Apply to Record Line ID.  This is the record number of a Credit Memo Line (APADJUSTMENTITEM).  This must be
-        /// an owned record of the BillRecordNo attribute.
-        /// </summary>
-        public int? CreditMemoLineRecordNo;
-
-        /// <summary>
-        /// Use existing transaction.  Specify an existing transaction to apply against the ApplyToRecordNo.
-        /// </summary>
-        public IApPaymentDetailTransaction DetailTransaction;
-
-        public ApPaymentDetailCreditMemo()
+        private readonly ApPaymentDetailInfo _info;
+        public ApPaymentDetailCreditMemo(ApPaymentDetailInfo info)
         {
+            _info = info;
         }
 
-        public override void WriteXml(ref IaXmlWriter xml)
+        public void WriteXml(ref IaXmlWriter xml)
         {
 
             xml.WriteStartElement("APPYMTDETAIL");
 
-            xml.WriteElement("POSADJKEY", CreditMemoRecordNo, true);
-            xml.WriteElement("POSADJENTRYKEY", CreditMemoLineRecordNo);
+            xml.WriteElement("POSADJKEY", _info.RecordNo, true);
+            xml.WriteElement("POSADJENTRYKEY", _info.LineRecordNo);
 
-            if (DetailTransaction != null)
+            if (_info.DetailTransaction != null)
             {
-                DetailTransaction.WriteXml(ref xml);
+                _info.DetailTransaction.WriteXml(ref xml);
             }
 
-            xml.WriteElement("TRX_PAYMENTAMOUNT", PaymentAmount);
+            xml.WriteElement("TRX_PAYMENTAMOUNT", _info.PaymentAmount);
             
             xml.WriteEndElement(); //APPYMTDETAIL
         }

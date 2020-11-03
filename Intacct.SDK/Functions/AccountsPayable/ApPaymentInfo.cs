@@ -1,5 +1,5 @@
-﻿/*
- * Copyright 2019 Sage Intacct, Inc.
+/*
+ * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -18,11 +18,8 @@ using System.Collections.Generic;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public abstract class AbstractApPayment : AbstractFunction
+    public class ApPaymentInfo
     {
-
-        public int? RecordNo;
-
         public string PaymentMethod;
 
         public string FinancialEntityId;
@@ -54,9 +51,5 @@ namespace Intacct.SDK.Functions.AccountsPayable
         public string Action;
 
         public List<IApPaymentDetail> ApPaymentDetails = new List<IApPaymentDetail>();
-
-        protected AbstractApPayment(string controlId = null) : base(controlId)
-        {
-        }
     }
 }

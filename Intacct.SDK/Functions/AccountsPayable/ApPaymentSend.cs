@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -13,34 +13,17 @@
  * permissions and limitations under the License.
  */
 
-using Intacct.SDK.Xml;
-
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentSend : AbstractApPayment
+    public class ApPaymentSend : AbstractApPaymentFunction
     {
-
-        public ApPaymentSend(string controlId = null) : base(controlId)
+        public ApPaymentSend(int recordNo, string controlId = null) : base(recordNo, controlId)
         {
         }
 
-        public override void WriteXml(ref IaXmlWriter xml)
+        protected override string GetFunction()
         {
-            xml.WriteStartElement("function");
-            xml.WriteAttribute("controlid", ControlId, true);
-           
-            xml.WriteStartElement("send_appaymentrequest");
-
-            xml.WriteStartElement("appaymentkeys");
-
-            xml.WriteElement("appaymentkey", RecordNo, true);
-
-            xml.WriteEndElement();
-            
-            xml.WriteEndElement(); //send_appaymentrequest
-
-            xml.WriteEndElement(); //function
+            return Send;
         }
-
     }
 }

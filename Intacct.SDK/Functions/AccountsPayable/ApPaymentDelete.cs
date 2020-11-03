@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -13,31 +13,17 @@
  * permissions and limitations under the License.
  */
 
-using Intacct.SDK.Xml;
-
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentDelete : AbstractApPayment
+    public class ApPaymentDelete : AbstractApPaymentFunction
     {
-
-        public ApPaymentDelete(string controlId = null) : base(controlId)
+        public ApPaymentDelete(int recordNo, string controlId = null) : base(recordNo, controlId)
         {
         }
 
-        public override void WriteXml(ref IaXmlWriter xml)
+        protected override string GetFunction()
         {
-            xml.WriteStartElement("function");
-            xml.WriteAttribute("controlid", ControlId, true);
-           
-            xml.WriteStartElement("delete");
-
-            xml.WriteElement("object", "APPYMT");
-            xml.WriteElement("keys", RecordNo);
-            
-            xml.WriteEndElement(); //delete
-
-            xml.WriteEndElement(); //function
+            return Delete;
         }
-
     }
 }

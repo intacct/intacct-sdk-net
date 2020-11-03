@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Sage Intacct, Inc.
+ * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -17,13 +17,8 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public abstract class AbstractApPaymentDetail : IApPaymentDetail
+    public interface IApPaymentDetailCredit : IXmlObject
     {
-        /// <summary>
-        /// Payment amount.  Enter an amount you want to pay.  Not required if applying an existing transaction.
-        /// </summary>
-        public decimal? PaymentAmount { get; set; }
-
-        public abstract void WriteXml(ref IaXmlWriter xml);
+        new void WriteXml(ref IaXmlWriter xml);
     }
 }

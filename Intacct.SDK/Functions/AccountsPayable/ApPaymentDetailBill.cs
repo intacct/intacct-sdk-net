@@ -13,74 +13,46 @@
  * permissions and limitations under the License.
  */
 
-using System;
 using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentDetailBill : AbstractApPaymentDetail
+    public class ApPaymentDetailBill : IApPaymentDetail
     {
-       
-        /// <summary>
-        /// This is the record number of a Bill (APBILL).
-        /// </summary>
-        public int? BillRecordNo { get; set; }
+        private readonly ApPaymentDetailBillInfo _info;
+
+        public ApPaymentDetailBill(ApPaymentDetailBillInfo info)
+        {
+            _info = info;
+        }
         
-        /// <summary>
-        /// This is the record number of a Bill Line (APBILLITEM).  This must be an
-        /// owned record of the BillRecordNo attribute.
-        /// </summary>
-        public int? BillLineRecordNo;
-
-        /// <summary>
-        /// Credit to apply.  Use this to have the system select available credits to use.  Do not use this if you are 
-        /// applying an existing transaction.
-        /// </summary>
-        public decimal? CreditToApply;
-
-        /// <summary>
-        /// Discount to apply.  Do not use this if you use the ApplyToDiscountDate attribute or if you are applying an
-        /// existing transaction.
-        /// </summary>
-        public decimal? DiscountToApply;
-
-        /// <summary>
-        /// Apply To Bill Discount Date.  Discount Date to use for a Bill (APBILL).
-        /// </summary>
-        public DateTime? ApplyToDiscountDate;
-
-        /// <summary>
-        /// Use existing transaction.  Specify an existing transaction to apply against the ApplyToRecordNo.
-        /// </summary>
-        public IApPaymentDetailTransaction DetailTransaction;
-
-        public override void WriteXml(ref IaXmlWriter xml)
+        public void WriteXml(ref IaXmlWriter xml)
         {
 
             xml.WriteStartElement("APPYMTDETAIL");
 
-            xml.WriteElement("RECORDKEY", BillRecordNo, true);
-            xml.WriteElement("ENTRYKEY", BillLineRecordNo);
+            xml.WriteElement("RECORDKEY", _info.RecordNo, true);
+            xml.WriteElement("ENTRYKEY", _info.LineRecordNo);
 
-            if (ApplyToDiscountDate.HasValue)
+            if (_info.ApplyToDiscountDate.HasValue)
             {
-                xml.WriteElement("DISCOUNTDATE", ApplyToDiscountDate, IaXmlWriter.IntacctDateFormat);
+                xml.WriteElement("DISCOUNTDATE", _info.ApplyToDiscountDate, IaXmlWriter.IntacctDateFormat);
             }
             else
             {
-                xml.WriteElement("DISCOUNTTOAPPLY", DiscountToApply);
+                xml.WriteElement("DISCOUNTTOAPPLY", _info.DiscountToApply);
             }
 
-            if (DetailTransaction != null)
+            if (_info.DetailTransaction != null)
             {
-                DetailTransaction.WriteXml(ref xml);
+                _info.DetailTransaction.WriteXml(ref xml);
             }
             else
             {
-                xml.WriteElement("CREDITTOAPPLY", CreditToApply);
+                xml.WriteElement("CREDITTOAPPLY", _info.CreditToApply);
             }
 
-            xml.WriteElement("TRX_PAYMENTAMOUNT", PaymentAmount);
+            xml.WriteElement("TRX_PAYMENTAMOUNT", _info.PaymentAmount);
             
             xml.WriteEndElement(); //APPYMTDETAIL
         }

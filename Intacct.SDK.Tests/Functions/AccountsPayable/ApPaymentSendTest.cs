@@ -28,6 +28,8 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
 {
     public class ApPaymentSendTest : XmlObjectTestHelper
     {
+        private readonly ApPaymentFactory _factory = new ApPaymentFactory();
+        
         [Fact]
         public void GetXmlTest()
         {
@@ -39,12 +41,9 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
         </appaymentkeys>
     </send_appaymentrequest>
 </function>";
-
-            ApPaymentSend record = new ApPaymentSend("unittest")
-            {
-                RecordNo = 1234,
-            };
             
+            AbstractApPaymentFunction record = _factory.Generate(AbstractApPaymentFunction.Send, 1234, "unittest");
+
             this.CompareXml(expected, record);
         }
     }
