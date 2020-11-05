@@ -31,11 +31,11 @@ namespace Intacct.SDK.Functions.AccountsPayable
 
         public decimal? TransactionAmount;
 
-        public abstract string GetKeyType();
+        protected abstract string GetKeyType();
 
-        public abstract string GetEntryKeyType();
+        protected abstract string GetEntryKeyType();
 
-        public abstract string GetTransactionType();
+        protected abstract string GetTransactionType();
         
         public void WriteXml(ref IaXmlWriter xml)
         {

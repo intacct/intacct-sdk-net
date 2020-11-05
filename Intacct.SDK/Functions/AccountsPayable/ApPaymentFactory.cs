@@ -19,7 +19,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
 {
     public class ApPaymentFactory
     {
-        public AbstractApPaymentFunction Generate(string type, int recordno, string controlId)
+        public static AbstractApPaymentFunction Create(string type, int recordno, string controlId)
         {
             AbstractApPaymentFunction apPaymentFunction;
 
