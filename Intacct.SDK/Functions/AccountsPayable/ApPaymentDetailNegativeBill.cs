@@ -17,17 +17,17 @@ namespace Intacct.SDK.Functions.AccountsPayable
 {
     public class ApPaymentDetailNegativeBill : AbstractApPaymentDetailCredit
     {
-        public override string GetKeyType()
+        protected override string GetKeyType()
         {
             return "INLINEKEY";
         }
 
-        public override string GetEntryKeyType()
+        protected override string GetEntryKeyType()
         {
             return "INLINEENTRYKEY";
         }
 
-        public override string GetTransactionType()
+        protected override string GetTransactionType()
         {
             return "TRX_INLINEAMOUNT";
         }

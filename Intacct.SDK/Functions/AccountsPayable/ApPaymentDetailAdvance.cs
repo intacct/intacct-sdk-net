@@ -17,17 +17,17 @@ namespace Intacct.SDK.Functions.AccountsPayable
 {
     public class ApPaymentDetailAdvance : AbstractApPaymentDetailCredit
     {
-        public override string GetKeyType()
+        protected override string GetKeyType()
         {
             return "ADVANCEKEY";
         }
 
-        public override string GetEntryKeyType()
+        protected override string GetEntryKeyType()
         {
             return "ADVANCEENTRYKEY";
         }
 
-        public override string GetTransactionType()
+        protected override string GetTransactionType()
         {
             return "TRX_POSTEDADVANCEAMOUNT";
         }

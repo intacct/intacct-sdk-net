@@ -17,17 +17,17 @@ namespace Intacct.SDK.Functions.AccountsPayable
 {
     public class ApPaymentDetailDebitMemo : AbstractApPaymentDetailCredit
     {
-        public override string GetKeyType()
+        protected override string GetKeyType()
         {
             return "ADJUSTMENTKEY";
         }
 
-        public override string GetEntryKeyType()
+        protected override string GetEntryKeyType()
         {
             return "ADJUSTMENTENTRYKEY";
         }
 
-        public override string GetTransactionType()
+        protected override string GetTransactionType()
         {
             return "TRX_ADJUSTMENTAMOUNT";
         }
