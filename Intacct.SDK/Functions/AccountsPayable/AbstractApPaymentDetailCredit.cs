@@ -17,7 +17,7 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public abstract class AbstractApPaymentDetailCredit : IApPaymentDetailCredit
+    public abstract class AbstractApPaymentDetailCredit
     {
         public const string DebitMemo = "debit memo";
 

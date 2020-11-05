@@ -36,6 +36,6 @@ namespace Intacct.SDK.Functions.AccountsPayable
         /// <summary>
         /// Use existing transaction.  Specify an existing transaction to apply against the ApplyToRecordNo.
         /// </summary>
-        public IApPaymentDetailCredit DetailTransaction;
+        public AbstractApPaymentDetailCredit DetailTransaction;
     }
 }

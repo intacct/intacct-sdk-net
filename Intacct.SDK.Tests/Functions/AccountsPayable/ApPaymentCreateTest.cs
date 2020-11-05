@@ -72,7 +72,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 VendorId = "V0001",
                 PaymentMethod = "Printed Check",
                 PaymentDate = new DateTime(2015, 06, 30),
-                ApPaymentDetails = detailBuilder.GetList(),
+                ApPaymentDetails = detailBuilder.GetApPaymentDetailList(),
             };
 
             testCreate(info, expected);
@@ -119,7 +119,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 PaymentMethod = "EFT",
                 PaymentDate = new DateTime(2015, 06, 30),
                 DocumentNo = "12345",
-                ApPaymentDetails = detailBuilder.GetList(),
+                ApPaymentDetails = detailBuilder.GetApPaymentDetailList(),
             };
             
             testCreate(info, expected);
@@ -165,7 +165,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 VendorId = "V0001",
                 PaymentMethod = "Printed Check",
                 PaymentDate = new DateTime(2015, 06, 30),
-                ApPaymentDetails = detailBuilder.GetList(),
+                ApPaymentDetails = detailBuilder.GetApPaymentDetailList(),
             };
 
             testCreate(info, expected);
@@ -225,7 +225,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 VendorId = "V0001",
                 PaymentMethod = "Printed Check",
                 PaymentDate = new DateTime(2015, 06, 30),
-                ApPaymentDetails = detailBuilder.GetList()
+                ApPaymentDetails = detailBuilder.GetApPaymentDetailList()
             };
 
             testCreate(info, expected);
@@ -302,7 +302,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 VendorId = "V0001",
                 PaymentMethod = "Printed Check",
                 PaymentDate = new DateTime(2015, 06, 30),
-                ApPaymentDetails = detailBuilder.GetList(),
+                ApPaymentDetails = detailBuilder.GetApPaymentDetailList(),
             };
             
             testCreate(info, expected);
@@ -350,7 +350,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 PaymentMethod = "Cash",
                 PaymentDate = new DateTime(2020, 10, 06),
                 TransactionCurrency = "USD",
-                ApPaymentDetails = detailBuilder.GetList(),
+                ApPaymentDetails = detailBuilder.GetApPaymentDetailList(),
             };
 
             testCreate(info, expected);
@@ -393,7 +393,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 VendorId = "V0001",
                 PaymentMethod = "Printed Check",
                 PaymentDate = new DateTime(2015, 06, 30),
-                ApPaymentDetails = detailBuilder.GetList(),
+                ApPaymentDetails = detailBuilder.GetApPaymentDetailList(),
             };
             
             testCreate(info, expected);
@@ -454,7 +454,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 MergeOption = "vendorpref",
                 DocumentNo = "10000",
                 NotificationContactName = "Jim Smith",
-                ApPaymentDetails = detailBuilder.GetList(),
+                ApPaymentDetails = detailBuilder.GetApPaymentDetailList(),
             };
 
             testCreate(info, expected);

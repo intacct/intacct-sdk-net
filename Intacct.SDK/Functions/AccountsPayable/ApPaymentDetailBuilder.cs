@@ -38,7 +38,7 @@ namespace Intacct.SDK.Functions.AccountsPayable
             return this;
         }
 
-        public List<IApPaymentDetail> GetList()
+        public List<IApPaymentDetail> GetApPaymentDetailList()
         {
             return _detailList;
         }
