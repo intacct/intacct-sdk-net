@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['vendorcreate_2ecs_1993',['VendorCreate.cs',['../_vendor_create_8cs.html',1,'']]],
-  ['vendordelete_2ecs_1994',['VendorDelete.cs',['../_vendor_delete_8cs.html',1,'']]],
-  ['vendorupdate_2ecs_1995',['VendorUpdate.cs',['../_vendor_update_8cs.html',1,'']]]
+  ['usercreate_2ecs_2054',['UserCreate.cs',['../_user_create_8cs.html',1,'']]],
+  ['usereffectivepermissionlist_2ecs_2055',['UserEffectivePermissionList.cs',['../_user_effective_permission_list_8cs.html',1,'']]],
+  ['userupdate_2ecs_2056',['UserUpdate.cs',['../_user_update_8cs.html',1,'']]]
 ];
