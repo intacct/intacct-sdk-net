@@ -53,7 +53,7 @@ namespace Intacct.SDK.Tests.Functions.Common.Query.Comparison.InList
                 }
             };
             
-            Assert.Equal("NOT RECORDNO IN (1234,5678,9012)", condition.ToString());
+            Assert.Equal("RECORDNO NOT IN (1234,5678,9012)", condition.ToString());
         }
         
         [Fact]

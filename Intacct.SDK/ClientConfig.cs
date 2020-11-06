@@ -16,7 +16,7 @@
 using Intacct.SDK.Credentials;
 using Intacct.SDK.Logging;
 using Intacct.SDK.Xml.Request;
-using NLog;
+using Microsoft.Extensions.Logging;
 
 namespace Intacct.SDK
 {

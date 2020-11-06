@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -13,34 +13,34 @@
  * permissions and limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Xml;
-using Intacct.SDK.Functions.AccountsPayable;
-using Intacct.SDK.Functions;
+using Intacct.SDK.Functions.Purchasing;
 using Intacct.SDK.Tests.Xml;
-using Intacct.SDK.Xml;
 using Xunit;
 
-namespace Intacct.SDK.Tests.Functions.AccountsPayable
+namespace Intacct.SDK.Tests.Functions.Purchasing
 {
-    public class ApPaymentRequestDeleteTest : XmlObjectTestHelper
+    public class PurchasingTransactionDeclineTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <delete_paymentrequest key=""1234"" />
+    <decline>
+        <PODOCUMENT>
+            <DOCID>Purchase Order-PO0213</DOCID>
+            <COMMENT>Need to wait on this</COMMENT>
+        </PODOCUMENT>
+    </decline>
 </function>";
 
-            ApPaymentRequestDelete record = new ApPaymentRequestDelete("unittest")
+            PurchasingTransactionDecline record = new PurchasingTransactionDecline("unittest")
+
             {
-                RecordNo = 1234,
+                ExternalId = "Purchase Order-PO0213",
+                Comment = "Need to wait on this"
             };
-            
+
             this.CompareXml(expected, record);
         }
     }

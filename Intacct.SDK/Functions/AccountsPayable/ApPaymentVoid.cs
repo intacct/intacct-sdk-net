@@ -15,13 +15,15 @@
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public abstract class AbstractApPayment : AbstractFunction
+    public class ApPaymentVoid : AbstractApPaymentFunction
     {
-
-        public int? RecordNo;
-
-        protected AbstractApPayment(string controlId = null) : base(controlId)
+        public ApPaymentVoid(int recordNo, string controlId = null) : base(recordNo, controlId)
         {
+        }
+
+        protected override string GetFunction()
+        {
+            return Void;
         }
     }
 }

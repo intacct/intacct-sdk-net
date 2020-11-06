@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -17,30 +17,16 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestVoid : AbstractApPaymentRequest
+    public class ApPaymentDecline : AbstractApPaymentFunction
     {
 
-        public ApPaymentRequestVoid(string controlId = null) : base(controlId)
+        public ApPaymentDecline(int recordNo, string controlId = null) : base(recordNo, controlId)
         {
         }
 
-        public override void WriteXml(ref IaXmlWriter xml)
+        protected override string GetFunction()
         {
-            xml.WriteStartElement("function");
-            xml.WriteAttribute("controlid", ControlId, true);
-           
-            xml.WriteStartElement("void_appaymentrequest");
-
-            xml.WriteStartElement("appaymentkeys");
-
-            xml.WriteElement("appaymentkey", RecordNo, true);
-
-            xml.WriteEndElement();
-            
-            xml.WriteEndElement(); //void_appaymentrequest
-
-            xml.WriteEndElement(); //function
+            return Decline;
         }
-
     }
 }

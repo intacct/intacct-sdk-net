@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -17,33 +17,31 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestItem : IXmlObject
+    public abstract class AbstractApPaymentDetailCredit
     {
-       
-        public int? ApplyToRecordId;
+        public const string DebitMemo = "debit memo";
 
-        public decimal? AmountToApply;
+        public const string NegativeBill = "negative bill";
 
-        public decimal? CreditToApply;
+        public const string Advance = "advance";
+        
+        public int? RecordNo{ get; set; }
+        
+        public int? LineRecordNo;
 
-        public decimal? DiscountToApply;
+        public decimal? TransactionAmount;
 
-        public ApPaymentRequestItem()
-        {
-        }
+        protected abstract string GetKeyType();
 
+        protected abstract string GetEntryKeyType();
+
+        protected abstract string GetTransactionType();
+        
         public void WriteXml(ref IaXmlWriter xml)
         {
-
-            xml.WriteStartElement("paymentrequestitem");
-
-            xml.WriteElement("key", ApplyToRecordId, true);
-            xml.WriteElement("paymentamount", AmountToApply, true);
-            xml.WriteElement("credittoapply", CreditToApply);
-            xml.WriteElement("discounttoapply", DiscountToApply);
-
-            xml.WriteEndElement(); //paymentrequestitem
+            xml.WriteElement(GetKeyType(), RecordNo, true);
+            xml.WriteElement(GetEntryKeyType(), LineRecordNo);
+            xml.WriteElement(GetTransactionType(), TransactionAmount);
         }
-
     }
 }

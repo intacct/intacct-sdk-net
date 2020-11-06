@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -13,33 +13,36 @@
  * permissions and limitations under the License.
  */
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Xml;
 using Intacct.SDK.Functions.AccountsPayable;
+using Intacct.SDK.Functions;
 using Intacct.SDK.Tests.Xml;
+using Intacct.SDK.Xml;
 using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.AccountsPayable
 {
-    public class ApPaymentRequestDeclineTest : XmlObjectTestHelper
+    public class ApPaymentConfirmTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <decline_appaymentrequest>
+    <confirm_appaymentrequest>
         <appaymentkeys>
             <appaymentkey>1234</appaymentkey>
         </appaymentkeys>
-    </decline_appaymentrequest>
+    </confirm_appaymentrequest>
 </function>";
 
-            ApPaymentRequestDecline record = new ApPaymentRequestDecline("unittest")
-            {
-                RecordNo = 1234
-            };
+            AbstractApPaymentFunction record = ApPaymentFactory.Create(AbstractApPaymentFunction.Confirm, 1234, "unittest");
 
             this.CompareXml(expected, record);
         }
     }
-
 }

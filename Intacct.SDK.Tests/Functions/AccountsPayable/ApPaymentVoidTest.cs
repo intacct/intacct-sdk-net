@@ -26,24 +26,21 @@ using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.AccountsPayable
 {
-    public class ApPaymentRequestConfirmTest : XmlObjectTestHelper
+    public class ApPaymentVoidTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <confirm_appaymentrequest>
+    <void_appaymentrequest>
         <appaymentkeys>
             <appaymentkey>1234</appaymentkey>
         </appaymentkeys>
-    </confirm_appaymentrequest>
+    </void_appaymentrequest>
 </function>";
 
-            ApPaymentRequestConfirm record = new ApPaymentRequestConfirm("unittest")
-            {
-                RecordNo = 1234,
-            };
+            AbstractApPaymentFunction record = ApPaymentFactory.Create(AbstractApPaymentFunction.Void, 1234, "unittest");
             
             this.CompareXml(expected, record);
         }

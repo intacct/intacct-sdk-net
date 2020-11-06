@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -15,12 +15,12 @@
 
 using Intacct.SDK.Xml;
 
-namespace Intacct.SDK.Functions.AccountsPayable
+namespace Intacct.SDK.Functions.Purchasing
 {
-    public class ApPaymentRequestSend : AbstractApPaymentRequest
+    public class PurchasingTransactionDecline : AbstractPurchasingTransaction
     {
-
-        public ApPaymentRequestSend(string controlId = null) : base(controlId)
+        
+        public PurchasingTransactionDecline(string controlId = null) : base(controlId)
         {
         }
 
@@ -28,19 +28,20 @@ namespace Intacct.SDK.Functions.AccountsPayable
         {
             xml.WriteStartElement("function");
             xml.WriteAttribute("controlid", ControlId, true);
-           
-            xml.WriteStartElement("send_appaymentrequest");
 
-            xml.WriteStartElement("appaymentkeys");
-
-            xml.WriteElement("appaymentkey", RecordNo, true);
-
-            xml.WriteEndElement();
+            xml.WriteStartElement("decline");
             
-            xml.WriteEndElement(); //send_appaymentrequest
+            xml.WriteStartElement("PODOCUMENT");
+            
+            xml.WriteElement("DOCID", ExternalId);
+            
+            xml.WriteElement("COMMENT", Comment);
+            
+            xml.WriteEndElement(); //PODOCUMENT
+            
+            xml.WriteEndElement(); //decline
 
             xml.WriteEndElement(); //function
         }
-
     }
 }

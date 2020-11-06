@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -18,16 +18,11 @@ using System.Collections.Generic;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public abstract class AbstractApPaymentRequest : AbstractFunction
+    public class ApPaymentInfo
     {
-
-        public int? RecordNo;
-
         public string PaymentMethod;
 
-        public string BankAccountId;
-
-        public string ChargeCardId;
+        public string FinancialEntityId;
 
         public string VendorId;
 
@@ -36,19 +31,25 @@ namespace Intacct.SDK.Functions.AccountsPayable
         public bool? GroupPayments;
 
         public DateTime PaymentDate;
+        
+        public string BaseCurrency;
+        
+        public string TransactionCurrency;
+        
+        public decimal? TransactionAmountPaid;
 
-        public decimal TransactionAmount;
-
+        public DateTime? ExchangeRateDate;
+        
+        public string ExchangeRateType;
+        
         public string DocumentNo;
 
         public string Memo;
 
         public string NotificationContactName;
+        
+        public string Action;
 
-        public List<ApPaymentRequestItem> ApplyToTransactions = new List<ApPaymentRequestItem>();
-
-        protected AbstractApPaymentRequest(string controlId = null) : base(controlId)
-        {
-        }
+        public List<IApPaymentDetail> ApPaymentDetails = new List<IApPaymentDetail>();
     }
 }

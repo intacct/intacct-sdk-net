@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -13,23 +13,23 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct.SDK.Functions.Common.Query.Comparison.InList
+namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class InListInteger : AbstractListInteger
+    public class ApPaymentDetailAdvance : AbstractApPaymentDetailCredit
     {
-        public override string ToString()
+        protected override string GetKeyType()
         {
-            string clause = "";
-            string notClause = "";
-            
-            if (Negate == true)
-            {
-                notClause = " NOT";
-            }
-            
-            clause =  Field +  notClause + " IN (" + string.Join(",", ValuesList) + ")";
+            return "ADVANCEKEY";
+        }
 
-            return clause;
+        protected override string GetEntryKeyType()
+        {
+            return "ADVANCEENTRYKEY";
+        }
+
+        protected override string GetTransactionType()
+        {
+            return "TRX_POSTEDADVANCEAMOUNT";
         }
     }
 }

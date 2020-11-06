@@ -13,23 +13,17 @@
  * permissions and limitations under the License.
  */
 
-namespace Intacct.SDK.Functions.Common.Query.Comparison.InList
+namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class InListInteger : AbstractListInteger
+    public class ApPaymentConfirm : AbstractApPaymentFunction
     {
-        public override string ToString()
+        public ApPaymentConfirm(int recordno, string controlId = null) : base(recordno, controlId)
         {
-            string clause = "";
-            string notClause = "";
-            
-            if (Negate == true)
-            {
-                notClause = " NOT";
-            }
-            
-            clause =  Field +  notClause + " IN (" + string.Join(",", ValuesList) + ")";
+        }
 
-            return clause;
+        protected override string GetFunction()
+        {
+            return Confirm;
         }
     }
 }
