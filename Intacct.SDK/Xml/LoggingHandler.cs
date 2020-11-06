@@ -18,7 +18,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Intacct.SDK.Logging;
-using NLog;
+using Microsoft.Extensions.Logging;
 
 namespace Intacct.SDK.Xml
 {

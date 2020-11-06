@@ -21,6 +21,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Intacct.SDK.Credentials;
 using Intacct.SDK.Functions;
+using Microsoft.Extensions.Logging;
 
 namespace Intacct.SDK.Xml
 {
@@ -33,7 +34,7 @@ namespace Intacct.SDK.Xml
         public RequestConfig RequestConfig;
 
         public string EndpointUrl;
-        
+
         public RequestHandler(ClientConfig clientConfig, RequestConfig requestConfig)
         {
             this.EndpointUrl = !string.IsNullOrEmpty(clientConfig.EndpointUrl) ? clientConfig.EndpointUrl : new Endpoint(clientConfig).ToString();
@@ -43,7 +44,6 @@ namespace Intacct.SDK.Xml
             this.RequestConfig = requestConfig;
         }
         
-
         public async Task<OnlineResponse> ExecuteOnline(List<IFunction> content)
         {
             if (!string.IsNullOrEmpty(this.RequestConfig.PolicyId))
@@ -74,7 +74,7 @@ namespace Intacct.SDK.Xml
             )
             {
                 // Log warning if using session ID for offline execution
-                this.ClientConfig.Logger.Warn("Offline execution sent to Intacct using Session-based credentials. Use Login-based credentials instead to avoid session timeouts.");
+                this.ClientConfig.Logger.LogWarning("Offline execution sent to Intacct using Session-based credentials. Use Login-based credentials instead to avoid session timeouts.");
             }
 
             RequestBlock request = new RequestBlock(this.ClientConfig, this.RequestConfig, content);
