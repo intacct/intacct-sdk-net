@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2020 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
@@ -17,26 +17,8 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestDelete : AbstractApPaymentRequest
+    public interface IApPaymentDetail : IXmlObject
     {
-
-        public ApPaymentRequestDelete(string controlId = null) : base(controlId)
-        {
-        }
-
-        public override void WriteXml(ref IaXmlWriter xml)
-        {
-            xml.WriteStartElement("function");
-            xml.WriteAttribute("controlid", ControlId, true);
-           
-            xml.WriteStartElement("delete_paymentrequest");
-
-            xml.WriteAttribute("key", RecordNo, true);
-            
-            xml.WriteEndElement(); //delete_paymentrequest
-
-            xml.WriteEndElement(); //function
-        }
-
+        new void WriteXml(ref IaXmlWriter xml);
     }
 }

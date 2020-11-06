@@ -13,33 +13,23 @@
  * permissions and limitations under the License.
  */
 
-using Intacct.SDK.Xml;
-
 namespace Intacct.SDK.Functions.AccountsPayable
 {
-    public class ApPaymentRequestDecline : AbstractApPaymentRequest
+    public class ApPaymentDetailNegativeBill : AbstractApPaymentDetailCredit
     {
-
-        public ApPaymentRequestDecline(string controlId = null) : base(controlId)
+        protected override string GetKeyType()
         {
+            return "INLINEKEY";
         }
 
-        public override void WriteXml(ref IaXmlWriter xml)
+        protected override string GetEntryKeyType()
         {
-            xml.WriteStartElement("function");
-            xml.WriteAttribute("controlid", ControlId, true);
+            return "INLINEENTRYKEY";
+        }
 
-            xml.WriteStartElement("decline_appaymentrequest");
-
-            xml.WriteStartElement("appaymentkeys");
-
-            xml.WriteElement("appaymentkey", RecordNo, true);
-
-            xml.WriteEndElement();
-
-            xml.WriteEndElement(); //decline_appaymentrequest
-
-            xml.WriteEndElement(); //function
+        protected override string GetTransactionType()
+        {
+            return "TRX_INLINEAMOUNT";
         }
     }
 }

@@ -19,7 +19,7 @@ using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.AccountsPayable
 {
-    public class ApPaymentRequestDeclineTest : XmlObjectTestHelper
+    public class ApPaymentDeclineTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
@@ -33,10 +33,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
     </decline_appaymentrequest>
 </function>";
 
-            ApPaymentRequestDecline record = new ApPaymentRequestDecline("unittest")
-            {
-                RecordNo = 1234
-            };
+            AbstractApPaymentFunction record = ApPaymentFactory.Create(AbstractApPaymentFunction.Decline, 1234, "unittest");
 
             this.CompareXml(expected, record);
         }
