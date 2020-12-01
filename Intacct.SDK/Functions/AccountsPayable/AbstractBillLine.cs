@@ -48,8 +48,8 @@ namespace Intacct.SDK.Functions.AccountsPayable
         public string LocationId;
 
         public string ProjectId;
-		
-		public string TaskId;
+
+        public string TaskId;
 
         public string CustomerId;
 
