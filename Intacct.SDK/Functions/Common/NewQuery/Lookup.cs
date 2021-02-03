@@ -1,3 +1,5 @@
+using Intacct.SDK.Xml;
+
 namespace Intacct.SDK.Functions.Common.NewQuery
 {
     public class Lookup : AbstractFunction
