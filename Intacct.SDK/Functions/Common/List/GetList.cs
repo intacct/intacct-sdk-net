@@ -14,6 +14,7 @@
  */
 
 using Intacct.SDK.Xml;
+using System;
 
 namespace Intacct.SDK.Functions.Common.List
 {
@@ -31,6 +32,17 @@ namespace Intacct.SDK.Functions.Common.List
 
         public GetList(string objectName)
         {
+            base.ControlId = Guid.NewGuid().ToString();
+            this.start = 0;
+            this.maxitems = 100;
+            this.showprivate = true;
+            this.ObjectName = objectName;
+        }
+
+        public GetList(string objectName, string controlId)
+        {
+            base.ControlId = controlId;
+
             this.start = 0;
             this.maxitems = 100;
             this.showprivate = true;
@@ -42,7 +54,7 @@ namespace Intacct.SDK.Functions.Common.List
             xml.WriteStartDocument();
 
             xml.WriteStartElement("function");
-            //xml.WriteAttribute("controlid", ControlId, true);
+            xml.WriteAttribute("controlid", ControlId, true);
 
             xml.WriteStartElement("get_list");
             xml.WriteAttributeString("object", this.ObjectName);
