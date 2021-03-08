@@ -51,7 +51,6 @@ namespace Intacct.SDK.Functions.Common.List
 
         public override void WriteXml(ref IaXmlWriter xml)
         {
-            xml.WriteStartDocument();
 
             xml.WriteStartElement("function");
             xml.WriteAttribute("controlid", ControlId, true);
@@ -62,15 +61,16 @@ namespace Intacct.SDK.Functions.Common.List
             xml.WriteAttributeString("maxitems", this.maxitems.ToString());
             xml.WriteAttributeString("showprivate", this.showprivate.ToString().ToLower());
 
-            xml.WriteStartElement("filter");
 
             if (this.Expression != null)
             {
+                xml.WriteStartElement("filter");
                 xml.WriteStartElement("expression");
                 xml.WriteElementString("field", this.Expression.Field);
                 xml.WriteElementString("operator", this.Expression.Operator);
                 xml.WriteElementString("value", this.Expression.Value);
                 xml.WriteEndElement(); // </expression>
+                xml.WriteEndElement(); // </filter>
             }
 
             // if ( this.logical ) 
@@ -79,32 +79,32 @@ namespace Intacct.SDK.Functions.Common.List
             //     xml.WriteEndElement(); // </logical>
             // }
 
-            xml.WriteEndElement(); // </filter>
-
-            xml.WriteStartElement("fields");
-            foreach (string Field in this.Fields)
+            if (this.SortedFields.Count > 0)
             {
-                xml.WriteElementString("field", Field);
+                xml.WriteStartElement("sorts");
+                foreach (SortedField SortedField in this.SortedFields)
+                {
+                    xml.WriteStartElement("sortfield");
+                    xml.WriteAttributeString("order", SortedField.Order);
+                    xml.WriteString(SortedField.Name);
+                    xml.WriteEndElement(); // </sortfield>
+                }
+                xml.WriteEndElement(); // </sorts>
             }
-            xml.WriteEndElement(); // </fields>
 
-            xml.WriteStartElement("sorts");
-            foreach (SortedField SortedField in this.SortedFields)
+            if (this.Fields.Count > 0)
             {
-                xml.WriteStartElement("sortfield");
-                xml.WriteAttributeString("order", SortedField.Order);
-                xml.WriteString(SortedField.Name);
-                xml.WriteEndElement(); // </sortfield>
+                xml.WriteStartElement("fields");
+                foreach (string Field in this.Fields)
+                {
+                    xml.WriteElementString("field", Field);
+                }
+                xml.WriteEndElement(); // </fields>
             }
-            xml.WriteEndElement(); // </sorts>
 
             xml.WriteEndElement(); // </get_list> 
 
             xml.WriteEndElement(); // </function> 
-
-            xml.WriteEndDocument();
-            xml.Flush();
-            xml.Close();
 
         }
     }
