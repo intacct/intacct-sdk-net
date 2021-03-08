@@ -17,6 +17,7 @@ using Xunit;
 using Intacct.SDK.Functions.Common.List;
 using Intacct.SDK.Tests.Xml;
 using System.Collections.Generic;
+using System;
 
 namespace Intacct.SDK.Tests.Functions.Common.List
 {
@@ -26,17 +27,19 @@ namespace Intacct.SDK.Tests.Functions.Common.List
 		public void MinimalConstructor()
 		{
             // arrange
-            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<function>
+            string controlId = Guid.NewGuid().ToString();
+
+            string expected = String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""{0}"">
     <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
         <filter />
         <fields />
         <sorts />
     </get_list>
-</function>";
+</function>", controlId);
 
             // act
-            GetList getList = new GetList("supdoc");
+            GetList getList = new GetList("supdoc", controlId);
 
             // assert
             this.CompareXml(expected, getList);
@@ -46,8 +49,10 @@ namespace Intacct.SDK.Tests.Functions.Common.List
         public void ExpressionFilterProvided()
         {
             // arrange
-            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<function>
+            string controlId = Guid.NewGuid().ToString();
+
+            string expected = String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""{0}"">
     <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
         <filter>
             <expression>
@@ -59,7 +64,7 @@ namespace Intacct.SDK.Tests.Functions.Common.List
         <fields />
         <sorts />
     </get_list>
-</function>";
+</function>",controlId);
 
             ExpressionFilter expression = new ExpressionFilter()
             { 
@@ -69,7 +74,7 @@ namespace Intacct.SDK.Tests.Functions.Common.List
             };
 
             // act
-            GetList getList = new GetList("supdoc")
+            GetList getList = new GetList("supdoc", controlId)
             {
                 Expression = expression
             };
@@ -82,8 +87,10 @@ namespace Intacct.SDK.Tests.Functions.Common.List
         public void FieldsProvided()
         {
             // arrange
-            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<function>
+            string controlId = Guid.NewGuid().ToString();
+
+            string expected = String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""{0}"">
     <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
         <filter />
         <fields>
@@ -92,14 +99,14 @@ namespace Intacct.SDK.Tests.Functions.Common.List
         </fields>
         <sorts />
     </get_list>
-</function>";
+</function>",controlId);
 
             List<string> fields = new List<string>();
             fields.Add("FieldA");
             fields.Add("FieldB");
 
             // act
-            GetList getList = new GetList("supdoc")
+            GetList getList = new GetList("supdoc", controlId)
             {
                 Fields = fields
             };
@@ -112,8 +119,10 @@ namespace Intacct.SDK.Tests.Functions.Common.List
         public void SortsProvided()
         {
             // arrange
-            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<function>
+            string controlId = Guid.NewGuid().ToString();
+
+            string expected = String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""{0}"">
     <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
         <filter />
         <fields />
@@ -122,14 +131,14 @@ namespace Intacct.SDK.Tests.Functions.Common.List
             <sortfield order=""desc"">FieldB</sortfield>
         </sorts>
     </get_list>
-</function>";
+</function>",controlId);
 
             List<SortedField> sortedFields = new List<SortedField>();
             sortedFields.Add(new SortedField("FieldA"));
             sortedFields.Add(new SortedField("FieldB","desc"));
 
             // act
-            GetList getList = new GetList("supdoc")
+            GetList getList = new GetList("supdoc", controlId)
             {
                 SortedFields = sortedFields
             };
