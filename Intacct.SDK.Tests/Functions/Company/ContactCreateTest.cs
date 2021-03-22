@@ -47,5 +47,30 @@ namespace Intacct.SDK.Tests.Functions.Company
             };
             this.CompareXml(expected, record);
         }
+
+        [Fact]
+        public void GetXmlTestIsoCountryCodeTest()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <create>
+        <CONTACT>
+            <CONTACTNAME>hello</CONTACTNAME>
+            <PRINTAS>world</PRINTAS>
+            <MAILADDRESS>
+                <ISOCOUNTRYCODE>USA</ISOCOUNTRYCODE>
+            </MAILADDRESS>
+        </CONTACT>
+    </create>
+</function>";
+
+            ContactCreate record = new ContactCreate("unittest")
+            {
+                ContactName = "hello",
+                PrintAs = "world",
+                IsoCountryCode = "USA"
+            };
+            this.CompareXml(expected, record);
+        }
     }
 }
