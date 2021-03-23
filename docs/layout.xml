@@ -19,10 +19,10 @@
 
     <tab type="classindex" visible="yes" title="Index" />
     <tab type="classes" visible="no" title="">
-      <tab type="classlist" visible="yes" title="" intro=""/>
+      <tab type="classlist" visible="yes" title="Classes" intro=""/>
       <tab type="classindex" visible="$ALPHABETICAL_INDEX" title=""/>
-      <tab type="hierarchy" visible="yes" title="" intro=""/>
-      <tab type="classmembers" visible="yes" title="" intro=""/>
+      <tab type="hierarchy" visible="no" title="" intro=""/>
+      <tab type="classmembers" visible="no" title="" intro=""/>
     </tab>
     <tab type="structs" visible="yes" title="">
       <tab type="structlist" visible="yes" title="" intro=""/>
