@@ -27,14 +27,7 @@ var NAVTREE =
   [ "Sage Intacct SDK for .NET", "index.html", [
     [ "Namespace", "namespaces.html", "namespaces" ],
     [ "Index", "classes.html", null ],
-    [ "Data Structures", "annotated.html", "annotated" ],
-    [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
-    [ "Data Fields", "functions.html", [
-      [ "All", "functions.html", "functions_dup" ],
-      [ "Functions", "functions_func.html", "functions_func" ],
-      [ "Variables", "functions_vars.html", "functions_vars" ],
-      [ "Properties", "functions_prop.html", null ]
-    ] ]
+    [ "Classes", "annotated.html", "annotated" ]
   ] ]
 ];
 
@@ -49,7 +42,7 @@ var NAVTREEINDEX =
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_general_ledger_1_1_abstract_gl_batch.html#af7dc4ef75ce17380c3c6d742e0b6f507",
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_inventory_control_1_1_warehouse_delete.html#a2ddf5a0f4da295890e3865f12f6b237f",
 "class_intacct_1_1_s_d_k_1_1_functions_1_1_purchasing_1_1_abstract_purchasing_transaction.html#a00d3c518267e5e90df6d0853644a0b8a",
-"functions_e.html"
+"interface_intacct_1_1_s_d_k_1_1_functions_1_1_common_1_1_new_query_1_1_i_query_function.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
