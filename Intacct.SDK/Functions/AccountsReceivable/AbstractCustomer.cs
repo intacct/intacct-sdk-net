@@ -40,6 +40,8 @@ namespace Intacct.SDK.Functions.AccountsReceivable
 
         public string CompanyName;
 
+        public string ContactName;
+
         public string PrintAs;
 
         public string PrimaryPhoneNo;

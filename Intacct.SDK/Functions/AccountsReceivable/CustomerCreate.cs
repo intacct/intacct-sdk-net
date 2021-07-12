@@ -38,8 +38,12 @@ namespace Intacct.SDK.Functions.AccountsReceivable
 
             xml.WriteStartElement("DISPLAYCONTACT");
 
-            // CONTACTNAME is auto created as '[CustomerName](C[CustomerID])'
-
+            // CONTACTNAME is auto created as '[CustomerName](C[CustomerID])' if value is not given
+            if (!string.IsNullOrWhiteSpace(ContactName))
+            {
+                xml.WriteElement("CONTACTNAME", ContactName);
+            }
+            
             xml.WriteElement("PRINTAS", string.IsNullOrWhiteSpace(PrintAs) ? CustomerName : PrintAs, true);
 
             xml.WriteElement("COMPANYNAME", CompanyName);

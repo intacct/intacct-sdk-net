@@ -60,6 +60,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
             <CUSTOMERID>C1234</CUSTOMERID>
             <NAME>Intacct Corp</NAME>
             <DISPLAYCONTACT>
+                <CONTACTNAME>Bill G. Smith</CONTACTNAME>
                 <PRINTAS>Intacct Corporation</PRINTAS>
                 <COMPANYNAME>Intacct Corp.</COMPANYNAME>
                 <TAXABLE>true</TAXABLE>
@@ -133,6 +134,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
             CustomerCreate record = new CustomerCreate("unittest") {
                 CustomerId = "C1234",
                 CustomerName = "Intacct Corp",
+                ContactName = "Bill G. Smith",
                 PrintAs = "Intacct Corporation",
                 CompanyName = "Intacct Corp.",
                 Taxable = true,
