@@ -38,6 +38,7 @@ namespace Intacct.SDK.Functions.AccountsReceivable
 
             xml.WriteStartElement("DISPLAYCONTACT");
             
+            xml.WriteElement("CONTACTNAME", ContactName);
             xml.WriteElement("PRINTAS", PrintAs);
             xml.WriteElement("COMPANYNAME", CompanyName);
             xml.WriteElement("TAXABLE", Taxable);
