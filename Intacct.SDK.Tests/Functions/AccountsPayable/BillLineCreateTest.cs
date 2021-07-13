@@ -65,6 +65,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
         </customfield>
     </customfields>
     <projectid>Project1</projectid>
+    <taskid>Task1</taskid>
     <customerid>Customer1</customerid>
     <vendorid>Vendor1</vendorid>
     <employeeid>Employee1</employeeid>
@@ -88,6 +89,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 LocationId = "Location1",
                 DepartmentId = "Department1",
                 ProjectId = "Project1",
+                TaskId = "Task1",
                 CustomerId = "Customer1",
                 VendorId = "Vendor1",
                 EmployeeId = "Employee1",

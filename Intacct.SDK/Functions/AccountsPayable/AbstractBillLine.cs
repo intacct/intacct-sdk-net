@@ -49,6 +49,8 @@ namespace Intacct.SDK.Functions.AccountsPayable
 
         public string ProjectId;
 
+        public string TaskId;
+
         public string CustomerId;
 
         public string VendorId;
