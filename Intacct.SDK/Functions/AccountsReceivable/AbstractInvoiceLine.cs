@@ -67,7 +67,11 @@ namespace Intacct.SDK.Functions.AccountsReceivable
         public string ContractId;
 
         public string WarehouseId;
-
+        //public AbstractInvoiceLineTaxEntries TaxEntries ;
+        //Made tax entries it as list because the API documentation showed multiple entries can be allowed for a line item  please see below comment
+        /*taxentries	Optional	taxentry[1...n]	Tax entries for the line. Required for VAT enabled transactions. Providing multiple entries is allowed if your tax solution supports it (AU and GB only). For ZA, only one tax entry is allowed.
+        */
+        public List<AbstractInvoiceLineTaxEntries> Taxentry = new List<AbstractInvoiceLineTaxEntries>();
         public Dictionary<string, dynamic> CustomFields = new Dictionary<string, dynamic>();
 
         protected AbstractInvoiceLine()

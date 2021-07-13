@@ -82,6 +82,8 @@ namespace Intacct.SDK.Functions.AccountsReceivable
             xml.WriteElement("nogl", DoNotPostToGl);
             xml.WriteElement("supdocid", AttachmentsId);
 
+            xml.WriteElement("taxsolutionid", TaxSolutionId); 
+
             xml.WriteCustomFieldsExplicit(CustomFields);
 
             xml.WriteStartElement("invoiceitems");
