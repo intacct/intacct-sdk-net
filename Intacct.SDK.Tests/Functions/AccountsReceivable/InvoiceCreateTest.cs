@@ -113,6 +113,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
         <exchratetype>Intacct Daily Rate</exchratetype>
         <nogl>false</nogl>
         <supdocid>6942</supdocid>
+        <taxsolutionid>taxsolution</taxsolutionid>
         <customfields>
             <customfield>
                 <customfieldname>customfield1</customfieldname>
@@ -123,6 +124,12 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
             <lineitem>
                 <glaccountno />
                 <amount>76343.43</amount>
+                <taxentries>
+                    <taxentry>
+                        <detailid>TaxName</detailid>
+                        <trx_tax>10</trx_tax>
+                    </taxentry>
+                </taxentries>
             </lineitem>
         </invoiceitems>
     </create_invoice>
@@ -150,6 +157,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
                 ExchangeRateType = "Intacct Daily Rate",
                 DoNotPostToGl = false,
                 AttachmentsId = "6942",
+                TaxSolutionId="taxsolution",
                 CustomFields = new Dictionary<string, dynamic>
                 {
                     { "customfield1", "customvalue1" }
@@ -161,6 +169,15 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
             {
                 TransactionAmount = 76343.43M
             };
+
+            InvoiceLineTaxEntriesCreate taxEntries = new InvoiceLineTaxEntriesCreate()
+            {
+                TaxId = "TaxName",
+                TaxValue = 10
+
+            };
+
+            line1.Taxentry.Add(taxEntries);
 
             record.Lines.Add(line1);
             

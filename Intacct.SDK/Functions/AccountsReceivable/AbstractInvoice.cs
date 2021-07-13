@@ -66,6 +66,8 @@ namespace Intacct.SDK.Functions.AccountsReceivable
 
         public string AttachmentsId;
 
+        public string TaxSolutionId;
+
         public List<AbstractInvoiceLine> Lines = new List<AbstractInvoiceLine>();
 
         public Dictionary<string, dynamic> CustomFields = new Dictionary<string, dynamic>();

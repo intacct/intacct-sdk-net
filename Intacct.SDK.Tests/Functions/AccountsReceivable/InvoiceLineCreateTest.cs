@@ -85,6 +85,12 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
     <classid>Class1</classid>
     <contractid>Contract1</contractid>
     <warehouseid>Warehouse1</warehouseid>
+    <taxentries>
+        <taxentry>
+            <detailid>TaxName</detailid>
+            <trx_tax>10</trx_tax>
+        </taxentry>
+    </taxentries>
 </lineitem>";
 
             InvoiceLineCreate record = new InvoiceLineCreate() {
@@ -114,7 +120,16 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
                     { "customfield1", "customvalue1" }
                 }
             };
-            
+
+            InvoiceLineTaxEntriesCreate taxEntries = new InvoiceLineTaxEntriesCreate()
+            {
+                TaxId = "TaxName",
+                TaxValue = 10
+
+            };
+
+            record.Taxentry.Add(taxEntries);
+
             this.CompareXml(expected, record);
         }
     }
