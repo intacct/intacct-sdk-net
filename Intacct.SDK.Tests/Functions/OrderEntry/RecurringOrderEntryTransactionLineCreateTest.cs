@@ -27,18 +27,18 @@ using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.OrderEntry
 {
-    public class OrderEntryTransactionLineCreateTest : XmlObjectTestHelper
+    public class RecurringOrderEntryTransactionLineCreateTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<sotransitem>
+<recursotransitem>
     <itemid>26323</itemid>
     <quantity>2340</quantity>
-</sotransitem>";
+</recursotransitem>";
 
-            OrderEntryTransactionLineCreate record = new OrderEntryTransactionLineCreate()
+            RecurringOrderEntryTransactionLineCreate record = new RecurringOrderEntryTransactionLineCreate()
             {
                 ItemId = "26323",
                 Quantity = 2340,
@@ -51,16 +51,14 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
         public void GetAllXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<sotransitem>
-    <bundlenumber>092304</bundlenumber>
+<recursotransitem>
     <itemid>26323</itemid>
+    <itemaliasid>987654</itemaliasid>
     <itemdesc>Item Description</itemdesc>
     <taxable>true</taxable>
     <warehouseid>93294</warehouseid>
     <quantity>2340</quantity>
     <unit>593</unit>
-    <linelevelsimpletaxtype>Test</linelevelsimpletaxtype>
-    <discountpercent>10.00</discountpercent>
     <price>32.35</price>
     <discsurchargememo>None</discsurchargememo>
     <locationid>SF</locationid>
@@ -89,46 +87,46 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
         <month>07</month>
         <day>31</day>
     </revrecenddate>
-    <renewalmacro>Quarterly</renewalmacro>
+    <status>active</status>
     <projectid>235</projectid>
+    <taskid>654321</taskid>
+    <costtypeid>321654</costtypeid>
     <customerid>23423434</customerid>
     <vendorid>797656</vendorid>
     <employeeid>90295</employeeid>
     <classid>243609</classid>
     <contractid>9062</contractid>
-    <fulfillmentstatus>Complete</fulfillmentstatus>
-    <taskno>9850</taskno>
-    <billingtemplate>3525</billingtemplate>
-</sotransitem>";
+    <shipto>
+        <contactname>Unknown</contactname>
+    </shipto>
+</recursotransitem>";
 
-            OrderEntryTransactionLineCreate record = new OrderEntryTransactionLineCreate() {
-                BundleNumber = "092304",
+            RecurringOrderEntryTransactionLineCreate record = new RecurringOrderEntryTransactionLineCreate() {
                 ItemId = "26323",
+                ItemAliasId = "987654",
                 ItemDescription = "Item Description",
-                Taxable = true,
+                IsTaxable = true,
                 WarehouseId = "93294",
                 Quantity = 2340,
                 Unit = "593",
-                LineLevelSimpleTaxType = "Test",
-                DiscountPercent = 10.00M,
                 Price = 32.35M,
                 DiscountSurchargeMemo = "None",
                 Memo = "Memo",
                 RevRecTemplate = "template",
                 RevRecStartDate = new DateTime(2015, 06, 30),
                 RevRecEndDate = new DateTime(2015, 07, 31),
-                RenewalMacro = "Quarterly",
-                FulfillmentStatus = "Complete",
-                TaskNumber = "9850",
-                BillingTemplate = "3525",
                 LocationId = "SF",
                 DepartmentId = "Receiving",
+                Status = "active",
                 ProjectId = "235",
+                TaskId = "654321",
+                CostTypeId = "321654",
                 CustomerId = "23423434",
                 VendorId = "797656",
                 EmployeeId = "90295",
                 ClassId = "243609",
                 ContractId = "9062",
+                LineShipToContactName = "Unknown",
                 CustomFields = new Dictionary<string, dynamic>
                 {
                     { "customfield1", "customvalue1" }

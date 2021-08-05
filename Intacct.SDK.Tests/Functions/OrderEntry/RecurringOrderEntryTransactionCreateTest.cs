@@ -27,38 +27,38 @@ using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.OrderEntry
 {
-    public class OrderEntryTransactionCreateTest : XmlObjectTestHelper
+    public class RecurringOrderEntryTransactionCreateTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <create_sotransaction>
+    <create_recursotransaction>
         <transactiontype>Sales Order</transactiontype>
-        <datecreated>
+        <customerid>2530</customerid>
+        <startdate>
             <year>2015</year>
             <month>06</month>
             <day>30</day>
-        </datecreated>
-        <customerid>2530</customerid>
-        <sotransitems>
-            <sotransitem>
+        </startdate>
+        <recursotransitems>
+            <recursotransitem>
                 <itemid>02354032</itemid>
                 <quantity>1200</quantity>
-            </sotransitem>
-        </sotransitems>
-    </create_sotransaction>
+            </recursotransitem>
+        </recursotransitems>
+    </create_recursotransaction>
 </function>";
 
-            OrderEntryTransactionCreate record = new OrderEntryTransactionCreate("unittest")
+            RecurringOrderEntryTransactionCreate record = new RecurringOrderEntryTransactionCreate("unittest")
             {
                 TransactionDefinition = "Sales Order",
-                TransactionDate = new DateTime(2015, 06, 30),
+                StartDate = new DateTime(2015, 06, 30),
                 CustomerId = "2530",
             };
 
-            OrderEntryTransactionLineCreate line1 = new OrderEntryTransactionLineCreate()
+            RecurringOrderEntryTransactionLineCreate line1 = new RecurringOrderEntryTransactionLineCreate()
             {
                 ItemId = "02354032",
                 Quantity = 1200,
@@ -74,37 +74,37 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <create_sotransaction>
+    <create_recursotransaction>
         <transactiontype>Sales Order</transactiontype>
-        <datecreated>
+        <customerid>2530</customerid>
+        <startdate>
             <year>2015</year>
             <month>06</month>
             <day>30</day>
-        </datecreated>
-        <customerid>2530</customerid>
-        <sotransitems>
-            <sotransitem>
+        </startdate>
+        <recursotransitems>
+            <recursotransitem>
                 <itemid>02354032</itemid>
                 <quantity>1200</quantity>
-            </sotransitem>
-        </sotransitems>
+            </recursotransitem>
+        </recursotransitems>
         <subtotals>
             <subtotal>
                 <description>Subtotal Description</description>
                 <total>1200</total>
             </subtotal>
         </subtotals>
-    </create_sotransaction>
+    </create_recursotransaction>
 </function>";
 
-            OrderEntryTransactionCreate record = new OrderEntryTransactionCreate("unittest")
+            RecurringOrderEntryTransactionCreate record = new RecurringOrderEntryTransactionCreate("unittest")
             {
                 TransactionDefinition = "Sales Order",
-                TransactionDate = new DateTime(2015, 06, 30),
+                StartDate = new DateTime(2015, 06, 30),
                 CustomerId = "2530",
             };
 
-            OrderEntryTransactionLineCreate line1 = new OrderEntryTransactionLineCreate()
+            RecurringOrderEntryTransactionLineCreate line1 = new RecurringOrderEntryTransactionLineCreate()
             {
                 ItemId = "02354032",
                 Quantity = 1200,
@@ -126,34 +126,15 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <create_sotransaction>
+    <create_recursotransaction>
         <transactiontype>Sales Order</transactiontype>
-        <datecreated>
-            <year>2015</year>
-            <month>06</month>
-            <day>30</day>
-        </datecreated>
-        <dateposted>
-            <year>2015</year>
-            <month>06</month>
-            <day>30</day>
-        </dateposted>
-        <createdfrom>Sales Quote-Q1002</createdfrom>
         <customerid>23530</customerid>
-        <documentno>23430</documentno>
-        <origdocdate>
-            <year>2015</year>
-            <month>06</month>
-            <day>15</day>
-        </origdocdate>
         <referenceno>234235</referenceno>
         <termname>N30</termname>
-        <datedue>
-            <year>2020</year>
-            <month>09</month>
-            <day>24</day>
-        </datedue>
         <message>Submit</message>
+        <contractid>25394</contractid>
+        <contractdesc>Description of Contract</contractdesc>
+        <customerponumber>123456</customerponumber>
         <shippingmethod>USPS</shippingmethod>
         <shipto>
             <contactname>28952</contactname>
@@ -161,72 +142,98 @@ namespace Intacct.SDK.Tests.Functions.OrderEntry
         <billto>
             <contactname>289533</contactname>
         </billto>
-        <supdocid>6942</supdocid>
         <externalid>20394</externalid>
         <basecurr>USD</basecurr>
         <currency>USD</currency>
-        <exchratedate>
-            <year>2015</year>
-            <month>06</month>
-            <day>30</day>
-        </exchratedate>
         <exchratetype>Intacct Daily Rate</exchratetype>
-        <vsoepricelist>VSOEPricing</vsoepricelist>
         <customfields>
             <customfield>
                 <customfieldname>customfield1</customfieldname>
                 <customfieldvalue>customvalue1</customfieldvalue>
             </customfield>
         </customfields>
-        <state>Pending</state>
-        <projectid>P2904</projectid>
-        <sotransitems>
-            <sotransitem>
+        <taxsolutionid>taxing</taxsolutionid>
+        <paymethod>Credit Card</paymethod>
+        <payinfull>true</payinfull>
+        <paymentamount>100</paymentamount>
+        <creditcardtype>VISA</creditcardtype>
+        <customercreditcardkey>321654</customercreditcardkey>
+        <customerbankaccountkey>64987</customerbankaccountkey>
+        <accounttype>Bank</accounttype>
+        <bankaccountid>321654987</bankaccountid>
+        <startdate>
+            <year>2015</year>
+            <month>06</month>
+            <day>30</day>
+        </startdate>
+        <ending>
+            <enddate>
+                <year>2015</year>
+                <month>06</month>
+                <day>30</day>
+            </enddate>
+        </ending>
+        <modenew>Months</modenew>
+        <interval>12</interval>
+        <eom>false</eom>
+        <status>active</status>
+        <docstatus>active</docstatus>
+        <recursotransitems>
+            <recursotransitem>
                 <itemid>2390552</itemid>
                 <quantity>223</quantity>
-            </sotransitem>
-        </sotransitems>
+            </recursotransitem>
+        </recursotransitems>
         <subtotals>
             <subtotal>
                 <description>Subtotal description</description>
                 <total>223</total>
             </subtotal>
         </subtotals>
-    </create_sotransaction>
+    </create_recursotransaction>
 </function>";
 
-            OrderEntryTransactionCreate record = new OrderEntryTransactionCreate("unittest")
+            RecurringOrderEntryTransactionCreate record = new RecurringOrderEntryTransactionCreate("unittest")
             {
                 TransactionDefinition = "Sales Order",
-                TransactionDate = new DateTime(2015, 06, 30),
-                GlPostingDate = new DateTime(2015, 06, 30),
-                CreatedFrom = "Sales Quote-Q1002",
                 CustomerId = "23530",
-                DocumentNumber = "23430",
-                OriginalDocumentDate = new DateTime(2015, 06, 15),
                 ReferenceNumber = "234235",
                 PaymentTerm = "N30",
-                DueDate = new DateTime(2020, 09, 24),
                 Message = "Submit",
+                ContractId = "25394",
+                ContractDescription = "Description of Contract",
+                CustomerPoNumber = "123456",
                 ShippingMethod = "USPS",
                 ShipToContactName = "28952",
                 BillToContactName = "289533",
-                AttachmentsId = "6942",
                 ExternalId = "20394",
                 BaseCurrency = "USD",
                 TransactionCurrency = "USD",
-                ExchangeRateDate = new DateTime(2015, 06, 30),
                 ExchangeRateType = "Intacct Daily Rate",
-                VsoePriceList = "VSOEPricing",
-                State = "Pending",
-                ProjectId = "P2904",
                 CustomFields = new Dictionary<string, dynamic>
                 {
                     { "customfield1", "customvalue1" }
-                }
+                },
+                TaxSolutionId = "taxing",
+                PayMethod = "Credit Card",
+                IsPayInFull = true,
+                PaymentAmount = 100,
+                CreditCardType = "VISA",
+                CustomerCreditCardKey = 321654,
+                CustomerBankAccountKey = 64987,
+                AccountType = "Bank",
+                BankAccountId = "321654987",
+                GlAccountKey = "654321987",
+                StartDate = new DateTime(2015, 06, 30),
+                EndDate = new DateTime(2015, 06, 30),
+                RepeatMode = "Months",
+                RepeatInterval = 12,
+                IsEndOfMonth = false,
+                Status = "active",
+                DocStatus = "active"
             };
 
-            OrderEntryTransactionLineCreate line1 = new OrderEntryTransactionLineCreate()
+            RecurringOrderEntryTransactionLineCreate line1 = new RecurringOrderEntryTransactionLineCreate()
             {
                 ItemId = "2390552",
                 Quantity = 223,
