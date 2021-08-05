@@ -19,10 +19,10 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.OrderEntry
 {
-    public class OrderEntryTransactionCreate : AbstractOrderEntryTransaction
+    public class RecurringOrderEntryTransactionCreate : AbstractRecurringOrderEntryTransaction
     {
-
-        public OrderEntryTransactionCreate(string controlId = null) : base(controlId)
+        
+        public RecurringOrderEntryTransactionCreate(string controlId = null) : base(controlId)
         {
         }
 
@@ -30,46 +30,19 @@ namespace Intacct.SDK.Functions.OrderEntry
         {
             xml.WriteStartElement("function");
             xml.WriteAttribute("controlid", ControlId, true);
-
-            xml.WriteStartElement("create_sotransaction");
-
-            xml.WriteElement("transactiontype", TransactionDefinition, true);
-
-            xml.WriteStartElement("datecreated");
-            xml.WriteDateSplitElements(TransactionDate.Value, true);
-            xml.WriteEndElement(); //datecreated
-
-            if (GlPostingDate.HasValue)
-            {
-                xml.WriteStartElement("dateposted");
-                xml.WriteDateSplitElements(GlPostingDate.Value);
-                xml.WriteEndElement(); //dateposted
-            }
-
-            xml.WriteElement("createdfrom", CreatedFrom);
-            xml.WriteElement("customerid", CustomerId, true);
-            xml.WriteElement("documentno", DocumentNumber);
-
-            if (OriginalDocumentDate.HasValue)
-            {
-                xml.WriteStartElement("origdocdate");
-                xml.WriteDateSplitElements(OriginalDocumentDate.Value);
-                xml.WriteEndElement(); //origdocdate
-            }
-
+            
+            xml.WriteStartElement("create_recursotransaction");
+            
+            xml.WriteElement("transactiontype", TransactionDefinition);
+            xml.WriteElement("customerid", CustomerId);
             xml.WriteElement("referenceno", ReferenceNumber);
             xml.WriteElement("termname", PaymentTerm);
-
-            if (DueDate.HasValue)
-            {
-                xml.WriteStartElement("datedue");
-                xml.WriteDateSplitElements(DueDate.Value, true);
-                xml.WriteEndElement(); //datedue
-            }
-            
             xml.WriteElement("message", Message);
+            xml.WriteElement("contractid", ContractId);
+            xml.WriteElement("contractdesc", ContractDescription);
+            xml.WriteElement("customerponumber", CustomerPoNumber);
             xml.WriteElement("shippingmethod", ShippingMethod);
-
+            
             if (!string.IsNullOrWhiteSpace(ShipToContactName))
             {
                 xml.WriteStartElement("shipto");
@@ -83,49 +56,30 @@ namespace Intacct.SDK.Functions.OrderEntry
                 xml.WriteElement("contactname", BillToContactName, true);
                 xml.WriteEndElement(); //billto
             }
-
-            xml.WriteElement("supdocid", AttachmentsId);
-            xml.WriteElement("externalid", ExternalId);
             
+            xml.WriteElement("externalid", ExternalId);
             xml.WriteElement("basecurr", BaseCurrency);
             xml.WriteElement("currency", TransactionCurrency);
-
-            if (ExchangeRateDate.HasValue)
-            {
-                xml.WriteStartElement("exchratedate");
-                xml.WriteDateSplitElements(ExchangeRateDate.Value);
-                xml.WriteEndElement(); //exchratedate
-            }
+            
             if (!string.IsNullOrWhiteSpace(ExchangeRateType))
             {
                 xml.WriteElement("exchratetype", ExchangeRateType);
             }
-            else if (ExchangeRateValue.HasValue)
-            {
-                xml.WriteElement("exchrate", ExchangeRateValue);
-            }
-            else if (!string.IsNullOrWhiteSpace(BaseCurrency) || !string.IsNullOrWhiteSpace(TransactionCurrency))
-            {
-                xml.WriteElement("exchratetype", ExchangeRateType, true);
-            }
-
-            xml.WriteElement("vsoepricelist", VsoePriceList);
-
+            
             xml.WriteCustomFieldsExplicit(CustomFields);
-
-            xml.WriteElement("state", State);
-            xml.WriteElement("projectid", ProjectId);
-
+            
+            xml.WriteElement("taxsolutionid", TaxSolutionId);
+            
             xml.WriteStartElement("sotransitems");
             if (Lines.Count > 0)
             {
-                foreach (OrderEntryTransactionLineCreate line in Lines)
+                foreach (RecurringOrderEntryTransactionLineCreate line in Lines)
                 {
                     line.WriteXml(ref xml);
                 }
             }
             xml.WriteEndElement(); //sotransitems
-
+            
             if (Subtotals.Count > 0)
             {
                 xml.WriteStartElement("subtotals");
@@ -135,11 +89,51 @@ namespace Intacct.SDK.Functions.OrderEntry
                 }
                 xml.WriteEndElement(); //subtotals
             }
+            
+            xml.WriteElement("paymethod", PayMethod);
+            xml.WriteElement("payinfull", IsPayInFull);
+            xml.WriteElement("paymentamount", PaymentAmount);
+            xml.WriteElement("creditcardtype", CreditCardType);
+            xml.WriteElement("customercreditcardkey", CustomerCreditCardKey);
+            xml.WriteElement("customerbankaccountkey", CustomerBankAccountKey);
+            xml.WriteElement("accounttype", AccountType);
+            xml.WriteElement("bankaccountid", BankAccountId);
+            xml.WriteElement("glaccountkey", GlAccountKey);
+            
+            if (StartDate.HasValue)
+            {
+                xml.WriteStartElement("startdate");
+                xml.WriteDateSplitElements(StartDate.Value);
+                xml.WriteEndElement(); // revrecstartdate
+            }
+            
+            xml.WriteStartElement("ending");
+            if (!EndDate.HasValue)
+            {
+                xml.WriteElement("occur", NumberOfOccurrences);
+            }
+            else
+            {
+                xml.WriteStartElement("enddate");
+                xml.WriteDateSplitElements(EndDate.Value);
+                xml.WriteEndElement(); // enddate
+            }
+            xml.WriteEndElement(); //ending
+            
+            xml.WriteElement("modenew", RepeatMode);
+            xml.WriteElement("interval", RepeatInterval);
 
-            xml.WriteEndElement(); //create_sotransaction
-
+            if (RepeatMode.Equals("Months"))
+            {
+                xml.WriteElement("eom", IsEndOfMonth);
+            }
+            
+            xml.WriteElement("status", Status);
+            xml.WriteElement("docstatus", DocStatus);
+            
+            xml.WriteEndElement(); //create_recursotransaction
+            
             xml.WriteEndElement(); //function
         }
-
     }
 }
