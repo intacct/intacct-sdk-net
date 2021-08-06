@@ -18,30 +18,25 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.OrderEntry
 {
-    public class OrderEntryTransactionLineCreate : AbstractOrderEntryTransactionLine
+    public class RecurringOrderEntryTransactionLineCreate : AbstractRecurringOrderEntryTransactionLine
     {
-        
-        public int? SourceLineRecordNo;
 
-        public OrderEntryTransactionLineCreate()
+        public RecurringOrderEntryTransactionLineCreate()
         {
         }
 
         public override void WriteXml(ref IaXmlWriter xml)
         {
-            xml.WriteStartElement("sotransitem");
-
-            xml.WriteElement("bundlenumber", BundleNumber);
-            xml.WriteElement("itemid", ItemId, true);
+            xml.WriteStartElement("recursotransitem");
+            
+            xml.WriteElement("itemid", ItemId);
+            xml.WriteElement("itemaliasid", ItemAliasId);
             xml.WriteElement("itemdesc", ItemDescription);
-            xml.WriteElement("taxable", Taxable);
+            xml.WriteElement("taxable", IsTaxable);
             xml.WriteElement("warehouseid", WarehouseId);
-            xml.WriteElement("quantity", Quantity, true);
+            xml.WriteElement("quantity", Quantity);
             xml.WriteElement("unit", Unit);
-            xml.WriteElement("linelevelsimpletaxtype", LineLevelSimpleTaxType);
-            xml.WriteElement("discountpercent", DiscountPercent);
             xml.WriteElement("price", Price);
-            xml.WriteElement("sourcelinekey", SourceLineRecordNo);
             xml.WriteElement("discsurchargememo", DiscountSurchargeMemo);
             xml.WriteElement("locationid", LocationId);
             xml.WriteElement("departmentid", DepartmentId);
@@ -56,37 +51,34 @@ namespace Intacct.SDK.Functions.OrderEntry
                 }
                 xml.WriteEndElement(); //itemdetails
             }
-
+            
             xml.WriteCustomFieldsExplicit(CustomFields);
-
+            
             xml.WriteElement("revrectemplate", RevRecTemplate);
 
             if (RevRecStartDate.HasValue)
             {
                 xml.WriteStartElement("revrecstartdate");
                 xml.WriteDateSplitElements(RevRecStartDate.Value);
-                xml.WriteEndElement(); //revrecstartdate
+                xml.WriteEndElement(); // revrecstartdate
             }
-
+            
             if (RevRecEndDate.HasValue)
             {
                 xml.WriteStartElement("revrecenddate");
                 xml.WriteDateSplitElements(RevRecEndDate.Value);
                 xml.WriteEndElement(); //revrecenddate
             }
-
-            xml.WriteElement("renewalmacro", RenewalMacro);
+            
+            xml.WriteElement("status", Status);
             xml.WriteElement("projectid", ProjectId);
+            xml.WriteElement("taskid", TaskId);
+            xml.WriteElement("costtypeid", CostTypeId);
             xml.WriteElement("customerid", CustomerId);
             xml.WriteElement("vendorid", VendorId);
             xml.WriteElement("employeeid", EmployeeId);
             xml.WriteElement("classid", ClassId);
             xml.WriteElement("contractid", ContractId);
-            xml.WriteElement("fulfillmentstatus", FulfillmentStatus);
-            xml.WriteElement("taskno", TaskNumber);
-            xml.WriteElement("billingtemplate", BillingTemplate);
-            
-            xml.WriteElement("dropship", DropShip);
             
             if (!string.IsNullOrWhiteSpace(LineShipToContactName))
             {
@@ -94,9 +86,8 @@ namespace Intacct.SDK.Functions.OrderEntry
                 xml.WriteElement("contactname", LineShipToContactName, true);
                 xml.WriteEndElement(); //shipto
             }
-
-            xml.WriteEndElement(); //sotransitem
+            
+            xml.WriteEndElement(); //recursotransitem
         }
-
     }
 }

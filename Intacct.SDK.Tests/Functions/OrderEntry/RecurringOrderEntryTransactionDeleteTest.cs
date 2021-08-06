@@ -27,17 +27,17 @@ using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.OrderEntry
 {
-    public class OrderEntryTransactionDeleteTest : XmlObjectTestHelper
+    public class RecurringOrderEntryTransactionDeleteTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""unittest"">
-    <delete_sotransaction key=""Sales Invoice-INV1234"" />
+    <delete_recursotransaction key=""Sales Invoice-INV1234"" />
 </function>";
 
-            OrderEntryTransactionDelete record = new OrderEntryTransactionDelete("unittest")
+            RecurringOrderEntryTransactionDelete record = new RecurringOrderEntryTransactionDelete("unittest")
             {
                 DocumentId = "Sales Invoice-INV1234"
             };

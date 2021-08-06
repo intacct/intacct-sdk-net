@@ -13,14 +13,15 @@
  * permissions and limitations under the License.
  */
 
+using System.Net.Mail;
 using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.OrderEntry
 {
-    public class OrderEntryTransactionDelete : AbstractOrderEntryTransaction
+    public class RecurringOrderEntryTransactionDelete : AbstractRecurringOrderEntryTransaction
     {
-        
-        public OrderEntryTransactionDelete(string controlId = null) : base(controlId)
+
+        public RecurringOrderEntryTransactionDelete(string controlId = null) : base(controlId)
         {
         }
 
@@ -28,15 +29,12 @@ namespace Intacct.SDK.Functions.OrderEntry
         {
             xml.WriteStartElement("function");
             xml.WriteAttribute("controlid", ControlId, true);
-
-            xml.WriteStartElement("delete_sotransaction");
             
+            xml.WriteStartElement("delete_recursotransaction");
             xml.WriteAttribute("key", DocumentId, true);
-
-            xml.WriteEndElement(); //delete_sotransaction
-
+            
+            xml.WriteEndElement(); //delete_recursotransaction
             xml.WriteEndElement(); //function
         }
-
     }
 }

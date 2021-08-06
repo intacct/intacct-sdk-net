@@ -20,58 +20,46 @@ using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.OrderEntry
 {
-    public abstract class AbstractOrderEntryTransactionLine : IXmlObject
+    public abstract class AbstractRecurringOrderEntryTransactionLine : IXmlObject
     {
-
-        public string BundleNumber;
 
         public string ItemId;
 
+        public string ItemAliasId;
+
         public string ItemDescription;
 
-        public bool? Taxable;
-
+        public bool? IsTaxable;
+        
         public string WarehouseId;
 
         public decimal? Quantity;
 
         public string Unit;
         
-        public string LineLevelSimpleTaxType;
-
-        public decimal? DiscountPercent;
-
         public decimal? Price;
 
         public string DiscountSurchargeMemo;
 
-        public string Memo;
+        public string LocationId;
 
+        public string DepartmentId;
+        
+        public string Memo;
+        
         public string RevRecTemplate;
 
         public DateTime? RevRecStartDate;
 
         public DateTime? RevRecEndDate;
 
-        public string RenewalMacro;
-
-        public string FulfillmentStatus;
-
-        public string TaskNumber;
-
-        public string BillingTemplate;
-        
-        public bool? DropShip;
-
-        public string LineShipToContactName;
-
-        public List<AbstractTransactionItemDetail> ItemDetails = new List<AbstractTransactionItemDetail>();
-
-        public string DepartmentId;
-
-        public string LocationId;
+        public string Status;
 
         public string ProjectId;
+
+        public string TaskId;
+
+        public string CostTypeId;
 
         public string CustomerId;
 
@@ -82,14 +70,17 @@ namespace Intacct.SDK.Functions.OrderEntry
         public string ClassId;
 
         public string ContractId;
-
+            
+        public string LineShipToContactName;
+        
+        public List<AbstractTransactionItemDetail> ItemDetails = new List<AbstractTransactionItemDetail>();
+        
         public Dictionary<string, dynamic> CustomFields = new Dictionary<string, dynamic>();
 
-        protected AbstractOrderEntryTransactionLine()
+        protected AbstractRecurringOrderEntryTransactionLine()
         {
         }
         
         public abstract void WriteXml(ref IaXmlWriter xml);
-        
     }
 }
