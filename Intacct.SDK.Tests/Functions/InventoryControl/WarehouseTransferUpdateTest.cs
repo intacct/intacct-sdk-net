@@ -25,31 +25,8 @@ using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.InventoryControl
 {
-    public class WarehouseCreateTest : XmlObjectTestHelper
+    public class WarehouseTransferUpdateTest
     {
-        [Fact]
-        public void GetXmlTest()
-        {
-            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<function controlid=""unittest"">
-    <create>
-        <WAREHOUSE>
-            <WAREHOUSEID>W1234</WAREHOUSEID>
-            <NAME>hello world</NAME>
-            <LOC>
-                <LOCATIONID>L1234</LOCATIONID>
-            </LOC>
-        </WAREHOUSE>
-    </create>
-</function>";
-
-            WarehouseCreate record = new WarehouseCreate("unittest")
-            {
-                WarehouseId = "W1234",
-                WarehouseName = "hello world",
-                LocationId = "L1234"
-            };
-            this.CompareXml(expected, record);
-        }
+        
     }
 }
