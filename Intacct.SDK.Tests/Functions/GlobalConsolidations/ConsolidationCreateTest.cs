@@ -55,7 +55,7 @@ namespace Intacct.SDK.Tests.Functions.GlobalConsolidations
         <bookid>USD Books</bookid>
         <reportingperiodname>Month Ended June 2016</reportingperiodname>
         <offline>T</offline>
-        <updatesucceedingperiods>false</updatesucceedingperiods>
+        <updatesucceedingperiods>F</updatesucceedingperiods>
         <changesonly>true</changesonly>
         <email>noreply@intacct.com</email>
         <entities>
