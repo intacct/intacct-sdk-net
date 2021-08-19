@@ -13,38 +13,39 @@
  * permissions and limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace Intacct.SDK.Functions.InventoryControl
 {
-    public abstract class AbstractWarehouse : AbstractFunction
+    public abstract class AbstractWarehouseTransfer : AbstractFunction
     {
+        public int? RecordNumber;
         
-        public int? RecordNo;
+        public DateTime TransactionDate;
 
-        public string WarehouseId;
+        public string ReferenceNumber;
+        
+        public string Description;
 
-        public string WarehouseName;
+        public string TransferType;
 
-        public string LocationId;
+        public string Action;
 
-        public string ManagerEmployeeId;
+        public DateTime? OutDate;
 
-        public string ParentWarehouseId;
+        public DateTime? InDate;
 
-        public string WarehouseContactName;
+        public decimal? ExchangeRate;
 
-        public string ShipToContactName;
+        public string ExchangeRateTypeId;
 
-        public bool? UsedInGeneralLedger;
+        public DateTime? ExchangeRateDate;
 
-        public bool? Active;
-
-        public Dictionary<string, dynamic> CustomFields = new Dictionary<string, dynamic>();
-
-        protected AbstractWarehouse(string controlId = null) : base(controlId)
+        public List<AbstractWarehouseTransferLine> Lines = new List<AbstractWarehouseTransferLine>();
+        
+        protected AbstractWarehouseTransfer(string controlId = null) : base(controlId)
         {
         }
-
     }
 }

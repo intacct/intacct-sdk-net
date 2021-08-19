@@ -13,6 +13,7 @@
  * permissions and limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -25,30 +26,45 @@ using Xunit;
 
 namespace Intacct.SDK.Tests.Functions.InventoryControl
 {
-    public class WarehouseCreateTest : XmlObjectTestHelper
+    public class WarehouseTransferLineUpdateTest : XmlObjectTestHelper
     {
         [Fact]
         public void GetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<function controlid=""unittest"">
-    <create>
-        <WAREHOUSE>
-            <WAREHOUSEID>W1234</WAREHOUSEID>
-            <NAME>hello world</NAME>
-            <LOC>
-                <LOCATIONID>L1234</LOCATIONID>
-            </LOC>
-        </WAREHOUSE>
-    </create>
-</function>";
+<ICTRANSFERITEM>
+    <IN_OUT>I</IN_OUT>
+    <ITEMID>321654</ITEMID>
+    <WAREHOUSEID>9</WAREHOUSEID>
+    <MEMO>test memo</MEMO>
+    <QUANTITY>500</QUANTITY>
+    <UNIT>b7</UNIT>
+    <LOCATIONID>7</LOCATIONID>
+    <DEPARTMENTID>6</DEPARTMENTID>
+    <PROJECTID>5</PROJECTID>
+    <CUSTOMERID>4</CUSTOMERID>
+    <VENDORID>3</VENDORID>
+    <EMPLOYEEID>2</EMPLOYEEID>
+    <CLASSID>1</CLASSID>
+</ICTRANSFERITEM>";
 
-            WarehouseCreate record = new WarehouseCreate("unittest")
+            WarehouseTransferLineUpdate record = new WarehouseTransferLineUpdate
             {
-                WarehouseId = "W1234",
-                WarehouseName = "hello world",
-                LocationId = "L1234"
+                InOut = "I",
+                ItemId = "321654",
+                WarehouseId = "9",
+                Memo = "test memo",
+                Quantity = 500,
+                Unit = "b7",
+                LocationId = "7",
+                DepartmentId = "6",
+                ProjectId = "5",
+                CustomerId = "4",
+                VendorId = "3",
+                EmployeeId = "2",
+                ClassId = "1"
             };
+
             this.CompareXml(expected, record);
         }
     }

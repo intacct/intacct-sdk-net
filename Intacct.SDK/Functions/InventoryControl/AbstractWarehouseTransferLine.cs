@@ -14,37 +14,42 @@
  */
 
 using System.Collections.Generic;
+using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.InventoryControl
 {
-    public abstract class AbstractWarehouse : AbstractFunction
+    public abstract class AbstractWarehouseTransferLine : IXmlObject
     {
-        
-        public int? RecordNo;
+        public string InOut;
+
+        public string ItemId;
 
         public string WarehouseId;
 
-        public string WarehouseName;
+        public string Memo;
+
+        public decimal? Quantity;
+
+        public string Unit;
 
         public string LocationId;
 
-        public string ManagerEmployeeId;
+        public string DepartmentId;
 
-        public string ParentWarehouseId;
+        public string ProjectId;
 
-        public string WarehouseContactName;
+        public string CustomerId;
 
-        public string ShipToContactName;
+        public string VendorId;
 
-        public bool? UsedInGeneralLedger;
+        public string EmployeeId;
 
-        public bool? Active;
-
-        public Dictionary<string, dynamic> CustomFields = new Dictionary<string, dynamic>();
-
-        protected AbstractWarehouse(string controlId = null) : base(controlId)
+        public string ClassId;
+        
+        protected AbstractWarehouseTransferLine()
         {
         }
-
+        
+        public abstract void WriteXml(ref IaXmlWriter xml);
     }
 }
