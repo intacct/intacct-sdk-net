@@ -1,6 +1,6 @@
 using Intacct.SDK.Xml;
 
-namespace Intacct.SDK.Functions.Common.NewQuery
+namespace Intacct.SDK.Functions.Common
 {
     public class Lookup : AbstractFunction
     {
@@ -16,7 +16,7 @@ namespace Intacct.SDK.Functions.Common.NewQuery
             xml.WriteAttributeString("controlid", ControlId);
 
             xml.WriteStartElement("lookup");
-            xml.WriteElementString("object", Object);
+            xml.WriteElement("object", Object);
             xml.WriteEndElement(); //lookup
 
             xml.WriteEndElement(); //function
