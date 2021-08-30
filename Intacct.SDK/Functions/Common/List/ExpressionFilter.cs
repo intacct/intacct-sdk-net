@@ -18,15 +18,14 @@ namespace Intacct.SDK.Functions.Common.List
     public class ExpressionFilter
     {
         public string Field;
-        // =, !=, <, <=, >=, >, like, is null
-        public string Operator;
+        public string Operator; // =, !=, <, <=, >=, >, like, is null
         public string Value;
 
         public ExpressionFilter() { }
-        public ExpressionFilter(string field, string Operator, string value)
+        public ExpressionFilter(string field, string operation, string value)
         {
             this.Field = field;
-            this.Operator = Operator;
+            this.Operator = operation;
             this.Value = value;
         }
 

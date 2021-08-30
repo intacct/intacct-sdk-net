@@ -15,6 +15,7 @@
 
 using Intacct.SDK.Xml;
 using System;
+using System.Collections.Generic;
 
 namespace Intacct.SDK.Functions.Common.List
 {
@@ -25,8 +26,8 @@ namespace Intacct.SDK.Functions.Common.List
         public bool showprivate;
         public string ObjectName;
 
-        public System.Collections.Generic.List<string> Fields = new System.Collections.Generic.List<string>();
-        public System.Collections.Generic.List<SortedField> SortedFields = new System.Collections.Generic.List<SortedField>();
+        public List<string> Fields = new List<string>();
+        public List<SortedField> SortedFields = new List<SortedField>();
 
         public ExpressionFilter Expression;
 
@@ -71,6 +72,10 @@ namespace Intacct.SDK.Functions.Common.List
                 xml.WriteElementString("value", this.Expression.Value);
                 xml.WriteEndElement(); // </expression>
                 xml.WriteEndElement(); // </filter>
+            }
+            else
+            {
+                
             }
 
             // if ( this.logical ) 
