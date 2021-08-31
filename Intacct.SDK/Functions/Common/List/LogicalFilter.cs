@@ -21,14 +21,15 @@ namespace Intacct.SDK.Functions.Common.List
     {
         public string LogicalOperator;
         public string Object; // =, !=, <, <=, >=, >, like, is null
-        public List<> FilterList;
+        public List<ExpressionFilter> ExpressionFilterList;
+        public List<LogicalFilter> LogicalFilterList;
 
         public LogicalFilter() { }
-        public LogicalFilter(string field, string operation, string value)
+        public LogicalFilter(string logicalOperator, string filterObject, List<ExpressionFilter> expressionList, List<LogicalFilter> logicalList)
         {
-            this.Field = field;
-            this.Operator = operation;
-            this.Value = value;
+            this.LogicalOperator = logicalOperator;
+            this.ExpressionFilterList = expressionList;
+            this.LogicalFilterList = logicalList;
         }
 
     }

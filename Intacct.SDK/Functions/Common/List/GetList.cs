@@ -30,6 +30,7 @@ namespace Intacct.SDK.Functions.Common.List
         public List<SortedField> SortedFields = new List<SortedField>();
 
         public ExpressionFilter Expression;
+        public LogicalFilter Logical;
 
         public GetList(string objectName)
         {
@@ -62,28 +63,19 @@ namespace Intacct.SDK.Functions.Common.List
             xml.WriteAttributeString("maxitems", this.maxitems.ToString());
             xml.WriteAttributeString("showprivate", this.showprivate.ToString().ToLower());
 
-
+            xml.WriteStartElement("filter");
+            
             if (this.Expression != null)
             {
-                xml.WriteStartElement("filter");
-                xml.WriteStartElement("expression");
-                xml.WriteElementString("field", this.Expression.Field);
-                xml.WriteElementString("operator", this.Expression.Operator);
-                xml.WriteElementString("value", this.Expression.Value);
-                xml.WriteEndElement(); // </expression>
-                xml.WriteEndElement(); // </filter>
+                WriteExpressions(Expression, ref xml);
             }
-            else
+            else // If Expression is null, then Logical is required
             {
-                
+                WriteLogicalLists(Logical.LogicalFilterList, ref xml);
             }
 
-            // if ( this.logical ) 
-            // {
-            //     xml.WriteStartElement("logical");
-            //     xml.WriteEndElement(); // </logical>
-            // }
-
+            xml.WriteEndElement(); // </filter>
+            
             if (this.SortedFields.Count > 0)
             {
                 xml.WriteStartElement("sorts");
@@ -112,6 +104,45 @@ namespace Intacct.SDK.Functions.Common.List
             xml.WriteEndElement(); // </function> 
 
         }
-    }
+        
+        /*
+         * This function takes a LogicalFilter list and writes out the Expressions associated with it 
+         */
+        public void WriteLogicalLists(List<LogicalFilter> list, ref IaXmlWriter xml) {
+            foreach (var logicalFilter in list)
+            {
+                xml.WriteStartElement("logical");
+                xml.WriteAttribute("logical_operator", logicalFilter.LogicalOperator);
+                if (logicalFilter.ExpressionFilterList.Count > 0)
+                {
+                    WriteExpressionLists(logicalFilter.ExpressionFilterList, ref xml);
+                }
 
+                xml.WriteEndElement(); // logical
+            }
+        }
+
+        /*
+         * This function takes one or more expressions from a list and sends them to be written as xml
+         */
+        public void WriteExpressionLists(List<ExpressionFilter> expressionList, ref IaXmlWriter xml)
+        {
+            foreach (var expression in expressionList)
+            {
+                WriteExpressions(expression, ref xml);
+            }
+        }
+        
+        /*
+         * This function writes expressions as xml
+         */
+        public void WriteExpressions(ExpressionFilter expression, ref IaXmlWriter xml)
+        {
+            xml.WriteStartElement("expression");
+            xml.WriteElementString("field", expression.Field);
+            xml.WriteElementString("operator", expression.Operator);
+            xml.WriteElementString("value", expression.Value);
+            xml.WriteEndElement(); // </expression>
+        }
+    }
 }
