@@ -19,13 +19,12 @@ namespace Intacct.SDK.Functions.Common.List
 {
     public class LogicalFilter
     {
-        public string LogicalOperator;
-        public string Object; // =, !=, <, <=, >=, >, like, is null
-        public List<ExpressionFilter> ExpressionFilterList;
-        public List<LogicalFilter> LogicalFilterList;
+        public string LogicalOperator; // and,or
+        public List<ExpressionFilter> ExpressionFilterList = new List<ExpressionFilter>();
+        public List<LogicalFilter> LogicalFilterList = new List<LogicalFilter>();
 
         public LogicalFilter() { }
-        public LogicalFilter(string logicalOperator, string filterObject, List<ExpressionFilter> expressionList, List<LogicalFilter> logicalList)
+        public LogicalFilter(string logicalOperator, List<ExpressionFilter> expressionList, List<LogicalFilter> logicalList)
         {
             this.LogicalOperator = logicalOperator;
             this.ExpressionFilterList = expressionList;

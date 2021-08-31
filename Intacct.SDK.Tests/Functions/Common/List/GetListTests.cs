@@ -33,8 +33,8 @@ namespace Intacct.SDK.Tests.Functions.Common.List
 <function controlid=""{0}"">
     <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
         <filter />
-        <fields />
         <sorts />
+        <fields />
     </get_list>
 </function>", controlId);
 
@@ -61,8 +61,8 @@ namespace Intacct.SDK.Tests.Functions.Common.List
                 <value>Lorem Ipsum</value>
             </expression>
         </filter>
-        <fields />
         <sorts />
+        <fields />
     </get_list>
 </function>",controlId);
 
@@ -82,6 +82,95 @@ namespace Intacct.SDK.Tests.Functions.Common.List
             // assert
             this.CompareXml(expected, getList);
         }
+        
+        [Fact]
+        public void LogicalFilterProvided()
+        {
+            // arrange
+            string controlId = Guid.NewGuid().ToString();
+
+            string expected = String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""{0}"">
+    <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
+        <filter>
+            <logical logical_operator=""and"">
+                <expression>
+                    <field>FieldA</field>
+                    <operator>=</operator>
+                    <value>Lorem Ipsum</value>
+                </expression>
+                <logical logical_operator=""or"">
+                    <expression>
+                        <field>FieldB</field>
+                        <operator>=</operator>
+                        <value>Lorem Ipsuma</value>
+                    </expression>
+                    <expression>
+                        <field>FieldC</field>
+                        <operator>=</operator>
+                        <value>Lorem Ipsumb</value>
+                    </expression>
+                </logical>
+            </logical>
+        </filter>
+        <sorts />
+        <fields />
+    </get_list>
+</function>",controlId);
+
+            ExpressionFilter expression1 = new ExpressionFilter()
+            { 
+                Field = "FieldA",
+                Operator = "=",
+                Value = "Lorem Ipsum"
+            };
+            
+            ExpressionFilter expression2 = new ExpressionFilter()
+            { 
+                Field = "FieldB",
+                Operator = "=",
+                Value = "Lorem Ipsuma"
+            };
+            
+            ExpressionFilter expression3 = new ExpressionFilter()
+            { 
+                Field = "FieldC",
+                Operator = "=",
+                Value = "Lorem Ipsumb"
+            };
+            
+            LogicalFilter logicalFilter = new LogicalFilter()
+            {
+                LogicalOperator = "or",
+                ExpressionFilterList = new List<ExpressionFilter>()
+                {
+                    expression2,
+                    expression3
+                }
+            };
+            
+            LogicalFilter logicalFilter2 = new LogicalFilter()
+            {
+                LogicalOperator = "and",
+                ExpressionFilterList = new List<ExpressionFilter>()
+                {
+                    expression1
+                },
+                LogicalFilterList = new List<LogicalFilter>()
+                {
+                    logicalFilter
+                }
+            };
+
+            // act
+            GetList getList = new GetList("supdoc", controlId)
+            {
+                Logical = logicalFilter2
+            };
+
+            // assert
+            this.CompareXml(expected, getList);
+        }
 
         [Fact]
         public void FieldsProvided()
@@ -93,11 +182,11 @@ namespace Intacct.SDK.Tests.Functions.Common.List
 <function controlid=""{0}"">
     <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
         <filter />
+        <sorts />
         <fields>
             <field>FieldA</field>
             <field>FieldB</field>
         </fields>
-        <sorts />
     </get_list>
 </function>",controlId);
 
@@ -125,11 +214,11 @@ namespace Intacct.SDK.Tests.Functions.Common.List
 <function controlid=""{0}"">
     <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
         <filter />
-        <fields />
         <sorts>
             <sortfield order=""asc"">FieldA</sortfield>
             <sortfield order=""desc"">FieldB</sortfield>
         </sorts>
+        <fields />
     </get_list>
 </function>",controlId);
 
