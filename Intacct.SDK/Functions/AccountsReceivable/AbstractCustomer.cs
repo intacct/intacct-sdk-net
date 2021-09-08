@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using Intacct.SDK.Functions.Company;
 using Intacct.SDK.Xml;
 
 namespace Intacct.SDK.Functions.AccountsReceivable
@@ -39,6 +40,8 @@ namespace Intacct.SDK.Functions.AccountsReceivable
         public string Prefix;
 
         public string CompanyName;
+
+        public string ContactName;
 
         public string PrintAs;
 
@@ -138,7 +141,7 @@ namespace Intacct.SDK.Functions.AccountsReceivable
 
         public string ShipToContactName;
 
-        // TODO contact list
+        public List<ContactListInfo> ContactList = new List<ContactListInfo>();
 
         public string RestrictionType;
 
@@ -178,5 +181,15 @@ namespace Intacct.SDK.Functions.AccountsReceivable
             }
         }
 
+        protected void WriteXmlContactListInfo(ref IaXmlWriter xml)
+        {
+            if (this.ContactList != null)
+            {
+                foreach (ContactListInfo contactListInfo in this.ContactList)
+                {
+                    contactListInfo.WriteXmlContactListInfo(ref xml);
+                }
+            }
+        }
     }
 }

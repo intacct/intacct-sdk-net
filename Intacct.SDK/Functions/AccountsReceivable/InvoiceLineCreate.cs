@@ -72,6 +72,18 @@ namespace Intacct.SDK.Functions.AccountsReceivable
             xml.WriteElement("contractid", ContractId);
             xml.WriteElement("warehouseid", WarehouseId);
 
+            
+            if (Taxentry.Count > 0)
+            {
+                xml.WriteStartElement("taxentries");
+                foreach (InvoiceLineTaxEntriesCreate taxEntry in Taxentry)
+                {
+                    taxEntry.WriteXml(ref xml);
+                }
+                xml.WriteEndElement(); //taxentries
+            }
+            
+
             xml.WriteEndElement(); //lineitem
         }
 

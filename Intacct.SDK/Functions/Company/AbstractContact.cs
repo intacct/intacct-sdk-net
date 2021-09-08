@@ -73,6 +73,8 @@ namespace Intacct.SDK.Functions.Company
 
         public string Country;
 
+        public string IsoCountryCode;
+
         protected AbstractContact(string controlId = null) : base(controlId)
         {
         }
@@ -86,6 +88,7 @@ namespace Intacct.SDK.Functions.Company
                 || !string.IsNullOrWhiteSpace(StateProvince)
                 || !string.IsNullOrWhiteSpace(ZipPostalCode)
                 || !string.IsNullOrWhiteSpace(Country)
+                || !string.IsNullOrWhiteSpace(IsoCountryCode)
             )
             {
                 xml.WriteStartElement("MAILADDRESS");
@@ -96,6 +99,7 @@ namespace Intacct.SDK.Functions.Company
                 xml.WriteElement("STATE", StateProvince);
                 xml.WriteElement("ZIP", ZipPostalCode);
                 xml.WriteElement("COUNTRY", Country);
+                xml.WriteElement("ISOCOUNTRYCODE", IsoCountryCode);
 
                 xml.WriteEndElement(); //MAILADDRESS
             }

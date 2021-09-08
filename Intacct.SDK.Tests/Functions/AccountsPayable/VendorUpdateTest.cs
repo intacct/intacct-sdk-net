@@ -15,6 +15,7 @@
 
 using System.Collections.Generic;
 using Intacct.SDK.Functions.AccountsPayable;
+using Intacct.SDK.Functions.Company;
 using Intacct.SDK.Tests.Xml;
 using Xunit;
 
@@ -105,6 +106,24 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
             <RETURNTO>
                 <CONTACTNAME>return to</CONTACTNAME>
             </RETURNTO>
+            <CONTACT_LIST_INFO>
+                <CATEGORYNAME>Primary Contact</CATEGORYNAME>
+                <CONTACT>
+                    <NAME>primary</NAME>
+                </CONTACT>
+            </CONTACT_LIST_INFO>
+            <CONTACT_LIST_INFO>
+                <CATEGORYNAME>Billing Contact</CATEGORYNAME>
+                <CONTACT>
+                    <NAME>bill to</NAME>
+                </CONTACT>
+            </CONTACT_LIST_INFO>
+            <CONTACT_LIST_INFO>
+                <CATEGORYNAME>Shipping Contact</CATEGORYNAME>
+                <CONTACT>
+                    <NAME>ship to</NAME>
+                </CONTACT>
+            </CONTACT_LIST_INFO>
             <PAYMETHODKEY>Printed Check</PAYMETHODKEY>
             <MERGEPAYMENTREQ>true</MERGEPAYMENTREQ>
             <PAYMENTNOTIFY>true</PAYMENTNOTIFY>
@@ -174,6 +193,12 @@ namespace Intacct.SDK.Tests.Functions.AccountsPayable
                 PrimaryContactName = "primary",
                 PayToContactName = "pay to",
                 ReturnToContactName = "return to",
+                ContactList = new List<ContactListInfo>
+                {
+                    new ContactListInfo { CategoryName = "Primary Contact", Contact = "primary" },
+                    new ContactListInfo { CategoryName = "Billing Contact", Contact = "bill to" },
+                    new ContactListInfo { CategoryName = "Shipping Contact", Contact = "ship to" },
+                },
                 PreferredPaymentMethod = "Printed Check",
                 MergePaymentRequests = true,
                 SendAutomaticPaymentNotification = true,

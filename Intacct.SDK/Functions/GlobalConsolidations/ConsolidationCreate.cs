@@ -44,7 +44,16 @@ namespace Intacct.SDK.Functions.GlobalConsolidations
                     break;
             }
 
-            xml.WriteElement("updatesucceedingperiods", UpdateSucceedingPeriods);
+            switch (UpdateSucceedingPeriods)
+            {
+                case true:
+                    xml.WriteElement("updatesucceedingperiods", "T");
+                    break;
+                case false:
+                    xml.WriteElement("updatesucceedingperiods", "F");
+                    break;
+            }
+            
             xml.WriteElement("changesonly", ChangesOnly);
             xml.WriteElement("email", NotificationEmail);
 

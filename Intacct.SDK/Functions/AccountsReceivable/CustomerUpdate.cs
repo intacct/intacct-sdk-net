@@ -38,6 +38,7 @@ namespace Intacct.SDK.Functions.AccountsReceivable
 
             xml.WriteStartElement("DISPLAYCONTACT");
             
+            xml.WriteElement("CONTACTNAME", ContactName);
             xml.WriteElement("PRINTAS", PrintAs);
             xml.WriteElement("COMPANYNAME", CompanyName);
             xml.WriteElement("TAXABLE", Taxable);
@@ -118,6 +119,8 @@ namespace Intacct.SDK.Functions.AccountsReceivable
                 xml.WriteElement("CONTACTNAME", ShipToContactName);
                 xml.WriteEndElement(); //SHIPTO
             }
+
+            WriteXmlContactListInfo(ref xml);
 
             xml.WriteElement("OBJECTRESTRICTION", RestrictionType);
             if (RestrictedLocations.Count > 0)
