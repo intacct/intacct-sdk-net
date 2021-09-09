@@ -1,6 +1,7 @@
 var class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor =
 [
     [ "AbstractVendor", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a3d7b32e00d492da493bc4aaabc2d55df", null ],
+    [ "WriteXmlContactListInfo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a310cd4a60a3d1a44d282a51cfe75543e", null ],
     [ "WriteXmlMailAddress", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#aa449f51dd6a0625b1a8842118d280fe5", null ],
     [ "AchBankAccountClass", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a00c27d72aaa0a9009c87ccb915a43235", null ],
     [ "AchBankAccountNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#ad77b13d78ac93afd928a549ec50ad168", null ],
@@ -15,6 +16,7 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vend
     [ "City", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a3806b2f4ce02ff364b13fba28ad8b09a", null ],
     [ "Comments", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a47e0d5c8ea35ddf577b5b637dbfbee3c", null ],
     [ "CompanyName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#a539c13b2510580aa2ab9a2507b068e21", null ],
+    [ "ContactList", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#ad74d285cc74a4dfdc8b12c67646cd535", null ],
     [ "ContactTaxGroupName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#ab52e7efddca7a52ed07d557207f1366d", null ],
     [ "Country", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#ad2ea4a02c1e3ca48d90cacd389f2437d", null ],
     [ "CreditLimit", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_vendor.html#ac4f29251042374192f605d70a06a9927", null ],

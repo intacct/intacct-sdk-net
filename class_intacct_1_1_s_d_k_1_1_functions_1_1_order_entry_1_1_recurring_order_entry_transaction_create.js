@@ -1,0 +1,5 @@
+var class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_recurring_order_entry_transaction_create =
+[
+    [ "RecurringOrderEntryTransactionCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_recurring_order_entry_transaction_create.html#a9262060277b2982af84bc4f837692148", null ],
+    [ "WriteXml", "class_intacct_1_1_s_d_k_1_1_functions_1_1_order_entry_1_1_recurring_order_entry_transaction_create.html#a623301c5a08b7bb5bcd31e74e0b7e169", null ]
+];

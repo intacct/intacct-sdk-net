@@ -24,6 +24,7 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_i
     [ "ReferenceNumber", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a5a364ae3c7621f8b6f286f760a7fd163", null ],
     [ "ShipToContactName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#aa9e79ce0122c2f7000d7a777d08750a3", null ],
     [ "SummaryRecordNo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a0f049d3257f0538c1378d43c2925d590", null ],
+    [ "TaxSolutionId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a39b8fec0bc72e9fdfbce97420815b7e9", null ],
     [ "TransactionCurrency", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#ae9290f7bbd881ab41866a0522a1fba93", null ],
     [ "TransactionDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice.html#a52c767aff28aece6982b6252bdf62c51", null ]
 ];

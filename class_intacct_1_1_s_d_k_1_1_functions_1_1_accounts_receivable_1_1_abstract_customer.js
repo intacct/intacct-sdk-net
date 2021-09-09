@@ -1,6 +1,7 @@
 var class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer =
 [
     [ "AbstractCustomer", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a08f4fe6a5e297985929a61b41268ed34", null ],
+    [ "WriteXmlContactListInfo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a8ea9a48b7a8369a3bb4b1ac62f3a0cc6", null ],
     [ "WriteXmlMailAddress", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a82e727540315a468dfd006a4cd44ba2b", null ],
     [ "Active", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#ad28cda6bd4c63410fb92e0b4e6dccb7a", null ],
     [ "AddressLine1", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a84bf67f76a3685424bd0775ebd5ab569", null ],
@@ -11,6 +12,8 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_c
     [ "City", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a7f5d1d04ad8f989a137651b92bf6cf4c", null ],
     [ "Comments", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a2c60593547e91f1885f443b2d90d1966", null ],
     [ "CompanyName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a03e76e41dc811297a3fe3dd350183504", null ],
+    [ "ContactList", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a3b9cb980358dc466d22e28ed4b348ef2", null ],
+    [ "ContactName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#acce495b208ae275413d5917f928c6eda", null ],
     [ "ContactTaxGroupName", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#ae549a399fe131fd9b64759225bc7dfdd", null ],
     [ "Country", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#a3f044e1e083890ea66375cf87d0146b1", null ],
     [ "CreditLimit", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_customer.html#ac94bbfb450d3aabc4ce70ff824295e1a", null ],

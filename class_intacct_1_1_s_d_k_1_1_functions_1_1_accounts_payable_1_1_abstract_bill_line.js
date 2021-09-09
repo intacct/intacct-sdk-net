@@ -19,6 +19,7 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_bill
     [ "Memo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line.html#a6f6deac97451f1d2388c1e335f93212a", null ],
     [ "OffsetGlAccountNumber", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line.html#ad0aa5741f6830a96d2f5dddaf8abf269", null ],
     [ "ProjectId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line.html#aaf980687e9e35c7367656ef49fce7efd", null ],
+    [ "TaskId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line.html#af9b1dd3b0fb098be65c66f5c2291ff64", null ],
     [ "TotalDue", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line.html#ab44faeb52bc0461a2787f18dffee9b9c", null ],
     [ "TotalPaid", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line.html#a8180df4d408f24ed121ca2350750a5b8", null ],
     [ "TransactionAmount", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_payable_1_1_abstract_bill_line.html#a11fe5e7c3f711ba14a75c634e89a6291", null ],
