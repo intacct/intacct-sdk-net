@@ -117,6 +117,8 @@ namespace Intacct.SDK.Functions.Purchasing
             
             xml.WriteCustomFieldsExplicit(CustomFields);
 
+            xml.WriteElement("projectid", ProjectId);
+
             xml.WriteElement("state", State);
 
             if (Lines.Count > 0)

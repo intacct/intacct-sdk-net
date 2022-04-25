@@ -132,6 +132,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
                 <customfieldvalue>customvalue1</customfieldvalue>
             </customfield>
         </customfields>
+        <projectid>2390500</projectid>
         <state>Pending</state>
         <potransitems>
             <potransitem>
@@ -156,7 +157,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
                 CreatedFrom = "Purchase Order-P1002",
                 VendorId = "23530",
                 DocumentNumber = "23430",
-                ReferenceNumber = "234235",
+                ReferenceNumber = "234235",                
                 PaymentTerm = "N30",
                 DueDate = new DateTime(2020, 09, 24),
                 Message = "Submit",
@@ -173,7 +174,8 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
                 CustomFields = new Dictionary<string, dynamic>
                 {
                     { "customfield1", "customvalue1" }
-                }
+                },
+                ProjectId = "2390500"
             };
 
             PurchasingTransactionLineCreate line1 = new PurchasingTransactionLineCreate()

@@ -87,6 +87,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
                 <customfieldvalue>customvalue1</customfieldvalue>
             </customfield>
         </customfields>
+        <projectid>2390500</projectid>
         <state>Pending</state>
         <updatepotransitems>
             <updatepotransitem line_num=""1"">
@@ -128,6 +129,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
                 ExchangeRateDate = new DateTime(2015, 06, 30),
                 ExchangeRateType = "Intacct Daily Rate",
                 State = "Pending",
+                ProjectId = "2390500",
                 CustomFields = new Dictionary<string, dynamic>
                 {
                     { "customfield1", "customvalue1" }
