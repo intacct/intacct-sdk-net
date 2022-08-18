@@ -27,6 +27,12 @@ namespace Intacct.SDK.Xml.Response
         public string CompanyId { get; }
         
         public string EntityId { get; }
+        
+        public string ClientStatus { get; }
+        
+        public string ClientId { get; }
+        
+        public string SessionTimeStamp { get; }
 
         public Authentication(XElement authentication)
         {
@@ -56,9 +62,24 @@ namespace Intacct.SDK.Xml.Response
             {
                 this.EntityId = entityId.Value;
             }
-           
 
-            // TODO add getter/setter for elements: clientstatus, clientid, sessiontimestamp
+            var clientStatus = authentication.Element("clientstatus");
+            if (clientStatus != null)
+            {
+                this.ClientStatus = clientStatus.Value;
+            }
+            
+            var clientId = authentication.Element("clientid");
+            if (clientStatus != null)
+            {
+                this.ClientId = clientId.Value;
+            }
+            
+            var sessionTimeStamp = authentication.Element("sessiontimestamp");
+            if (sessionTimeStamp != null)
+            {
+                this.SessionTimeStamp = sessionTimeStamp.Value;
+            }
         }
     }
 }
