@@ -94,7 +94,7 @@ namespace Intacct.SDK.Functions.AccountsReceivable
             xml.WriteElement("TAXID", TaxId);
             xml.WriteElement("CREDITLIMIT", CreditLimit);
             xml.WriteElement("ONHOLD", OnHold);
-            xml.WriteElement("DELIVERYOPTIONS", DeliveryMethod);
+            xml.WriteElement("DELIVERY_OPTIONS", DeliveryMethod);
             xml.WriteElement("CUSTMESSAGEID", DefaultInvoiceMessage);
             xml.WriteElement("COMMENTS", Comments);
             xml.WriteElement("CURRENCY", DefaultCurrency);
