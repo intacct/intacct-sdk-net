@@ -5,6 +5,7 @@ namespace Intacct.SDK.Functions.Common
     public class Lookup : AbstractFunction
     {
         public string Object;
+        public string DocParId;
 
         public Lookup(string controlId = "") : base(controlId)
         {
@@ -17,6 +18,12 @@ namespace Intacct.SDK.Functions.Common
 
             xml.WriteStartElement("lookup");
             xml.WriteElement("object", Object);
+
+            if (!string.IsNullOrWhiteSpace(DocParId))
+            {
+                xml.WriteElement("docparid", DocParId);
+            }
+            
             xml.WriteEndElement(); //lookup
 
             xml.WriteEndElement(); //function

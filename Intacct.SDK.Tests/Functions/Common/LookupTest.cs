@@ -38,5 +38,25 @@ namespace Intacct.SDK.Tests.Functions.Common
 
             this.CompareXml(expected, record);
         }
+        
+        [Fact]
+        public void GetXmlTestDocParId()
+        {
+            string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<function controlid=""unittest"">
+    <lookup>
+        <object>CLASS</object>
+        <docparid>41583</docparid>
+    </lookup>
+</function>";
+
+            Lookup record = new Lookup("unittest")
+            {
+                Object = "CLASS",
+                DocParId = "41583"
+            };
+
+            this.CompareXml(expected, record);
+        }
     }
 }
