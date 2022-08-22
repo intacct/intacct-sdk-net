@@ -101,7 +101,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
             <TAXID>12-3456789</TAXID>
             <CREDITLIMIT>1234.56</CREDITLIMIT>
             <ONHOLD>false</ONHOLD>
-            <DELIVERYOPTIONS>Print#~#E-Mail</DELIVERYOPTIONS>
+            <DELIVERY_OPTIONS>Print#~#E-Mail</DELIVERY_OPTIONS>
             <CUSTMESSAGEID>hello</CUSTMESSAGEID>
             <COMMENTS>my comment</COMMENTS>
             <CURRENCY>USD</CURRENCY>
