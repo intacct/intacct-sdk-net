@@ -33,6 +33,8 @@ namespace Intacct.SDK.Xml.Response
         public string ClientId { get; }
         
         public string SessionTimeStamp { get; }
+        
+        public string SessionTimeOut { get; }
 
         public Authentication(XElement authentication)
         {
@@ -79,6 +81,12 @@ namespace Intacct.SDK.Xml.Response
             if (sessionTimeStamp != null)
             {
                 this.SessionTimeStamp = sessionTimeStamp.Value;
+            }
+            
+            var sessionTimeOut = authentication.Element("sessiontimeout");
+            if (sessionTimeOut != null)
+            {
+                this.SessionTimeOut = sessionTimeOut.Value;
             }
         }
     }

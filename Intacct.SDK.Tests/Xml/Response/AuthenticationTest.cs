@@ -32,6 +32,7 @@ namespace Intacct.SDK.Tests.Xml.Response
                   <clientid>clientCompanyId</clientid>
                   <clientstatus>active</clientstatus>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-24T22:56:52-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -63,6 +64,7 @@ namespace Intacct.SDK.Tests.Xml.Response
             Assert.Equal("clientCompanyId", auth.ClientId);
             Assert.Equal("active", auth.ClientStatus);
             Assert.Equal("2015-10-24T18:56:52-07:00", auth.SessionTimeStamp);
+            Assert.Equal("2015-10-24T22:56:52-07:00", auth.SessionTimeOut);
             Assert.Equal("", auth.EntityId);
         }
 
