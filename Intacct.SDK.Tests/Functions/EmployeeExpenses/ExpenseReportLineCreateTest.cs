@@ -73,6 +73,8 @@ namespace Intacct.SDK.Tests.Functions.EmployeeExpenses
         </customfield>
     </customfields>
     <projectid>Project1</projectid>
+    <taskid>Task1</taskid>
+    <costtypeid>CostType1</costtypeid>
     <customerid>Customer1</customerid>
     <vendorid>Vendor1</vendorid>
     <employeeid>Employee1</employeeid>
@@ -104,6 +106,8 @@ namespace Intacct.SDK.Tests.Functions.EmployeeExpenses
                 LocationId = "Location1",
                 DepartmentId = "Department1",
                 ProjectId = "Project1",
+                TaskId = "Task1",
+                CostTypeId = "CostType1",
                 CustomerId = "Customer1",
                 VendorId = "Vendor1",
                 EmployeeId = "Employee1",

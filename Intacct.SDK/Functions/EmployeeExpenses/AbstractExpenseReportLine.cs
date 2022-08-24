@@ -74,6 +74,10 @@ namespace Intacct.SDK.Functions.EmployeeExpenses
 
         public string WarehouseId;
 
+        public string TaskId;
+
+        public string CostTypeId;
+
         public Dictionary<string, dynamic> CustomFields = new Dictionary<string, dynamic>();
 
         protected AbstractExpenseReportLine()
