@@ -76,6 +76,8 @@ namespace Intacct.SDK.Functions.EmployeeExpenses
             xml.WriteCustomFieldsExplicit(CustomFields);
 
             xml.WriteElement("projectid", ProjectId);
+            xml.WriteElement("taskid", TaskId);
+            xml.WriteElement("costtypeid", CostTypeId);
             xml.WriteElement("customerid", CustomerId);
             xml.WriteElement("vendorid", VendorId);
             xml.WriteElement("employeeid", EmployeeId);
