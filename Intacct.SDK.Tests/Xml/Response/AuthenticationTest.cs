@@ -29,7 +29,10 @@ namespace Intacct.SDK.Tests.Xml.Response
                   <userid>fakeuser</userid>
                   <companyid>fakecompany</companyid>
                   <locationid></locationid>
+                  <clientid>clientCompanyId</clientid>
+                  <clientstatus>active</clientstatus>
                   <sessiontimestamp>2015-10-24T18:56:52-07:00</sessiontimestamp>
+                  <sessiontimeout>2015-10-24T22:56:52-07:00</sessiontimeout>
             </authentication>
             <result>
                   <status>success</status>
@@ -58,6 +61,10 @@ namespace Intacct.SDK.Tests.Xml.Response
             Assert.Equal("success", auth.Status);
             Assert.Equal("fakeuser", auth.UserId);
             Assert.Equal("fakecompany", auth.CompanyId);
+            Assert.Equal("clientCompanyId", auth.ClientId);
+            Assert.Equal("active", auth.ClientStatus);
+            Assert.Equal("2015-10-24T18:56:52-07:00", auth.SessionTimeStamp);
+            Assert.Equal("2015-10-24T22:56:52-07:00", auth.SessionTimeOut);
             Assert.Equal("", auth.EntityId);
         }
 
