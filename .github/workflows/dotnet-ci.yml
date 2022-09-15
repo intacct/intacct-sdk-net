@@ -24,7 +24,7 @@ jobs:
       - name: Setup .NET ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v2
         with:
-          node-version: ${{ matrix.dotnet-version }}
+          dotnet-version: ${{ matrix.dotnet-version }}
       
       - name: Install dependencies for .NET ${{ matrix.dotnet-version }}
         run: dotnet restore
