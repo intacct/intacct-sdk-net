@@ -32,21 +32,21 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
         public void GetXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<function controlid=""unittest"">
-    <create>
-        <ARADVANCE>
-            <CUSTOMERID>CUSTOMER1</CUSTOMERID>
-            <PAYMENTMETHOD>Cash</PAYMENTMETHOD>
-            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
-            <RECEIPTDATE>06/30/2015</RECEIPTDATE>
-            <ARADVANCEITEMS>
-                <ARADVANCEITEM>
-                    <TRX_AMOUNT>76343.43</TRX_AMOUNT>
-                </ARADVANCEITEM>
-            </ARADVANCEITEMS>
-        </ARADVANCE>
-    </create>
-</function>";
+                                <function controlid=""unittest"">
+                                    <create>
+                                        <ARADVANCE>
+                                            <CUSTOMERID>CUSTOMER1</CUSTOMERID>
+                                            <PAYMENTMETHOD>Cash</PAYMENTMETHOD>
+                                            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
+                                            <RECEIPTDATE>06/30/2015</RECEIPTDATE>
+                                            <ARADVANCEITEMS>
+                                                <ARADVANCEITEM>
+                                                    <TRX_AMOUNT>76343.43</TRX_AMOUNT>
+                                                </ARADVANCEITEM>
+                                            </ARADVANCEITEMS>
+                                        </ARADVANCE>
+                                    </create>
+                                </function>";
 
             ArAdvanceCreate record = new ArAdvanceCreate("unittest")
             {
@@ -70,48 +70,48 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
         public void GetAllXmlTest()
         {
             string expected = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<function controlid=""unittest"">
-    <create>
-        <ARADVANCE>
-            <CUSTOMERID>CUSTOMER1</CUSTOMERID>
-            <PAYMENTMETHOD>Cash</PAYMENTMETHOD>
-            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
-            <RECEIPTDATE>06/30/2015</RECEIPTDATE>
-            <FINANCIALENTITY>Entity1</FINANCIALENTITY>
-            <UNDEPOSITEDACCOUNTNO>20323</UNDEPOSITEDACCOUNTNO>
-            <PRBATCH>234</PRBATCH>
-            <DOCNUMBER>234235</DOCNUMBER>
-            <DESCRIPTION>Some description</DESCRIPTION>
-            <CURRENCY>USD</CURRENCY>
-            <BASECURR>USD</BASECURR>
-            <EXCH_RATE_DATE>06/30/2015</EXCH_RATE_DATE>
-            <EXCH_RATE_TYPE_ID>Intacct Daily Rate</EXCH_RATE_TYPE_ID>
-            <EXCHANGE_RATE>1.25</EXCHANGE_RATE>
-            <SUPDOCID>6942</SUPDOCID>
-            <ACTION>Submit</ACTION>
-            <ARADVANCEITEMS>
-                <ARADVANCEITEM>
-                    <ACCOUNTNO>123456</ACCOUNTNO>
-                    <ACCOUNTLABEL>Label1</ACCOUNTLABEL>
-                    <TRX_AMOUNT>76343.43</TRX_AMOUNT>
-                    <ENTRYDESCRIPTION>Description</ENTRYDESCRIPTION>
-                    <LOCATIONID>123</LOCATIONID>
-                    <DEPARTMENTID>321</DEPARTMENTID>
-                    <PROJECTID>Project1</PROJECTID>
-                    <TASKID>Task1</TASKID>
-                    <CUSTOMERID>Customer1</CUSTOMERID>
-                    <VENDORID>Vendor1</VENDORID>
-                    <EMPLOYEEID>Emp1</EMPLOYEEID>
-                    <ITEMID>Item1</ITEMID>
-                    <CLASSID>Class1</CLASSID>
-                    <CONTRACTID>Contract1</CONTRACTID>
-                    <WAREHOUSEID>Warehouse1</WAREHOUSEID>
-                    <GLDIM>654</GLDIM>
-                </ARADVANCEITEM>
-            </ARADVANCEITEMS>
-        </ARADVANCE>
-    </create>
-</function>";
+                                <function controlid=""unittest"">
+                                    <create>
+                                        <ARADVANCE>
+                                            <CUSTOMERID>CUSTOMER1</CUSTOMERID>
+                                            <PAYMENTMETHOD>Cash</PAYMENTMETHOD>
+                                            <PAYMENTDATE>06/30/2015</PAYMENTDATE>
+                                            <RECEIPTDATE>06/30/2015</RECEIPTDATE>
+                                            <FINANCIALENTITY>Entity1</FINANCIALENTITY>
+                                            <UNDEPOSITEDACCOUNTNO>20323</UNDEPOSITEDACCOUNTNO>
+                                            <PRBATCH>234</PRBATCH>
+                                            <DOCNUMBER>234235</DOCNUMBER>
+                                            <DESCRIPTION>Some description</DESCRIPTION>
+                                            <CURRENCY>USD</CURRENCY>
+                                            <BASECURR>USD</BASECURR>
+                                            <EXCH_RATE_DATE>06/30/2015</EXCH_RATE_DATE>
+                                            <EXCH_RATE_TYPE_ID>Intacct Daily Rate</EXCH_RATE_TYPE_ID>
+                                            <EXCHANGE_RATE>1.25</EXCHANGE_RATE>
+                                            <SUPDOCID>6942</SUPDOCID>
+                                            <ACTION>Submit</ACTION>
+                                            <ARADVANCEITEMS>
+                                                <ARADVANCEITEM>
+                                                    <ACCOUNTNO>123456</ACCOUNTNO>
+                                                    <ACCOUNTLABEL>Label1</ACCOUNTLABEL>
+                                                    <TRX_AMOUNT>76343.43</TRX_AMOUNT>
+                                                    <ENTRYDESCRIPTION>Description</ENTRYDESCRIPTION>
+                                                    <LOCATIONID>123</LOCATIONID>
+                                                    <DEPARTMENTID>321</DEPARTMENTID>
+                                                    <PROJECTID>Project1</PROJECTID>
+                                                    <TASKID>Task1</TASKID>
+                                                    <CUSTOMERID>Customer1</CUSTOMERID>
+                                                    <VENDORID>Vendor1</VENDORID>
+                                                    <EMPLOYEEID>Emp1</EMPLOYEEID>
+                                                    <ITEMID>Item1</ITEMID>
+                                                    <CLASSID>Class1</CLASSID>
+                                                    <CONTRACTID>Contract1</CONTRACTID>
+                                                    <WAREHOUSEID>Warehouse1</WAREHOUSEID>
+                                                    <GLDIM>654</GLDIM>
+                                                </ARADVANCEITEM>
+                                            </ARADVANCEITEMS>
+                                        </ARADVANCE>
+                                    </create>
+                                </function>";
 
             ArAdvanceCreate record = new ArAdvanceCreate("unittest")
             {
