@@ -13,6 +13,7 @@
  * permissions and limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -146,6 +147,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
             <RESTRICTEDLOCATIONS>100#~#200</RESTRICTEDLOCATIONS>
             <RESTRICTEDDEPARTMENTS>D100#~#D200</RESTRICTEDDEPARTMENTS>
             <CUSTOMFIELD1>Hello</CUSTOMFIELD1>
+            <DATETIME1>06/30/2015 00:00:00</DATETIME1>
         </CUSTOMER>
     </create>
 </function>";
@@ -226,7 +228,8 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
                 },
                 CustomFields = new Dictionary<string, dynamic>
                 {
-                    { "CUSTOMFIELD1", "Hello" }
+                    { "CUSTOMFIELD1", "Hello" },
+                    { "DATETIME1", new DateTime(2015,06,30)}
                 }
             };
             this.CompareXml(expected, record);
