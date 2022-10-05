@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Intacct.SDK</PackageId>
-    <PackageVersion>3.1.0</PackageVersion>
+    <PackageVersion>3.2.0</PackageVersion>
     <Authors>intacct</Authors>
     <AssemblyTitle>Sage Intacct SDK</AssemblyTitle>
     <Description>Sage Intacct SDK for .NET</Description>
@@ -10,7 +10,7 @@
     <PackageLicenseFile>licenses\LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://developer.intacct.com/tools/sdk-net/</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/Intacct/intacct-sdk-net/releases</PackageReleaseNotes>
-    <Copyright>Copyright © 2020 Sage Intacct, Inc.</Copyright>
+    <Copyright>Copyright © 2022 Sage Intacct, Inc.</Copyright>
     <PackageTags>intacct sdk sage</PackageTags>
   </PropertyGroup>
   <ItemGroup>
