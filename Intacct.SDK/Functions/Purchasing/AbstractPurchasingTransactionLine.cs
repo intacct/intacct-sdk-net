@@ -72,6 +72,8 @@ namespace Intacct.SDK.Functions.Purchasing
 
         public string ContractId;
 
+        public List<AbstractLineSubtotal> LineSubtotals = new List<AbstractLineSubtotal>();
+
         public Dictionary<string, dynamic> CustomFields = new Dictionary<string, dynamic>();
 
         protected AbstractPurchasingTransactionLine()

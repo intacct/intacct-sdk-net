@@ -64,6 +64,16 @@ namespace Intacct.SDK.Functions.Purchasing
                 xml.WriteEndElement(); //itemdetails
             }
 
+            if (LineSubtotals.Count > 0)
+            {
+                xml.WriteStartElement("linesubtotals");
+                foreach (AbstractLineSubtotal subtotal in LineSubtotals)
+                {
+                    subtotal.WriteXml(ref xml);
+                }
+                xml.WriteEndElement();
+            }
+
             xml.WriteElement("form1099", Form1099);
             xml.WriteElement("form1099type", Form1099Type);
             xml.WriteElement("form1099box", Form1099Box);
