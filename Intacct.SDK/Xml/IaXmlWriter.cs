@@ -357,7 +357,14 @@ namespace Intacct.SDK.Xml
                     }
                     else
                     {
-                        WriteElement(customField.Key, customField.Value, true);
+                        if (customField.Value is DateTime)
+                        {
+                            WriteElement(customField.Key, customField.Value, IntacctDateTimeFormat, true);
+                        }
+                        else
+                        {
+                            WriteElement(customField.Key, customField.Value, true);   
+                        }
                     }
                 }
             }
