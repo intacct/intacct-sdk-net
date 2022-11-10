@@ -359,7 +359,7 @@ namespace Intacct.SDK.Xml
                     {
                         if (customField.Value is DateTime)
                         {
-                            WriteElement(customField.Key, customField.Value, writeNull: true);
+                            WriteElement(customField.Key, customField.Value, IntacctDateTimeFormat, true);
                         }
                         else
                         {
