@@ -21,6 +21,7 @@ var class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_i
     [ "RevRecEndDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#a66ac76bf598d3bf07b19a0db58ce1d87", null ],
     [ "RevRecStartDate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#a4db4c843f4870e976bbb2c2d06697523", null ],
     [ "RevRecTemplateId", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#ac8e1083d78a5a20a7f6a451e569628b0", null ],
+    [ "Taxentry", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#a0a1c9cc6e0744b788411180f92d7922e", null ],
     [ "TotalDue", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#a125de1183a501c90d2a82ef11e909637", null ],
     [ "TotalPaid", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#a8ed8a07fcb9de1320c7d4001b16f08fb", null ],
     [ "TransactionAmount", "class_intacct_1_1_s_d_k_1_1_functions_1_1_accounts_receivable_1_1_abstract_invoice_line.html#abaf6dd2a645593127665a814d4669887", null ],
