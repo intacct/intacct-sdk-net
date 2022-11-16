@@ -1,7 +1,5 @@
 # Sage Intacct SDK for .NET
 
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/io9eetc8qpk2yfh4?svg=true)](https://ci.appveyor.com/project/Intacct/intacct-sdk-net)
-[![Travis Build Status](https://travis-ci.org/Intacct/intacct-sdk-net.svg)](https://travis-ci.org/Intacct/intacct-sdk-net)
 [![Latest NuGet Version](https://badge.fury.io/nu/Intacct.SDK.svg)](https://www.nuget.org/packages/Intacct.SDK/)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.nuget.org/packages/Intacct.SDK/)
 
@@ -17,7 +15,7 @@
 ## System Requirements
 
 * You must have an active Sage Intacct Web Services Developer license
-* .NET Core 2.1, .NET Core 3.1 or .NET Framework 4.6.1. The SDK targets [.NET Standard 2.0][dotnet-standard].
+* .NET Core 3.1 or .NET 6. The SDK targets [.NET Standard 2.0][dotnet-standard].
 
 [intacct]: http://www.intacct.com
 [ia-developer]: https://developer.intacct.com/
