@@ -2,7 +2,7 @@ name: Publish Package to nuget
 
 on:
   release:
-    types: [create]
+    types: [created]
     
 jobs:
   build:
