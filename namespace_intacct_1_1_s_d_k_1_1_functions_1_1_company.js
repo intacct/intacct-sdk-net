@@ -25,6 +25,7 @@ var namespace_intacct_1_1_s_d_k_1_1_functions_1_1_company =
     [ "ClassUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_class_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_class_update" ],
     [ "ContactCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_create" ],
     [ "ContactDelete", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_delete.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_delete" ],
+    [ "ContactListInfo", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_list_info.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_list_info" ],
     [ "ContactUpdate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_update.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_contact_update" ],
     [ "CustomAllocationSplit", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_custom_allocation_split.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_custom_allocation_split" ],
     [ "DepartmentCreate", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_department_create.html", "class_intacct_1_1_s_d_k_1_1_functions_1_1_company_1_1_department_create" ],
