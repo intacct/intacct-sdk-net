@@ -29,9 +29,6 @@ jobs:
     - name: Build
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
       
-    - name: Test
-      run: dotnet test
-      
     - name: Pack
       run: dotnet pack
       

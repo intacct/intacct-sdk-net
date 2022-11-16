@@ -27,7 +27,7 @@ namespace Intacct.SDK.Xml
 {
     public class RequestHandler
     {
-        public const string Version = "3.2.1";
+        public const string Version = "3.2.2";
 
         public ClientConfig ClientConfig;
 
