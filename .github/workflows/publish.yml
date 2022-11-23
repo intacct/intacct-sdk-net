@@ -1,0 +1,36 @@
+name: Publish Package to nuget
+
+on:
+  release:
+    types: [created]
+    
+jobs:
+  build:
+    env:
+      BUILD_CONFIG: Release
+      SOLUTION: 'intacct-sdk-net.sln'
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.x
+        
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
+      
+    - name: Pack
+      run: dotnet pack
+      
+    - name: Publish to NuGet
+      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}

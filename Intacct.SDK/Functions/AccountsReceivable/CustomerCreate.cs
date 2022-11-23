@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2022 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -94,7 +94,7 @@ namespace Intacct.SDK.Functions.AccountsReceivable
             xml.WriteElement("TAXID", TaxId);
             xml.WriteElement("CREDITLIMIT", CreditLimit);
             xml.WriteElement("ONHOLD", OnHold);
-            xml.WriteElement("DELIVERYOPTIONS", DeliveryMethod);
+            xml.WriteElement("DELIVERY_OPTIONS", DeliveryMethod);
             xml.WriteElement("CUSTMESSAGEID", DefaultInvoiceMessage);
             xml.WriteElement("COMMENTS", Comments);
             xml.WriteElement("CURRENCY", DefaultCurrency);

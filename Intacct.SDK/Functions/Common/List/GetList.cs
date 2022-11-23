@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2022 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -63,10 +63,11 @@ namespace Intacct.SDK.Functions.Common.List
             xml.WriteAttributeString("maxitems", this.maxitems.ToString());
             xml.WriteAttributeString("showprivate", this.showprivate.ToString().ToLower());
 
-            xml.WriteStartElement("filter");
 
             if (Expression != null || Logical != null)
             {
+                xml.WriteStartElement("filter");
+
                 if (this.Expression != null)
                 {
                     WriteExpressions(Expression, ref xml);
@@ -87,14 +88,14 @@ namespace Intacct.SDK.Functions.Common.List
                     }
                     xml.WriteEndElement(); // logical
                 }
-            }
-            
 
-            xml.WriteEndElement(); // </filter>
-            
-            xml.WriteStartElement("sorts");
+                xml.WriteEndElement(); // </filter>
+            }
+
             if (this.SortedFields.Count > 0)
             {
+                xml.WriteStartElement("sorts");
+
                 foreach (SortedField SortedField in this.SortedFields)
                 {
                     xml.WriteStartElement("sortfield");
@@ -102,19 +103,21 @@ namespace Intacct.SDK.Functions.Common.List
                     xml.WriteString(SortedField.Name);
                     xml.WriteEndElement(); // </sortfield>
                 }
+
+                xml.WriteEndElement(); // </sorts>
             }
-            xml.WriteEndElement(); // </sorts>
-            
-            xml.WriteStartElement("fields");
+
             if (this.Fields.Count > 0)
             {
-                
+                xml.WriteStartElement("fields");
+
                 foreach (string Field in this.Fields)
                 {
                     xml.WriteElementString("field", Field);
                 }
+
+                xml.WriteEndElement(); // </fields>
             }
-            xml.WriteEndElement(); // </fields>
 
             xml.WriteEndElement(); // </get_list> 
 

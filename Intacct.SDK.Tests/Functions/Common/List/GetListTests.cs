@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2022 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -31,11 +31,7 @@ namespace Intacct.SDK.Tests.Functions.Common.List
 
             string expected = String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""{0}"">
-    <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
-        <filter />
-        <sorts />
-        <fields />
-    </get_list>
+    <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"" />
 </function>", controlId);
 
             // act
@@ -61,8 +57,6 @@ namespace Intacct.SDK.Tests.Functions.Common.List
                 <value>Lorem Ipsum</value>
             </expression>
         </filter>
-        <sorts />
-        <fields />
     </get_list>
 </function>",controlId);
 
@@ -113,8 +107,6 @@ namespace Intacct.SDK.Tests.Functions.Common.List
                 </logical>
             </logical>
         </filter>
-        <sorts />
-        <fields />
     </get_list>
 </function>",controlId);
 
@@ -181,8 +173,6 @@ namespace Intacct.SDK.Tests.Functions.Common.List
             string expected = String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""{0}"">
     <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
-        <filter />
-        <sorts />
         <fields>
             <field>FieldA</field>
             <field>FieldB</field>
@@ -213,12 +203,10 @@ namespace Intacct.SDK.Tests.Functions.Common.List
             string expected = String.Format(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <function controlid=""{0}"">
     <get_list object=""supdoc"" start=""0"" maxitems=""100"" showprivate=""true"">
-        <filter />
         <sorts>
             <sortfield order=""asc"">FieldA</sortfield>
             <sortfield order=""desc"">FieldB</sortfield>
         </sorts>
-        <fields />
     </get_list>
 </function>",controlId);
 

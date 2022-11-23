@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2022 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -133,6 +133,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
             </customfield>
         </customfields>
         <state>Pending</state>
+        <projectid>Project1</projectid>
         <potransitems>
             <potransitem>
                 <itemid>2390552</itemid>
@@ -170,6 +171,7 @@ namespace Intacct.SDK.Tests.Functions.Purchasing
                 ExchangeRateDate = new DateTime(2015, 06, 30),
                 ExchangeRateType = "Intacct Daily Rate",
                 State = "Pending",
+                ProjectId = "Project1",
                 CustomFields = new Dictionary<string, dynamic>
                 {
                     { "customfield1", "customvalue1" }

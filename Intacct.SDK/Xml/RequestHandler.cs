@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2022 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -27,7 +27,7 @@ namespace Intacct.SDK.Xml
 {
     public class RequestHandler
     {
-        public const string Version = "3.1.0";
+        public const string Version = "3.2.2";
 
         public ClientConfig ClientConfig;
 

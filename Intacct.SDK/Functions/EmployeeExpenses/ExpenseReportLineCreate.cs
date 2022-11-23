@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2022 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -76,6 +76,8 @@ namespace Intacct.SDK.Functions.EmployeeExpenses
             xml.WriteCustomFieldsExplicit(CustomFields);
 
             xml.WriteElement("projectid", ProjectId);
+            xml.WriteElement("taskid", TaskId);
+            xml.WriteElement("costtypeid", CostTypeId);
             xml.WriteElement("customerid", CustomerId);
             xml.WriteElement("vendorid", VendorId);
             xml.WriteElement("employeeid", EmployeeId);

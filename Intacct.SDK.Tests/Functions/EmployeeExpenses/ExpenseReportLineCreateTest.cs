@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2022 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -73,6 +73,8 @@ namespace Intacct.SDK.Tests.Functions.EmployeeExpenses
         </customfield>
     </customfields>
     <projectid>Project1</projectid>
+    <taskid>Task1</taskid>
+    <costtypeid>CostType1</costtypeid>
     <customerid>Customer1</customerid>
     <vendorid>Vendor1</vendorid>
     <employeeid>Employee1</employeeid>
@@ -104,6 +106,8 @@ namespace Intacct.SDK.Tests.Functions.EmployeeExpenses
                 LocationId = "Location1",
                 DepartmentId = "Department1",
                 ProjectId = "Project1",
+                TaskId = "Task1",
+                CostTypeId = "CostType1",
                 CustomerId = "Customer1",
                 VendorId = "Vendor1",
                 EmployeeId = "Employee1",

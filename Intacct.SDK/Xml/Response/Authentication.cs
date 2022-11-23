@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2022 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -27,6 +27,14 @@ namespace Intacct.SDK.Xml.Response
         public string CompanyId { get; }
         
         public string EntityId { get; }
+        
+        public string ClientStatus { get; }
+        
+        public string ClientId { get; }
+        
+        public string SessionTimeStamp { get; }
+        
+        public string SessionTimeOut { get; }
 
         public Authentication(XElement authentication)
         {
@@ -56,9 +64,30 @@ namespace Intacct.SDK.Xml.Response
             {
                 this.EntityId = entityId.Value;
             }
-           
 
-            // TODO add getter/setter for elements: clientstatus, clientid, sessiontimestamp
+            var clientStatus = authentication.Element("clientstatus");
+            if (clientStatus != null)
+            {
+                this.ClientStatus = clientStatus.Value;
+            }
+            
+            var clientId = authentication.Element("clientid");
+            if (clientStatus != null)
+            {
+                this.ClientId = clientId.Value;
+            }
+            
+            var sessionTimeStamp = authentication.Element("sessiontimestamp");
+            if (sessionTimeStamp != null)
+            {
+                this.SessionTimeStamp = sessionTimeStamp.Value;
+            }
+            
+            var sessionTimeOut = authentication.Element("sessiontimeout");
+            if (sessionTimeOut != null)
+            {
+                this.SessionTimeOut = sessionTimeOut.Value;
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2020 Sage Intacct, Inc.
+ * Copyright 2022 Sage Intacct, Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
  * use this file except in compliance with the License. You may obtain a copy 
@@ -101,7 +101,7 @@ namespace Intacct.SDK.Tests.Functions.AccountsReceivable
             <TAXID>12-3456789</TAXID>
             <CREDITLIMIT>1234.56</CREDITLIMIT>
             <ONHOLD>false</ONHOLD>
-            <DELIVERYOPTIONS>Print#~#E-Mail</DELIVERYOPTIONS>
+            <DELIVERY_OPTIONS>Print#~#E-Mail</DELIVERY_OPTIONS>
             <CUSTMESSAGEID>hello</CUSTMESSAGEID>
             <COMMENTS>my comment</COMMENTS>
             <CURRENCY>USD</CURRENCY>
