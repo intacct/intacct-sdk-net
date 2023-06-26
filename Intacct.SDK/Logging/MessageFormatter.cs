@@ -20,6 +20,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Intacct.SDK.Xml.Response;
 
 namespace Intacct.SDK.Logging
 {
@@ -86,7 +87,7 @@ namespace Intacct.SDK.Logging
 
 
 
-                        result = result + Environment.NewLine + Environment.NewLine + request.Content.ReadAsStreamAsync().Result;
+                        result = result + Environment.NewLine + Environment.NewLine + GetHttpContentAsString(response.Content).Result;
                         break;
                     case "{response}":
                         result = response != null ? " HTTP/" + response.Version.ToString()
@@ -100,21 +101,9 @@ namespace Intacct.SDK.Logging
                                 result = result + Environment.NewLine + "{" + header.Key + "}: " + string.Join(", ", header.Value);
                             }
 
-                            if (response.Content is StringContent stringContent)
-                            {
-                                result = result + Environment.NewLine + Environment.NewLine + stringContent.ReadAsStringAsync();
-                            }
-                            else
-                            {
-                                using var stream = await response.Content.ReadAsStreamAsync();
+                            result = result + Environment.NewLine + Environment.NewLine + GetHttpContentAsString(response.Content).Result;
 
-                                using var reader = new StreamReader(stream);
 
-                                result = await reader.ReadToEndAsync();
-
-                            }
-
-                           
                         }
                         break;
                     case "{req_headers}":
@@ -219,6 +208,13 @@ namespace Intacct.SDK.Logging
 
 
 
+        private async Task<string> GetHttpContentAsString(HttpContent httpContent)
+        {
+            using var stream = await httpContent.ReadAsStreamAsync();
 
+            using var reader = new StreamReader(stream);
+
+            return await reader.ReadToEndAsync();
+        }
     }
 }
