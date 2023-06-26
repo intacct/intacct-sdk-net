@@ -71,7 +71,7 @@ namespace Intacct.SDK.Logging
 
         public string Format(HttpRequestMessage request, HttpResponseMessage response, Exception error = null)
         {
-            string message = Regex.Replace(_template, @"{\s*([A-Za-z_\-\.0-9]+)\s*}",  match => {
+            string message = Regex.Replace(_template, @"{\s*([A-Za-z_\-\.0-9]+)\s*}", match => {
                 string result = "";
                 switch (match.Value)
                 {
@@ -84,8 +84,6 @@ namespace Intacct.SDK.Logging
                         {
                             result = result + Environment.NewLine + "{" + header.Key + "}: " + string.Join(", ", header.Value);
                         }
-
-
 
                         result = result + Environment.NewLine + Environment.NewLine + GetHttpContentAsString(response.Content).Result;
                         break;
@@ -102,8 +100,6 @@ namespace Intacct.SDK.Logging
                             }
 
                             result = result + Environment.NewLine + Environment.NewLine + GetHttpContentAsString(response.Content).Result;
-
-
                         }
                         break;
                     case "{req_headers}":
