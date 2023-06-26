@@ -84,7 +84,6 @@ namespace Intacct.SDK.Logging
                         {
                             result = result + Environment.NewLine + "{" + header.Key + "}: " + string.Join(", ", header.Value);
                         }
-
                         result = result + Environment.NewLine + Environment.NewLine + GetHttpContentAsString(response.Content).Result;
                         break;
                     case "{response}":
@@ -98,7 +97,6 @@ namespace Intacct.SDK.Logging
                             {
                                 result = result + Environment.NewLine + "{" + header.Key + "}: " + string.Join(", ", header.Value);
                             }
-
                             result = result + Environment.NewLine + Environment.NewLine + GetHttpContentAsString(response.Content).Result;
                         }
                         break;
