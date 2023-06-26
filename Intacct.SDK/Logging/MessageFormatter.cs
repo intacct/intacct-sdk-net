@@ -18,6 +18,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Intacct.SDK.Xml.Response;
@@ -204,7 +205,7 @@ namespace Intacct.SDK.Logging
         {
             using var stream = await httpContent.ReadAsStreamAsync();
 
-            using var reader = new StreamReader(stream);
+            using var reader = new StreamReader(stream, Encoding.UTF8);
 
             return await reader.ReadToEndAsync();
         }
