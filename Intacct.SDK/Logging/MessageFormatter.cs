@@ -200,8 +200,6 @@ namespace Intacct.SDK.Logging
             return message;
         }
 
-
-
         private async Task<string> GetHttpContentAsString(HttpContent httpContent)
         {
             using var stream = await httpContent.ReadAsStreamAsync();
