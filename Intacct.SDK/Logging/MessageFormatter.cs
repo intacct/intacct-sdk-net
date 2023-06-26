@@ -71,7 +71,7 @@ namespace Intacct.SDK.Logging
 
         public string Format(HttpRequestMessage request, HttpResponseMessage response, Exception error = null)
         {
-            string message = Regex.Replace(_template, @"{\s*([A-Za-z_\-\.0-9]+)\s*}", async match => {
+            string message = Regex.Replace(_template, @"{\s*([A-Za-z_\-\.0-9]+)\s*}",  match => {
                 string result = "";
                 switch (match.Value)
                 {
