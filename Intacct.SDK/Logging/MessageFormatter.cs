@@ -203,11 +203,9 @@ namespace Intacct.SDK.Logging
 
         private async Task<string> GetHttpContentAsString(HttpContent httpContent)
         {
-            using var stream = await httpContent.ReadAsStreamAsync();
+            var bytes = await httpContent.ReadAsByteArrayAsync();
 
-            using var reader = new StreamReader(stream, Encoding.UTF8);
-
-            return await reader.ReadToEndAsync();
+            return Encoding.UTF8.GetString(bytes);
         }
     }
 }
