@@ -99,10 +99,8 @@ namespace Intacct.SDK.Xml
             }
             else
             {
-                HttpClientHandler httpClientHandler = new HttpClientHandler()
-                {
-                    AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
-                };
+                HttpClientHandler httpClientHandler = new HttpClientHandler();
+
                 
                 if (this.ClientConfig.Logger != null)
                 {
@@ -122,15 +120,14 @@ namespace Intacct.SDK.Xml
 
         private async Task<Stream> Execute(Stream requestXml)
         {
-            HttpClient client = new HttpClient(GetHttpMessageHandler());
-            client.Timeout = this.RequestConfig.MaxTimeout;
-            client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip,deflate");
-            client.DefaultRequestHeaders.UserAgent.ParseAdd("intacct-sdk-net-client/" + RequestHandler.Version);
+                HttpClient client = new HttpClient(GetHttpMessageHandler());
+                client.Timeout = this.RequestConfig.MaxTimeout;
+                client.DefaultRequestHeaders.UserAgent.ParseAdd("intacct-sdk-net-client/" + RequestHandler.Version);
 
-            requestXml.Position = 0;
-            StreamContent content = new StreamContent(requestXml);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
-            
+                requestXml.Position = 0;
+                StreamContent content = new StreamContent(requestXml);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
+
             for (int attempt = 0; attempt <= this.RequestConfig.MaxRetries; attempt++)
             {
                 if (attempt > 0)
