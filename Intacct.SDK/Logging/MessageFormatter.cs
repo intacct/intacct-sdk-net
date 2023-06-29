@@ -14,13 +14,10 @@
  */
 
 using System;
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Intacct.SDK.Logging
 {
@@ -71,7 +68,8 @@ namespace Intacct.SDK.Logging
 
         public string Format(HttpRequestMessage request, HttpResponseMessage response, Exception error = null)
         {
-            string message = Regex.Replace(_template, @"{\s*([A-Za-z_\-\.0-9]+)\s*}", match => {
+            string message = Regex.Replace(_template, @"{\s*([A-Za-z_\-\.0-9]+)\s*}", match =>
+            {
                 string result = "";
                 switch (match.Value)
                 {
@@ -198,13 +196,6 @@ namespace Intacct.SDK.Logging
             }
 
             return message;
-        }
-
-        private async Task<string> GetHttpContentAsString(HttpContent httpContent)
-        {
-            var bytes = await httpContent.ReadAsByteArrayAsync();
-
-            return Encoding.UTF8.GetString(bytes);
         }
     }
 }
