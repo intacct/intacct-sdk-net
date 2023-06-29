@@ -1,27 +1,27 @@
 ﻿/*
  * Copyright 2022 Sage Intacct, Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not
- * use this file except in compliance with the License. You may obtain a copy 
+ * use this file except in compliance with the License. You may obtain a copy
  * of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * or in the "LICENSE" file accompanying this file. This file is distributed on 
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language governing 
+ *
+ * or in the "LICENSE" file accompanying this file. This file is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
 
+using Intacct.SDK.Credentials;
+using Intacct.SDK.Functions;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Intacct.SDK.Credentials;
-using Intacct.SDK.Functions;
-using Microsoft.Extensions.Logging;
 
 namespace Intacct.SDK.Xml
 {
@@ -43,7 +43,7 @@ namespace Intacct.SDK.Xml
 
             this.RequestConfig = requestConfig;
         }
-        
+
         public async Task<OnlineResponse> ExecuteOnline(List<IFunction> content)
         {
             if (!string.IsNullOrEmpty(this.RequestConfig.PolicyId))
@@ -83,7 +83,7 @@ namespace Intacct.SDK.Xml
 
             return response;
         }
-        
+
         private HttpMessageHandler GetHttpMessageHandler()
         {
             if (this.ClientConfig.MockHandler != null)
@@ -101,7 +101,6 @@ namespace Intacct.SDK.Xml
             {
                 HttpClientHandler httpClientHandler = new HttpClientHandler();
 
-                
                 if (this.ClientConfig.Logger != null)
                 {
                     return new LoggingHandler(httpClientHandler, this.ClientConfig.Logger, this.ClientConfig.LogMessageFormatter, this.ClientConfig.LogLevel);
@@ -120,13 +119,13 @@ namespace Intacct.SDK.Xml
 
         private async Task<Stream> Execute(Stream requestXml)
         {
-                HttpClient client = new HttpClient(GetHttpMessageHandler());
-                client.Timeout = this.RequestConfig.MaxTimeout;
-                client.DefaultRequestHeaders.UserAgent.ParseAdd("intacct-sdk-net-client/" + RequestHandler.Version);
+            HttpClient client = new HttpClient(GetHttpMessageHandler());
+            client.Timeout = this.RequestConfig.MaxTimeout;
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("intacct-sdk-net-client/" + RequestHandler.Version);
 
-                requestXml.Position = 0;
-                StreamContent content = new StreamContent(requestXml);
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
+            requestXml.Position = 0;
+            StreamContent content = new StreamContent(requestXml);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
 
             for (int attempt = 0; attempt <= this.RequestConfig.MaxRetries; attempt++)
             {
@@ -140,7 +139,7 @@ namespace Intacct.SDK.Xml
                 int httpCode = (int)response.StatusCode;
                 if (response.IsSuccessStatusCode)
                 {
-                    Stream stream= await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+                    Stream stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
                     return stream;
                 }
                 else if (Array.Exists(this.RequestConfig.NoRetryServerErrorCodes, element => element == httpCode))
@@ -161,7 +160,7 @@ namespace Intacct.SDK.Xml
                         Stream stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
                         return stream;
                     }
-                    
+
                     // Throw exception for non-500 level errors
                     response.EnsureSuccessStatusCode();
                 }
