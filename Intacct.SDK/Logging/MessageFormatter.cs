@@ -97,7 +97,7 @@ namespace Intacct.SDK.Logging
                             {
                                 result = result + Environment.NewLine + "{" + header.Key + "}: " + string.Join(", ", header.Value);
                             }
-                            result = result + Environment.NewLine + Environment.NewLine + request.Content.ReadAsStringAsync().Result;
+                            result = result + Environment.NewLine + Environment.NewLine + response.Content.ReadAsStringAsync().Result;
                         }
                         break;
                     case "{req_headers}":
