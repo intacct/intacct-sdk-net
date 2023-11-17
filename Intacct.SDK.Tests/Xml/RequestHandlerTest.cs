@@ -1,23 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
 using Intacct.SDK.Exceptions;
 using Intacct.SDK.Functions;
-using Intacct.SDK.Logging;
-using Intacct.SDK.Tests.Logging;
 using Intacct.SDK.Xml;
 using Intacct.SDK.Xml.Request;
 using Microsoft.Extensions.Logging;
-using NLog;
-using NLog.Config;
-using NLog.Targets;
 using Xunit;
-using LogLevel = NLog.LogLevel;
 
 namespace Intacct.SDK.Tests.Xml
 {
@@ -446,14 +438,6 @@ namespace Intacct.SDK.Tests.Xml
             };
 
             MockHandler mockHandler = new MockHandler(mockResponses);
-
-            var guid = Guid.NewGuid().ToString();
-            MemoryTarget target = new MemoryTarget
-            {
-                Name = guid,
-                Layout = "${message}"
-            };
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
             
             ClientConfig clientConfig = new ClientConfig()
             {
@@ -508,14 +492,6 @@ namespace Intacct.SDK.Tests.Xml
             };
 
             MockHandler mockHandler = new MockHandler(mockResponses);
-
-            var guid = Guid.NewGuid().ToString();
-            MemoryTarget target = new MemoryTarget
-            {
-                Name = guid,
-                Layout = "${message}"
-            };
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
             
             ClientConfig clientConfig = new ClientConfig()
             {
