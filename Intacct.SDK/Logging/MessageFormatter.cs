@@ -118,10 +118,10 @@ namespace Intacct.SDK.Logging
                         result = response.Content.Headers.ContentLength.ToString();
                         break;
                     case "{req_body}":
-                        result = request.Content.ToString();
+                        result = request.Content.ReadAsStringAsync().Result;
                         break;
                     case "{res_body}":
-                        result = response != null ? response.Content.ToString() : "NULL";
+                        result = response != null ? response.Content.ReadAsStringAsync().Result : "NULL";
                         break;
                     case "{ts}":
                     case "{date_iso_8601}":
