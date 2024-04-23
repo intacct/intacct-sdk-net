@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -260,7 +261,7 @@ namespace Intacct.SDK.Xml
         
         public void WriteElement(string localName, DateTime value, string format = IntacctDateTimeFormat)
         {
-            _writer.WriteElementString(localName, value == default(DateTime) ? "" : value.ToString(format));
+            _writer.WriteElementString(localName, value == default(DateTime) ? "" : value.ToString(format, CultureInfo.InvariantCulture));
         }
 
         public void WriteElement(string localName, DateTime? value, string format = IntacctDateTimeFormat, bool writeNull = false)
@@ -274,7 +275,7 @@ namespace Intacct.SDK.Xml
             }
             else
             {
-                _writer.WriteElementString(localName, value == default(DateTime) ? "" : value.Value.ToString(format));
+                _writer.WriteElementString(localName, value == default(DateTime) ? "" : value.Value.ToString(format, CultureInfo.InvariantCulture));
             }
         }
 

@@ -13,6 +13,8 @@
  * permissions and limitations under the License.
  */
 
+using System.Globalization;
+
 namespace Intacct.SDK.Functions.Common.Query.Comparison.LessThanOrEqualTo
 {
     public class LessThanOrEqualToDateTime : AbstractDateTime
@@ -25,7 +27,7 @@ namespace Intacct.SDK.Functions.Common.Query.Comparison.LessThanOrEqualTo
                 clause = "NOT ";
             }
             
-            clause = clause + Field + " <= '" + Value.ToString(Format) + "'";
+            clause = clause + Field + " <= '" + Value.ToString(Format, CultureInfo.InvariantCulture) + "'";
 
             return clause;
         }
