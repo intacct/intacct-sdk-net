@@ -396,7 +396,7 @@ namespace Intacct.SDK.Tests.Xml
             
             var ex = await Record.ExceptionAsync(() => requestHandler.ExecuteOnline(contentBlock));
             Assert.IsType<HttpRequestException>(ex);
-            Assert.Equal("Response status code does not indicate success: 524 ().", ex.Message);
+            Assert.Equal("Response status code does not indicate success: 524.", ex.Message);
         }
 
         [Fact(Skip="test randomly failing")]
