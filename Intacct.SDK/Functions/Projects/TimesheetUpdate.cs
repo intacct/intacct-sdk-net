@@ -32,6 +32,7 @@ namespace Intacct.SDK.Functions.Projects
             xml.WriteStartElement("update");
             xml.WriteStartElement("TIMESHEET");
 
+            xml.WriteElement("RECORDNO", RecordNo, true);
             xml.WriteElement("EMPLOYEEID", EmployeeId, true);
             xml.WriteElement("BEGINDATE", BeginDate, IaXmlWriter.IntacctDateFormat);
             
