@@ -2,7 +2,7 @@
 
 ## ⚠️ Deprecation Notice ⚠️  
 
-As of **Sage Intacct 2025 Release 1** (February 2025), the **REST API** are **Generally Available (GA)**.  
+As of **Sage Intacct 2025 Release 1** (February 2025), the **REST API** is **Generally Available (GA)**.  
 With this, we are **no longer actively developing enhancements** for the XML SDKs.  
 
 Developers can continue using the SDKs, but any future changes, maintenance, and feature development will be **self-managed**.  
