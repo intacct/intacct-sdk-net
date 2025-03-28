@@ -57,6 +57,16 @@ namespace Intacct.SDK.Functions.OrderEntry
                 xml.WriteEndElement(); //itemdetails
             }
 
+            if (LineSubtotals.Count > 0)
+            {
+                xml.WriteStartElement("linesubtotals");
+                foreach (AbstractLineSubtotal subtotal in LineSubtotals)
+                {
+                    subtotal.WriteXml(ref xml);
+                }
+                xml.WriteEndElement();
+            }
+
             xml.WriteCustomFieldsExplicit(CustomFields);
 
             xml.WriteElement("revrectemplate", RevRecTemplate);
